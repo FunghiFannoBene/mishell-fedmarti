@@ -21,5 +21,6 @@
 #include <readline/history.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <limits.h> //path max
 
 #endif

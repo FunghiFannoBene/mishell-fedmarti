@@ -24,7 +24,6 @@ void clear()
 int main() 
 {
     char* input;
-	int size = 100;
 	char *pwd;
 
 	clear(); //pulisce all'avvio
@@ -32,26 +31,26 @@ int main()
         input = readline("Minishell> "); //stampa e aspetta un input
 
         if (strcmp(input, "exit") == 0)
-            break;
+            exit(0);
 		else if(strcmp(input, "clear") == 0)
 			clear();
-		else if(strncmp(input, "cd", 2))
+		// else if(strncmp(input, "cd", 2))
+		// {
+		// 	if(chdir(input + 2) != 0)// chdir controlla che la path sia giusta e esegue il processo per entrarci
+		// 		perror("Path invalida.\n");
+		// 	else
+		// 		printf("entrato con successo in: %s", input+3);
+
+
+
+		// 	//CONTROLLARE NON CORRETTO!!
+
+
+		// }
+		else if(strcmp(input, "pwd") == 0)
 		{
-			if(chdir(input + 2) != 0)// chdir controlla che la path sia giusta e esegue il processo per entrarci
-				perror("Path invalida.\n");
-			else
-				printf("entrato con successo in: %s", input+3);
-
-
-
-			//CONTROLLARE NON CORRETTO!!
-
-
-		}
-		else if(strcmp(input, "pwd"))
-		{
-			pwd = malloc(sizeof(char) * size);
-			getcwd(pwd, size); // prendi path e salvalo in "pwd";
+			pwd = malloc(sizeof(char) * PATH_MAX);
+			getcwd(pwd, PATH_MAX); // prendi path e salvalo in "pwd";
 			printf("%s\n", pwd);
 
 
