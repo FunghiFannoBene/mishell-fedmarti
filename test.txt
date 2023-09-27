@@ -1,0 +1,6 @@
+
+
+
+1 chdir riproduce cd 
+2 struttura con old / e new per salvare i dati da mostrare, history
+3

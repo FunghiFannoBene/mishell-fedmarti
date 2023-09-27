@@ -6,25 +6,29 @@
 /*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/09/27 19:02:55 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/09/27 20:06:09 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "minishell.h"
 
+void clear()
+{
+	printf("Minishell: ");	
+}
 
 int main(int argc, char**argv, char**envp)
 {	
 
 	t_dblist *new;
-	new = NULL;
-
+	(void)argv;
 	new = malloc(sizeof(t_dblist));
 	new->next = NULL;
 	int i=0;
-	while(envp[i])
+	clear();
+	while(1)
 	{
-		printf("%s\n", envp[i++]);
+		
 	}
 }
