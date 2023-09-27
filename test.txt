@@ -1,4 +1,3 @@
-1 chdir riproduce cd 
 2 struttura con old / e new per salvare i dati da mostrare
 history
 printf
@@ -16,21 +15,31 @@ signal
 sigaction
 kill
 exit
-perror
+
+
+perror stampa automaticamente un messaggio d'errore correlato 
+all'ultima operazione che ha avuto un errore e un messaggio personalizzato.
+
+chdir riproduce cd è controllabile, se ritorna 0 significa che FUNZIONA
+
+readline STAMPA e cattura un INPUT;
+
+add_history AGGIUNGE STORICO (quello che volevamo risolvere con la structure che quindi non serve),
+
+getcwd esegue "PWD" circa e lo salva in una STRINGA!
+
+rl_clear_history PULISCE la HISTORY quella che volevamo mettere in struct (Non so se ci serve);
+
 
 TO LEARN
 
-readline
-rl_clear_history
 rl_on_new_line
 rl_replace_line
 rl_redisplay
-add_history
 wait3
 wait4
 sigemptyset
 sigaddset
-getcwd
 stat
 lstat
 fstat
