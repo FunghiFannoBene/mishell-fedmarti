@@ -1,12 +1,67 @@
-2 struttura con old / e new per salvare i dati da mostrare
-history
-printf
+SOLUZIONI:
+
+0 	capire a cosa potrebbero servirci le funzioni date dal subject.
+
+
+1 	creare i vari comandi es 
+
+	"cd"     # Cambia la directory corrente
+	"ls"     # Elenca i file e le directory nella directory corrente
+	"pwd"    # Mostra la directory corrente
+	"grep"   # Cerca all'interno dei file
+	"echo"   # Visualizza un messaggio o una variabile
+	"mkdir"  # Crea una nuova directory
+	"rmdir"  # Rimuove una directory vuota
+	"rm"     # Rimuove file o directory
+	"mv"     # Sposta o rinomina file e directory
+	"cp"     # Copia file e directory
+	"chmod"  # Cambia i permessi di un file o una directory
+	"chown"  # Cambia il proprietario di un file o una directory
+	"ps"     # Mostra i processi in esecuzione
+	"kill"   # Termina un processo
+	"man"    # Mostra il manuale per un comando
+	"exit"   # Esce dalla shell o termina la sessione corrente
+	"clear"  # Pulisce la schermata della shell
+	"history" # Elenca i comandi recenti eseguiti nella shell
+	"find"   # Cerca file e directory basandosi su vari criteri
+	"cat"    # Visualizza o concatena il contenuto dei file
+	"less"   # Visualizza il contenuto dei file una pagina alla volta
+	"tail"   # Mostra le ultime righe di un file
+	"head"   # Mostra le prime righe di un file
+	"which"  # Mostra il percorso del comando specificato
+	"date"   # Mostra la data e l'ora correnti
+	"df"     # Mostra l'utilizzo del disco
+	"du"     # Mostra l'utilizzo dello spazio da parte dei file/directory
+	"ifconfig" # Mostra le informazioni di configurazione della rete (sostituito da "ip" in molte distribuzioni moderne)
+	"ping"   # Testa la connettività di rete
+	"nano"   # Un semplice editor di testo in modalità testuale
+	"top"    # Mostra le statistiche dei processi in tempo reale
+
+ 	etc... in quanto verranno sicuramente eseguiti nello stesso modo in ogni caso se richiamati.
+
+
+2 	parsing e creare priorita` e accettazione ad esempio
+
+ 	~           && || | ; & << < >> > e anche ""           ~ 
+
+	quindi richiamando uno dei "vari comandi" per poi passare l'output al successivo.
+
+
+3	valgrind memoria, check e controllo codice/refactor
+	END
+
+
+
+
+Funzioni
+
+printf 
 malloc
 free
-write
+write 
 access
 open
-read
+read 
 close
 fork
 wait
