@@ -1,3 +1,19 @@
+
+if command (char **arg , char *priority list)
+"333333311111222"
+
+if('1')
+	esegui echo(arg)
+else if('2') 
+	cd
+else if('3')
+	<<
+
+
+
+
+
+
 SOLUZIONI:
 
 0 	capire a cosa potrebbero servirci le funzioni date dal subject.
@@ -6,55 +22,42 @@ SOLUZIONI:
 1 	creare i vari comandi es 
 
 	"cd"     # Cambia la directory corrente
-	"ls"     # Elenca i file e le directory nella directory corrente
 	"pwd"    # Mostra la directory corrente
-	"grep"   # Cerca all'interno dei file
 	"echo"   # Visualizza un messaggio o una variabile
-	"mkdir"  # Crea una nuova directory
-	"rmdir"  # Rimuove una directory vuota
-	"rm"     # Rimuove file o directory
-	"mv"     # Sposta o rinomina file e directory
-	"cp"     # Copia file e directory
-	"chmod"  # Cambia i permessi di un file o una directory
-	"chown"  # Cambia il proprietario di un file o una directory
-	"ps"     # Mostra i processi in esecuzione
-	"kill"   # Termina un processo
-	"man"    # Mostra il manuale per un comando
 	"exit"   # Esce dalla shell o termina la sessione corrente
 	"clear"  # Pulisce la schermata della shell
-	"history" # Elenca i comandi recenti eseguiti nella shell
-	"find"   # Cerca file e directory basandosi su vari criteri
-	"cat"    # Visualizza o concatena il contenuto dei file
-	"less"   # Visualizza il contenuto dei file una pagina alla volta
-	"tail"   # Mostra le ultime righe di un file
-	"head"   # Mostra le prime righe di un file
-	"which"  # Mostra il percorso del comando specificato
-	"date"   # Mostra la data e l'ora correnti
-	"df"     # Mostra l'utilizzo del disco
-	"du"     # Mostra l'utilizzo dello spazio da parte dei file/directory
-	"ifconfig" # Mostra le informazioni di configurazione della rete (sostituito da "ip" in molte distribuzioni moderne)
-	"ping"   # Testa la connettività di rete
-	"nano"   # Un semplice editor di testo in modalità testuale
-	"top"    # Mostra le statistiche dei processi in tempo reale
+	"export" with no options
+	"unset" with no options
 
  	etc... in quanto verranno sicuramente eseguiti nello stesso modo in ogni caso se richiamati.
 
 
-2 	parsing e creare priorita` e accettazione ad esempio
 
- 	~           && || | ; & << < >> > e anche ""           ~ 
+2	  CREARE PSEUDO ENV;
+
+
+
+2.5 		CONTROL SEGNALI (CTRL+C ETC...)
+
+
+
+
+
+3 	parsing e creare priorita` e accettazione ad esempio
+
+ 	\\        | << < >> > "" ''         //
 
 	quindi richiamando uno dei "vari comandi" per poi passare l'output al successivo.
 
 
-3	valgrind memoria, check e controllo codice/refactor
+4	valgrind memoria, check e controllo codice/refactor
 	END
 
 
 
 
 Funzioni
-
+/
 printf 
 malloc
 free
@@ -64,13 +67,14 @@ open
 read 
 close
 fork
-wait
 waitpid
 signal
 sigaction
 kill
 exit
 
+
+wait manda in pausa il programma finche non arriva un segnale
 
 perror stampa automaticamente un messaggio d'errore correlato 
 all'ultima operazione che ha avuto un errore e un messaggio personalizzato.
@@ -86,6 +90,14 @@ getcwd esegue "PWD" circa e lo salva in una STRINGA!
 rl_clear_history PULISCE la HISTORY quella che volevamo mettere in struct (Non so se ci serve);
 
 
+
+
+DA guardare
+
+execve
+
+
+
 TO LEARN
 
 rl_on_new_line
@@ -99,7 +111,6 @@ stat
 lstat
 fstat
 unlink
-execve
 up
 dup2
 pipe

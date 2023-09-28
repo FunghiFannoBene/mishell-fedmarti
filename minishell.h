@@ -22,5 +22,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h> //path max
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #endif

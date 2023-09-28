@@ -4,9 +4,9 @@ CC = gcc
 
 SRCS = minishell.c \
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 LIBS= -lreadline
 
 all:
-	$(CC) $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
+	$(CC) $(SRCS) -g $(LIBS) -o $(NAME)
