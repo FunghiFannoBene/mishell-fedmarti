@@ -79,7 +79,7 @@ int calculate_string_size(char *s) //t_list da aggiungere
 
 int main(int argc, char**argv)
 {
-	printf("è lungo :%d stampa è lunga: %ld", calculate_string_size("echo    abc \"Hello > World\""), strlen("abc Hello > World"));
+	printf("è lungo :%d stampa è lunga: %ld", calculate_string_size("echo    'abc'\"Hello > World\""), strlen("abcHello > World"));
 }
 
 // char *editstring(char *s, t_list*env)
