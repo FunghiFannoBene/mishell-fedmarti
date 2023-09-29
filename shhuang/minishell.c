@@ -60,7 +60,7 @@ int calculate_string_size(char *s) //t_list da aggiungere
                 return(count); //ritorno conta se trova un simbolo significativo non incluso tra virgolette
             }
             if((flag == 0 || flag == '"') && s[i] == '$')
-                flag = '"'; //Non funzionale finche non c'è env; Si attiva solo se $ è tra le "$" o senza nulla.
+                count += '$'; //Non funzionale finche non c'è env; Si attiva solo se $ è tra le "$" o senza nulla.
             if(flag == 0 && s[i] == ' ') //se non sono dentro le virgolette e trovo uno spazio skippo tutto. e continuo senza aggiungere i++;
             {
                 while(s[i] && s[i] == ' ')
