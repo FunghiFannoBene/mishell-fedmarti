@@ -51,6 +51,8 @@ int calculate_string_size(char *s) //t_list da aggiungere
             if(s[i] == flag)
             {
                 i++;
+				if(s[i] == '\0')
+                  return count;
                 flag = 0; //ho trovato la chiusura ma la stringa potrebbe continuare ancora
                 break;
             }
@@ -65,9 +67,13 @@ int calculate_string_size(char *s) //t_list da aggiungere
             {
                 while(s[i] && s[i] == ' ')
                     i++;
+				if(s[i] == '\0')
+					return(count);
                 count++;
                 break;
             }
+			if(flag == 0 && s[i] == '\'' || s[i] == '"')
+              break;
             count++;    //count arg size;
             i++;
         }
@@ -77,10 +83,159 @@ int calculate_string_size(char *s) //t_list da aggiungere
 }
 
 
-int main(int argc, char**argv)
+void insert_string(char*s, char **str) //t_list da aggiungere
 {
-	printf("è lungo :%d stampa è lunga: %ld", calculate_string_size("echo    'abc'\"Hello > World\""), strlen("abcHello > World"));
+    int i = 4;
+    char flag = 0;
+    int count = 0;
+    if(s[i] == ' ')
+    {
+    while(s[i] == ' ')
+      i++;
+    }
+    else
+      return;
+    while(s[i])
+    {
+        if(s[i] == '\'')
+        { //inserisci tutto fino '
+            flag = '\'';
+        }
+        else if(s[i] == '"') //inserisci tutto fino a "
+        {
+            flag = '"';
+        }
+        if(flag != 0)
+            i++;
+        if(flag == s[i])
+        {
+          i++;
+          flag = 0;
+          continue;
+        }
+        
+        while(s[i])
+        {
+            if(s[i] == flag)
+            {
+                i++;
+                if(s[i] == '\0')
+                {
+                  (*str)[count] = '\0';
+                  return;
+                }
+                flag = 0; //ho trovato la chiusura ma la stringa potrebbe continuare ancora
+                break;
+            }
+            else if(flag == 0 && (s[i] == '<' || s[i] == '>' || s[i] == '|'))
+            {
+                i++;
+                (*str)[count] = '\0';
+                return; //ritorno conta se trova un simbolo significativo non incluso tra virgolette
+            }
+            if((flag == 0 || flag == '"') && s[i] == '$')
+                count += '$'; //Non funzionale finche non c'è env; Si attiva solo se $ è tra le "$" o senza nulla.
+            if(flag == 0 && s[i] == ' ') //se non sono dentro le virgolette e trovo uno spazio skippo tutto. e continuo senza aggiungere i++;
+            {
+                (*str)[count] = s[i];
+                while(s[i] && s[i] == ' ')
+                    i++;
+                count++;
+                break;
+            }
+            if(flag == 0 && s[i] == '\'' || s[i] == '"')
+              break;
+            (*str)[count] = s[i];
+            count++;    //count arg size;
+            i++;
+        }
+    }
+    (*str)[count] = '\0';
+    return;
 }
+
+
+int size_readline(char *input)
+{
+	int i=0;
+	int count = 0;
+	while(input[i])
+	{
+		if(input[i+1] == '\\' && input[i] == '\\' )
+		{
+			count++;
+			i+=2;
+		}
+		else if(input[i] == '\\')
+			i++;
+		else
+		{
+			i++;
+			count++;
+		}
+	}
+	return(count);
+}
+
+char* adapt_readline(char *input, char* nuovo_input)
+{
+	int i=0;
+	int count = 0;
+	while(input[i])
+	{
+		if(input[i+1] == '\\' && input[i] == '\\' )
+		{
+			nuovo_input[count] = input[i]; 
+			count++;
+			i+=2;
+		}
+		else if(input[i] == '\\')
+			i++;
+		else
+		{
+			nuovo_input[count] = input[i];
+			i++;
+			count++;
+		}
+	}
+	nuovo_input[count] = '\0';
+	return(nuovo_input);
+}
+
+
+
+int main() {
+	while(1)
+	{
+
+		// PROBLEMA!!!!!! echo "chat\" ciao \" mondo 22\\"    TERMINALE: chat" ciao " mondo 22\    PROGRAMMA: chat ciao  mondo 22\
+		char *input = readline("Stringa: ");
+
+		//FONDERE RIMOZIONE \ con CREA OUTPUT UGUALE A ECHO ETC..
+	
+		printf("\nReadline =%s\n", input);
+
+		char* nuovo_input = calloc((size_readline(input)+1), sizeof(char));
+		nuovo_input = adapt_readline(input, nuovo_input);
+		free(input);
+		printf("\nNuovo input =%s\n", nuovo_input);
+		int size = calculate_string_size(nuovo_input);
+		char *s = calloc(size + 1, sizeof(char));
+		insert_string(nuovo_input, &s);
+		free(nuovo_input);
+		printf("\nsono il risultato:\n%s\n", s);
+		free(s);
+	}	
+}
+
+
+// int main()
+// {
+//   char *s = calloc( sizeof(char) , 19 );
+//   char x[50] = "echo \"He's a \"good\" guy.\"";
+//     insert_string(x, &s);
+//      printf("%s", s);
+// }
 
 // char *editstring(char *s, t_list*env)
 // {
