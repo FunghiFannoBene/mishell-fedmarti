@@ -11,5 +11,27 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+/*
+echo "Hello"
+echo "Hello" | cat
+echo "Hello" > file.txt
+echo "Hello" >> file.txt
+cat < file.txt
+cat << EOF
+Hello
+This is a here document.
+EOF
+
+*/
+
+
+
+typedef struct s_fix_string
+{
+	int actual;
+	char *string;
+	struct s_fix_string *next;
+} t_fixed;
+
 #endif
 
