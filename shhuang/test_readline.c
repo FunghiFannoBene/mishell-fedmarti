@@ -10,7 +10,7 @@ int size_readline(char *input)
 	int count = 0;
 	while(input[i])
 	{
-		if(input[i+1] == '\\' && input[i] == '\\' )
+		if(input[i+1]== '\\' && input[i] == '\\' )
 		{
 			count++;
 			i+=2;

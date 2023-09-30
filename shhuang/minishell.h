@@ -16,6 +16,7 @@ echo "Hello"
 echo "Hello" | cat
 echo "Hello" > file.txt
 echo "Hello" >> file.txt
+echo "c"'a't is 'good'
 cat < file.txt
 cat << EOF
 Hello

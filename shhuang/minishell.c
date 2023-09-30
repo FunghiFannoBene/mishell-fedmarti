@@ -15,11 +15,25 @@
 // }
 
 
+int odd_virgolette(char *s)
+{
+	//Trova se la stringa contiene dispari ' o " senza contare quelle precedute da // (ma non precedute da /// 3 o +) UN casino
+	return(1);
+}
+
+
+
 int calculate_string_size(char *s) //t_list da aggiungere
 {
     int i = 4;
     char flag = 0;
     int count = 0;
+
+	if(!odd_virgolette(s+1))
+	{
+		return(-1);
+	}
+
     if(s[i] == ' ')
     {
     while(s[i] == ' ')
@@ -166,8 +180,6 @@ int size_readline(char *input)
 			count++;
 			i+=2;
 		}
-		else if(input[i] == '\\')
-			i++;
 		else
 		{
 			i++;
@@ -189,8 +201,6 @@ char* adapt_readline(char *input, char* nuovo_input)
 			count++;
 			i+=2;
 		}
-		else if(input[i] == '\\')
-			i++;
 		else
 		{
 			nuovo_input[count] = input[i];
@@ -207,12 +217,12 @@ char* adapt_readline(char *input, char* nuovo_input)
 int main() {
 	while(1)
 	{
-
+		//Fondere readline.
 		// PROBLEMA!!!!!! echo "chat\" ciao \" mondo 22\\"    TERMINALE: chat" ciao " mondo 22\    PROGRAMMA: chat ciao  mondo 22\
-		char *input = readline("Stringa: ");
+		
 
-		//FONDERE RIMOZIONE \ con CREA OUTPUT UGUALE A ECHO ETC..
-	
+		//FONDERE RIMOZIONE \ con CREA OUTPUT UGUALE A ECHO ETC.. //readline va tenuto
+		char *input = readline("Stringa: ");
 		printf("\nReadline =%s\n", input);
 
 		char* nuovo_input = calloc((size_readline(input)+1), sizeof(char));

@@ -7,21 +7,17 @@ void insert_string(char*s, char **str) //t_list da aggiungere
     int count = 0;
     if(s[i] == ' ')
     {
-    while(s[i] == ' ')
-      i++;
+		while(s[i] == ' ')
+			i++;
     }
     else
       return;
     while(s[i])
     {
-        if(s[i] == '\'')
-        { //inserisci tutto fino '
-            flag = '\'';
-        }
+        if(s[i] == '\'') 
+            flag = '\''; //inserisci tutto fino '
         else if(s[i] == '"') //inserisci tutto fino a "
-        {
             flag = '"';
-        }
         if(flag != 0)
             i++;
         if(flag == s[i])
@@ -30,7 +26,6 @@ void insert_string(char*s, char **str) //t_list da aggiungere
           flag = 0;
           continue;
         }
-        
         while(s[i])
         {
             if(s[i] == flag)
