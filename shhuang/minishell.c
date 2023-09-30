@@ -14,51 +14,55 @@
 // 		return(3);
 // }
 
-
 int odd_virgolette(char *s)
 {
-	int i = 0;
-	int count_single;
-	count_single = 0;
-	int count_double;
-	count_double = 0;
-	while(s[i])
-	{
-		if(s[i] == '\\' && s[i+1] == '\\' )
-		{
-			i+=2;
-		}
-		else if(s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
-		{
-			i+=3;
-			while(s[i] && s[i-1] != '\\' && (s[i] != '\'' || s[i] != '"'))
-				i++;
-			i++;
-		}
-		else if(s[i] == '\'')
-		{
-			i++;
-			count_single++;
-		}
-		else if(s[i] == '"')
-		{
-			i++;
-			count_double++;
-		}
-		else
-			i++;
-	}
-	if((count_double % 2) == 0 && (count_single % 2) == 0)
-		return(1);
-	return(0);
-	//Trova se la stringa contiene dispari ' o " senza contare quelle precedute da // (ma non precedute da /// 3 o +) UN casino
+    int i = 0;
+    int count_single;
+    count_single = 0;
+    int count_double;
+    count_double = 0;
+    while(s[i])
+    {
+        if(s[i] == '\\' && s[i+1] == '\\' )
+        {
+            i+=2;
+        }
+        else if(s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
+        {
+            i+=2;
+        }
+        else if(s[i] == '\'')
+        {
+            i++;
+            count_single++;
+            while(s[i] && s[i] != '\'')
+                i++;
+            if(s[i] == '\0')
+              break;
+            else
+              count_single++;
+            i++;
+        }
+        else if(s[i] == '"')
+        {
+            i++;
+            count_double++;
+        }
+        else
+            i++;
+    }
+    if((count_double % 2) == 0 && (count_single % 2) == 0)
+        return(1);
+    return(0);
+    //Trova se la stringa contiene dispari ' o " senza contare quelle precedute da // (ma non precedute da /// 3 o +) UN casino
 }
+
 
 
 
 int calculate_string_size(char *s) //t_list da aggiungere
 {
-    int i = 4;
+    int i = 4; //echo = 4 cat = 3 etc numero dei caratteri
     char flag = 0;
     int count = 0;
 
@@ -95,13 +99,13 @@ int calculate_string_size(char *s) //t_list da aggiungere
         
         while(s[i])
         {
-			if(s[i] == '\\' && s[i+1] == '\\' )
+			if(flag == 0 && s[i] == '\\' && s[i+1] == '\\' )
 			{
 				i+=2;
 				count++;
 				continue;
 			}
-			if(s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
+			if(flag == 0 && s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
 			{
 				count++;
 				i+=2;
@@ -175,14 +179,14 @@ void insert_string(char*s, char **str) //t_list da aggiungere
         
         while(s[i])
         {
-			if(s[i] == '\\' && s[i+1] == '\\' )
+			if(flag == 0 && s[i] == '\\' && s[i+1] == '\\' )
 			{
 				(*str)[count] = s[i];
 				i+=2;
 				count++;
 				continue;
 			}
-			if(s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
+			if(flag == 0 && s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
 			{
 				(*str)[count] = s[i+1];
 				count++;
@@ -275,11 +279,50 @@ char* adapt_readline(char *input, char* nuovo_input)
 	return(nuovo_input);
 }
 
+int execute(char **args)
+{
+	pid_t pid;
+	 // Arguments to pass to 'cat'
+    
+    pid = fork();  // Create a child process
+    
+    if (pid < 0) {
+        // Fork failed
+        perror("fork failed");
+        return 1;
+    }
 
+    if (pid == 0) {
+        // Child process
+        execve("/usr/bin/cat", args, NULL); // Execute the 'cat' command
+
+        // If execve() fails:
+        perror("execve failed");
+        _exit(1); // It's generally better to use _exit() than exit() in this context
+    } else {
+        // Parent process
+        int status;
+        wait(&status);  // Wait for the child to finish
+        if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
+            // Check if child terminated normally and if its exit status is non-zero
+            fprintf(stderr, "child exited with status: %d\n", WEXITSTATUS(status));
+        }
+    }
+}
 
 int main() {
 	while(1)
 	{
+
+		//stringhe non funzionanti : 
+		//echo "c"i'a\\\'o\'\'\'\' == cia\\\o''''        Se inizia con slash la virgoletta non ha significato!!
+		//per testare quello di sopra: char input[50] = "echo \"c\"i'a\\\\\\'o\\'\\'\\'\\'";
+		
+		//echo "c"i'a\\\'o  == cia\\\o slash non deve avere significato se dentro virgolette.
+
+
+
+
 		//Fondere readline
 		// PROBLEMA!!!!!! echo "chat\" ciao \" mondo 22\\"    TERMINALE: chat" ciao " mondo 22\    PROGRAMMA: chat ciao  mondo 22\
 		
@@ -287,7 +330,16 @@ int main() {
 		//FONDERE RIMOZIONE \ con CREA OUTPUT UGUALE A ECHO ETC.. //readline va tenuto
 		char *input = readline("Stringa: ");
 		printf("\nReadline =%s\n", input);
+		char **args = calloc(sizeof(char*) , 3);
 
+		args[0] = strdup("cat");
+		if (!args[0]) 
+		{
+    		perror("Memory allocation failed");
+    		exit(1);
+		}
+		args[2] = NULL;
+		
 		// char* nuovo_input = calloc((size_readline(input)+1), sizeof(char));
 		// nuovo_input = adapt_readline(input, nuovo_input);
 		// free(input);
@@ -302,6 +354,10 @@ int main() {
 		insert_string(input, &s);
 		free(input);
 		printf("\nsono il risultato:\n%s\n", s);
+		args[1] = s;
+
+		// execute(args);
+
 		free(s);
 	}	
 }
