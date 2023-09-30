@@ -47,6 +47,13 @@ int odd_virgolette(char *s)
         {
             i++;
             count_double++;
+			while(s[i] && s[i] != '"')
+                i++;
+            if(s[i] == '\0')
+              break;
+            else
+              count_double++;
+            i++;
         }
         else
             i++;
