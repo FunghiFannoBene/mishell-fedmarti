@@ -17,8 +17,41 @@
 
 int odd_virgolette(char *s)
 {
+	int i = 0;
+	int count_single;
+	count_single = 0;
+	int count_double;
+	count_double = 0;
+	while(s[i])
+	{
+		if(s[i] == '\\' && s[i+1] == '\\' )
+		{
+			i+=2;
+		}
+		else if(s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
+		{
+			i+=3;
+			while(s[i] && s[i-1] != '\\' && (s[i] != '\'' || s[i] != '"'))
+				i++;
+			i++;
+		}
+		else if(s[i] == '\'')
+		{
+			i++;
+			count_single++;
+		}
+		else if(s[i] == '"')
+		{
+			i++;
+			count_double++;
+		}
+		else
+			i++;
+	}
+	if((count_double % 2) == 0 && (count_single % 2) == 0)
+		return(1);
+	return(0);
 	//Trova se la stringa contiene dispari ' o " senza contare quelle precedute da // (ma non precedute da /// 3 o +) UN casino
-	return(1);
 }
 
 
@@ -62,6 +95,18 @@ int calculate_string_size(char *s) //t_list da aggiungere
         
         while(s[i])
         {
+			if(s[i] == '\\' && s[i+1] == '\\' )
+			{
+				i+=2;
+				count++;
+				continue;
+			}
+			if(s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
+			{
+				count++;
+				i+=2;
+				continue;
+			}
             if(s[i] == flag)
             {
                 i++;
@@ -130,6 +175,20 @@ void insert_string(char*s, char **str) //t_list da aggiungere
         
         while(s[i])
         {
+			if(s[i] == '\\' && s[i+1] == '\\' )
+			{
+				(*str)[count] = s[i];
+				i+=2;
+				count++;
+				continue;
+			}
+			if(s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
+			{
+				(*str)[count] = s[i+1];
+				count++;
+				i+=2;
+				continue;
+			}
             if(s[i] == flag)
             {
                 i++;
@@ -229,14 +288,19 @@ int main() {
 		char *input = readline("Stringa: ");
 		printf("\nReadline =%s\n", input);
 
-		char* nuovo_input = calloc((size_readline(input)+1), sizeof(char));
-		nuovo_input = adapt_readline(input, nuovo_input);
-		free(input);
-		printf("\nNuovo input =%s\n", nuovo_input);
-		int size = calculate_string_size(nuovo_input);
+		// char* nuovo_input = calloc((size_readline(input)+1), sizeof(char));
+		// nuovo_input = adapt_readline(input, nuovo_input);
+		// free(input);
+		int size = calculate_string_size(input);
+		if(size == -1)
+		{
+			printf("\n\nvirgoletta dispari!\n\n");
+			free(input);
+			continue;
+		}
 		char *s = calloc(size + 1, sizeof(char));
-		insert_string(nuovo_input, &s);
-		free(nuovo_input);
+		insert_string(input, &s);
+		free(input);
 		printf("\nsono il risultato:\n%s\n", s);
 		free(s);
 	}	
