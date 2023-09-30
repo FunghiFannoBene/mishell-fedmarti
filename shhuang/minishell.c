@@ -200,7 +200,7 @@ void insert_string(char*s, char **str) //t_list da aggiungere
                 flag = 0; //ho trovato la chiusura ma la stringa potrebbe continuare ancora
                 break;
             }
-            else if(flag == 0 && (s[i] == '<' || s[i] == '>' || s[i] == '|'))
+            else if(flag == 0 && s[i] == '|'))
             {
                 i++;
                 (*str)[count] = '\0';
