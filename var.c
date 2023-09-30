@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:51:03 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/09/30 21:01:14 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/09/30 23:52:11 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,7 @@ t_var	*get_var(char *name, t_list *list)
 	return (NULL);
 }
 
-
-//changes the value of an already allocated variable
-//the new_value will be duplicated so you may have to free it 
-//if it's dynamically allocated
+//copies new_value into var
 //return value : 0 on success. 1 on error
 int	set_var(t_var *var, char *new_value)
 {
@@ -92,11 +89,8 @@ int	set_var(t_var *var, char *new_value)
 	return (var->value != NULL);
 }
 
-//iterates through a list of t_var, checks if the variable exists
-//if it does it frees the previous value and replaces with
-//a duplicate of value, otherwise it allocates a new list node
-//and appends it to the list
-//does not free the arguments name or value
+//changes value of variable if it exists, creates new one if it doesn't
+//does NOT free the arguments name or value
 //return value : 0 on success. 1 on error
 int	set_var_list(char *name, char *value, t_list *list)
 {

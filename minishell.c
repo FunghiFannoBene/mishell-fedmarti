@@ -1,12 +1,12 @@
-1/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/09/28 19:30:23 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/09/30 18:44:14 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ int main(int argc, char **argv, char **env)
     while (1) {
 		// print_env(env);
         input = readline("Minishell> "); //stampa e aspetta un input
-        if (strcmp(input, "exit") == 0)
+        if (ft_strncmp(input, "exit", 5) == 0)
             exit(0);
-		else if(strcmp(input, "clear") == 0)
+		else if(ft_strncmp(input, "clear", 6) == 0)
 			clear();
-		else if(strncmp(input, "cd", 2) == 0)
+		else if(ft_strncmp(input, "cd", 3) == 0)
 		{
 			if(chdir(&input[3]) == 0)// chdir controlla che la path sia giusta e esegue il processo per entrarci
 				;
@@ -62,7 +62,7 @@ int main(int argc, char **argv, char **env)
 
 
 		}
-		else if(strcmp(input, "pwd") == 0)
+		else if(ft_strcmp(input, "pwd", 4) == 0)
 		{
 			pwd = malloc(sizeof(char) * PATH_MAX);
 			getcwd(pwd, PATH_MAX); // prendi path e salvalo in "pwd";

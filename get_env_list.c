@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   get_env_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:26:50 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/09/30 23:10:55 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/09/30 23:49:07 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static t_list	*new_env_node(const char *e_var)
 	return (node);
 }
 
+//takes env as a parameter and converts it into a list
 t_list	*get_env_list(const char **env)
 {
 	t_list	*list_head;
