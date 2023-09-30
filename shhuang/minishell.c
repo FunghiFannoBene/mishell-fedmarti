@@ -175,6 +175,8 @@ void insert_string(char*s, char **str) //t_list da aggiungere
         
         while(s[i])
         {
+			if(flag == 0 && s[i] == '\'' || s[i] == '"')
+              break;
 			if(s[i] == '\\' && s[i+1] == '\\' )
 			{
 				(*str)[count] = s[i];
@@ -200,7 +202,7 @@ void insert_string(char*s, char **str) //t_list da aggiungere
                 flag = 0; //ho trovato la chiusura ma la stringa potrebbe continuare ancora
                 break;
             }
-            else if(flag == 0 && s[i] == '|'))
+            else if(flag == 0 && s[i] == '|')
             {
                 i++;
                 (*str)[count] = '\0';
@@ -216,8 +218,7 @@ void insert_string(char*s, char **str) //t_list da aggiungere
                 count++;
                 break;
             }
-            if(flag == 0 && s[i] == '\'' || s[i] == '"')
-              break;
+
             (*str)[count] = s[i];
             count++;    //count arg size;
             i++;
