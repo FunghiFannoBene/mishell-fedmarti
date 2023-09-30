@@ -180,6 +180,8 @@ int size_readline(char *input)
 			count++;
 			i+=2;
 		}
+		else if(input[i] == '\\')
+			i++;
 		else
 		{
 			i++;
@@ -201,6 +203,8 @@ char* adapt_readline(char *input, char* nuovo_input)
 			count++;
 			i+=2;
 		}
+		else if(input[i] == '\\')
+			i++;
 		else
 		{
 			nuovo_input[count] = input[i];
@@ -217,7 +221,7 @@ char* adapt_readline(char *input, char* nuovo_input)
 int main() {
 	while(1)
 	{
-		//Fondere readline.
+		//Fondere readline
 		// PROBLEMA!!!!!! echo "chat\" ciao \" mondo 22\\"    TERMINALE: chat" ciao " mondo 22\    PROGRAMMA: chat ciao  mondo 22\
 		
 
