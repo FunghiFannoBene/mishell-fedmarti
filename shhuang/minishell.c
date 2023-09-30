@@ -36,7 +36,11 @@ int odd_virgolette(char *s)
             i++;
             count_single++;
             while(s[i] && s[i] != '\'')
+            {
                 i++;
+                if(s[i] == '\'' && s[i-1] == '\\')
+                  i++;
+            }
             if(s[i] == '\0')
               break;
             else
@@ -47,8 +51,12 @@ int odd_virgolette(char *s)
         {
             i++;
             count_double++;
-			while(s[i] && s[i] != '"')
+            while(s[i] && s[i] != '"')
+            {
                 i++;
+                if(s[i] == '"' && s[i-1] == '\\')
+                  i++;
+            }
             if(s[i] == '\0')
               break;
             else
@@ -73,10 +81,10 @@ int calculate_string_size(char *s) //t_list da aggiungere
     char flag = 0;
     int count = 0;
 
-	if(!odd_virgolette(s+1))
-	{
-		return(-1);
-	}
+	// if(!odd_virgolette(s+1))
+	// {
+	// 	return(-1);
+	// }
 
     if(s[i] == ' ')
     {
@@ -118,6 +126,12 @@ int calculate_string_size(char *s) //t_list da aggiungere
 				i+=2;
 				continue;
 			}
+			if(s[i] == '\\' && s[i+1] == '"')
+            {
+                count++;
+                i+=2;
+                continue;
+            }
             if(s[i] == flag)
             {
                 i++;
@@ -132,7 +146,7 @@ int calculate_string_size(char *s) //t_list da aggiungere
                 return(count); //ritorno conta se trova un simbolo significativo non incluso tra virgolette
             }
             if((flag == 0 || flag == '"') && s[i] == '$')
-                count += '$'; //Non funzionale finche non c'è env; Si attiva solo se $ è tra le "$" o senza nulla.
+                count += 0; //Non funzionale finche non c'è env; Si attiva solo se $ è tra le "$" o senza nulla.
             if(flag == 0 && s[i] == ' ') //se non sono dentro le virgolette e trovo uno spazio skippo tutto. e continuo senza aggiungere i++;
             {
                 while(s[i] && s[i] == ' ')
@@ -165,12 +179,10 @@ void insert_string(char*s, char **str)
     }
     else
       return;
-    while(s[i])
+     while(s[i])
     {
         if(s[i] == '\'')
-        { 
             flag = '\'';
-        }
         else if(s[i] == '"') 
         {
             flag = '"';
@@ -183,7 +195,6 @@ void insert_string(char*s, char **str)
           flag = 0;
           continue;
         }
-        
         while(s[i])
         {
             if(flag == 0 && s[i] == '\\' && s[i+1] == '\\' )
@@ -194,6 +205,13 @@ void insert_string(char*s, char **str)
                 continue;
             }
             if(flag == 0 && s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
+            {
+                (*str)[count] = s[i+1];
+                count++;
+                i+=2;
+                continue;
+            }
+            if(s[i] == '\\' && s[i+1] == '"')
             {
                 (*str)[count] = s[i+1];
                 count++;
@@ -235,7 +253,6 @@ void insert_string(char*s, char **str)
         }
     }
     (*str)[count] = '\0';
-    return;
 }
 
 
@@ -322,14 +339,17 @@ int main() {
 	{
 
 		//stringhe non funzionanti : 
-		//echo "c"i'a\\\'o\'\'\'\' 
+		//echo "c"i'a\\\'o\'\'\'\'
 		//output: cia\\\o''''        Se inizia con slash la virgoletta non ha significato!!
 		//per testare quello di sopra: char input[50] = "echo \"c\"i'a\\\\\\'o\\'\\'\\'\\'";
-		
-		//echo "c"i'a\\\'o  == cia\\\o slash non deve avere significato se dentro virgolette.
+		//echo "c"i'a\\\'o  
+		//output == cia\\\o slash non deve avere significato se dentro virgolette.
 		//echo 'It'\''s a "mixed" bag: '\''$var'\''!'
-
-
+		//output: It's a "mixed" bag: '$var'!
+		//ERRORI ANCORA da fix
+		//echo "This is a \"nested\" quote."
+		//echo "This is \"complex\" with some 'mixed' quotes. 'And within these quotes we escape.'" "Then we add \"more\" complexity." 'Backslashes: \\\\ and then \\\\\\ more.'
+		//echo "Hello, \"world\"!" 'It'\''s a beautiful day.' "Isn't it?" 'Look at these backslashes: \\\\' "More \\\\"
 
 		//Fondere readline
 		// PROBLEMA!!!!!! echo "chat\" ciao \" mondo 22\\"    TERMINALE: chat" ciao " mondo 22\    PROGRAMMA: chat ciao  mondo 22\
