@@ -114,7 +114,7 @@ int calculate_string_size(char *s) //t_list da aggiungere
         
         while(s[i])
         {
-			if(flag == 0 && s[i] == '\\' && s[i+1] == '\\' )
+			if((flag == 0 || flag == '"' )&& s[i] == '\\' && s[i+1] == '\\' )
 			{
 				i+=2;
 				count++;
@@ -197,7 +197,7 @@ void insert_string(char*s, char **str)
         }
         while(s[i])
         {
-            if(flag == 0 && s[i] == '\\' && s[i+1] == '\\' )
+            if((flag == 0 || flag == '"') && s[i] == '\\' && s[i+1] == '\\' )
             {
                 (*str)[count] = s[i];
                 i+=2;
@@ -383,9 +383,8 @@ int main() {
 		free(input);
 		printf("\nsono il risultato:\n%s\n", s);
 		args[1] = s;
-		
-		// execute(args); //cat impostare i a 3
-
+		if(strncmp("cat", "input", 3))//cat impostare i a 3
+			execute(args); 
 		free(s);
 	}	
 }
