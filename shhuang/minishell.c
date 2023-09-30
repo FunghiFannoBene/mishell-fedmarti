@@ -294,7 +294,7 @@ int main() {
 		int size = calculate_string_size(input);
 		if(size == -1)
 		{
-			printf("\n\nvirgoletta dispari!\n\n");
+			printf("\n\nvirgoletta dispari! Error\n\n");
 			free(input);
 			continue;
 		}
