@@ -119,7 +119,7 @@ int calculate_string_size(char *s) //t_list da aggiungere
                 flag = 0; //ho trovato la chiusura ma la stringa potrebbe continuare ancora
                 break;
             }
-            else if(flag == 0 && (s[i] == '<' || s[i] == '>' || s[i] == '|'))
+            else if(flag == 0 && s[i] == '|')
             {
                 i++;
                 return(count); //ritorno conta se trova un simbolo significativo non incluso tra virgolette
@@ -135,7 +135,7 @@ int calculate_string_size(char *s) //t_list da aggiungere
                 count++;
                 break;
             }
-			if(flag == 0 && s[i] == '\'' || s[i] == '"')
+			if(flag == 0 && (s[i] == '\'' || s[i] == '"'))
               break;
             count++;    //count arg size;
             i++;
@@ -146,7 +146,7 @@ int calculate_string_size(char *s) //t_list da aggiungere
 }
 
 
-void insert_string(char*s, char **str) //t_list da aggiungere
+void insert_string(char*s, char **str)
 {
     int i = 4;
     char flag = 0;
@@ -161,10 +161,10 @@ void insert_string(char*s, char **str) //t_list da aggiungere
     while(s[i])
     {
         if(s[i] == '\'')
-        { //inserisci tutto fino '
+        { 
             flag = '\'';
         }
-        else if(s[i] == '"') //inserisci tutto fino a "
+        else if(s[i] == '"') 
         {
             flag = '"';
         }
@@ -179,20 +179,20 @@ void insert_string(char*s, char **str) //t_list da aggiungere
         
         while(s[i])
         {
-			if(flag == 0 && s[i] == '\\' && s[i+1] == '\\' )
-			{
-				(*str)[count] = s[i];
-				i+=2;
-				count++;
-				continue;
-			}
-			if(flag == 0 && s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
-			{
-				(*str)[count] = s[i+1];
-				count++;
-				i+=2;
-				continue;
-			}
+            if(flag == 0 && s[i] == '\\' && s[i+1] == '\\' )
+            {
+                (*str)[count] = s[i];
+                i+=2;
+                count++;
+                continue;
+            }
+            if(flag == 0 && s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
+            {
+                (*str)[count] = s[i+1];
+                count++;
+                i+=2;
+                continue;
+            }
             if(s[i] == flag)
             {
                 i++;
@@ -201,18 +201,18 @@ void insert_string(char*s, char **str) //t_list da aggiungere
                   (*str)[count] = '\0';
                   return;
                 }
-                flag = 0; //ho trovato la chiusura ma la stringa potrebbe continuare ancora
+                flag = 0; 
                 break;
             }
-            else if(flag == 0 && (s[i] == '<' || s[i] == '>' || s[i] == '|'))
+            else if(flag == 0 && s[i] == '|')
             {
                 i++;
                 (*str)[count] = '\0';
-                return; //ritorno conta se trova un simbolo significativo non incluso tra virgolette
+                return; 
             }
             if((flag == 0 || flag == '"') && s[i] == '$')
-                count += '$'; //Non funzionale finche non c'è env; Si attiva solo se $ è tra le "$" o senza nulla.
-            if(flag == 0 && s[i] == ' ') //se non sono dentro le virgolette e trovo uno spazio skippo tutto. e continuo senza aggiungere i++;
+                count += 0; 
+            if(flag == 0 && s[i] == ' ') 
             {
                 (*str)[count] = s[i];
                 while(s[i] && s[i] == ' ')
@@ -220,10 +220,10 @@ void insert_string(char*s, char **str) //t_list da aggiungere
                 count++;
                 break;
             }
-            if(flag == 0 && s[i] == '\'' || s[i] == '"')
+            if(flag == 0 && (s[i] == '\'' || s[i] == '"'))
               break;
             (*str)[count] = s[i];
-            count++;    //count arg size;
+            count++;
             i++;
         }
     }
@@ -315,11 +315,12 @@ int main() {
 	{
 
 		//stringhe non funzionanti : 
-		//echo "c"i'a\\\'o\'\'\'\' == cia\\\o''''        Se inizia con slash la virgoletta non ha significato!!
+		//echo "c"i'a\\\'o\'\'\'\' 
+		//output: cia\\\o''''        Se inizia con slash la virgoletta non ha significato!!
 		//per testare quello di sopra: char input[50] = "echo \"c\"i'a\\\\\\'o\\'\\'\\'\\'";
 		
 		//echo "c"i'a\\\'o  == cia\\\o slash non deve avere significato se dentro virgolette.
-
+		//echo 'It'\''s a "mixed" bag: '\''$var'\''!'
 
 
 
@@ -355,8 +356,8 @@ int main() {
 		free(input);
 		printf("\nsono il risultato:\n%s\n", s);
 		args[1] = s;
-
-		// execute(args);
+		
+		// execute(args); //cat impostare i a 3
 
 		free(s);
 	}	
