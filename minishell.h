@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/09/30 22:36:20 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:47:08 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_env_pointer
 typedef struct s_minishell_data {
 	t_list	*export_var;
 	t_list	*local_var;
+	t_var	*pwd;
+	t_var	*old_pwd;
+	t_var	*home;
 }	t_data;
 
 t_var	*new_var(char *name, char *value);

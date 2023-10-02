@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/09/30 18:44:14 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:11:54 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,34 @@ void print_env_var(char **env, char *var)
 	}
 }
 
+t_data	*data_init(char **env)
+{
+	t_data	*data;
+
+	data = ft_calloc(1, sizeof(*data));
+	if (!data)
+		return (NULL);
+	data->export_var = get_env_list(env);
+	if (!data->export_var)
+	{
+		free(data);
+		return (NULL);
+	}
+	data->pwd = get_var("PWD");
+	data->old_pwd = get_var("OLDPWD");
+	data->home = get_var("HOME");
+	return (data);
+}
+
 int main(int argc, char **argv, char **env) 
 {
-    char* input;
-	char *pwd;
+    char	*input;
+	char	*pwd;
+	t_data	*data;
 
+	data = data_init(env);
+	if (!data)
+		return (NULL);
 	(void)argc;
 	(void)argv;
 	clear(); //pulisce all'avvio
@@ -63,16 +86,7 @@ int main(int argc, char **argv, char **env)
 
 		}
 		else if(ft_strcmp(input, "pwd", 4) == 0)
-		{
-			pwd = malloc(sizeof(char) * PATH_MAX);
-			getcwd(pwd, PATH_MAX); // prendi path e salvalo in "pwd";
-			printf("%s\n", pwd);
-
-			print_env_var(env, "PWD");
-			//CONTROLLARE NON CORRETTO!!
-
-
-		}
+			printf("%s\n", data->pwd->value);
 		else
 		{
 			;
