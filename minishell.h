@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/02 17:47:08 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:53:47 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_minishell_data {
 	t_var	*pwd;
 	t_var	*old_pwd;
 	t_var	*home;
+	t_var	*path;
+	t_var	*exit_status;
 }	t_data;
 
 t_var	*new_var(char *name, char *value);

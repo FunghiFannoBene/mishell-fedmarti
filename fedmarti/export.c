@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:56:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/02 01:57:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:54:15 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	export(char **args, t_data *data)
 	int		i;
 	t_var	temp;
 
-	if (!args[1])
+	if (!args[1]) //e' come dire argv == 1
 		return (print_export(data->export_var));
 	i = 0;
 	while (args[i])
