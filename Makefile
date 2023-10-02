@@ -1,6 +1,8 @@
 NAME = minishell
 
-LIBFT_DIR = libft
+LIBFT_DIR = ./libft
+
+LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = gcc
 
@@ -10,7 +12,10 @@ SRCS = minishell.c \
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-LIBS= -lreadline -L$(LIBFT_DIR) -lft
+LIBS= -L$(LIBFT_DIR) -lft -lreadline
 
-all:
-	$(CC) $(SRCS) -g $(LIBS) -o $(NAME)
+all: $(LIBFT)
+	$(CC) $(SRCS) -g -o $(NAME) $(LIBS)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR)

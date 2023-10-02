@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:26:50 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/02 01:07:45 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:56:19 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*copy_name_field(const char *var)
 	int		i;
 
 	len = 0;
-	while (var[len] != '=' && var[len] != 0)
+	while (var[len] != 61 && var[len] != 0 && var[len] != 34 && var[len] != 39)
 		len++;
 	name = ft_calloc(len + 1, sizeof(char));
 	if (!name)

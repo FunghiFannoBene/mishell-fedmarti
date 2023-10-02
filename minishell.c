@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/02 18:11:54 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/02 21:30:19 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,23 @@ t_data	*data_init(char **env)
 	data = ft_calloc(1, sizeof(*data));
 	if (!data)
 		return (NULL);
+	data->exit_status = new_var("?", "0");
+	if (!data->exit_status)
+	{
+		free(data);
+		return (NULL);
+	}
 	data->export_var = get_env_list(env);
 	if (!data->export_var)
 	{
+		free(data->exit_status);
 		free(data);
 		return (NULL);
 	}
 	data->pwd = get_var("PWD");
 	data->old_pwd = get_var("OLDPWD");
 	data->home = get_var("HOME");
+	data->path = get_var("PATH");
 	return (data);
 }
 
@@ -70,6 +78,7 @@ int main(int argc, char **argv, char **env)
     while (1) {
 		// print_env(env);
         input = readline("Minishell> "); //stampa e aspetta un input
+		printf("\n%s", input);
         if (ft_strncmp(input, "exit", 5) == 0)
             exit(0);
 		else if(ft_strncmp(input, "clear", 6) == 0)
@@ -79,15 +88,14 @@ int main(int argc, char **argv, char **env)
 			if(chdir(&input[3]) == 0)// chdir controlla che la path sia giusta e esegue il processo per entrarci
 				;
 			else
-				printf("cd: %s")
-
+				printf("cd: %s");
 			//CONTROLLARE NON CORRETTO!!
 
 
 		}
-		else if(ft_strcmp(input, "pwd", 4) == 0)
+		else if(ft_strncmp(input, "pwd", 4) == 0)
 			printf("%s\n", data->pwd->value);
-		else
+		else if (ft_strncmp(input, "export", 4))
 		{
 			;
 		}
