@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:51:03 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/09/30 23:52:11 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/02 01:04:47 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	set_var_list(char *name, char *value, t_list *list)
 	while (1)//cycle breaks from the ifs
 	{
 		var = list->content;
-		if (var && !ft_strncmp(name, var->name, name_len))
+		if (var && !ft_strncmp(name, var->name, name_len) && value)
 			return (set_var(var, value));
 		else if (!list->next)
 			break ;
