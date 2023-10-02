@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_env_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:26:50 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/09/30 23:49:07 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/02 01:07:45 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*copy_name_field(const char *var)
+char	*copy_name_field(const char *var)
 {
 	int		len;
 	char	*name;
@@ -33,7 +33,7 @@ static char	*copy_name_field(const char *var)
 	return (name);
 }
 
-static char	*copy_value_field(const char *var)
+char	*copy_value_field(const char *var)
 {
 	int		len;
 	char	*value;
