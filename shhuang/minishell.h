@@ -26,13 +26,12 @@ EOF
 */
 
 
-
 typedef struct s_fix_string
 {
-	int actual;
-	char *string;
+	char *command_name;
+	char *stringa;
 	struct s_fix_string *next;
-} t_fixed;
+} t_indice;
 
 #endif
 

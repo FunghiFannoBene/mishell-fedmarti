@@ -23,14 +23,8 @@ int odd_virgolette(char *s)
     count_double = 0;
     while(s[i])
     {
-        if(s[i] == '\\' && s[i+1] == '\\' )
-        {
+        if(s[i] == '\\' && s[i+1] == '\\' || (s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"')))
             i+=2;
-        }
-        else if(s[i] == '\\' && (s[i+1] == '\'' || s[i+1] == '"'))
-        {
-            i+=2;
-        }
         else if(s[i] == '\'')
         {
             i++;
@@ -75,34 +69,24 @@ int odd_virgolette(char *s)
 
 
 
-int calculate_string_size(char *s) //t_list da aggiungere
-{
-    int i = 4; //echo = 4 cat = 3 etc numero dei caratteri
+int calculate_string_size(char *s, int i) //t_list da aggiungere
+{ //echo = 4 cat = 3 etc numero dei caratteri
     char flag = 0;
     int count = 0;
 
-	// if(!odd_virgolette(s+1))
-	// {
-	// 	return(-1);
-	// }
-
     if(s[i] == ' ')
     {
-    while(s[i] == ' ')
-      i++;
+		while(s[i] == ' ')
+		i++;
     }
     else
       return(-1);
     while(s[i])
     {
         if(s[i] == '\'')
-        { //inserisci tutto fino '
             flag = '\'';
-        }
-        else if(s[i] == '"') //inserisci tutto fino a "
-        {
+        else if(s[i] == '"')
             flag = '"';
-        }
         if(flag != 0)
             i++;
         if(flag == s[i])
@@ -111,9 +95,10 @@ int calculate_string_size(char *s) //t_list da aggiungere
           flag = 0;
           continue;
         }
-        
         while(s[i])
         {
+			printf("%c", s[i]);
+			printf("|");
 			if((flag == 0 || flag == '"' )&& s[i] == '\\' && s[i+1] == '\\' )
 			{
 				i+=2;
@@ -167,18 +152,16 @@ int calculate_string_size(char *s) //t_list da aggiungere
 }
 
 
-void insert_string(char*s, char **str)
+void insert_string(char*s, char **str, int* x)
 {
-    int i = 4;
+	int i = *x;
     char flag = 0;
     int count = 0;
     if(s[i] == ' ')
     {
-    while(s[i] == ' ')
-      i++;
+    	while(s[i] == ' ')
+      		i++;
     }
-    else
-      return;
      while(s[i])
     {
         if(s[i] == '\'')
@@ -223,6 +206,7 @@ void insert_string(char*s, char **str)
                 i++;
                 if(s[i] == '\0')
                 {
+					*x = i;
                   (*str)[count] = '\0';
                   return;
                 }
@@ -232,6 +216,7 @@ void insert_string(char*s, char **str)
             else if(flag == 0 && s[i] == '|')
             {
                 i++;
+				*x = i;
                 (*str)[count] = '\0';
                 return; 
             }
@@ -252,55 +237,9 @@ void insert_string(char*s, char **str)
             i++;
         }
     }
+	*x = i;
+	printf("ritorno\n");
     (*str)[count] = '\0';
-}
-
-
-int size_readline(char *input)
-{
-	int i=0;
-	int count = 0;
-	while(input[i])
-	{
-		if(input[i+1] == '\\' && input[i] == '\\' )
-		{
-			count++;
-			i+=2;
-		}
-		else if(input[i] == '\\')
-			i++;
-		else
-		{
-			i++;
-			count++;
-		}
-	}
-	return(count);
-}
-
-char* adapt_readline(char *input, char* nuovo_input)
-{
-	int i=0;
-	int count = 0;
-	while(input[i])
-	{
-		if(input[i+1] == '\\' && input[i] == '\\' )
-		{
-			nuovo_input[count] = input[i]; 
-			count++;
-			i+=2;
-		}
-		else if(input[i] == '\\')
-			i++;
-		else
-		{
-			nuovo_input[count] = input[i];
-			i++;
-			count++;
-		}
-	}
-	nuovo_input[count] = '\0';
-	return(nuovo_input);
 }
 
 int execute(char **args)
@@ -334,6 +273,69 @@ int execute(char **args)
     }
 }
 
+
+void search_command(char *input, int *i, t_indice *command_list)
+{
+    int x = 0;
+    int start;
+
+    while (input[*i] && input[*i] == ' ')
+        (*i)++;
+    start = *i;
+    while (input[start + x] && input[start + x] != ' ')
+        x++;
+    command_list->command_name = malloc(sizeof(char) * (x + 1));
+    if (!command_list->command_name)
+        return;
+    x = 0;
+    while (input[*i] && input[*i] != ' ')
+        command_list->command_name[x++] = input[(*i)++];
+    command_list->command_name[x] = '\0';
+	printf("\n\n%s e index si ferma a: %d\n\n", command_list->command_name, *i);
+}
+
+
+
+t_indice* create_commands_list(char *input) {
+    t_indice *command_list = NULL;
+    t_indice *head = NULL;
+    t_indice *prev = NULL;
+    int index = 0;
+
+    while (input[index]) {
+        command_list = malloc(sizeof(t_indice));
+        if (!command_list) {
+            return NULL;
+        }
+        search_command(input, &index, command_list);
+        command_list->next = NULL;
+
+        int size = calculate_string_size(input, index);
+        if (size == -1) 
+		{
+			//freelist
+            printf("\n\nLista non creata: err-1;\n\n");
+            free(input);
+            return NULL;
+        }
+        if (!head)
+            head = command_list;
+        else if (prev)
+            prev->next = command_list;
+        prev = command_list;
+        command_list->stringa = calloc(size + 1, sizeof(char));
+        insert_string(input, &command_list->stringa, &index);
+		printf("\n\n|%c|\n\n", input[index]);
+		if(input[index] == '\0')
+		{
+			prev->next = NULL;
+			free(input);
+			return(head);
+		}
+    }
+    return head;
+}
+
 int main() {
 	while(1)
 	{
@@ -358,34 +360,33 @@ int main() {
 		//FONDERE RIMOZIONE \ con CREA OUTPUT UGUALE A ECHO ETC.. //readline va tenuto
 		char *input = readline("Stringa: ");
 		printf("\nReadline =%s\n", input);
-		char **args = calloc(sizeof(char*) , 3);
+		// char **args = calloc(sizeof(char*) , 3);
 
-		args[0] = strdup("cat");
-		if (!args[0]) 
-		{
-    		perror("Memory allocation failed");
-    		exit(1);
-		}
-		args[2] = NULL;
+		// args[0] = strdup("cat");
+		// if (!args[0]) 
+		// {
+    	// 	perror("Memory allocation failed");
+    	// 	exit(1);
+		// }
+		// args[2] = NULL;
 		
 		// char* nuovo_input = calloc((size_readline(input)+1), sizeof(char));
 		// nuovo_input = adapt_readline(input, nuovo_input);
 		// free(input);
-		int size = calculate_string_size(input);
-		if(size == -1)
+
+
+		t_indice *command_list;
+		command_list = create_commands_list(input);
+		while(command_list != NULL)
 		{
-			printf("\n\nvirgoletta dispari! Error\n\n");
-			free(input);
-			continue;
+			printf("Lista: Comando: %s Content: %s\n", command_list->command_name, command_list->stringa);
+			command_list=command_list->next;
 		}
-		char *s = calloc(size + 1, sizeof(char));
-		insert_string(input, &s);
-		free(input);
-		printf("\nsono il risultato:\n%s\n", s);
-		args[1] = s;
-		if(strncmp("cat", "input", 3))//cat impostare i a 3
-			execute(args); 
-		free(s);
+
+		// args[1] = s;
+		// if(strncmp("cat", input, 3) == 0)//cat impostare i a 3
+		// 	execute(args); 
+		// free(input);
 	}	
 }
 
