@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 01:56:48 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/02 02:06:33 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/03 23:44:50 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	arr_insert(t_var *var, t_var **array, int pos)
 	int	i;
 
 	i = pos;
-	while (array[i + 1])
+	while (array[i])
 		i++;
 	while (i > pos)
 	{
@@ -30,29 +30,29 @@ static void	arr_insert(t_var *var, t_var **array, int pos)
 	array[pos] = var;
 }
 
-static void	add_alphabetical_order(t_var *var, t_var **array, int var_count)//still untested
+static void	add_alphabetical_order(t_var *var, t_var **array, int high)//still untested
 {
 	int	name_len;
 	int	n;
-	int	size;
+	int	low;
 
-	if (var_count == 0)
+	if (high == 0)
 	{
 		array[0] = var;
 		return ;
 	}
 	name_len = ft_strlen(var->name);
-	n = size >> 1;
-	size = var_count;
-	while (size > 1)
+	low = 0;
+	n = (low + high) >> 1;
+	while ((low + high) >= 2 && low != n && high != n)
 	{
-		size >>= 1;
 		if (ft_strncmp(var->name, array[n]->name, name_len) < 0)
-			n -= size;
+			high = n;
 		else
-			n += size;
+			low = n;
+		n = (low + high) >> 1;
 	}
-	if (ft_strncmp(var->name, array[n]->name, name_len) > 0)
+	if (array[n] && ft_strncmp(var->name, array[n]->name, name_len) > 0)
 		n++;
 	arr_insert(var, array, n);
 }
@@ -65,7 +65,7 @@ static t_var	**extract_arr(t_list *export_list)
 
 	if (!export_list)
 		return (NULL);
-	arr = ft_calloc(ft_lstsize(export_list) + 1, sizeof(*t_var));
+	arr = ft_calloc(ft_lstsize(export_list) + 1, sizeof(temp));
 	if (!arr)
 		return (NULL);
 	i = 0;
@@ -84,16 +84,17 @@ static char	*export_var_str(t_var *var)
 	char	*str;
 	char	*temp;
 
-	if (!var->value)
-		return (ft_strdup(var->name));
-	temp = ft_strjoin(var->name, "=\"");
-	if (!temp)
-		return (NULL);
-	str = ft_strjoin(temp, var->value);
+	temp = ft_strjoin("declare -x ", var->name);
+	if (!temp || !var->value)
+		return (temp);
+	str = ft_strjoin(temp, "=\"");
 	free (temp);
 	if (!str)
 		return (NULL);
-	temp = str;
+	temp = ft_strjoin(str, var->value);
+	free (str);
+	if (!temp)
+		return (NULL);
 	str = ft_strjoin(temp, "\"\n");
 	free(temp);
 	return (str);

@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/02 20:08:59 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/03 20:14:47 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ t_var	*get_var(char *name, t_list *list);
 int		set_var(t_var *var, char *new_value);
 int		set_var_list(char *name, char *value, t_list *list);
 t_list	*get_env_list(const char **env);
+int		ft_export(char **args, t_list *export_var_list);
+int		ft_env(t_list	*env_list);
 
 #endif

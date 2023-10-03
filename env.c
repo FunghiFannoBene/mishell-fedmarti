@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:02:28 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/02 00:40:12 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/03 22:07:23 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*var_to_str(t_var *var)
 	}
 	str[i++] = '=';
 	j = 0;
-	while (value[j])
+	while (var->value[j])
 		str[i++] = var->value[j++];
 	return (str);
 }
@@ -63,7 +63,7 @@ char	**env_list_to_matrix(t_list *env_list)
 	new_env = ft_calloc(ft_lstsize(env_list) + 1, sizeof(char *));
 	if (!new_env)
 		return (NULL);
-	i = 0;if (temp->value)
+	i = 0;
 	while (env_list)
 	{
 		if (((t_var *)env_list->content)->value != NULL)//env doesn't accept null values
@@ -73,7 +73,7 @@ char	**env_list_to_matrix(t_list *env_list)
 		}
 		if (i && !new_env)
 		{
-			ft_free_matrix(&new_env, i);
+			ft_free_matrix((void***)&new_env, i);
 			break ;
 		}
 		env_list = env_list->next;
@@ -81,7 +81,7 @@ char	**env_list_to_matrix(t_list *env_list)
 	return (new_env);
 }
 
-int	env(t_list	*env_list)
+int	ft_env(t_list	*env_list)
 {
 	char	*str_var;
 	char	*temp;
