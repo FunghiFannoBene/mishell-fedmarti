@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:08:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/09/30 19:46:04 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 22:38:01 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,14 @@ void	ft_lst_insert_when(t_list **list, \
 t_list *new_node, bool (*comparison)(void *, void *));
 t_array	ft_lst_to_array(t_list **list, size_t member_size, void (*del)(void *));
 t_list	*ft_lstnext_and_delete(t_list *node, void (*del)(void *));
+
+//iterates through the string, returns true if any of its characters
+//matches one of the characters from charset
+int		ft_strhas(char *str, char *charset);
+
+//takes a null terminated array of strings
+//allocates and returns a string that is all the strings concatenated together 
+char	*ft_multistrjoin(char **strings);
 
 //reads file returning one line each call
 //returns null when there's nothing more to read

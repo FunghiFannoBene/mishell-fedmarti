@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:51:03 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/02 01:04:47 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 23:27:30 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_var	*new_var(char *name, char *value)
 		return (NULL);
 	}
 	var->value = ft_strdup(value);
-	if (!var->value)
+	if (value && !var->value)
 	{
 		free (var->name);
 		free (var);

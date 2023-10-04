@@ -6,7 +6,7 @@
 #    By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 15:01:24 by fedmarti          #+#    #+#              #
-#    Updated: 2023/09/30 18:35:10 by fedmarti         ###   ########.fr        #
+#    Updated: 2023/10/04 22:35:29 by fedmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,8 +78,10 @@ SOURCES := ft_atoi.c \
 	ft_lstnext_and_delete.c \
 	ft_array_free.c \
 	ft_matrix_size.c \
+	ft_strhas.c \
+	ft_multistrjoin.c \
 	get_next_line.c \
-	get_next_line_utils.c 
+	get_next_line_utils.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

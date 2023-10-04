@@ -6,13 +6,13 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 20:12:01 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 20:38:09 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 21:34:05 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*pwd_null(t_data *data)
+static char	*pwd_null(t_data *data)
 {
 	char	*pwd_path;
 

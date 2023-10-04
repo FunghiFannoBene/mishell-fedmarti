@@ -24,7 +24,6 @@ env_clean:
 	@rm -f env_test 
 	@rm -f env_test_minishell
 
-
 $(LIBFT):
 	make re -C ../libft
 

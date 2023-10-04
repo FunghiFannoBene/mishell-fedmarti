@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/04 20:20:53 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 23:23:29 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int main(int argc, char **argv, char **env)
 {
     char	*input;
 	char	**args;
-	char	*pwd;
 	t_data	*data;
 
 	data = data_init(env);
@@ -99,6 +98,8 @@ int main(int argc, char **argv, char **env)
 			ft_env(data->export_var);
 		else if (ft_strncmp(args[0], "echo", 5) == 0)
 			printf("echo not implemented yet");
+		else if (ft_strncmp(args[0], "unset", 6) == 0)
+			ft_unset(args, data);
 		add_history(input); // aggiunge alla storia da solo! non serve la struct
 		free (input);
 		ft_free_matrix((void ***)&args, INT_MAX);

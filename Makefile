@@ -13,14 +13,15 @@ SRCS = minishell.c \
 	export.c \
 	print_export.c \
 	cd.c \
-	pwd.c
+	pwd.c \
+	unset.c
 
 CFLAGS = -Wall -Werror -Wextra -g
 
 LIBS= -L$(LIBFT_DIR) -lft -lreadline
 
 all: $(LIBFT)
-	$(CC) $(SRCS) -o $(NAME) $(LIBS)
+	$(CC) $(SRCS) $(CFLAGS) -o $(NAME) $(LIBS)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
