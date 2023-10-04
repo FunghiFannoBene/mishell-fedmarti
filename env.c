@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:02:28 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/03 22:07:23 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 01:08:26 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**env_list_to_matrix(t_list *env_list)
 		}
 		if (i && !new_env)
 		{
-			ft_free_matrix((void***)&new_env, i);
+			ft_free_matrix((void ***)&new_env, i);
 			break ;
 		}
 		env_list = env_list->next;

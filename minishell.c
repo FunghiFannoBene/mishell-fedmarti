@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/02 21:30:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 00:19:52 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ t_data	*data_init(char **env)
 		free(data);
 		return (NULL);
 	}
-	data->pwd = get_var("PWD");
-	data->old_pwd = get_var("OLDPWD");
-	data->home = get_var("HOME");
-	data->path = get_var("PATH");
+	// data->pwd = get_var("PWD");
+	// data->old_pwd = get_var("OLDPWD");
+	// data->home = get_var("HOME");
+	// data->path = get_var("PATH");
 	return (data);
 }
 
@@ -94,7 +94,8 @@ int main(int argc, char **argv, char **env)
 
 		}
 		else if(ft_strncmp(input, "pwd", 4) == 0)
-			printf("%s\n", data->pwd->value);
+			// printf("%s\n", data->pwd->value);
+			;
 		else if (ft_strncmp(input, "export", 4))
 		{
 			;

@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 01:56:48 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/03 23:44:50 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 01:07:47 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	add_alphabetical_order(t_var *var, t_var **array, int high)//still u
 		n++;
 	arr_insert(var, array, n);
 }
- 
+
 static t_var	**extract_arr(t_list *export_list)
 {
 	t_var	**arr;
@@ -105,7 +105,7 @@ int	print_export(t_list *export_vars)
 	t_var	**var_arr;
 	char	*var_str;
 	int		i;
-	
+
 	var_arr = extract_arr(export_vars);
 	if (!var_arr)
 		return (export_vars != NULL); //if the list is empty this is normal, othewise malloc failed
