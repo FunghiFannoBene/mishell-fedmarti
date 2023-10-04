@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/04 00:19:52 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 20:20:53 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_data	*data_init(char **env)
 		free(data);
 		return (NULL);
 	}
-	data->export_var = get_env_list(env);
+	data->export_var = get_env_list((const char **)env);
 	if (!data->export_var)
 	{
 		free(data->exit_status);
@@ -66,44 +66,46 @@ t_data	*data_init(char **env)
 int main(int argc, char **argv, char **env) 
 {
     char	*input;
+	char	**args;
 	char	*pwd;
 	t_data	*data;
 
 	data = data_init(env);
 	if (!data)
-		return (NULL);
+		return (1);
 	(void)argc;
 	(void)argv;
 	clear(); //pulisce all'avvio
     while (1) {
 		// print_env(env);
         input = readline("Minishell> "); //stampa e aspetta un input
-		printf("\n%s", input);
-        if (ft_strncmp(input, "exit", 5) == 0)
-            exit(0);
-		else if(ft_strncmp(input, "clear", 6) == 0)
+		args = ft_split(input, ' ');
+		if (!args || !args[0])
+		{
+			ft_free_matrix((void ***)&args, INT_MAX);
+			continue ;
+		}
+		else if (ft_strncmp(args[0], "exit", 5) == 0)
+			exit(0);
+		else if (ft_strncmp(args[0], "clear", 6) == 0)
 			clear();
-		else if(ft_strncmp(input, "cd", 3) == 0)
-		{
-			if(chdir(&input[3]) == 0)// chdir controlla che la path sia giusta e esegue il processo per entrarci
-				;
-			else
-				printf("cd: %s");
-			//CONTROLLARE NON CORRETTO!!
-
-
-		}
-		else if(ft_strncmp(input, "pwd", 4) == 0)
-			// printf("%s\n", data->pwd->value);
-			;
-		else if (ft_strncmp(input, "export", 4))
-		{
-			;
-		}
-		
-        add_history(input); // aggiunge alla storia da solo! non serve la struct
-        free(input);
-    }
-
-    return 0;
+		else if (ft_strncmp(args[0], "cd", 3) == 0)
+			ft_cd(args, data);
+		else if (ft_strncmp(args[0], "pwd", 4) == 0)
+			ft_pwd(args, data);
+		else if (ft_strncmp(args[0], "export", 7) == 0)
+			ft_export(args, data->export_var);
+		else if (ft_strncmp(args[0], "env", 4) == 0)
+			ft_env(data->export_var);
+		else if (ft_strncmp(args[0], "echo", 5) == 0)
+			printf("echo not implemented yet");
+		add_history(input); // aggiunge alla storia da solo! non serve la struct
+		free (input);
+		ft_free_matrix((void ***)&args, INT_MAX);
+	}
+	ft_free_matrix((void ***)&args, INT_MAX);
+	free_var(data->exit_status);
+	ft_lstclear(&data->export_var, free_var);
+	free(data);
+	return (0);
 }

@@ -14,7 +14,7 @@ int	main(int argc, const char **argv, const char **env)
 		ft_export(export_argv, list);
 		free(export_argv);
 		if (argc > 2)
-			ft_export((char*[]){"export", NULL}, list);
+			ft_export((char *[]){"export", NULL}, list);
 	}
 	else if (ft_strncmp("env", argv[1], 4) == 0)
 		ft_env(list);

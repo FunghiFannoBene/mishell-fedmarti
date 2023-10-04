@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 00:08:54 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 01:06:41 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:50:26 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*using_home(char **args, t_data *data)
 		return (NULL);
 	if (!args[1])
 		return (ft_strdup(home->value));
-	path = ft_strjoin(home->value, args[1]);
+	path = ft_strjoin(home->value, &args[1][1]);
 	return (path);
 }
 
@@ -64,19 +64,20 @@ static void	update_pwd(t_data *data)
 	{
 		if (pwd->value)
 			free(pwd->value);
-		pwd->value = ft_strdup(getenv("PWD"));
+		pwd->value = getcwd(NULL, 0);
+		getcwd(pwd->value, sizeof(*pwd->value));
 	}
 }
 
-int	cd(char **args, t_data *data)
+int	ft_cd(char **args, t_data *data)
 {
 	char	*path;
 	int		return_val;
 
 	path = args[1];
-	if (args[2])
+	if (args[1] && args[2])
 	{
-		write (2, "cd: too many arguments", 23);
+		write (2, "cd: too many arguments\n", 23);
 		return (1);
 	}
 	if (!args[1] || args[1][0] == '~')

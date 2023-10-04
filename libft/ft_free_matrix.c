@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 23:05:48 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/06/20 15:27:09 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:48:20 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ void	*ft_free_matrix(void ***pointer, size_t n_members)
 	i = 0;
 	if (!*pointer)
 		return (NULL);
-	while (i < n_members)
+	while (i < n_members && (*pointer)[i])
 	{
-		if ((*pointer)[i])
-			free((*pointer)[i]);
+		free((*pointer)[i]);
 		i++;
 	}
 	free(*pointer);

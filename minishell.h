@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 01:09:37 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 20:21:10 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ int		set_var_list(char *name, char *value, t_list *list);
 t_list	*get_env_list(const char **env);
 int		ft_export(char **args, t_list *export_var_list);
 int		ft_env(t_list	*env_list);
+int		ft_cd(char **args, t_data *data);
+int		ft_pwd(char	**args, t_data *data);
 
 #endif

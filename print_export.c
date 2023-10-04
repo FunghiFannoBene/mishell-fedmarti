@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_export.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 01:56:48 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 01:07:47 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:38:55 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,17 @@ static char	*export_var_str(t_var *var)
 	char	*str;
 	char	*temp;
 
+	str = NULL;
 	temp = ft_strjoin("declare -x ", var->name);
 	if (!temp || !var->value)
-		return (temp);
+	{
+		if (temp)
+		{
+			str = ft_strjoin(temp, "\n");
+			free(temp);
+		}
+		return (str);
+	}
 	str = ft_strjoin(temp, "=\"");
 	free (temp);
 	if (!str)
