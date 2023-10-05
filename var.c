@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:51:03 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 23:27:30 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/05 20:46:26 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	set_var(t_var *var, char *new_value)
 {
 	if (!var)
 		return (1);
+	if (!new_value)
+		return (0);
 	if (var->value)
 		free(var->value);
 	var->value = ft_strdup(new_value);
@@ -103,7 +105,7 @@ int	set_var_list(char *name, char *value, t_list *list)
 	while (1)//cycle breaks from the ifs
 	{
 		var = list->content;
-		if (var && !ft_strncmp(name, var->name, name_len) && value)
+		if (var && !ft_strncmp(name, var->name, name_len))
 			return (set_var(var, value));
 		else if (!list->next)
 			break ;

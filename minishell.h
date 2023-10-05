@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 22:57:09 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/05 19:52:39 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include "libft/libft.h"
+# include <signal.h>
 
 typedef struct s_list_env
 {
@@ -57,7 +58,7 @@ t_var	*get_var(char *name, t_list *list);
 int		set_var(t_var *var, char *new_value);
 int		set_var_list(char *name, char *value, t_list *list);
 t_list	*get_env_list(const char **env);
-int		ft_export(char **args, t_list *export_var_list);
+int		ft_export(char **args, t_data *data);
 int		ft_env(t_list	*env_list);
 int		ft_cd(char **args, t_data *data);
 int		ft_pwd(char	**args, t_data *data);
