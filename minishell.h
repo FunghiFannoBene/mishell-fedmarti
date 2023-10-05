@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/05 19:52:39 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/05 22:58:28 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ typedef struct s_env_pointer
 typedef struct s_minishell_data {
 	t_list	*export_var;
 	t_list	*local_var;
-	// t_var	*pwd;
-	// t_var	*old_pwd; /* commented because i decided not to use them
-	// t_var	*home;		since they can be unset i decided not to worry
-	// t_var	*path;		about managing them, since we already have get_var*/
 	t_var	*exit_status;
 }	t_data;
 

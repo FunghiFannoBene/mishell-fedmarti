@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 20:12:01 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 21:34:05 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/05 22:59:08 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static char	*pwd_null(t_data *data)
 {
 	char	*pwd_path;
 
-	pwd_path = getcwd(NULL, 0);
-	getcwd(pwd_path, sizeof(*pwd_path));
+	pwd_path = getcwd(NULL, 0);//funziona e non da leak
+	getcwd(pwd_path, sizeof(*pwd_path));// non toccare
 	set_var_list("PWD", pwd_path, data->export_var);
 	return (pwd_path);
 }

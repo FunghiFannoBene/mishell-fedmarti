@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/05 20:37:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/05 23:02:05 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 // IMPLEMENTARE: strcmp, strncmp
 #include "minishell.h"
 
-void clear()
+int clear()
 {
-	write(STDOUT_FILENO, "\033[H\033[2J\033[3J", 11); 
+	write(STDOUT_FILENO, "\033[H\033[2J\033[3J", 11);
+	return (0);
 	//esegue clear "\033[H" si muove a HOME , "\033[2J" pulisce 
 	//l'area attuale "\033[3J" pulisce anche la history
 }
@@ -56,10 +57,6 @@ t_data	*data_init(char **env)
 		free(data);
 		return (NULL);
 	}
-	// data->pwd = get_var("PWD");
-	// data->old_pwd = get_var("OLDPWD");
-	// data->home = get_var("HOME");
-	// data->path = get_var("PATH");
 	return (data);
 }
 
@@ -98,9 +95,9 @@ void	null_list_test(t_data *data)
 	}
 }
 
-int main(int argc, char **argv, char **env) 
+int	main(int argc, char **argv, char **env)
 {
-    char	*input;
+	char	*input;
 	char	**args;
 	t_data	*data;
 
@@ -112,8 +109,8 @@ int main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	clear(); //pulisce all'avvio
-    while (1) {
-		// print_env(env);
+	while (1)
+	{
         input = readline("Minishell> "); //stampa e aspetta un input
 		if (!input)
 		{
@@ -144,7 +141,7 @@ int main(int argc, char **argv, char **env)
 		else if (ft_strncmp(args[0], "unset", 6) == 0)
 			ft_unset(args, data);
 		else if (ft_strncmp(args[0], "nulllisttest", 13) == 0)
-			null_list_test(data);
+			null_list_test(data);//test temporaneo, svuota la lista env
 		add_history(input); // aggiunge alla storia da solo! non serve la struct
 		free (input);
 		ft_free_matrix((void ***)&args, INT_MAX);

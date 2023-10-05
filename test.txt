@@ -21,24 +21,25 @@ SOLUZIONI:
 
 1 	creare i vari comandi es 
 
-	"cd"     # Cambia la directory corrente
-	"pwd"    # Mostra la directory corrente
+	"cd"     # Cambia la directory corrente // fatto
+	"pwd"    # Mostra la directory corrente // fatto
 	"echo"   # Visualizza un messaggio o una variabile
-	"exit"   # Esce dalla shell o termina la sessione corrente
-	"clear"  # Pulisce la schermata della shell
-	"export" with no options
-	"unset" with no options
+	"exit"   # Esce dalla shell o termina la sessione corrente //fatto
+	"clear"  # Pulisce la schermata della shell //fatto
+	"export" with no options //fatto
+	"unset" with no options //fatto
 
  	etc... in quanto verranno sicuramente eseguiti nello stesso modo in ogni caso se richiamati.
 
 
 
 2	  CREARE PSEUDO ENV;
+//fattp
 
 
 
 2.5 		CONTROL SEGNALI (CTRL+C ETC...)
-
+//fatto nel progesso principale
 
 
 
@@ -89,7 +90,11 @@ getcwd esegue "PWD" circa e lo salva in una STRINGA!
 
 rl_clear_history PULISCE la HISTORY quella che volevamo mettere in struct (Non so se ci serve);
 
+rl_replace_line per rimpiazzare quello che hai scritto dentro readline
 
+rl_redisplay per ristampare il prompt
+
+rl_on_new_line prima di rl_redisplay si usa per specificare di ristampare su nuova linea (devi comunque farlo dopo di aver printato \n)
 
 
 DA guardare
@@ -100,9 +105,6 @@ execve
 
 TO LEARN
 
-rl_on_new_line
-rl_replace_line
-rl_redisplay
 wait3
 wait4
 sigemptyset
@@ -111,7 +113,7 @@ stat
 lstat
 fstat
 unlink
-up
+dup
 dup2
 pipe
 opendir
