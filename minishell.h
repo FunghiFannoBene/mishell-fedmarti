@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/05 22:58:28 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:43:44 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ int		ft_env(t_list	*env_list);
 int		ft_cd(char **args, t_data *data);
 int		ft_pwd(char	**args, t_data *data);
 int		ft_unset(char **args, t_data *data);
+int		ft_heredoc(char **args, int fd);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/05 23:02:05 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:45:11 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ int	main(int argc, char **argv, char **env)
 			ft_unset(args, data);
 		else if (ft_strncmp(args[0], "nulllisttest", 13) == 0)
 			null_list_test(data);//test temporaneo, svuota la lista env
+		else if (ft_strncmp(args[0], "<<", 3) == 0)
+			ft_heredoc((char *[]){args[1], NULL}, 1);
 		add_history(input); // aggiunge alla storia da solo! non serve la struct
 		free (input);
 		ft_free_matrix((void ***)&args, INT_MAX);

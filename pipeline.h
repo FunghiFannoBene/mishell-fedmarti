@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/06 00:06:43 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/07 23:33:02 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ typedef struct s_pipeline_tree_node {
 	struct s_pipeline_tree_node	*input[2];
 	struct s_pipeline_tree_node	*output;
 }	t_pnode;
+
+t_pnode	*sort_pipeline_tree(t_pnode *input_tree);
+int		is_type(t_pnode *node, t_ntype *types);
 
 #endif

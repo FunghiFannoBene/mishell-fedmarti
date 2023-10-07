@@ -14,7 +14,8 @@ SRCS = minishell.c \
 	print_export.c \
 	cd.c \
 	pwd.c \
-	unset.c
+	unset.c \
+	heredoc.c 
 
 CFLAGS = -Wall -Werror -Wextra -g
 
