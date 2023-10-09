@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:26:50 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/02 19:56:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/09 01:32:45 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,33 @@ t_list	*get_env_list(const char **env)
 		i++;
 	}
 	return (list_head);
+}
+
+char	**env_list_to_array(t_list *env_list)
+{
+	int		i;
+	char	**array;
+	t_var	*temp;
+
+	if (!env_list)
+		return (NULL);
+	array = ft_calloc(ft_lstsize(env_list) + 1, sizeof(char *));
+	if (!array)
+		return (NULL);
+	i = 0;
+	while (env_list)
+	{
+		temp = env_list->content;
+		if (temp->value)
+			array[i] = ft_multistrjoin((char *[]){temp->name, \
+			"='\"", temp->value, "\"", NULL});
+		else
+			array[i] = ft_strdup(temp->name);
+		if (!array[i])
+			env_list = ft_free_matrix((void ***)&array, i);
+		if (env_list)
+			env_list = env_list->next;
+		i++;
+	}
+	return (array);
 }

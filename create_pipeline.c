@@ -3,58 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   create_pipeline.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/05 23:03:32 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/06 00:14:08 by fedmarti         ###   ########.fr       */
+/*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
+/*   Updated: 2023/10/08 22:03:38 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "pipeline.h"
+#include "libft/libft.h"
 
-int	create_pipeline(t_list *input, t_data *data)
+t_pnode	*next(t_pnode *node)
 {
-	t_pnode	*current;
+	t_pnode	*temp;
 
-	(void)data;//
-	while (input)
-	{
-		current = input->content;
-		if (current->type == Program_Call)
-			(void)current;//incomplete
-		return (1);
-	}
-	//
+	temp = node;
+	node = node->output;
+	free_node(temp);
+	return (node);
 }
 
-int	is_type(t_pnode *node, t_ntype *types)
+t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous)
 {
-	int	i;
+	t_pnode	*new;
 
-	i = 0;
-	while (types[i] != Null)
-	{
-		if (node->type == *types)
-			return (1);
-		i++;
-	}
-	return (0);
+	if (type == Null)
+		return (NULL);
+	new = malloc(sizeof(*new));
+	if (!new)
+		return (NULL);
+	new->type = type;
+	new->args = args;
+	new->input[0] = previous;
+	new->input[1] = NULL;
+	new->output = NULL;
+	new->input_fd = 0;
+	new->output_fd = 1;
+	return (new);
 }
 
-t_pnode	*sort_pipeline_list(t_pnode *input_tree)
+void	free_node(t_pnode *node)
 {
-	t_pnode	*current;
-	t_list	*tree_roots;
-
-	if (!input_tree || !input_tree->output)
-		return (input_tree);
-	if (input_tree->type == Program_Call \
-	&& (input_tree->output->type == Redirect_input \
-	|| input_tree->output->type == Redirect_input_heredoc))
+	if (!node)
+		return (NULL);
+	if (node->args)
+		ft_free_matrix((void ***)&node->args, INT_MAX);
+	if (node->output)
 	{
-		input_tree->
+		if (node == node->output->input[0])
+			node->output->input[0] = NULL;
+		else
+			node->output->input[1] = NULL;
 	}
+	free(node);
+}
 
+void	free_tree(t_pnode *head)
+{
+	t_pnode	*node;
+
+	while (head)
+	{
+		node = head->output;
+		if (node && node->input[1])
+			free_node(node->input[1]);
+		free_node(head);
+		head = node;
 	}
 }

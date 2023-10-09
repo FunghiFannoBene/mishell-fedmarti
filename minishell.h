@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/07 22:43:44 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:14:25 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include <sys/wait.h>
 # include "libft/libft.h"
 # include <signal.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <dirent.h>
 
 typedef struct s_list_env
 {
@@ -51,14 +54,26 @@ typedef struct s_minishell_data {
 t_var	*new_var(char *name, char *value);
 void	free_var(void *variable);
 t_var	*get_var(char *name, t_list *list);
+char	*expand_variable(char *str, t_data *data);
 int		set_var(t_var *var, char *new_value);
 int		set_var_list(char *name, char *value, t_list *list);
 t_list	*get_env_list(const char **env);
+char	**env_list_to_array(t_list *env_list);
 int		ft_export(char **args, t_data *data);
 int		ft_env(t_list	*env_list);
 int		ft_cd(char **args, t_data *data);
 int		ft_pwd(char	**args, t_data *data);
 int		ft_unset(char **args, t_data *data);
 int		ft_heredoc(char **args, int fd);
+
+//quick function to print the error message and returns the exit value
+int		no_such_file_or_directory(char *filename);
+
+//takes filename string and the PATH env variable
+//returns value:
+//name if NULL or if it's already either written as absolute/relative path
+//allocated string with absolute path to name if it's found within PATH
+//NULL if there's no name file in the directories pointed to by PATH
+char	*find_file_in_path(char *name, t_var *env_v_path);
 
 #endif

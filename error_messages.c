@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   error_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 17:04:19 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/09 18:53:47 by fedmarti         ###   ########.fr       */
+/*   Created: 2023/10/08 20:11:07 by fedmarti          #+#    #+#             */
+/*   Updated: 2023/10/08 20:14:59 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+int	no_such_file_or_directory(char *filename)
 {
-	size_t	s_len;
-	size_t	d_len;
-	char	*d;
+	char	*error_str;
 
-	if (!src)
-		return (0);
-	d_len = ft_strlen(dst);
-	s_len = ft_strlen(src);
-	if (d_len >= size)
-		return (size + s_len);
-	d = dst + d_len;
-	size -= d_len + 1;
-	while (size-- && *src)
-		*d++ = *src++;
-	*d = 0;
-	return (d_len + s_len);
+	error_str = ft_multistrjoin((char *[]){"bash: ", filename, \
+	": No such file or directory\n", NULL});
+	if (error_str)
+	{
+		write (2, error_str, ft_strlen(error_str));
+		free(error_str);
+	}
+	return (1);
 }

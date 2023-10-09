@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   pipeline_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 17:04:19 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/09 18:53:47 by fedmarti         ###   ########.fr       */
+/*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
+/*   Updated: 2023/10/09 00:56:08 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pipeline.h"
+#include "minishell.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+static void	child_sighandler(int signo)
 {
-	size_t	s_len;
-	size_t	d_len;
-	char	*d;
+	if (signo == SIGINT)
+		exit (130);
+}
 
-	if (!src)
-		return (0);
-	d_len = ft_strlen(dst);
-	s_len = ft_strlen(src);
-	if (d_len >= size)
-		return (size + s_len);
-	d = dst + d_len;
-	size -= d_len + 1;
-	while (size-- && *src)
-		*d++ = *src++;
-	*d = 0;
-	return (d_len + s_len);
+void	free_data(t_data *data);
+
+pid_t	ft_fork(void)
+{
+	pid_t child_pid;
+
+	child_pid = fork();
+	if (child_pid)
+		return (child_pid);
+	signal(SIGINT, child_sighandler);
+}
+
+void	ft_exit(int exit_status, t_pnode *tree, t_data *data)
+{
+	free_data(data);
+	free_tree(tree);
+	exit(exit_status);
 }
