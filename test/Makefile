@@ -6,7 +6,7 @@ SRC = env_export.c \
 	../print_export.c
 
 PIP_SRC = pipeline_test.c \
-	../sort_pipeline_tree.c
+	../sort_pipeline_tree.c \
 
 TEST = ./test
 
@@ -29,10 +29,13 @@ env_clean:
 	@rm -f env_test 
 	@rm -f env_test_minishell
 
+find_file_test: $(LIBFT)
+	gcc -Wall -Wextra -Werror -g find_file_test.c ../get_env_list.c ../file_utils.c ../var.c ../libft/libft.a -o find_file_test
+
 $(PIPELINE_TEST): $(LIBFT)
 	gcc -g $(PIP_SRC) -o $@
 
 $(LIBFT):
 	make re -C ../libft
 
-phony: env_test env_clean
+PHONY: env_test env_clean find_file_test
