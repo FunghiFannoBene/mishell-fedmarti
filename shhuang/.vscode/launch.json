@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/shhuang/Desktop/shhuang",
-      "program": "/home/shhuang/Desktop/shhuang/build/Debug/outDebug",
+      "cwd": "/home/shhuang/Desktop/mishell-fedmarti/shhuang",
+      "program": "/home/shhuang/Desktop/mishell-fedmarti/shhuang/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
