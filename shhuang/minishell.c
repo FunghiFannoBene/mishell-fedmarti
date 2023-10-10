@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "./minishell.h"
 
 // int checkflag(char *c)
 // {
@@ -67,10 +67,20 @@ int odd_virgolette(char *s)
 }
 
 
+int check_flag(int flag)
+{
+	if(flag == 0)
+	{
+		return(1);
+	}
+	else
+	{
+		return(0);
+	}
+}
 
-
-int calculate_string_size(char *s, int i) //t_list da aggiungere
-{ //echo = 4 cat = 3 etc numero dei caratteri
+int calculate_string_size(char *s, int i, t_redirect *list)
+{
     char flag = 0;
     int count = 0;
 
@@ -97,8 +107,6 @@ int calculate_string_size(char *s, int i) //t_list da aggiungere
         }
         while(s[i])
         {
-			printf("%c", s[i]);
-			printf("|");
 			if((flag == 0 || flag == '"' )&& s[i] == '\\' && s[i+1] == '\\' )
 			{
 				i+=2;
@@ -150,7 +158,6 @@ int calculate_string_size(char *s, int i) //t_list da aggiungere
     }
     return(count);
 }
-
 
 void insert_string(char*s, char **str, int* x)
 {
@@ -221,7 +228,7 @@ void insert_string(char*s, char **str, int* x)
                 return; 
             }
             if((flag == 0 || flag == '"') && s[i] == '$')
-                count += 0; 
+                count += 0; //funzione riprendi da lista il valore; scorri data
             if(flag == 0 && s[i] == ' ') 
             {
                 (*str)[count] = s[i];
@@ -242,39 +249,7 @@ void insert_string(char*s, char **str, int* x)
     (*str)[count] = '\0';
 }
 
-int execute(char **args)
-{
-	pid_t pid;
-	 // Arguments to pass to 'cat'
-    
-    pid = fork();  // Create a child process
-    
-    if (pid < 0) {
-        // Fork failed
-        perror("fork failed");
-        return 1;
-    }
-
-    if (pid == 0) {
-        // Child process
-        execve("/usr/bin/cat", args, NULL); // Execute the 'cat' command
-
-        // If execve() fails:
-        perror("execve failed");
-        _exit(1); // It's generally better to use _exit() than exit() in this context
-    } else {
-        // Parent process
-        int status;
-        wait(&status);  // Wait for the child to finish
-        if (WIFEXITED(status) && WEXITSTATUS(status) != 0) {
-            // Check if child terminated normally and if its exit status is non-zero
-            fprintf(stderr, "child exited with status: %d\n", WEXITSTATUS(status));
-        }
-    }
-}
-
-
-void search_command(char *input, int *i, t_indice *command_list)
+void search_command(char *input, int *i, t_redirect* command)
 {
     int x = 0;
     int start;
@@ -284,48 +259,46 @@ void search_command(char *input, int *i, t_indice *command_list)
     start = *i;
     while (input[start + x] && input[start + x] != ' ')
         x++;
-    command_list->command_name = malloc(sizeof(char) * (x + 1));
-    if (!command_list->command_name)
+    command->str = malloc(sizeof(char) * (x + 1));
+    if (!command->str)
         return;
     x = 0;
     while (input[*i] && input[*i] != ' ')
-        command_list->command_name[x++] = input[(*i)++];
-    command_list->command_name[x] = '\0';
-	printf("\n\n%s e index si ferma a: %d\n\n", command_list->command_name, *i);
+        command->str[x++] = input[(*i)++];
+    command->str[x] = '\0';
 }
 
 
-
-t_indice* create_commands_list(char *input) {
-    t_indice *command_list = NULL;
+t_indice* create_commands_list(char *input)
+{
+    t_redirect *command = NULL;
     t_indice *head = NULL;
     t_indice *prev = NULL;
     int index = 0;
 
     while (input[index]) {
-        command_list = malloc(sizeof(t_indice));
-        if (!command_list) {
+        command = malloc(sizeof(t_indice));
+        if (!command) {
             return NULL;
         }
-        search_command(input, &index, command_list);
-        command_list->next = NULL;
+        search_command(input, &index, command);
+        command->next = NULL;
 
         int size = calculate_string_size(input, index);
         if (size == -1) 
 		{
 			//freelist
-            printf("\n\nLista non creata: err-1;\n\n");
+            printf("\n\nLista non creata: err -1;\n\n");
             free(input);
             return NULL;
         }
         if (!head)
-            head = command_list;
+            head = command;
         else if (prev)
-            prev->next = command_list;
-        prev = command_list;
-        command_list->stringa = calloc(size + 1, sizeof(char));
-        insert_string(input, &command_list->stringa, &index);
-		printf("\n\n|%c|\n\n", input[index]);
+            prev->next = command;
+        prev = command;
+        command->stringa = calloc(size + 1, sizeof(char));
+        insert_string(input, &command->stringa, &index);
 		if(input[index] == '\0')
 		{
 			prev->next = NULL;
@@ -374,14 +347,35 @@ int main() {
 		// nuovo_input = adapt_readline(input, nuovo_input);
 		// free(input);
 
+		
+		// execute();
 
-		t_indice *command_list;
-		command_list = create_commands_list(input);
-		while(command_list != NULL)
+
+
+		t_indice *command;
+		command = create_commands_list(input);
+		int x= 0;
+		while(command != NULL)
 		{
-			printf("Lista: Comando: %s Content: %s\n", command_list->command_name, command_list->stringa);
-			command_list=command_list->next;
+			x++;
+			printf("Lista: Comando %d: %s Content: %s\n",x, command->str, command->stringa);
+			command=command->next;
 		}
+
+
+
+
+
+
+		//esegue tutti i comandi da sinistra a destra
+
+		//shhuang@LAPTOP-2QEICO5A:~$ echo adssd  >fruits.txt  "asbcb"
+		//shhuang@LAPTOP-2QEICO5A:~$ cat fruits.txt
+
+// 		shhuang@LAPTOP-2QEICO5A:~$ echo "a>file.txt"
+// a>file.txt
+// shhuang@LAPTOP-2QEICO5A:~$ echo 'a>file.txt'
+// a>file.txt
 
 		// args[1] = s;
 		// if(strncmp("cat", input, 3) == 0)//cat impostare i a 3
