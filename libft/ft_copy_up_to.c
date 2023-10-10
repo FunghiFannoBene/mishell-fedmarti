@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 21:23:15 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/10 21:23:48 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 00:51:31 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static inline int	is_(char c, char *charset)
 {
+	if (!c)
+		return (0);
 	while (charset && *charset)
 	{
 		if (c == *charset)
@@ -30,12 +32,14 @@ char	*ft_copy_up_to(char *str, char *stop_charset)
 
 	if (!str)
 		return (NULL);
+	if (!stop_charset || !ft_strncmp(stop_charset, "", 1))
+		return (ft_strdup(str));
 	temp = str;
-	while (!is_(*temp, stop_charset))
+	while (*temp && !is_(*temp, stop_charset))
 		temp++;
-	copy = malloc(str - temp + 1);
+	copy = malloc(temp - str + 2);
 	if (!copy)
 		return (NULL);
-	ft_strlcpy(copy, str, str - temp);
+	ft_strlcpy(copy, str, temp - str + 1);
 	return (copy);
 }

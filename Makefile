@@ -8,6 +8,8 @@ CC = gcc
 
 SRCS = minishell.c \
 	var.c \
+	var2.c \
+	var3.c \
 	get_env_list.c \
 	env.c \
 	export.c \
@@ -18,8 +20,6 @@ SRCS = minishell.c \
 	heredoc.c  \
 	create_pipeline.c \
 	sort_pipeline_tree.c \
-	run_command_pipeline.c \
-	redirect_input.c \
 	file_utils.c \
 
 CFLAGS = -Wall -Werror -Wextra -g

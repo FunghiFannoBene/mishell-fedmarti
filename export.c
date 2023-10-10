@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:56:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/05 20:33:32 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 01:19:11 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_export(char **args, t_data *data)
 		temp = (t_var){copy_name_field(args[i]), copy_value_field(args[i])};
 		if (!temp.name)
 			return (malloc_failure(temp.value));
-		if (ft_strhas(temp.name, "!@#$%^*=+~,.;:"))
+		if (ft_strhas(temp.name, NOT_VALID))
 			return_val = wrong_character_error(temp.name);
 		else if (!export_variable(temp, data))
 			return (1);

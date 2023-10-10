@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_pipeline.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/08 22:03:38 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 00:08:52 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous)
 void	free_node(t_pnode *node)
 {
 	if (!node)
-		return (NULL);
+		return ;
 	if (node->args)
 		ft_free_matrix((void ***)&node->args, INT_MAX);
 	if (node->output)

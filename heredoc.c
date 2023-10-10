@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 20:35:12 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/09 19:00:05 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 00:56:27 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,18 @@ static inline int	null_args(void)
 	return (2);
 }
 
-static inline char *coumpound_input(char *str, char *input, t_data *data)
+static inline char	*coumpound_input(char *str, char *input, t_data *data)
 {
-	char *temp;
-	char *var_str;
+	char	*temp;
 
-	if (!ft_strhas(input, "$"))
-	{
-		temp = str;
-		str = ft_multistrjoin((char *[]){str, input, "\n", NULL});
-		free(input);
-		free(temp);
-		return (str);
-	}
-	temp = input;
-	while ()
-	{
-		var_str = expand_variable(input, data);
-		ft_strchr(input, '$');
+	input = expand_variables(input, data);
+	if (!input)
+		return (NULL);
+	temp = str;
+	str = ft_multistrjoin((char *[]){str, input, "\n", NULL});
+	free(input);
+	free(temp);
+	return (str);
 }
 
 int	ft_heredoc(char **args, int fd, t_data *data)//add variable support
@@ -58,6 +52,7 @@ int	ft_heredoc(char **args, int fd, t_data *data)//add variable support
 			return (1);
 		input = readline(">");
 	}
+	free(input);
 	write (fd, output_str, ft_strlen(output_str));
 	free(output_str);
 	return (0);

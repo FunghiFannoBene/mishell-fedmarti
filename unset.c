@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:36:51 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 23:05:54 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 01:19:13 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_unset(char **args, t_data *data)
 	i = 1;
 	while (args[i])
 	{
-		if (ft_strhas(args[i], "!@#$%^*=+~,.;:"))
+		if (ft_strhas(args[i], NOT_VALID))
 		{
 			return_val = 1;
 			wrong_character_error(args[i]);

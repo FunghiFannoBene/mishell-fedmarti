@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/09 00:56:08 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 01:18:54 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	free_data(t_data *data);
 
 pid_t	ft_fork(void)
 {
-	pid_t child_pid;
+	pid_t	child_pid;
 
 	child_pid = fork();
 	if (child_pid)
