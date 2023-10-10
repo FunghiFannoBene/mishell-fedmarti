@@ -6,7 +6,7 @@
 #    By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 15:01:24 by fedmarti          #+#    #+#              #
-#    Updated: 2023/10/04 22:35:29 by fedmarti         ###   ########.fr        #
+#    Updated: 2023/10/10 21:57:14 by fedmarti         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,8 +49,6 @@ SOURCES := ft_atoi.c \
 	ft_abs.c \
 	ft_abs_d.c \
 	ft_sign.c \
-	ft_do_nothing.c \
-	ft_do_nothing_2.c \
 	ft_free_matrix.c \
 	ft_matrix_init.c \
 	ft_lstsize.c \
@@ -80,6 +78,7 @@ SOURCES := ft_atoi.c \
 	ft_matrix_size.c \
 	ft_strhas.c \
 	ft_multistrjoin.c \
+	ft_copy_up_to.c \
 	get_next_line.c \
 	get_next_line_utils.c
 

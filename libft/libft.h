@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 22:08:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 22:38:01 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:58:55 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,59 @@ typedef struct s_array
 	size_t	n_members;
 }	t_array;
 
+//swaps the values of two ints using pointers
 void	ft_swap_i(int *a, int *b);
+//swaps the values of two doubles using pointers
 void	ft_swap_d(double *a, double *b);
+//returns the sign of n, 0 if n is 0
 int		ft_sign(int n);
+//returns the sign of n, 0 if n is 0
 double	ft_sign_d(double n);
+//returns the higher number
 int		ft_max(int a, int b);
+//returns the higher number
 double	ft_max_d(double a, double b);
+//returns the smaller number
 int		ft_min(int a, int b);
+//returns the higher number
 double	ft_min_d(double a, double b);
+//
 int		ft_clamp(int num, int min, int max);
+//returns num within the range of min and max
 double	ft_clamp_d(double num, double min, double max);
+//absolute value of a
 int		ft_abs(int a);
-int		abs_max(int a, int b);
-int		abs_min(int a, int b);
+//returns the higher absolute value
+int		ft_abs_max(int a, int b);
+//returns the lower absolute value
+int		ft_abs_min(int a, int b);
+//absolute value of a
 double	ft_abs_d(double a);
-double	abs_max_d(double a, double b);
-double	abs_min_d(double a, double b);
-double	abs_max_signed_d(double a, double b);
-double	abs_min_signed_d(double a, double b);
-int		abs_max_signed(int a, int b);
-int		abs_min_signed(int a, int b);
+//returns the higher absolute value
+double	ft_abs_max_d(double a, double b);
+//returns the lower absolute value
+double	ft_abs_min_d(double a, double b);
+//returns a if |a| >= |b|, returns b otherwise
+double	ft_abs_max_signed_d(double a, double b);
+//returns a if |a| <= |b|, returns b otherwise
+double	ft_abs_min_signed_d(double a, double b);
+//returns a if |a| >= |b|, returns b otherwise
+int		ft_abs_max_signed(int a, int b);
+//returns a if |a| <= |b|, returns b otherwise
+int		ft_abs_min_signed(int a, int b);
 int		ft_abs_clamp(int num, int min, int max);
 double	ft_abs_clamp_d(double num, double min, double max);
-void	ft_do_nothing(void *p);
-void	ft_do_nothing_2(void *p, void *p2);
 void	*ft_free_matrix(void ***pointer, size_t n_members);
 // allocates using ft_calloc a pointer array of size (y + 1* sizeof(void *))
 // and then allocates (x * member_size) y times
 // returns the null terminated matrix
 void	**ft_matrix_init(size_t x_size, size_t y_size, size_t member_size);
+//swaps node with node->next and returns node->next
 t_list	*ft_lst_swap_next(t_list *node);
+//checks if content is found by comparing the memory of each node->content
 bool	ft_is_in_list(t_list *list, void *content, size_t content_size);
 t_list	*ft_lstpop_one(void *content, t_list **list);
+t_list	*ft_lstnew_notnull(void *content);
 void	ft_lst_iteri_2(t_list *list, void (*foo)(void *, void *), void *arg);
 void	ft_lstclear_2(t_list **lst, void (*del)(void *, void *), void *arg);
 void	**ft_lst_to_matrix(t_list *lst);
@@ -75,7 +96,11 @@ void	ft_array_free(t_array *arr, void (*del)(void *));
 void	ft_lst_insert_n(t_list **list, t_list *new, unsigned short n);
 void	ft_lst_insert_when(t_list **list, \
 t_list *new_node, bool (*comparison)(void *, void *));
+
+//copies the contents of the list into a compact array and then frees it
 t_array	ft_lst_to_array(t_list **list, size_t member_size, void (*del)(void *));
+
+//used returns node->next and frees node
 t_list	*ft_lstnext_and_delete(t_list *node, void (*del)(void *));
 
 //iterates through the string, returns true if any of its characters
@@ -85,6 +110,9 @@ int		ft_strhas(char *str, char *charset);
 //takes a null terminated array of strings
 //allocates and returns a string that is all the strings concatenated together 
 char	*ft_multistrjoin(char **strings);
+
+//copies str into a duplicate untill any character from the charset is found
+char	*ft_copy_up_to(char *str, char *stop_charset);
 
 //reads file returning one line each call
 //returns null when there's nothing more to read

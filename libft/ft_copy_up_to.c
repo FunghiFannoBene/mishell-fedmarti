@@ -1,40 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_copy_up_to.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 19:33:02 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/10 21:55:19 by fedmarti         ###   ########.fr       */
+/*   Created: 2023/10/10 21:23:15 by fedmarti          #+#    #+#             */
+/*   Updated: 2023/10/10 21:23:48 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static inline int	is_(char c, char *charset)
 {
-	char	*sub;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	i = ft_strlen(s);
-	if (start > i)
-		start = i;
-	if (i - start < len)
-		len = i - start;
-	sub = (char *)malloc(len + 1);
-	if (!sub)
-		return (NULL);
-	i = 0;
-	s += start;
-	while (*s && i < len)
+	while (charset && *charset)
 	{
-		sub[i] = *s;
-		s++;
-		i++;
+		if (c == *charset)
+			return (1);
+		charset++;
 	}
-	sub[i] = 0;
-	return (sub);
+	return (0);
+}
+
+char	*ft_copy_up_to(char *str, char *stop_charset)
+{
+	char	*temp;
+	char	*copy;
+
+	if (!str)
+		return (NULL);
+	temp = str;
+	while (!is_(*temp, stop_charset))
+		temp++;
+	copy = malloc(str - temp + 1);
+	if (!copy)
+		return (NULL);
+	ft_strlcpy(copy, str, str - temp);
+	return (copy);
 }
