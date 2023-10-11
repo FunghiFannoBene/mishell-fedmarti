@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:02:19 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 00:10:45 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 20:31:48 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ static int	pipe_and_fork(t_pnode *node, t_data *data)
 	child_pid = fork();
 	if (child_pid == -1)
 		ft_exit (1, node, data);
-	else if (!child_pid)
-	{
-		close(pipe_fd[0]);
-		exit_status = ft_heredoc(node->args, pipe_fd[1], data);
-		close(pipe_fd[1]);
-		ft_exit(exit_status, node, data);
-	}
-	return (0);
+	else if (child_pid)
+		return (0);
+	close(pipe_fd[0]);
+	exit_status = ft_heredoc(node->args, pipe_fd[1], data);
+	close(pipe_fd[1]);
+	ft_exit(exit_status, node, data);
 }
 
 int	redirect_input_heredoc(t_pnode *node, t_data *data)
@@ -47,7 +45,7 @@ int	redirect_input_heredoc(t_pnode *node, t_data *data)
 			return (1);
 	}
 	if (!node->output)
-		return (ft_heredoc(node->args, write_fd, data));
+		ft_exit(ft_heredoc(node->args, write_fd, data), node, data);
 	if (node->output->type == Program_Call)
 		pipe_and_fork(node, data);
 	return (0);
