@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 21:31:51 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/12 01:21:01 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 int		redirect_input(t_pnode *node, t_data *data);
 int		redirect_input_heredoc(t_pnode *node, t_data *data);
 void	program_call(t_pnode *node, t_data *data);
+void	child_sighandler(int signo);
 
 int	run_command(t_pnode *node, t_data *data)
 {	
@@ -82,10 +83,11 @@ int	run_command_pipeline(t_pnode *pipeline_tree, t_data *data)
 	int		exit_status;
 	pid_t	child_pid;
 
-	child_pid = ft_fork();
+	child_pid = fork();
 	if (!child_pid)
 	{
 		// sleep(20);
+		signal(SIGINT, child_sighandler);
 		exit_status = pipeline(pipeline_tree, data);
 		ft_exit(exit_status, NULL, data);
 	}

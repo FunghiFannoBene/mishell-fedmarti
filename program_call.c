@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 22:17:08 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/12 01:31:02 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,19 @@ void	program_call(t_pnode *node, t_data *data)
 	if (!env)
 		ft_exit(1, node, data);
 	if (node->output_fd != 1)
+	{
 		dup2(node->output_fd, 1);
+		if (node->output->input_fd != 0)
+			close(node->output->input_fd);
+	}
 	if (node->input_fd != 0)
+	{
 		dup2(node->input_fd, 0);
+		if (!node->input[1] && node->input[0]->output_fd != 1)
+			close(node->input[1]->output_fd);
+		else if (node->input[1] && node->input[1]->output_fd != 1)
+			close(node->input[1]->output_fd);
+	}
 	if (is_builtin(node->args[0]))
 		ft_exit(ft_builtin(node, data), node, data);
 	program_path = find_file_in_path(node->args[0], \
