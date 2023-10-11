@@ -122,8 +122,11 @@ void	program_call(t_pnode *node, t_data *data)
 	char	*program_path;
 	char	**env;
 
-	if (node->output && output_handler(node, data));
-		return ;
+	if (node->output)
+	{
+		if (output_handler(node, data))
+			return ;
+	}
 	env = env_list_to_array(data->export_var);
 	if (!env)
 		ft_exit(1, node, data);

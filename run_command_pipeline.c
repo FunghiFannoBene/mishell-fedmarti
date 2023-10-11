@@ -85,7 +85,7 @@ int	run_command_pipeline(t_pnode *pipeline_tree, t_data *data)
 	child_pid = ft_fork();
 	if (!child_pid)
 	{
-		sleep(20);
+		// sleep(20);
 		exit_status = pipeline(pipeline_tree, data);
 		ft_exit(exit_status, NULL, data);
 	}
