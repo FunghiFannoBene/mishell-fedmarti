@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 21:09:55 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/11 22:17:08 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,7 @@ void	program_call(t_pnode *node, t_data *data)
 	char	*program_path;
 	char	**env;
 
-	if (!node->output)
-		;
-	else if (output_handler(node, data));
+	if (node->output && output_handler(node, data));
 		return ;
 	env = env_list_to_array(data->export_var);
 	if (!env)
