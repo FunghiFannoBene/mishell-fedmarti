@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:02:28 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 01:08:26 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/13 00:35:28 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	**env_list_to_matrix(t_list *env_list)
 	return (new_env);
 }
 
-int	ft_env(t_list	*env_list)
+int	ft_env(t_list	*env_list, int fd)
 {
 	char	*str_var;
 	char	*temp;
@@ -99,7 +99,7 @@ int	ft_env(t_list	*env_list)
 				free (temp);
 				return (1);
 			}
-			write (1, str_var, ft_strlen(str_var));
+			write (fd, str_var, ft_strlen(str_var));
 			free (temp);
 			free (str_var);
 		}

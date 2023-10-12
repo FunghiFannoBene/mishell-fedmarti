@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 01:56:48 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 19:38:55 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/13 00:34:45 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ static char	*export_var_str(t_var *var)
 	return (str);
 }
 
-int	print_export(t_list *export_vars)
+int	print_export(t_list *export_vars, int fd)
 {
 	t_var	**var_arr;
 	char	*var_str;
@@ -123,7 +123,7 @@ int	print_export(t_list *export_vars)
 		var_str = export_var_str(var_arr[i]);
 		if (!var_str)
 			return (1);
-		write (1, var_str, ft_strlen(var_str));
+		write (fd, var_str, ft_strlen(var_str));
 		free (var_str);
 		i++;
 	}

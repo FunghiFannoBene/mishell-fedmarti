@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/09 15:18:52 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/13 01:23:15 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef enum e_pnode_type
 	Redirect_output_append
 }	t_ntype;
 
-typedef struct s_minishell_data t_data;
+typedef struct s_minishell_data	t_data;
 
 typedef struct s_pipeline_tree_node {
 	enum e_pnode_type			type;
@@ -44,7 +44,9 @@ void	free_tree(t_pnode *head);
 t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous);
 pid_t	run_command(t_pnode *node, t_data *data);
 t_pnode	*next(t_pnode *node);
+t_pnode	*del_next(t_pnode *node);
 void	ft_exit(int exit_status, t_pnode *tree, t_data *data);
-pid_t	ft_fork(void);
+pid_t	ft_fork(int *exit_status);
+int		on_return(int exit_status, t_pnode *node, int fd1, int fd2);
 
 #endif

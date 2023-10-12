@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:56:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 01:19:11 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/13 00:34:54 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*copy_name_field(const char *var); //included here not to bloat the header
 char	*copy_value_field(const char *var);
-int		print_export(t_list *export_vars);
+int		print_export(t_list *export_vars, int fd);
 
 static inline int	wrong_character_error(char *str)
 {
@@ -62,14 +62,14 @@ static inline int	export_variable(t_var temp, t_data *data)
 	return (1);
 }
 
-int	ft_export(char **args, t_data *data)
+int	ft_export(char **args, t_data *data, int fd)
 {
 	int		i;
 	t_var	temp;
 	int		return_val;
 
 	if (!args[1]) //e' come dire argv == 1
-		return (print_export(data->export_var));
+		return (print_export(data->export_var, fd));
 	i = 0;
 	return_val = 0;
 	while (args[++i])

@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/12 01:19:06 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/13 00:36:12 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int		set_var(t_var *var, char *new_value);
 int		set_var_list(char *name, char *value, t_list *list);
 t_list	*get_env_list(const char **env);
 char	**env_list_to_array(t_list *env_list);
-int		ft_export(char **args, t_data *data);
-int		ft_env(t_list	*env_list);
+int		ft_export(char **args, t_data *data, int fd);
+int		ft_env(t_list *env_list, int fd);
 int		ft_cd(char **args, t_data *data);
 int		ft_pwd(char	**args, t_data *data);
 int		ft_unset(char **args, t_data *data);

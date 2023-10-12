@@ -6,12 +6,26 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 00:08:52 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/13 01:21:32 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipeline.h"
 #include "libft/libft.h"
+
+t_pnode	*del_next(t_pnode *node)
+{
+	t_pnode	*next;
+
+	next = node->output;
+	if (!next)
+		return (node);
+	node->output = next->output;
+	node->output->input[0] = node;
+	next->output = NULL;
+	free_node(next);
+	return (node);
+}
 
 t_pnode	*next(t_pnode *node)
 {
@@ -19,7 +33,10 @@ t_pnode	*next(t_pnode *node)
 
 	temp = node;
 	node = node->output;
+	node->input[0] = temp->input[0];
 	free_node(temp);
+	if (node->input[1])
+		free(node->input[1]);
 	return (node);
 }
 
@@ -62,6 +79,7 @@ void	free_tree(t_pnode *head)
 {
 	t_pnode	*node;
 
+	head = next(head);
 	while (head)
 	{
 		node = head->output;

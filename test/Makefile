@@ -33,7 +33,7 @@ TEST = ./test
 
 PIPELINE_SORT_TEST = pipeline_sort_test
 
-PIPELINE_TEST = pipeline_test
+PIPELINE_TEST = piptest
 
 LIBFT = ../libft/libft.a
 

@@ -16,9 +16,10 @@ void	free_data(t_data *data)
 
 int	main(int argc, const char **argv, const char **env)
 {
+	char	**args;
+
 	(void)argc;
 	(void)argv;
-	char **args;
 
 	args = ft_calloc(3, sizeof(char *));
 	args[0] = ft_strdup("cat");
@@ -35,8 +36,6 @@ int	main(int argc, const char **argv, const char **env)
 	t_data *data = ft_calloc(1, sizeof(*data));
 	data->exit_status = new_var("?", "0");
 	data->export_var = get_env_list(env);
-	
-
-	printf("exit status = %i\n", run_command_pipeline(head, data));
+ 	printf("exit status = %i\n", run_command_pipeline(head, data));
 	free_data(data);
 }
