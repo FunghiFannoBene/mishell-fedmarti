@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/13 00:58:18 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/16 21:32:52 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	empty_file(t_pnode *node)
 
 	fd = 0;
 	if (node->type == Redirect_output)
-		fd = open(node->output->args[0], O_WRONLY | O_CREAT, \
+		fd = open(node->output->args[0], O_WRONLY | O_CREAT | O_TRUNC, \
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	else if (node->type == Redirect_output_append)
-		fd = open(node->output->args[0], O_WRONLY | O_CREAT | \
-		O_APPEND, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+		fd = open(node->output->args[0], O_WRONLY | O_CREAT | O_APPEND, \
+		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (node->output && !node->output->input[1])
 		node->output->input_fd = open("/dev/null", O_RDONLY);
 	if (!fd)
@@ -48,7 +48,7 @@ int	error_pipe(t_pnode *node)
 }
 
 int	run_command(t_pnode *node, t_data *data)
-{	
+{
 	int	exit_status;
 
 	if (!node)

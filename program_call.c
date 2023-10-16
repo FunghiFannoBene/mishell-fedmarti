@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/13 01:23:55 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/16 21:30:05 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	output_handler(t_pnode *node, t_data *data)
 	}
 	else if (node->output->type == Redirect_output)
 	{
-		node->output_fd = open(node->output->args[0], O_WRONLY | O_CREAT, \
-		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+		node->output_fd = open(node->output->args[0], O_WRONLY | O_CREAT \
+		| O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 		del_next(node);
 	}
 	else if (node->output->type == Redirect_output_append)
@@ -143,17 +143,11 @@ void	handle_input_output_fd(t_pnode *node)
 	{
 		dup2(node->output_fd, 1);
 		close(node->output_fd);
-		if (node->output->input_fd != 0)
-			close(node->output->input_fd);
 	}
 	if (node->input_fd != 0)
 	{
 		dup2(node->input_fd, 0);
 		close(node->input_fd);
-		if (!node->input[1] && node->input[0]->output_fd != 1)
-			close(node->input[0]->output_fd);
-		else if (node->input[1] && node->input[1]->output_fd != 1)
-			close(node->input[1]->output_fd);
 	}
 }
 
@@ -179,7 +173,13 @@ int	program_call(t_pnode *node, t_data *data)
 	if (child_pid == -1)
 		return (on_return(1, node, node->output_fd, 0));
 	else if (child_pid)
+	{
+		if (node->input_fd != 0)
+			close(node->input_fd);
+		if (node->output_fd != 1)
+			close(node->output_fd);
 		return (exit_status);
+	}
 	handle_input_output_fd(node);
 	env = env_list_to_array(data->export_var);
 	if (!env)
