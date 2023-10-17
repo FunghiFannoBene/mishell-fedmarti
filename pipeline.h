@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/13 01:23:15 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/17 20:54:45 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@ typedef enum e_pnode_type
 {
 	Null,
 	Program_Call,
+	//|
 	Pipe,
+	//<
 	Redirect_input,
+	//<<
 	Redirect_input_heredoc,
+	//>
 	Redirect_output,
+	//>>
 	Redirect_output_append
 }	t_ntype;
 
