@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/17 20:54:45 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/18 04:10:28 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,26 @@ typedef struct s_pipeline_tree_node {
 	struct s_pipeline_tree_node	*output;
 }	t_pnode;
 
+typedef struct s_redirect
+{
+	char *str;
+	struct s_redirect *next;
+	int		start;
+	char	flag;
+	int		size;
+} t_redirect;
+
+
+typedef struct s_fix_string
+{
+	char *command_name;
+	char *stringa;
+	struct list_redirect* redirect;
+	struct s_fix_string *next;
+} t_indice;
+
+
+void next_size(char *s, int *i, t_redirect **command);
 t_pnode	*sort_pipeline_tree(t_pnode *input_tree);
 int		is_type(t_pnode *node, t_ntype *types);
 void	free_node(t_pnode *node);
@@ -53,5 +73,10 @@ t_pnode	*del_next(t_pnode *node);
 void	ft_exit(int exit_status, t_pnode *tree, t_data *data);
 pid_t	ft_fork(int *exit_status);
 int		on_return(int exit_status, t_pnode *node, int fd1, int fd2);
+char *transform_for_dollar(char *s, t_data* data);
+char *replace_for_new_str(char* s,char* tmp, int i, int size);
+char *add_slashes(char *tmp);
+int checksymbol(char *s);
+int check_invalid(char c, char* invalid);
 
 #endif
