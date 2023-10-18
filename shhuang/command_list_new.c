@@ -178,12 +178,6 @@ int	end_check(char *s, int *i, t_redirect **command)
 	return 0;
 }
 
-void dollar_sign(char *s, int *i, t_redirect **command)
-{
-	 if(((*command)->flag == 0 || (*command)->flag == '"') && s[*i] == '$')
-                (*command)->size += 0; // per ora
-}
-
 int flag_zero_space(char *s, int *i, t_redirect **command)
 {
 
@@ -266,8 +260,8 @@ int checksymbol(char *s)
 	int i = 0;
 	while(s[i] != '\0')
 	{
-		if(check_invalid(s[i], NOT_VALID) == 1 || s[i] == '\\') //controllo aggiuntivo
-			return(i);
+		if(check_invalid(s[i], NOT_VALID) == 1)
+			return(i+1);
 		i++;
 	}
 	return(i);
@@ -280,14 +274,12 @@ int checksymbol2(char *s)
 	int i = 0;
 	while(s[i] != '\0')
 	{
-		if(check_invalid(s[i], NOT_VALID) == 1 || s[i] == '\\') //controllo aggiuntivo
+		if(check_invalid(s[i], NOT_VALID) == 1)
 			return(i+1);
 		i++;
 	}
 	return(i+1);
 }
-
-
 
 char *add_slashes(char *tmp)
 {
@@ -353,15 +345,7 @@ char *replace_for_new_str(char* s,char* tmp, int i, int size)
 		{
 			start = ft_strndup(s, i);
 			if(tmp == NULL)
-			{
-				if(*(s+i+env_len) == '\0')
-				{
-					s[i] = '\0';
-					free(start);
-					return(s);
-				}
-				result = ft_strjoin(s, s+i+env_len);
-			}
+				result = ft_multistrjoin((char *[]) {start, s+i+env_len, NULL});
 			else
 				result = ft_multistrjoin((char *[]) {start, "'", tmp, "'", s+i+env_len, NULL});
 			if(tmp)
@@ -421,17 +405,16 @@ char *transform_for_dollar(char *s, t_data* data)
 		start = i;
 		if(s[i] == '$' && slash_count % 2 == 0 && (env_len = checksymbol(s+i+1)))
 		{
-			i++;
 			save = s[i+env_len];
 			s[i+env_len] = '\0';
-			list = search_variable_tvar(s+i-1, data);
+			list = search_variable_tvar(s+i, data);
 			s[i+env_len] = save;
 			if(list != NULL)
 			{
 				tmp = ft_strdup(list->value);
 				tmp = add_slashes(tmp);
 				size = ft_strlen(tmp);
-				i+=size;
+				i+=size+1;
 			}
 			s = replace_for_new_str(s, tmp, start, size);
 		}
@@ -486,18 +469,24 @@ t_pnode *create_command_list(char *s)
 		x=0;
 		while(structure->args[x])
 		{
-			printf("\"%s\"\n", structure->args[x++]);
-		}
-		printf("\"%s\"\n", structure->args[x]);
-		structure_actual = structure_head;
-		x=0;
-		while(structure_actual->output != NULL)
-		{
-			structure_actual = structure_actual->output;
 			x++;
 		}
-		if(x != 0)
-			structure_actual->output = structure;
+		structure_actual = structure_head;
+		x=0;
+
+			if(structure_actual == NULL) 
+			{
+				structure_actual = structure;
+			} 
+			else 
+			{		
+				while(structure_actual->output != NULL) 
+				{
+					structure_actual = structure_actual->output;
+				}
+    		structure_actual->output = structure;
+			}
+
 		if(command_record == -1)
 			break;
 	}
@@ -505,14 +494,13 @@ t_pnode *create_command_list(char *s)
 }
 
 
-int main(void) {
-    // Initialize
+int main(void)
+{
     t_data *data = malloc(sizeof(t_data));
 	t_pnode *head;
     data->export_var = NULL;
     data->local_var = NULL;
 
-    // Populate export_var and local_var with sample data
     t_var sample_vars[6];
     t_list export_nodes[6];
     t_list local_nodes[6];
@@ -535,20 +523,13 @@ int main(void) {
     data->local_var = &local_nodes[4];
 
     char *input = calloc(100, 1);
-    strcpy(input, "echo $ARG\\$BCD$TERM");
+    strcpy(input, "echo \\$|$ARG|\\$BCD|$TERM|   $ABDD | echo1 abcd $?");
 	input = transform_for_dollar(input, data);
 	printf("\n\nDollaro conv:%s\n\n", input);	
 
 
-
 	//si ferma a TERM E LOOPA CONTROL
 
-
-
-
-
-
-	// printf("\n\nDollaro conv:%s\n\n", input);
 	// int i = 0;
     // head = create_command_list(input);
 	// while(head)
@@ -560,6 +541,7 @@ int main(void) {
 	// 		i++;
 	// 	}
 	// 	printf("%s", head->args[i]);
+	// 	printf("\n");
 	// 	head=head->output;
 	// }
     // free(data);
