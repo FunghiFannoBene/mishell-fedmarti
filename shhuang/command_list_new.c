@@ -70,18 +70,57 @@ int check_pipe(char *s, int *i, t_pnode* structure)
 	return(0);
 }
 
+int check_virgolette_dispari(char *s, int *i)
+{
+	int count_double = 0;
+	int count_single=0;
+	int x = *i;
+	while(s[x])
+	{
+		if(s[x] == '\'' && !(s[x] == '\\' && s[x+1] == '\''))
+			count_single++;
+		else if(s[x] == '"' && !(s[x] == '\\' && s[x+1] == '"'))
+			count_double++;
+		x++;
+	}
+	if(count_double % 2 || count_single % 2)
+		return(-1);
+	return(0);
+}
+
 int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 {
     int    x;
     int    start;
     t_redirect *head = NULL;
 	int save;
+	int single_double;
+	single_double = 0;
     x = 0;
     *command = malloc(sizeof(t_redirect));
     if (!*command)
         return -1;
-    while (s[*i] && s[*i] == ' ' || ((s[*i] ==  '\'' && s[*i+1] ==  '\'') || (s[*i] ==  '"' && s[*i+1] ==  '"')))
+    while (s[*i] && s[*i] == ' ')
         (*i)++;
+	while((s[*i] ==  '\'' && s[*i+1] ==  '\'') || (s[*i] ==  '"' && s[*i+1] ==  '"'))
+		(*i)+=2;
+	while (s[*i] && s[*i] == ' ')
+        (*i)++;
+	if(check_virgolette_dispari(s, i))
+	{
+		printf("Virgolette dispari. Comando invalido.\n");
+			return(-1);
+	}
+	if(s[*i] == '\'')
+	{
+		(*i)++;
+		single_double = 1;
+	}
+	if(s[*i] == '"')
+	{
+		single_double = 2;
+		(*i)++;
+	}
 	if(check_pipe(s, i, structure))
 		return(-4);
 	if(check_redirect(s, i, structure))
@@ -98,17 +137,23 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
         (*i)++;
     head = *command;
 	start = *i;
-    while (s[start + x] && s[start + x] != ' ' && s[start + x] != '|' && s[start + x] != '<' && s[start + x] != '>')
-        x++;
+	while (s[start + x] && s[start + x] != ' ' && s[start + x] != '|' && s[start + x] != '<' && s[start + x] != '>' && s[start+x] != '\''  && s[start+x] != '"')
+    	x++;
+	while(((s[start+x] != '\'' && single_double == 1) && (s[start+x] != '"' && single_double == 2)))
+		(*command)->str[x++] = s[(*i)++];
     (*command)->str = malloc(sizeof(char) * (x + 1));
     if (!(*command)->str)
         return -1;
     x = 0;
-    while (s[*i] && s[*i] != ' ' && s[*i] != '|' && s[*i] != '<' && s[*i] != '>' && (s[*i] != '\'' && s[*i+1] != '\'') && (s[*i] != '"' && s[*i+1] != '"'))
+    while (s[*i] && s[*i] != ' ' && s[*i] != '|' && s[*i] != '<' && s[*i] != '>'  && (s[*i] != '\'' && !s[*i] != '"'))
         (*command)->str[x++] = s[(*i)++];
+	while(((s[*i] != '\'' && single_double == 1) && (s[*i] != '"' && single_double == 2)))
+		(*command)->str[x++] = s[(*i)++];
     (*command)->str[x] = '\0';
     (*command)->size = x;
     (*command)->flag = 0;
+	if(single_double)
+		(*i)++;
 	while (s[*i] && s[*i] == ' ')
         (*i)++;
     if(s[*i] == '\0')
@@ -358,6 +403,7 @@ t_pnode *create_command_list(char *s)
 		}
 		structure->args[x] = NULL;
 		structure->output = NULL;
+		printf("\n\nmi riane da valutare: %s,\n\n", s+i );
 		return(structure_head);
 		if(command_record == -1 || type == -2)
 			break;
@@ -394,7 +440,7 @@ int main(void)
 	t_pnode *head;
 
     char *input = calloc(100, 1);
-    strcpy(input, "'''echo'''");
+    strcpy(input, "'abcd' 'efg him'nd a<|a b");
 
 	int i = 0;
     head = create_command_list(input);
