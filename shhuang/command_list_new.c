@@ -140,12 +140,12 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 	while (s[start + x] && s[start + x] != ' ' && s[start + x] != '|' && s[start + x] != '<' && s[start + x] != '>' && s[start+x] != '\''  && s[start+x] != '"')
     	x++;
 	while(((s[start+x] != '\'' && single_double == 1) && (s[start+x] != '"' && single_double == 2)))
-		(*command)->str[x++] = s[(*i)++];
+		x++;
     (*command)->str = malloc(sizeof(char) * (x + 1));
     if (!(*command)->str)
         return -1;
     x = 0;
-    while (s[*i] && s[*i] != ' ' && s[*i] != '|' && s[*i] != '<' && s[*i] != '>'  && (s[*i] != '\'' && !s[*i] != '"'))
+    while (s[*i] && s[*i] != ' ' && s[*i] != '|' && s[*i] != '<' && s[*i] != '>'  && (s[*i] != '\'' && s[*i] != '"'))
         (*command)->str[x++] = s[(*i)++];
 	while(((s[*i] != '\'' && single_double == 1) && (s[*i] != '"' && single_double == 2)))
 		(*command)->str[x++] = s[(*i)++];
@@ -164,7 +164,9 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
         return(-2);
     }
     else
+	{
         next_size(s, i, &head);
+	}
     return(0);
 }
 
@@ -210,6 +212,13 @@ int	check_slashes(char *s, int *i, t_redirect **command)
 			return(0);
 		return (-1);
 	}
+	if( s[*i] == '\\' && s[*i+1] == '$')
+	{
+		(*command)->size+=1;
+		(*command)->start += 1;
+		(*i) += 2;
+		return(0);
+	}
 	if ((*command)->flag == 0 && s[*i] == '\\' && (s[*i + 1] == '\'' || s[*i
 			+ 1] == '"'))
 	{
@@ -228,6 +237,7 @@ int	check_slashes(char *s, int *i, t_redirect **command)
 		(*i) += 2;
 		return (-1);
 	}
+	//aggiungi qui se flag è 0 e successivo è ' o "
 	return (0);
 }
 
@@ -259,7 +269,7 @@ int	end_check(char *s, int *i, t_redirect **command)
 		(*command)->size = 0;
 		check_and_skip_space(s, i);
 		(*command)->start = *i;
-		if((s[*i] == '|' || s[*i] == '<' || s[*i] == '>' || s[*i] == '\0'))
+		if(s[*i] == '\0')
 		{
 			(*command)->next = NULL;
 			return(-2);
@@ -274,7 +284,7 @@ int	end_check(char *s, int *i, t_redirect **command)
 		(*command)->flag = 0;
 		(*command)->size = 0;
 		(*command)->start = *i;
-		return(-2);
+		return(-3);
 	}
 	else if(s[(*i)+1] == '\0')
 	{
@@ -283,8 +293,20 @@ int	end_check(char *s, int *i, t_redirect **command)
 		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
 		(*command) = (*command)->next;
 		(*command)->next = NULL;
+		(*i)++;
 			return(-2);
 	}
+	else if((*command)->flag == 0 && (s[*i] == '\'' || s[*i] == '"') && (*command)->size)
+	{
+		(*i)++;
+		(*command)->next = malloc(sizeof(t_redirect));
+		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
+		(*command) = (*command)->next;
+		(*command)->flag = 0;
+		(*command)->size = 0;
+		return(-1);
+	}
+
 	return 0;
 }
 
@@ -322,6 +344,10 @@ int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 	while (s[*i])
 	{
 		check_and_skip_space(s, i);
+		if(s[*i] == '\0')
+			return(-1);
+		if(s[*i] == '|' || s[*i] == '<' || s[*i] == '>')
+			return(0);
 		if (assign_flag(s, i, &command) == -1)
 			continue ;
 		while (s[*i])
@@ -333,6 +359,8 @@ int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 				break;
 			else if(variabile == -2)
 				return (-1);
+			else if(variabile == -3)
+				return(0);
 			variabile = flag_zero_space(s, i, &command);
 			if(variabile == -1)
 				break;
@@ -361,6 +389,7 @@ t_pnode *create_command_list(char *s)
 	int			type;
 	command = NULL;
 	structure_head = NULL;
+	structure_actual = NULL;
 	i = 0;
 	while(1)
 	{
@@ -380,7 +409,15 @@ t_pnode *create_command_list(char *s)
 		else if(type == -4)
 		{
 			structure->args = NULL;
-			return(structure);
+			structure->output = NULL;
+			if(structure_actual == NULL)
+				structure_actual = structure_head;
+			else
+			{
+	    		structure_actual->output = structure;
+				structure_actual = structure_actual->output;
+			}
+			continue;
 		}
 		head = command;
 		if(structure_head == NULL)
@@ -403,45 +440,54 @@ t_pnode *create_command_list(char *s)
 		}
 		structure->args[x] = NULL;
 		structure->output = NULL;
-		printf("\n\nmi riane da valutare: %s,\n\n", s+i );
-		return(structure_head);
+		printf("\n\nMi rimane da valutare: %s,\n\n", s+i );
+		if(structure_actual == NULL)
+			structure_actual = structure_head;
+		else
+		{
+	    	structure_actual->output = structure;
+			structure_actual = structure_actual->output;
+		}
 		if(command_record == -1 || type == -2)
 			break;
-	// 	x=0;
-	// 	while(structure->args[x])
-	// 	{
-	// 		x++;
-	// 	}
-	// 	structure_actual = structure_head;
-	// 	x=0;
-
-	// 		if(structure_actual == NULL) 
-	// 		{
-	// 			structure_actual = structure;
-	// 		} 
-	// 		else 
-	// 		{		
-	// 			while(structure_actual->output != NULL) 
-	// 			{
-	// 				structure_actual = structure_actual->output;
-	// 			}
-    // 		structure_actual->output = structure;
-	// 		}
-	// 	if(command_record == -1)
-	// 		break;
 	}
-	// return(structure_head);
+	return(structure_head);
 }
 
 
 int main(void)
 {
-
 	t_pnode *head;
 
-    char *input = calloc(100, 1);
-    strcpy(input, "'abcd' 'efg him'nd a<|a b");
+    char *input = calloc(150, 1);
+    strcpy(input, "cat /etc/passwd | grep \"/bin/bash\" | cut -d: -f1 | sort > sorted_users.txt 2> error.log | wc -l >> sorted_users.txt");
+	t_data *data = malloc(sizeof(t_data));
+    data->export_var = NULL;
+    data->local_var = NULL;
 
+    t_var sample_vars[7];
+    t_list export_nodes[7];
+    t_list local_nodes[7];
+
+    char *names[] = {"ARG", "BCD", "NAME", "VAL", "USER", "TERM"};
+    char *values[] = {"123", "xyz", "Alice", "42", "test_value", "ahahah"};
+
+	for (int i = 0; i < 6; ++i) {
+		sample_vars[i].name = names[i];
+		sample_vars[i].value = values[i];
+
+		export_nodes[i].content = &sample_vars[i];
+		export_nodes[i].next = i == 5 ? NULL : &export_nodes[i + 1];
+
+		local_nodes[i].content = &sample_vars[i];
+		local_nodes[i].next = i == 5 ? NULL : &local_nodes[i + 1];
+	}
+
+	data->export_var = &export_nodes[0];
+	data->local_var = &local_nodes[0];
+
+	input = transform_for_dollar(input, data);
+	printf("\n\n%s\n\n", input);
 	int i = 0;
     head = create_command_list(input);
 	while(head)
@@ -450,7 +496,7 @@ int main(void)
 		{
 			while(head->args[i])
 			{
-				printf("ciclo :   %s\n", head->args[i]);
+				printf("%s\n", head->args[i]);
 				i++;
 			}
 			
@@ -459,9 +505,9 @@ int main(void)
 		}
 		i=0;
 		printf("Type: %d \n0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect\n", (int)head->type);
+
+		printf("\n\n-----------------------------------------------------------------\n\n");
 		head=head->output;
 	}
     return 0;
 }
-
-//test case: echo $ARG\\$BCD$TERM

@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/18 20:27:01 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/10/19 23:37:41 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,57 +193,4 @@ char *transform_for_dollar(char *s, t_data* data)
 		i++;
 	}
 	return(s);
-}
-
-
-
-int main(void)
-{
-    t_data *data = malloc(sizeof(t_data));
-	t_pnode *head;
-    data->export_var = NULL;
-    data->local_var = NULL;
-
-    t_var sample_vars[6];
-    t_list export_nodes[6];
-    t_list local_nodes[6];
-
-    char *names[] = {"ARG", "BCD", "NAME", "VAL", "ABDD", "TERM"};
-    char *values[] = {"123", "xyz", "Alice", "42", "test_value", NULL};
-
-    for (int i = 0; i < 6; ++i) {
-        sample_vars[i].name = names[i];
-        sample_vars[i].value = values[i];
-
-        export_nodes[i].content = &sample_vars[i];
-        export_nodes[i].next = i == 0 ? NULL : &export_nodes[i - 1];
-
-        local_nodes[i].content = &sample_vars[i];
-        local_nodes[i].next = i == 0 ? NULL : &local_nodes[i - 1];
-    }
-
-    data->export_var = &export_nodes[4];
-    data->local_var = &local_nodes[4];
-
-    char *input = calloc(100, 1);
-    strcpy(input, "echo \\$|$ARG|\\$BCD|$TERM|   $ABDD | echo1 abcd $?    \\");
-	input = transform_for_dollar(input, data);
-	printf("\n\nDollaro conv:%s\n\n", input);	
-
-	// int i = 0;
-    // head = create_command_list(input);
-	// while(head)
-	// {
-	// 	while(head->args[i])
-	// 	{
-	// 		printf("%s", head->args[i]);
-	// 		printf("\n");
-	// 		i++;
-	// 	}
-	// 	printf("%s", head->args[i]);
-	// 	printf("\n");
-	// 	head=head->output;
-	// }
-    // free(data);
-    // return 0;
 }
