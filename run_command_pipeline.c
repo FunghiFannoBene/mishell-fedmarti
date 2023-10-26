@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/16 21:32:52 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/25 22:39:30 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	run_command(t_pnode *node, t_data *data)
 	int	exit_status;
 
 	if (!node)
-		;
+		exit_status = 0;
 	if (node->type == Redirect_input)
 		exit_status = redirect_input(node, data);
 	else if (node->type == Program_Call)
@@ -66,8 +66,8 @@ int	run_command(t_pnode *node, t_data *data)
 		return (empty_file(node));
 	if (node->output && node->output->input[1] \
 	&& node != node->output->input[1])
-		run_command(node->output->input[1], data);
-	return (0);
+		exit_status = run_command(node->output->input[1], data);
+	return (exit_status);
 }
 
 void	*fork_error(t_pnode *node, int *exit_status)
@@ -132,7 +132,6 @@ int	pipeline(t_pnode *node, t_data *data)
 int	run_command_pipeline(t_pnode *pipeline_tree, t_data *data)
 {
 	int		exit_status;
-	pid_t	child_pid;
 
 	pipeline_tree = preliminary_tests(pipeline_tree, data, &exit_status);
 	if (!pipeline_tree)

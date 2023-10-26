@@ -20,7 +20,14 @@ SRCS = minishell.c \
 	heredoc.c  \
 	create_pipeline.c \
 	sort_pipeline_tree.c \
+	run_command_pipeline.c \
+	pipeline_util.c \
+	program_call.c \
+	redirect_input.c \
+	error_messages.c \
 	file_utils.c \
+	transform_dollar.c \
+	command_list_new.c
 
 CFLAGS = -Wall -Werror -Wextra -g
 

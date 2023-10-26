@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   minishell_old.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/25 23:44:31 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/25 22:38:53 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 // IMPLEMENTARE: strcmp, strncmp
 #include "minishell.h"
 #include "pipeline.h"
-
-void	update_exit_status(t_var *exit_status, int new_val);
 
 int clear()
 {
@@ -47,13 +45,12 @@ t_data	*data_init(char **env)
 	data = ft_calloc(1, sizeof(*data));
 	if (!data)
 		return (NULL);
-	data->exit_status = new_var("?", "666");
+	data->exit_status = new_var("?", "0");
 	if (!data->exit_status)
 	{
 		free(data);
 		return (NULL);
 	}
-	update_exit_status(data->exit_status, 0);
 	data->export_var = get_env_list((const char **)env);
 	if (!data->export_var)
 	{
@@ -64,28 +61,6 @@ t_data	*data_init(char **env)
 	return (data);
 }
 
-void	update_exit_status(t_var *exit_status, int new_val)
-{
-	int pow;
-	int	i;
-
-	ft_bzero(exit_status->value, sizeof(char) * 4);
-	if (!new_val)
-	{
-		exit_status->value[0] = '0';
-		return ;
-	}
-	pow = 1;
-	i = 0;
-	while (pow * 10 < new_val)
-		pow *= 10;
-	while (pow)
-	{
-		exit_status->value[i] = new_val / pow % 10 + '0';
-		i++;
-		pow /= 10;
-	}
-}
 
 void	signal_handler(int signo)
 {
@@ -128,6 +103,7 @@ int	run_command_pipeline(t_pnode *pipeline_tree, t_data *data);
 int	main(int argc, char **argv, char **env)
 {
 	char	*input;
+	char	**args;
 	t_data	*data;
 
 	signal(SIGQUIT, SIG_IGN);
@@ -141,29 +117,43 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
         input = readline("Minishell> "); //stampa e aspetta un input
-		if (!input || !ft_strncmp(input, "exit", 5))
+		if (!input)
 		{
 			write(1, "exit", 5);
 			free_data(data);
-			if (input)
-				free(input);
 			exit (0);
 		}
-		add_history(input); // aggiunge alla storia da solo! non serve la struct
-		// char *temp = input;
-		input = transform_for_dollar(input, data);
-		// free(temp);
-		if (!input)
+		args = ft_split(input, ' '); //da sostutuire con parsing
+		if (!args || !args[0])
 		{
-			write(2, "Malloc error\n", 14);
-			free_data(data);
-			return (1);
+			ft_free_matrix((void ***)&args, INT_MAX);
+			continue ;
 		}
-		int es = run_command_pipeline(create_command_list(input), data);
-		// update_exit_status(data->exit_status, es);
-		(void)es;
+		else if (ft_strncmp(args[0], "exit", 5) == 0)
+			exit(0);
+		else if (ft_strncmp(args[0], "clear", 6) == 0)
+			clear();
+		else if (ft_strncmp(args[0], "cd", 3) == 0)
+			ft_cd(args, data);
+		else if (ft_strncmp(args[0], "pwd", 4) == 0)
+			ft_pwd(args, data);
+		else if (ft_strncmp(args[0], "export", 7) == 0)
+			ft_export(args, data);
+		else if (ft_strncmp(args[0], "env", 4) == 0)
+			ft_env(data->export_var);
+		else if (ft_strncmp(args[0], "echo", 5) == 0)
+			printf("echo not implemented yet");
+		else if (ft_strncmp(args[0], "unset", 6) == 0)
+			ft_unset(args, data);
+		else if (ft_strncmp(args[0], "nulllisttest", 13) == 0)
+			null_list_test(data);//test temporaneo, svuota la lista env
+		else if (ft_strncmp(args[0], "<<", 3) == 0)
+			ft_heredoc((char *[]){args[1], NULL}, 1, data);
+		add_history(input); // aggiunge alla storia da solo! non serve la struct
 		free (input);
+		ft_free_matrix((void ***)&args, INT_MAX);
 	}
+	ft_free_matrix((void ***)&args, INT_MAX);
 	free_data(data);
 	return (0);
 }

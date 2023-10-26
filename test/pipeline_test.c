@@ -40,46 +40,46 @@ void	free_data(t_data *data)
 // 	free_data(data);
 // }
 
-/**/
+/*                */
 
-int	main(int argc, const char **argv, const char **env)
-{
-	char	**args;
-	t_pnode	*node = NULL;
-	(void)argc;
-	(void)argv;
+// int	main(int argc, const char **argv, const char **env)
+// {
+// 	char	**args;
+// 	t_pnode	*node = NULL;
+// 	(void)argc;
+// 	(void)argv;
  
-	args = ft_calloc(2, sizeof(char *));
-	args[0] = ft_strdup("cat");
-	t_pnode *head = node_create(Program_Call, args, NULL);
-	node = head;
+// 	args = ft_calloc(2, sizeof(char *));
+// 	args[0] = ft_strdup("cat");
+// 	t_pnode *head = node_create(Program_Call, args, NULL);
+// 	node = head;
 
-	args = ft_calloc(2, sizeof(char *));
-	args[0] = ft_strdup("../cd.c");
-	head->output = node_create(Redirect_input, args, node);
-	node = node->output;
+// 	args = ft_calloc(2, sizeof(char *));
+// 	args[0] = ft_strdup("../cd.c");
+// 	head->output = node_create(Redirect_input, args, node);
+// 	node = node->output;
 
-	node->output = node_create(Pipe, NULL, node);
-	node = node->output;
+// 	node->output = node_create(Pipe, NULL, node);
+// 	node = node->output;
 
-	args = ft_calloc(3, sizeof(char *));
-	args[0] = ft_strdup("grep");
-	args[1] = ft_strdup("c");
-	node->output = node_create(Program_Call, args, node);
-	node = node->output;
+// 	args = ft_calloc(3, sizeof(char *));
+// 	args[0] = ft_strdup("grep");
+// 	args[1] = ft_strdup("c");
+// 	node->output = node_create(Program_Call, args, node);
+// 	node = node->output;
 
 
-	args = ft_calloc(2, sizeof(char *));
-	args[0] = ft_strdup("ntestfile");
-	node->output = node_create(Redirect_output_append, args, node);
+// 	args = ft_calloc(2, sizeof(char *));
+// 	args[0] = ft_strdup("ntestfile");
+// 	node->output = node_create(Redirect_output_append, args, node);
 	
-	t_data *data = ft_calloc(1, sizeof(*data));
-	data->exit_status = new_var("?", "0");
-	data->export_var = get_env_list(env);
- 	printf("exit status = %i\n", run_command_pipeline(head, data));
+// 	t_data *data = ft_calloc(1, sizeof(*data));
+// 	data->exit_status = new_var("?", "0");
+// 	data->export_var = get_env_list(env);
+//  	printf("exit status = %i\n", run_command_pipeline(head, data));
 
-	free_data(data);
-}
+// 	free_data(data);
+// }
 
 
 /*    */
@@ -110,3 +110,31 @@ int	main(int argc, const char **argv, const char **env)
 
 // 	free_data(data);
 // }
+
+
+/*           */
+
+
+
+int	main(int argc, const char **argv, const char **env)
+{
+	char	**args;
+	t_pnode *head = NULL; 
+	(void)argc;
+	(void)argv;
+
+	signal(SIGINT, SIG_IGN);
+	signal(SIGTERM, SIG_IGN);
+
+	args = ft_calloc(3, sizeof(char *));
+	args[0] = ft_strdup("grep");
+	args[1] = ft_strdup("c");
+	head = node_create(Program_Call, args, NULL);
+
+	t_data *data = ft_calloc(1, sizeof(*data));
+	data->exit_status = new_var("?", "0");
+	data->export_var = get_env_list(env);
+ 	printf("exit status = %i\n", run_command_pipeline(head, data));
+
+	free_data(data);
+}

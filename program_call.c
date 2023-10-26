@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/16 21:30:05 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/25 23:50:41 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static int	is_builtin(char *str)
 	if (!ft_strncmp("export", str, len))
 		return (1);
 	if (!ft_strncmp("pwd", str, len))
-		return (!1);
+		return (1);
 	if (!ft_strncmp("cd", str, len))
 		return (1);
 	return (0);
@@ -193,4 +193,5 @@ int	program_call(t_pnode *node, t_data *data)
 	}
 	execve(program_path, node->args, env);
 	ft_exit(command_not_found_error(node->args[0]), node, data);
+	return (1);
 }
