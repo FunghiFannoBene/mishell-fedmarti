@@ -98,6 +98,7 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 	single_double = 0;
     x = 0;
     *command = malloc(sizeof(t_redirect));
+	memset((*command), 0, sizeof(t_redirect));
     if (!*command)
         return -1;
     while (s[*i] && s[*i] == ' ')
@@ -108,6 +109,7 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
         (*i)++;
 	if(check_virgolette_dispari(s, i))
 	{
+		free(*command);
 		printf("Virgolette dispari. Comando invalido.\n");
 			return(-1);
 	}
@@ -122,11 +124,16 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 		(*i)++;
 	}
 	if(check_pipe(s, i, structure))
+	{
+		free(*command);
+		*command = NULL;
 		return(-4);
+	}
 	if(check_redirect(s, i, structure))
 	{
 		if(s[*i] == '>' || s[*i] == '<')
 		{
+			free(*command);
 			printf("bash: syntax error near unexpected token `>'\n");
 			return(-1);
 		}
@@ -164,9 +171,7 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
         return(-2);
     }
     else
-	{
         next_size(s, i, &head);
-	}
     return(0);
 }
 
@@ -246,7 +251,7 @@ char *substring(const char *str, size_t begin, size_t len)
     if (str == NULL || strlen(str) < begin || strlen(str) < (begin + len)) 
         return NULL; 
 
-    return strndup(str + begin, len);
+    return ft_strndup(str + begin, len);
 }
 
 void next_size(char *s, int *i, t_redirect **command)
@@ -254,15 +259,17 @@ void next_size(char *s, int *i, t_redirect **command)
 	(*command)->flag = 0;
 	(*command)->start = *i;
 	(*command)->size = 0;
-	
 }
 
 int	end_check(char *s, int *i, t_redirect **command)
 {
+	if(!s)
+		return(0);
 	if (s[*i] == (*command)->flag)
 	{
 		(*i)++;
 		(*command)->next = malloc(sizeof(t_redirect));
+		memset((*command)->next, 0, sizeof(t_redirect));
 		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
 		(*command) = (*command)->next;
 		(*command)->flag = 0;
@@ -279,6 +286,7 @@ int	end_check(char *s, int *i, t_redirect **command)
 	else if ((*command)->flag == 0 && (s[*i] == '<' || s[*i] == '>' || s[*i] == '|'))
 	{
 		(*command)->next = malloc(sizeof(t_redirect));
+		memset((*command)->next, 0, sizeof(t_redirect));
 		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
 		(*command) = (*command)->next;
 		(*command)->flag = 0;
@@ -289,6 +297,7 @@ int	end_check(char *s, int *i, t_redirect **command)
 	else if(s[(*i)+1] == '\0')
 	{
 		(*command)->next = malloc(sizeof(t_redirect));
+		memset((*command)->next, 0, sizeof(t_redirect));
 		(*command)->size++;
 		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
 		(*command) = (*command)->next;
@@ -300,6 +309,7 @@ int	end_check(char *s, int *i, t_redirect **command)
 	{
 		(*i)++;
 		(*command)->next = malloc(sizeof(t_redirect));
+		memset((*command)->next, 0, sizeof(t_redirect));
 		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
 		(*command) = (*command)->next;
 		(*command)->flag = 0;
@@ -390,34 +400,48 @@ t_pnode *create_command_list(char *s)
 	command = NULL;
 	structure_head = NULL;
 	structure_actual = NULL;
+	command_record = 0;
+	head = NULL;
 	i = 0;
+	if(!s)
+		return(NULL);
 	while(1)
 	{
 		if(s[i] == '\0')
 			break;
+		command = NULL;
+		head = NULL;
 		structure = malloc(sizeof(t_pnode));
-		type = search_command(s, &i, &command, structure);
-		if(type == 0)
+		memset(structure, 0, sizeof(t_pnode));
+		if(s[i])
 		{
-			command_record = size_of_command(s, &i, &command, structure);
-		}
-		else if(type == -1)
-		{
-			perror("errore");
-			return(NULL);
-		}
-		else if(type == -4)
-		{
-			structure->args = NULL;
-			structure->output = NULL;
-			if(structure_actual == NULL)
-				structure_actual = structure_head;
-			else
+			type = search_command(s, &i, &command, structure);
+			if(type == 0)
 			{
-	    		structure_actual->output = structure;
-				structure_actual = structure_actual->output;
+				command_record = size_of_command(s, &i, &command, structure);
 			}
-			continue;
+			else if(type == -1)
+			{
+				free(structure);
+				perror("errore");
+				return(NULL);
+			}
+			else if(type == -4)
+			{
+				structure->args = NULL;
+				structure->output = NULL;
+				if(structure_actual == NULL)
+				{
+					structure_head=structure;
+					structure_actual = structure_head;
+				}
+				else
+				{
+					structure_actual->output = structure;
+					structure_actual = structure_actual->output;
+				}
+				continue;
+			}
 		}
 		head = command;
 		if(structure_head == NULL)
@@ -430,17 +454,19 @@ t_pnode *create_command_list(char *s)
 			command = command->next;
 		}
 		structure->args = malloc(sizeof(char *) * (x + 1));
+		structure->input_fd = 0;
+		structure->output_fd = 1;
 		x=0;
 		while(head)
 		{
-			structure->args[x++] = strdup(head->str);
+			structure->args[x++] = ft_strdup(head->str);
+			free(head->str);
 			temp = head;
 			head = head->next;
 			free(temp);
 		}
 		structure->args[x] = NULL;
 		structure->output = NULL;
-		printf("\n\nMi rimane da valutare: %s,\n\n", s+i );
 		if(structure_actual == NULL)
 			structure_actual = structure_head;
 		else
@@ -458,10 +484,11 @@ t_pnode *create_command_list(char *s)
 int main(void)
 {
 	t_pnode *head;
-
+	t_pnode *frees;
     char *input = calloc(150, 1);
-    strcpy(input, "cat /etc/passwd | grep \"/bin/bash\" | cut -d: -f1 | sort > sorted_users.txt 2> error.log | wc -l >> sorted_users.txt");
+    strcpy(input, " echo >> << < < | ||||||");
 	t_data *data = malloc(sizeof(t_data));
+	memset(data, 0, sizeof(t_data));
     data->export_var = NULL;
     data->local_var = NULL;
 
@@ -497,17 +524,22 @@ int main(void)
 			while(head->args[i])
 			{
 				printf("%s\n", head->args[i]);
+				free(head->args[i]);
 				i++;
 			}
-			
 		 if(head->args[i] == NULL)
 		 	printf("(null)\n");
+			free(head->args);
 		}
 		i=0;
 		printf("Type: %d \n0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect\n", (int)head->type);
 
 		printf("\n\n-----------------------------------------------------------------\n\n");
+		frees=head;
 		head=head->output;
+		free(frees);
 	}
+	free(data);
+	free(input);
     return 0;
 }
