@@ -52,7 +52,8 @@ int check_redirect(char *s, int *i, t_pnode* structure)
 				break;
 		}
 		assign_redirection(x, structure);
-		return(1);
+		if(s[*i] == flag)
+			return(1);
 	}
 	return(0);
 }
@@ -88,6 +89,24 @@ int check_virgolette_dispari(char *s, int *i)
 	return(0);
 }
 
+int check_virgolette_dispari_start(char *s, int i)
+{
+	int count_double = 0;
+	int count_single=0;
+	int x = i;
+	while(s[x])
+	{
+		if(s[x] == '\'' && !(s[x] == '\\' && s[x+1] == '\''))
+			count_single++;
+		else if(s[x] == '"' && !(s[x] == '\\' && s[x+1] == '"'))
+			count_double++;
+		x++;
+	}
+	if(count_double % 2 || count_single % 2)
+		return(-1);
+	return(0);
+}
+
 int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 {
     int    x;
@@ -103,16 +122,16 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
         return -1;
     while (s[*i] && s[*i] == ' ')
         (*i)++;
+	if(s[*i] == '\0')
+	{
+		free(*command);
+		return(-3);
+	}
 	while((s[*i] ==  '\'' && s[*i+1] ==  '\'') || (s[*i] ==  '"' && s[*i+1] ==  '"'))
 		(*i)+=2;
 	while (s[*i] && s[*i] == ' ')
         (*i)++;
-	if(check_virgolette_dispari(s, i))
-	{
-		free(*command);
-		printf("Virgolette dispari. Comando invalido.\n");
-			return(-1);
-	}
+	check_virgolette_dispari(s, i);
 	if(s[*i] == '\'')
 	{
 		(*i)++;
@@ -131,15 +150,10 @@ int    search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 	}
 	if(check_redirect(s, i, structure))
 	{
-		if(s[*i] == '>' || s[*i] == '<')
-		{
 			free(*command);
 			printf("bash: syntax error near unexpected token `>'\n");
 			return(-1);
-		}
 	}
-	if(s[*i] == '|')
-		return(-4);
 	while (s[*i] && s[*i] == ' ')
         (*i)++;
     head = *command;
@@ -261,6 +275,16 @@ void next_size(char *s, int *i, t_redirect **command)
 	(*command)->size = 0;
 }
 
+void add_and_set_for_next(t_redirect **command, char *s)
+{
+	(*command)->next = malloc(sizeof(t_redirect));
+	memset((*command)->next, 0, sizeof(t_redirect));
+	(*command)->next->str = substring(s, (*command)->start, (*command)->size);
+	(*command) = (*command)->next;
+	(*command)->flag = 0;
+	(*command)->size = 0;
+}
+
 int	end_check(char *s, int *i, t_redirect **command)
 {
 	if(!s)
@@ -268,12 +292,7 @@ int	end_check(char *s, int *i, t_redirect **command)
 	if (s[*i] == (*command)->flag)
 	{
 		(*i)++;
-		(*command)->next = malloc(sizeof(t_redirect));
-		memset((*command)->next, 0, sizeof(t_redirect));
-		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
-		(*command) = (*command)->next;
-		(*command)->flag = 0;
-		(*command)->size = 0;
+		add_and_set_for_next(command, s);
 		check_and_skip_space(s, i);
 		(*command)->start = *i;
 		if(s[*i] == '\0')
@@ -285,22 +304,13 @@ int	end_check(char *s, int *i, t_redirect **command)
 	}
 	else if ((*command)->flag == 0 && (s[*i] == '<' || s[*i] == '>' || s[*i] == '|'))
 	{
-		(*command)->next = malloc(sizeof(t_redirect));
-		memset((*command)->next, 0, sizeof(t_redirect));
-		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
-		(*command) = (*command)->next;
-		(*command)->flag = 0;
-		(*command)->size = 0;
+		add_and_set_for_next(command, s);
 		(*command)->start = *i;
 		return(-3);
 	}
 	else if(s[(*i)+1] == '\0')
 	{
-		(*command)->next = malloc(sizeof(t_redirect));
-		memset((*command)->next, 0, sizeof(t_redirect));
-		(*command)->size++;
-		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
-		(*command) = (*command)->next;
+		add_and_set_for_next(command, s);
 		(*command)->next = NULL;
 		(*i)++;
 			return(-2);
@@ -308,15 +318,9 @@ int	end_check(char *s, int *i, t_redirect **command)
 	else if((*command)->flag == 0 && (s[*i] == '\'' || s[*i] == '"') && (*command)->size)
 	{
 		(*i)++;
-		(*command)->next = malloc(sizeof(t_redirect));
-		memset((*command)->next, 0, sizeof(t_redirect));
-		(*command)->next->str = substring(s, (*command)->start, (*command)->size);
-		(*command) = (*command)->next;
-		(*command)->flag = 0;
-		(*command)->size = 0;
+		add_and_set_for_next(command, s);
 		return(-1);
 	}
-
 	return 0;
 }
 
@@ -385,6 +389,30 @@ int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 	return(1);
 }
 
+void free_t_pnode_list(t_pnode *structure_head) 
+{
+    t_pnode *current = structure_head;
+    t_pnode *next_node = NULL;
+    char **current_args;
+    int i;
+
+    while (current != NULL) 
+	{
+        next_node = current->output;
+        current_args = current->args;
+        
+        if (current_args != NULL) {
+            for (i = 0; current_args[i] != NULL; ++i) {
+                free(current_args[i]);
+            }
+            free(current_args);
+        }
+        
+        free(current);
+        current = next_node;
+    }
+}
+
 t_pnode *create_command_list(char *s)
 {
 	t_redirect	*command;
@@ -405,6 +433,11 @@ t_pnode *create_command_list(char *s)
 	i = 0;
 	if(!s)
 		return(NULL);
+	if(check_virgolette_dispari_start(s, i))
+	{
+		printf("Virgolette dispari. Comando invalido.\n");
+			return(NULL);
+	}
 	while(1)
 	{
 		if(s[i] == '\0')
@@ -423,8 +456,18 @@ t_pnode *create_command_list(char *s)
 			else if(type == -1)
 			{
 				free(structure);
-				perror("errore");
+				free_t_pnode_list(structure_head);
 				return(NULL);
+			}
+			else if(type == -3)
+			{
+				if(structure->type == Null && !structure_head)
+				{
+					free(structure);
+					return(NULL);
+				}
+				free(structure);
+				return(structure_head);
 			}
 			else if(type == -4)
 			{
@@ -486,7 +529,7 @@ int main(void)
 	t_pnode *head;
 	t_pnode *frees;
     char *input = calloc(150, 1);
-    strcpy(input, " echo >> << < < | ||||||");
+    strcpy(input, "\"          \"");
 	t_data *data = malloc(sizeof(t_data));
 	memset(data, 0, sizeof(t_data));
     data->export_var = NULL;
