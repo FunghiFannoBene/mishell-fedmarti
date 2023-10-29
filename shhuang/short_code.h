@@ -15,11 +15,19 @@ typedef struct s_short_dollar{
 } t_short_dollar;
 
 typedef struct s_replace{
-	int		env_len;
-	char	*str;
-	char	*result;
-	char	*start;
-	int		x;
-
+	int env_len;
+	char *str;
+	char *result;
+	char *start;
+	int x;
 } t_replace;
+
+typedef struct s_slashes
+{
+	int		i;
+	int		count;
+	int		x;
+	char	*str;
+} t_slashes;
+
 #endif

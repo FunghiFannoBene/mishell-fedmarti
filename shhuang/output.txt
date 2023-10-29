@@ -1,0 +1,2478 @@
+==18959== Memcheck, a memory error detector
+==18959== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18959== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18959== Command: ./final \ echo\ \ \ \ \ "\>\>\ \ "\ \ 
+==18959== 
+
+
+ echo     ">>  "  
+
+echo
+>>  
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==18959== 
+==18959== HEAP SUMMARY:
+==18959==     in use at exit: 0 bytes in 0 blocks
+==18959==   total heap usage: 10 allocs, 10 frees, 4,276 bytes allocated
+==18959== 
+==18959== All heap blocks were freed -- no leaks are possible
+==18959== 
+==18959== For lists of detected and suppressed errors, rerun with: -s
+==18959== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18960== Memcheck, a memory error detector
+==18960== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18960== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18960== Command: ./final echo\ \ \ \ \ "\ \ \ "
+==18960== 
+
+
+echo     "   "
+
+echo
+   
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==18960== 
+==18960== HEAP SUMMARY:
+==18960==     in use at exit: 0 bytes in 0 blocks
+==18960==   total heap usage: 10 allocs, 10 frees, 4,274 bytes allocated
+==18960== 
+==18960== All heap blocks were freed -- no leaks are possible
+==18960== 
+==18960== For lists of detected and suppressed errors, rerun with: -s
+==18960== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18961== Memcheck, a memory error detector
+==18961== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18961== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18961== Command: ./final \ echo\ \ '\ \\\\'\ \ '\ \ \ 
+==18961== 
+
+
+ echo  ' \\'  '   
+
+Virgolette dispari. Comando invalido.
+==18961== 
+==18961== HEAP SUMMARY:
+==18961==     in use at exit: 0 bytes in 0 blocks
+==18961==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==18961== 
+==18961== All heap blocks were freed -- no leaks are possible
+==18961== 
+==18961== For lists of detected and suppressed errors, rerun with: -s
+==18961== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18964== Memcheck, a memory error detector
+==18964== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18964== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18964== Command: ./final \ \ echo\ "\\"\\"\ \ 
+==18964== 
+
+
+  echo "\"\"  
+
+Virgolette dispari. Comando invalido.
+==18964== 
+==18964== HEAP SUMMARY:
+==18964==     in use at exit: 0 bytes in 0 blocks
+==18964==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==18964== 
+==18964== All heap blocks were freed -- no leaks are possible
+==18964== 
+==18964== For lists of detected and suppressed errors, rerun with: -s
+==18964== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18974== Memcheck, a memory error detector
+==18974== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18974== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18974== Command: ./final echo\ \ \ '\ \ \ \ \ 
+==18974== 
+
+
+echo   '     
+
+Virgolette dispari. Comando invalido.
+==18974== 
+==18974== HEAP SUMMARY:
+==18974==     in use at exit: 0 bytes in 0 blocks
+==18974==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==18974== 
+==18974== All heap blocks were freed -- no leaks are possible
+==18974== 
+==18974== For lists of detected and suppressed errors, rerun with: -s
+==18974== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18975== Memcheck, a memory error detector
+==18975== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18975== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18975== Command: ./final \ \ \ echo\ "\\"\ \ \ 
+==18975== 
+
+
+   echo "\"   
+
+echo
+\"  
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==18975== 
+==18975== HEAP SUMMARY:
+==18975==     in use at exit: 0 bytes in 0 blocks
+==18975==   total heap usage: 10 allocs, 10 frees, 4,276 bytes allocated
+==18975== 
+==18975== All heap blocks were freed -- no leaks are possible
+==18975== 
+==18975== For lists of detected and suppressed errors, rerun with: -s
+==18975== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18976== Memcheck, a memory error detector
+==18976== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18976== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18976== Command: ./final echo\ \ \\\ \ \ 
+==18976== 
+
+
+echo  \   
+
+echo
+\
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==18976== 
+==18976== HEAP SUMMARY:
+==18976==     in use at exit: 0 bytes in 0 blocks
+==18976==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==18976== 
+==18976== All heap blocks were freed -- no leaks are possible
+==18976== 
+==18976== For lists of detected and suppressed errors, rerun with: -s
+==18976== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18983== Memcheck, a memory error detector
+==18983== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18983== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18983== Command: ./final echo\ 'unclosed\ 
+==18983== 
+
+
+echo 'unclosed 
+
+Virgolette dispari. Comando invalido.
+==18983== 
+==18983== HEAP SUMMARY:
+==18983==     in use at exit: 0 bytes in 0 blocks
+==18983==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==18983== 
+==18983== All heap blocks were freed -- no leaks are possible
+==18983== 
+==18983== For lists of detected and suppressed errors, rerun with: -s
+==18983== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18984== Memcheck, a memory error detector
+==18984== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18984== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18984== Command: ./final echo\ "unclosed'\ 
+==18984== 
+
+
+echo "unclosed' 
+
+Virgolette dispari. Comando invalido.
+==18984== 
+==18984== HEAP SUMMARY:
+==18984==     in use at exit: 0 bytes in 0 blocks
+==18984==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==18984== 
+==18984== All heap blocks were freed -- no leaks are possible
+==18984== 
+==18984== For lists of detected and suppressed errors, rerun with: -s
+==18984== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18985== Memcheck, a memory error detector
+==18985== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18985== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18985== Command: ./final ls\ -la\ |\ \ \ |\ grep\ txt\ 
+==18985== 
+
+
+ls -la |   | grep txt 
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+grep
+txt 
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==18985== 
+==18985== HEAP SUMMARY:
+==18985==     in use at exit: 0 bytes in 0 blocks
+==18985==   total heap usage: 22 allocs, 22 frees, 4,586 bytes allocated
+==18985== 
+==18985== All heap blocks were freed -- no leaks are possible
+==18985== 
+==18985== For lists of detected and suppressed errors, rerun with: -s
+==18985== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18986== Memcheck, a memory error detector
+==18986== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18986== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18986== Command: ./final echo\ 'ab"cd'\ |\ gre?p
+==18986== 
+
+
+echo 'ab"cd' | gre?p
+
+Virgolette dispari. Comando invalido.
+==18986== 
+==18986== HEAP SUMMARY:
+==18986==     in use at exit: 0 bytes in 0 blocks
+==18986==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==18986== 
+==18986== All heap blocks were freed -- no leaks are possible
+==18986== 
+==18986== For lists of detected and suppressed errors, rerun with: -s
+==18986== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18987== Memcheck, a memory error detector
+==18987== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18987== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18987== Command: ./final ls\ -la\ \>\ "\ output.txt
+==18987== 
+
+
+ls -la > " output.txt
+
+Virgolette dispari. Comando invalido.
+==18987== 
+==18987== HEAP SUMMARY:
+==18987==     in use at exit: 0 bytes in 0 blocks
+==18987==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==18987== 
+==18987== All heap blocks were freed -- no leaks are possible
+==18987== 
+==18987== For lists of detected and suppressed errors, rerun with: -s
+==18987== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18988== Memcheck, a memory error detector
+==18988== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18988== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18988== Command: ./final cat\ \<\<\ 'test'\ \\\\
+==18988== 
+
+
+cat << 'test' \\
+
+cat
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+test
+\
+(null)
+Type: 4 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+/usr/bin/lesspipe
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==18988== 
+==18988== HEAP SUMMARY:
+==18988==     in use at exit: 0 bytes in 0 blocks
+==18988==   total heap usage: 27 allocs, 27 frees, 4,708 bytes allocated
+==18988== 
+==18988== All heap blocks were freed -- no leaks are possible
+==18988== 
+==18988== For lists of detected and suppressed errors, rerun with: -s
+==18988== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18989== Memcheck, a memory error detector
+==18989== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18989== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18989== Command: ./final awk\ '{print\ \\\\}'\ \<\ data.txt
+==18989== 
+
+
+awk '{print \\}' < data.txt
+
+awk
+{print \\}
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+data.txt
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==18989== 
+==18989== HEAP SUMMARY:
+==18989==     in use at exit: 0 bytes in 0 blocks
+==18989==   total heap usage: 15 allocs, 15 frees, 4,400 bytes allocated
+==18989== 
+==18989== All heap blocks were freed -- no leaks are possible
+==18989== 
+==18989== For lists of detected and suppressed errors, rerun with: -s
+==18989== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==18990== Memcheck, a memory error detector
+==18990== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==18990== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==18990== Command: ./final sed\ 's/\\\\foo\\\\/bar/'
+==18990== 
+
+
+sed 's/\\foo\\/bar/'
+
+sed
+s/\\foo\\/bar/
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==18990== 
+==18990== HEAP SUMMARY:
+==18990==     in use at exit: 0 bytes in 0 blocks
+==18990==   total heap usage: 10 allocs, 10 frees, 4,294 bytes allocated
+==18990== 
+==18990== All heap blocks were freed -- no leaks are possible
+==18990== 
+==18990== For lists of detected and suppressed errors, rerun with: -s
+==18990== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19002== Memcheck, a memory error detector
+==19002== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19002== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19002== Command: ./final \ \ \ |\ \ \ \<\ \ \>\ \<\<\ 
+==19002== 
+
+
+   |   <  > << 
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 4 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19002== 
+==19002== HEAP SUMMARY:
+==19002==     in use at exit: 0 bytes in 0 blocks
+==19002==   total heap usage: 19 allocs, 19 frees, 4,494 bytes allocated
+==19002== 
+==19002== All heap blocks were freed -- no leaks are possible
+==19002== 
+==19002== For lists of detected and suppressed errors, rerun with: -s
+==19002== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19004== Memcheck, a memory error detector
+==19004== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19004== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19004== Command: ./final echo\ "\ \ \ "
+==19004== 
+
+
+echo "   "
+
+echo
+   
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19004== 
+==19004== HEAP SUMMARY:
+==19004==     in use at exit: 0 bytes in 0 blocks
+==19004==   total heap usage: 10 allocs, 10 frees, 4,274 bytes allocated
+==19004== 
+==19004== All heap blocks were freed -- no leaks are possible
+==19004== 
+==19004== For lists of detected and suppressed errors, rerun with: -s
+==19004== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19005== Memcheck, a memory error detector
+==19005== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19005== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19005== Command: ./final cat\ \<\ '\ input.txt'
+==19005== 
+
+
+cat < ' input.txt'
+
+cat
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+ input.txt
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19005== 
+==19005== HEAP SUMMARY:
+==19005==     in use at exit: 0 bytes in 0 blocks
+==19005==   total heap usage: 15 allocs, 15 frees, 4,384 bytes allocated
+==19005== 
+==19005== All heap blocks were freed -- no leaks are possible
+==19005== 
+==19005== For lists of detected and suppressed errors, rerun with: -s
+==19005== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19012== Memcheck, a memory error detector
+==19012== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19012== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19012== Command: ./final echo\ \>\\\\\ output.txt
+==19012== 
+
+
+echo >\\ output.txt
+
+echo
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+\\
+output.txt
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19012== 
+==19012== HEAP SUMMARY:
+==19012==     in use at exit: 0 bytes in 0 blocks
+==19012==   total heap usage: 15 allocs, 15 frees, 4,390 bytes allocated
+==19012== 
+==19012== All heap blocks were freed -- no leaks are possible
+==19012== 
+==19012== For lists of detected and suppressed errors, rerun with: -s
+==19012== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19013== Memcheck, a memory error detector
+==19013== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19013== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19013== Command: ./final echo\ '1\ 2\ 3'\ |\ cut\ -d\ '\\\\\ '\ -f\ 2
+==19013== 
+
+
+echo '1 2 3' | cut -d '\\ ' -f 2
+
+echo
+1 2 3
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+cut
+-d
+\\ 
+-f
+2
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19013== 
+==19013== HEAP SUMMARY:
+==19013==     in use at exit: 0 bytes in 0 blocks
+==19013==   total heap usage: 29 allocs, 29 frees, 4,646 bytes allocated
+==19013== 
+==19013== All heap blocks were freed -- no leaks are possible
+==19013== 
+==19013== For lists of detected and suppressed errors, rerun with: -s
+==19013== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19014== Memcheck, a memory error detector
+==19014== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19014== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19014== Command: ./final ls\ -la\ |\ awk\ '{if\ (\\$1\ ~\ /r/)\ print\ \\\\./test;}'
+==19014== 
+
+
+ls -la | awk '{if (\$1 ~ /r/) print \\./test;}'
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+awk
+if (\$1 ~ /r/) print \\./test;}
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19014== 
+==19014== HEAP SUMMARY:
+==19014==     in use at exit: 0 bytes in 0 blocks
+==19014==   total heap usage: 20 allocs, 20 frees, 4,558 bytes allocated
+==19014== 
+==19014== All heap blocks were freed -- no leaks are possible
+==19014== 
+==19014== For lists of detected and suppressed errors, rerun with: -s
+==19014== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19015== Memcheck, a memory error detector
+==19015== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19015== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19015== Command: ./final echo\ ''''''
+==19015== 
+
+
+echo ''''''
+
+echo
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19015== 
+==19015== HEAP SUMMARY:
+==19015==     in use at exit: 0 bytes in 0 blocks
+==19015==   total heap usage: 7 allocs, 7 frees, 4,226 bytes allocated
+==19015== 
+==19015== All heap blocks were freed -- no leaks are possible
+==19015== 
+==19015== For lists of detected and suppressed errors, rerun with: -s
+==19015== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19016== Memcheck, a memory error detector
+==19016== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19016== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19016== Command: ./final find\ .\ -name\ '\\*.txt'\ -exec\ rm\ {}\ \\;
+==19016== 
+
+
+find . -name '\*.txt' -exec rm {} \;
+
+find
+.
+-name
+\*.txt
+-exec
+rm
+{}
+\;
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19016== 
+==19016== HEAP SUMMARY:
+==19016==     in use at exit: 0 bytes in 0 blocks
+==19016==   total heap usage: 28 allocs, 28 frees, 4,566 bytes allocated
+==19016== 
+==19016== All heap blocks were freed -- no leaks are possible
+==19016== 
+==19016== For lists of detected and suppressed errors, rerun with: -s
+==19016== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19017== Memcheck, a memory error detector
+==19017== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19017== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19017== Command: ./final grep\ 'a\\|b'\ \<\ input.txt\ \>\ output.txt
+==19017== 
+
+
+grep 'a\|b' < input.txt > output.txt
+
+grep
+a\|b
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+input.txt
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+output.txt
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19017== 
+==19017== HEAP SUMMARY:
+==19017==     in use at exit: 0 bytes in 0 blocks
+==19017==   total heap usage: 20 allocs, 20 frees, 4,510 bytes allocated
+==19017== 
+==19017== All heap blocks were freed -- no leaks are possible
+==19017== 
+==19017== For lists of detected and suppressed errors, rerun with: -s
+==19017== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19018== Memcheck, a memory error detector
+==19018== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19018== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19018== Command: ./final awk\ '{gsub(/\\"/,\ "\\\\\\"");\ print}'
+==19018== 
+
+
+awk '{gsub(/\"/, "\\\""); print}'
+
+awk
+{gsub(/\"/, "\\\""); prin
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19018== 
+==19018== HEAP SUMMARY:
+==19018==     in use at exit: 0 bytes in 0 blocks
+==19018==   total heap usage: 10 allocs, 10 frees, 4,316 bytes allocated
+==19018== 
+==19018== All heap blocks were freed -- no leaks are possible
+==19018== 
+==19018== For lists of detected and suppressed errors, rerun with: -s
+==19018== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19019== Memcheck, a memory error detector
+==19019== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19019== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19019== Command: ./final sed\ -n\ '/foo/!p'\ \<\ input.txt
+==19019== 
+
+
+sed -n '/foo/!p' < input.txt
+
+sed
+-n
+/foo/!p
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+input.txt
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19019== 
+==19019== HEAP SUMMARY:
+==19019==     in use at exit: 0 bytes in 0 blocks
+==19019==   total heap usage: 18 allocs, 18 frees, 4,442 bytes allocated
+==19019== 
+==19019== All heap blocks were freed -- no leaks are possible
+==19019== 
+==19019== For lists of detected and suppressed errors, rerun with: -s
+==19019== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19020== Memcheck, a memory error detector
+==19020== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19020== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19020== Command: ./final sort\ \<\ input.txt\ |\ uniq\ \>\ sorted.txt
+==19020== 
+
+
+sort < input.txt | uniq > sorted.txt
+
+sort
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+input.txt
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+uniq
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+sorted.txt
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19020== 
+==19020== HEAP SUMMARY:
+==19020==     in use at exit: 0 bytes in 0 blocks
+==19020==   total heap usage: 24 allocs, 24 frees, 4,646 bytes allocated
+==19020== 
+==19020== All heap blocks were freed -- no leaks are possible
+==19020== 
+==19020== For lists of detected and suppressed errors, rerun with: -s
+==19020== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19021== Memcheck, a memory error detector
+==19021== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19021== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19021== Command: ./final echo\ 5\ \>\ output.txt
+==19021== 
+
+
+echo 5 > output.txt
+
+echo
+5
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+output.txt
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19021== 
+==19021== HEAP SUMMARY:
+==19021==     in use at exit: 0 bytes in 0 blocks
+==19021==   total heap usage: 15 allocs, 15 frees, 4,388 bytes allocated
+==19021== 
+==19021== All heap blocks were freed -- no leaks are possible
+==19021== 
+==19021== For lists of detected and suppressed errors, rerun with: -s
+==19021== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19022== Memcheck, a memory error detector
+==19022== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19022== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19022== Command: ./final echo\ \\"\\"\\"\\"
+==19022== 
+
+
+echo \"\"\"\"
+
+echo
+"\"\
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+/usr/bin/lesspipe
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19022== 
+==19022== HEAP SUMMARY:
+==19022==     in use at exit: 0 bytes in 0 blocks
+==19022==   total heap usage: 19 allocs, 19 frees, 4,568 bytes allocated
+==19022== 
+==19022== All heap blocks were freed -- no leaks are possible
+==19022== 
+==19022== For lists of detected and suppressed errors, rerun with: -s
+==19022== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19023== Memcheck, a memory error detector
+==19023== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19023== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19023== Command: ./final echo\ 'a\\nb\\nc'\ |\ tr\ '\\\\n'\ '\ '
+==19023== 
+
+
+echo 'a\nb\nc' | tr '\\n' ' '
+
+echo
+a\nb\nc
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+tr
+\\n
+ 
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19023== 
+==19023== HEAP SUMMARY:
+==19023==     in use at exit: 0 bytes in 0 blocks
+==19023==   total heap usage: 23 allocs, 23 frees, 4,556 bytes allocated
+==19023== 
+==19023== All heap blocks were freed -- no leaks are possible
+==19023== 
+==19023== For lists of detected and suppressed errors, rerun with: -s
+==19023== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19024== Memcheck, a memory error detector
+==19024== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19024== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19024== Command: ./final "ls\ -la
+==19024== 
+
+
+"ls -la
+
+Virgolette dispari. Comando invalido.
+==19024== 
+==19024== HEAP SUMMARY:
+==19024==     in use at exit: 0 bytes in 0 blocks
+==19024==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==19024== 
+==19024== All heap blocks were freed -- no leaks are possible
+==19024== 
+==19024== For lists of detected and suppressed errors, rerun with: -s
+==19024== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19025== Memcheck, a memory error detector
+==19025== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19025== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19025== Command: ./final ls\ -la"
+==19025== 
+
+
+ls -la"
+
+Virgolette dispari. Comando invalido.
+==19025== 
+==19025== HEAP SUMMARY:
+==19025==     in use at exit: 0 bytes in 0 blocks
+==19025==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==19025== 
+==19025== All heap blocks were freed -- no leaks are possible
+==19025== 
+==19025== For lists of detected and suppressed errors, rerun with: -s
+==19025== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19026== Memcheck, a memory error detector
+==19026== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19026== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19026== Command: ./final 'echo\ hello
+==19026== 
+
+
+'echo hello
+
+Virgolette dispari. Comando invalido.
+==19026== 
+==19026== HEAP SUMMARY:
+==19026==     in use at exit: 0 bytes in 0 blocks
+==19026==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==19026== 
+==19026== All heap blocks were freed -- no leaks are possible
+==19026== 
+==19026== For lists of detected and suppressed errors, rerun with: -s
+==19026== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19027== Memcheck, a memory error detector
+==19027== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19027== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19027== Command: ./final echo\ hello'
+==19027== 
+
+
+echo hello'
+
+Virgolette dispari. Comando invalido.
+==19027== 
+==19027== HEAP SUMMARY:
+==19027==     in use at exit: 0 bytes in 0 blocks
+==19027==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==19027== 
+==19027== All heap blocks were freed -- no leaks are possible
+==19027== 
+==19027== For lists of detected and suppressed errors, rerun with: -s
+==19027== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19028== Memcheck, a memory error detector
+==19028== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19028== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19028== Command: ./final |ls\ -la|
+==19028== 
+
+
+|ls -la|
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19028== 
+==19028== HEAP SUMMARY:
+==19028==     in use at exit: 0 bytes in 0 blocks
+==19028==   total heap usage: 14 allocs, 14 frees, 4,430 bytes allocated
+==19028== 
+==19028== All heap blocks were freed -- no leaks are possible
+==19028== 
+==19028== For lists of detected and suppressed errors, rerun with: -s
+==19028== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19029== Memcheck, a memory error detector
+==19029== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19029== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19029== Command: ./final \<\<echo\ hello
+==19029== 
+
+
+<<echo hello
+
+echo
+hello
+(null)
+Type: 4 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19029== 
+==19029== HEAP SUMMARY:
+==19029==     in use at exit: 0 bytes in 0 blocks
+==19029==   total heap usage: 10 allocs, 10 frees, 4,278 bytes allocated
+==19029== 
+==19029== All heap blocks were freed -- no leaks are possible
+==19029== 
+==19029== For lists of detected and suppressed errors, rerun with: -s
+==19029== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19030== Memcheck, a memory error detector
+==19030== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19030== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19030== Command: ./final echo\ hello\>\>
+==19030== 
+
+
+echo hello>>
+
+echo
+hello
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 6 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19030== 
+==19030== HEAP SUMMARY:
+==19030==     in use at exit: 0 bytes in 0 blocks
+==19030==   total heap usage: 15 allocs, 15 frees, 4,376 bytes allocated
+==19030== 
+==19030== All heap blocks were freed -- no leaks are possible
+==19030== 
+==19030== For lists of detected and suppressed errors, rerun with: -s
+==19030== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19031== Memcheck, a memory error detector
+==19031== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19031== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19031== Command: ./final \>\>ls\ -la
+==19031== 
+
+
+>>ls -la
+
+ls
+-la
+(null)
+Type: 6 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19031== 
+==19031== HEAP SUMMARY:
+==19031==     in use at exit: 0 bytes in 0 blocks
+==19031==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==19031== 
+==19031== All heap blocks were freed -- no leaks are possible
+==19031== 
+==19031== For lists of detected and suppressed errors, rerun with: -s
+==19031== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19032== Memcheck, a memory error detector
+==19032== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19032== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19032== Command: ./final ls\ -la\<\<
+==19032== 
+
+
+ls -la<<
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 4 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19032== 
+==19032== HEAP SUMMARY:
+==19032==     in use at exit: 0 bytes in 0 blocks
+==19032==   total heap usage: 15 allocs, 15 frees, 4,368 bytes allocated
+==19032== 
+==19032== All heap blocks were freed -- no leaks are possible
+==19032== 
+==19032== For lists of detected and suppressed errors, rerun with: -s
+==19032== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19033== Memcheck, a memory error detector
+==19033== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19033== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19033== Command: ./final \<\ ls\ -la
+==19033== 
+
+
+< ls -la
+
+ls
+-la
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19033== 
+==19033== HEAP SUMMARY:
+==19033==     in use at exit: 0 bytes in 0 blocks
+==19033==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==19033== 
+==19033== All heap blocks were freed -- no leaks are possible
+==19033== 
+==19033== For lists of detected and suppressed errors, rerun with: -s
+==19033== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19034== Memcheck, a memory error detector
+==19034== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19034== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19034== Command: ./final ls\ -la\ \>
+==19034== 
+
+
+ls -la >
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19034== 
+==19034== HEAP SUMMARY:
+==19034==     in use at exit: 0 bytes in 0 blocks
+==19034==   total heap usage: 15 allocs, 15 frees, 4,368 bytes allocated
+==19034== 
+==19034== All heap blocks were freed -- no leaks are possible
+==19034== 
+==19034== For lists of detected and suppressed errors, rerun with: -s
+==19034== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19035== Memcheck, a memory error detector
+==19035== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19035== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19035== Command: ./final \ \ \ ls\ -la
+==19035== 
+
+
+   ls -la
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19035== 
+==19035== HEAP SUMMARY:
+==19035==     in use at exit: 0 bytes in 0 blocks
+==19035==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==19035== 
+==19035== All heap blocks were freed -- no leaks are possible
+==19035== 
+==19035== For lists of detected and suppressed errors, rerun with: -s
+==19035== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19036== Memcheck, a memory error detector
+==19036== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19036== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19036== Command: ./final ls\ -la\ \ \ 
+==19036== 
+
+
+ls -la   
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19036== 
+==19036== HEAP SUMMARY:
+==19036==     in use at exit: 0 bytes in 0 blocks
+==19036==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==19036== 
+==19036== All heap blocks were freed -- no leaks are possible
+==19036== 
+==19036== For lists of detected and suppressed errors, rerun with: -s
+==19036== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19037== Memcheck, a memory error detector
+==19037== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19037== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19037== Command: ./final ""ls\ -la
+==19037== 
+
+
+""ls -la
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19037== 
+==19037== HEAP SUMMARY:
+==19037==     in use at exit: 0 bytes in 0 blocks
+==19037==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==19037== 
+==19037== All heap blocks were freed -- no leaks are possible
+==19037== 
+==19037== For lists of detected and suppressed errors, rerun with: -s
+==19037== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19038== Memcheck, a memory error detector
+==19038== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19038== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19038== Command: ./final ls\ -la""
+==19038== 
+
+
+ls -la""
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19038== 
+==19038== HEAP SUMMARY:
+==19038==     in use at exit: 0 bytes in 0 blocks
+==19038==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==19038== 
+==19038== All heap blocks were freed -- no leaks are possible
+==19038== 
+==19038== For lists of detected and suppressed errors, rerun with: -s
+==19038== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19039== Memcheck, a memory error detector
+==19039== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19039== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19039== Command: ./final '"ls\ -la
+==19039== 
+
+
+'"ls -la
+
+Virgolette dispari. Comando invalido.
+==19039== 
+==19039== HEAP SUMMARY:
+==19039==     in use at exit: 0 bytes in 0 blocks
+==19039==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==19039== 
+==19039== All heap blocks were freed -- no leaks are possible
+==19039== 
+==19039== For lists of detected and suppressed errors, rerun with: -s
+==19039== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19040== Memcheck, a memory error detector
+==19040== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19040== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19040== Command: ./final ls\ -la"'
+==19040== 
+
+
+ls -la"'
+
+Virgolette dispari. Comando invalido.
+==19040== 
+==19040== HEAP SUMMARY:
+==19040==     in use at exit: 0 bytes in 0 blocks
+==19040==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==19040== 
+==19040== All heap blocks were freed -- no leaks are possible
+==19040== 
+==19040== For lists of detected and suppressed errors, rerun with: -s
+==19040== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19041== Memcheck, a memory error detector
+==19041== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19041== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19041== Command: ./final |||ls\ -la|||
+==19041== 
+
+
+|||ls -la|||
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19041== 
+==19041== HEAP SUMMARY:
+==19041==     in use at exit: 0 bytes in 0 blocks
+==19041==   total heap usage: 22 allocs, 22 frees, 4,750 bytes allocated
+==19041== 
+==19041== All heap blocks were freed -- no leaks are possible
+==19041== 
+==19041== For lists of detected and suppressed errors, rerun with: -s
+==19041== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19042== Memcheck, a memory error detector
+==19042== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19042== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19042== Command: ./final \>\<\>\<ls\ -la\>\<\>\<
+==19042== 
+
+
+><><ls -la><><
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+ls
+-la
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19042== 
+==19042== HEAP SUMMARY:
+==19042==     in use at exit: 0 bytes in 0 blocks
+==19042==   total heap usage: 45 allocs, 45 frees, 4,956 bytes allocated
+==19042== 
+==19042== All heap blocks were freed -- no leaks are possible
+==19042== 
+==19042== For lists of detected and suppressed errors, rerun with: -s
+==19042== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19043== Memcheck, a memory error detector
+==19043== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19043== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19043== Command: ./final \\\\\\echo\ hello\\\\\\
+==19043== 
+
+
+\\\echo hello\\\
+
+\\\echo
+hello\\
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19043== 
+==19043== HEAP SUMMARY:
+==19043==     in use at exit: 0 bytes in 0 blocks
+==19043==   total heap usage: 10 allocs, 10 frees, 4,288 bytes allocated
+==19043== 
+==19043== All heap blocks were freed -- no leaks are possible
+==19043== 
+==19043== For lists of detected and suppressed errors, rerun with: -s
+==19043== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19044== Memcheck, a memory error detector
+==19044== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19044== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19044== Command: ./final '''''ls\ -la'''''
+==19044== 
+
+
+'''''ls -la'''''
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19044== 
+==19044== HEAP SUMMARY:
+==19044==     in use at exit: 0 bytes in 0 blocks
+==19044==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==19044== 
+==19044== All heap blocks were freed -- no leaks are possible
+==19044== 
+==19044== For lists of detected and suppressed errors, rerun with: -s
+==19044== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19045== Memcheck, a memory error detector
+==19045== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19045== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19045== Command: ./final """""ls\ -la"""""
+==19045== 
+
+
+"""""ls -la"""""
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19045== 
+==19045== HEAP SUMMARY:
+==19045==     in use at exit: 0 bytes in 0 blocks
+==19045==   total heap usage: 10 allocs, 10 frees, 4,270 bytes allocated
+==19045== 
+==19045== All heap blocks were freed -- no leaks are possible
+==19045== 
+==19045== For lists of detected and suppressed errors, rerun with: -s
+==19045== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19046== Memcheck, a memory error detector
+==19046== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19046== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19046== Command: ./final '"'"'"ls\ -la'"'"'"
+==19046== 
+
+
+'"'"'"ls -la'"'"'"
+
+
+'
+ls
+-la
+'
+"
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19046== 
+==19046== HEAP SUMMARY:
+==19046==     in use at exit: 0 bytes in 0 blocks
+==19046==   total heap usage: 22 allocs, 22 frees, 4,444 bytes allocated
+==19046== 
+==19046== All heap blocks were freed -- no leaks are possible
+==19046== 
+==19046== For lists of detected and suppressed errors, rerun with: -s
+==19046== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19047== Memcheck, a memory error detector
+==19047== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19047== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19047== Command: ./final \ \ \ \ "\ \ \ |\ \ ls\ -la\ \ |\ \ \ "\ \ \ \ 
+==19047== 
+
+
+    "   |  ls -la  |   "    
+
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+/usr/bin/lesspipe
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19047== 
+==19047== HEAP SUMMARY:
+==19047==     in use at exit: 0 bytes in 0 blocks
+==19047==   total heap usage: 29 allocs, 29 frees, 4,782 bytes allocated
+==19047== 
+==19047== All heap blocks were freed -- no leaks are possible
+==19047== 
+==19047== For lists of detected and suppressed errors, rerun with: -s
+==19047== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19048== Memcheck, a memory error detector
+==19048== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19048== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19048== Command: ./final echo\ hello\ \>\ \>\ \>\ output.txt
+==19048== 
+
+
+echo hello > > > output.txt
+
+echo
+hello
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+output.txt
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19048== 
+==19048== HEAP SUMMARY:
+==19048==     in use at exit: 0 bytes in 0 blocks
+==19048==   total heap usage: 25 allocs, 25 frees, 4,592 bytes allocated
+==19048== 
+==19048== All heap blocks were freed -- no leaks are possible
+==19048== 
+==19048== For lists of detected and suppressed errors, rerun with: -s
+==19048== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19049== Memcheck, a memory error detector
+==19049== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19049== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19049== Command: ./final echo\ \<\ \<\ \<\ input.txt
+==19049== 
+
+
+echo < < < input.txt
+
+echo
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+input.txt
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19049== 
+==19049== HEAP SUMMARY:
+==19049==     in use at exit: 0 bytes in 0 blocks
+==19049==   total heap usage: 22 allocs, 22 frees, 4,538 bytes allocated
+==19049== 
+==19049== All heap blocks were freed -- no leaks are possible
+==19049== 
+==19049== For lists of detected and suppressed errors, rerun with: -s
+==19049== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19050== Memcheck, a memory error detector
+==19050== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19050== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19050== Command: ./final '""|\<\<\>\>\\\\'ls\ -la'""|\<\<\>\>\\\\'
+==19050== 
+
+
+'""|<<>>\\'ls -la'""|<<>>\\'
+
+
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 4 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+\\
+ls -la
+(null)
+Type: 6 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 4 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+\\
+(null)
+Type: 6 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19050== 
+==19050== HEAP SUMMARY:
+==19050==     in use at exit: 0 bytes in 0 blocks
+==19050==   total heap usage: 34 allocs, 34 frees, 4,832 bytes allocated
+==19050== 
+==19050== All heap blocks were freed -- no leaks are possible
+==19050== 
+==19050== For lists of detected and suppressed errors, rerun with: -s
+==19050== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19051== Memcheck, a memory error detector
+==19051== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19051== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19051== Command: ./final echo\ !@#$%^&*()_+[]{};:',.\<\>?~
+==19051== 
+==19051== Invalid free() / delete / delete[] / realloc()
+==19051==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19051==    by 0x10965A: evaluate_free (transform_dollar.c:139)
+==19051==    by 0x1097AB: replace_for_new_str (transform_dollar.c:159)
+==19051==    by 0x109ADE: transform_for_dollar (transform_dollar.c:228)
+==19051==    by 0x10B6E3: main (command_list_new.c:570)
+==19051==  Address 0x1ffefffd2b is on thread 1's stack
+==19051== 
+
+
+echo !@#%^&*()_+[]{};:',.<>?~
+
+Virgolette dispari. Comando invalido.
+==19051== 
+==19051== HEAP SUMMARY:
+==19051==     in use at exit: 30 bytes in 1 blocks
+==19051==   total heap usage: 5 allocs, 5 frees, 4,160 bytes allocated
+==19051== 
+==19051== LEAK SUMMARY:
+==19051==    definitely lost: 30 bytes in 1 blocks
+==19051==    indirectly lost: 0 bytes in 0 blocks
+==19051==      possibly lost: 0 bytes in 0 blocks
+==19051==    still reachable: 0 bytes in 0 blocks
+==19051==         suppressed: 0 bytes in 0 blocks
+==19051== Rerun with --leak-check=full to see details of leaked memory
+==19051== 
+==19051== For lists of detected and suppressed errors, rerun with: -s
+==19051== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==19052== Memcheck, a memory error detector
+==19052== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19052== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19052== Command: ./final \ \ \ '\ '\ '\ '\ \ ls\ -la\ \ '\ '\ '\ '\ \ \ 
+==19052== 
+
+
+   ' ' ' '  ls -la  ' ' ' '   
+
+
+ 
+ls
+-la
+ 
+ 
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19052== 
+==19052== HEAP SUMMARY:
+==19052==     in use at exit: 0 bytes in 0 blocks
+==19052==   total heap usage: 22 allocs, 22 frees, 4,444 bytes allocated
+==19052== 
+==19052== All heap blocks were freed -- no leaks are possible
+==19052== 
+==19052== For lists of detected and suppressed errors, rerun with: -s
+==19052== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19053== Memcheck, a memory error detector
+==19053== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19053== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19053== Command: ./final echo\ ''''''''
+==19053== 
+
+
+echo ''''''''
+
+echo
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19053== 
+==19053== HEAP SUMMARY:
+==19053==     in use at exit: 0 bytes in 0 blocks
+==19053==   total heap usage: 7 allocs, 7 frees, 4,226 bytes allocated
+==19053== 
+==19053== All heap blocks were freed -- no leaks are possible
+==19053== 
+==19053== For lists of detected and suppressed errors, rerun with: -s
+==19053== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19054== Memcheck, a memory error detector
+==19054== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19054== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19054== Command: ./final cat\ \<\ \<\ \<\ \<\ input.txt
+==19054== 
+
+
+cat < < < < input.txt
+
+cat
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+input.txt
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19054== 
+==19054== HEAP SUMMARY:
+==19054==     in use at exit: 0 bytes in 0 blocks
+==19054==   total heap usage: 27 allocs, 27 frees, 4,634 bytes allocated
+==19054== 
+==19054== All heap blocks were freed -- no leaks are possible
+==19054== 
+==19054== For lists of detected and suppressed errors, rerun with: -s
+==19054== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19055== Memcheck, a memory error detector
+==19055== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19055== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19055== Command: ./final ls\ -la\ |\ |\ |\ grep\ txt
+==19055== 
+
+
+ls -la | | | grep txt
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+grep
+txt
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19055== 
+==19055== HEAP SUMMARY:
+==19055==     in use at exit: 0 bytes in 0 blocks
+==19055==   total heap usage: 24 allocs, 24 frees, 4,664 bytes allocated
+==19055== 
+==19055== All heap blocks were freed -- no leaks are possible
+==19055== 
+==19055== For lists of detected and suppressed errors, rerun with: -s
+==19055== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19056== Memcheck, a memory error detector
+==19056== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19056== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19056== Command: ./final echo\ \>\ \>\ \>\ \>\ output.txt
+==19056== 
+
+
+echo > > > > output.txt
+
+echo
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+output.txt
+(null)
+Type: 5 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19056== 
+==19056== HEAP SUMMARY:
+==19056==     in use at exit: 0 bytes in 0 blocks
+==19056==   total heap usage: 27 allocs, 27 frees, 4,638 bytes allocated
+==19056== 
+==19056== All heap blocks were freed -- no leaks are possible
+==19056== 
+==19056== For lists of detected and suppressed errors, rerun with: -s
+==19056== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19057== Memcheck, a memory error detector
+==19057== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19057== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19057== Command: ./final echo\ """"""""""""
+==19057== 
+
+
+echo """"""""""""
+
+echo
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19057== 
+==19057== HEAP SUMMARY:
+==19057==     in use at exit: 0 bytes in 0 blocks
+==19057==   total heap usage: 7 allocs, 7 frees, 4,226 bytes allocated
+==19057== 
+==19057== All heap blocks were freed -- no leaks are possible
+==19057== 
+==19057== For lists of detected and suppressed errors, rerun with: -s
+==19057== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19058== Memcheck, a memory error detector
+==19058== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19058== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19058== Command: ./final ls\ \>\>\>\>\>\ output.txt
+==19058== 
+
+
+ls >>>>> output.txt
+
+bash: syntax error near unexpected token `>'
+==19058== 
+==19058== HEAP SUMMARY:
+==19058==     in use at exit: 0 bytes in 0 blocks
+==19058==   total heap usage: 9 allocs, 9 frees, 4,302 bytes allocated
+==19058== 
+==19058== All heap blocks were freed -- no leaks are possible
+==19058== 
+==19058== For lists of detected and suppressed errors, rerun with: -s
+==19058== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19059== Memcheck, a memory error detector
+==19059== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19059== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19059== Command: ./final ls\ \<\<\<\<\<\ input.txt
+==19059== 
+
+
+ls <<<<< input.txt
+
+bash: syntax error near unexpected token `>'
+==19059== 
+==19059== HEAP SUMMARY:
+==19059==     in use at exit: 0 bytes in 0 blocks
+==19059==   total heap usage: 9 allocs, 9 frees, 4,302 bytes allocated
+==19059== 
+==19059== All heap blocks were freed -- no leaks are possible
+==19059== 
+==19059== For lists of detected and suppressed errors, rerun with: -s
+==19059== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19060== Memcheck, a memory error detector
+==19060== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19060== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19060== Command: ./final awk\ '{print\ }'\ \<\ data.txt\ |\ |\ |\ sort
+==19060== 
+
+
+awk '{print }' < data.txt | | | sort
+
+awk
+{print }
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+data.txt
+(null)
+Type: 3 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+sort
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19060== 
+==19060== HEAP SUMMARY:
+==19060==     in use at exit: 0 bytes in 0 blocks
+==19060==   total heap usage: 26 allocs, 26 frees, 4,742 bytes allocated
+==19060== 
+==19060== All heap blocks were freed -- no leaks are possible
+==19060== 
+==19060== For lists of detected and suppressed errors, rerun with: -s
+==19060== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19061== Memcheck, a memory error detector
+==19061== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19061== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19061== Command: ./final '\ '\ '\ '\ '\ '\ '\ '\ '\ '\ ls\ '\ '\ '\ '\ '\ '\ '\ '\ '\ '\ '\ 
+==19061== 
+
+
+' ' ' ' ' ' ' ' ' ' ls ' ' ' ' ' ' ' ' ' ' ' 
+
+Virgolette dispari. Comando invalido.
+==19061== 
+==19061== HEAP SUMMARY:
+==19061==     in use at exit: 0 bytes in 0 blocks
+==19061==   total heap usage: 2 allocs, 2 frees, 4,120 bytes allocated
+==19061== 
+==19061== All heap blocks were freed -- no leaks are possible
+==19061== 
+==19061== For lists of detected and suppressed errors, rerun with: -s
+==19061== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19062== Memcheck, a memory error detector
+==19062== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19062== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19062== Command: ./final "|ls\ -la|"
+==19062== 
+
+
+"|ls -la|"
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+ls
+-la
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+/usr/bin/lesspipe
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19062== 
+==19062== HEAP SUMMARY:
+==19062==     in use at exit: 0 bytes in 0 blocks
+==19062==   total heap usage: 28 allocs, 28 frees, 4,820 bytes allocated
+==19062== 
+==19062== All heap blocks were freed -- no leaks are possible
+==19062== 
+==19062== For lists of detected and suppressed errors, rerun with: -s
+==19062== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19063== Memcheck, a memory error detector
+==19063== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19063== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19063== Command: ./final sed\ 's/foo/bar/'\ |||\ sort\ |||\ grep\ txt
+==19063== 
+
+
+sed 's/foo/bar/' ||| sort ||| grep txt
+
+sed
+s/foo/bar/
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+sort
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+Type: 2 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+grep
+txt
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19063== 
+==19063== HEAP SUMMARY:
+==19063==     in use at exit: 0 bytes in 0 blocks
+==19063==   total heap usage: 35 allocs, 35 frees, 5,026 bytes allocated
+==19063== 
+==19063== All heap blocks were freed -- no leaks are possible
+==19063== 
+==19063== For lists of detected and suppressed errors, rerun with: -s
+==19063== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==19064== Memcheck, a memory error detector
+==19064== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19064== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==19064== Command: ./final echo\ 1895818958189581895818958189581895818958
+==19064== 
+
+
+echo 1895818958189581895818958189581895818958
+
+echo
+1895818958189581895818958189581895818958
+(null)
+Type: 1 
+0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect
+
+
+-----------------------------------------------------------------
+
+==19064== 
+==19064== HEAP SUMMARY:
+==19064==     in use at exit: 0 bytes in 0 blocks
+==19064==   total heap usage: 10 allocs, 10 frees, 4,348 bytes allocated
+==19064== 
+==19064== All heap blocks were freed -- no leaks are possible
+==19064== 
+==19064== For lists of detected and suppressed errors, rerun with: -s
+==19064== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

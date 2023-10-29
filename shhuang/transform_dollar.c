@@ -6,191 +6,227 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/28 14:59:46 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/10/29 02:57:45 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../pipeline.h"
+#include "short_code.h"
 
-int check_invalid(char c, char* invalid)
+int	check_invalid(char c, char *invalid)
 {
-	int i = 0;
-	while(invalid[i])
+	int	i;
+
+	i = 0;
+	while (invalid[i])
 	{
-		if(invalid[i] == c)
-			return(1);
+		if (invalid[i] == c)
+			return (1);
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
-int checksymbol(char *s)
+int	checksymbol(char *s)
 {
+	int	i;
+
 	if (s == NULL)
 		return (0);
-	int i = 0;
-	while(s[i] != '\0')
+	i = 0;
+	while (s[i] != '\0')
 	{
-		if(check_invalid(s[i], NOT_VALID) == 1)
-			return(i+1);
+		if (check_invalid(s[i], NOT_VALID) == 1)
+			return (i + 1);
 		i++;
 	}
-	return(i);
+	return (i);
 }
 
-int checksymbol2(char *s)
+int	checksymbol2(char *s)
 {
+	int	i;
+
 	if (s == NULL)
 		return (0);
-	int i = 0;
-	while(s[i] != '\0')
+	i = 0;
+	while (s[i] != '\0')
 	{
-		if(check_invalid(s[i], NOT_VALID) == 1)
-			return(i+1);
+		if (check_invalid(s[i], NOT_VALID) == 1)
+			return (i + 1);
 		i++;
 	}
-	return(i+1);
+	return (i + 1);
 }
 
-char *add_slashes(char *tmp)
+void	init_slashes(t_slashes *s)
 {
-	if(!tmp)
-		return(NULL);
-	int i = 0;
-	int count = 0;
-	int x = 0;
-	char *str;
-	while(tmp[i])
+	s->i = 0;
+	s->count = 0;
+	s->x = 0;
+	s->str = NULL;
+}
+
+void	run_count_slashes(char *tmp, t_slashes *s)
+{
+	while (tmp[s->i])
 	{
-		if(tmp[i] == '\'' || tmp[i] == '"')
-			count++;
-		i++;
+		if (tmp[s->i] == '\'' || tmp[s->i] == '"')
+			s->count++;
+		s->i++;
 	}
-	i=0;
-	if(count == 0)
-		return tmp;
-	str = malloc(sizeof(char) * (ft_strlen(tmp) + count +1));
-	while(tmp[x])
+	s->i = 0;
+}
+
+char	*add_slashes(char *tmp)
+{
+	t_slashes	s;
+
+	if (!tmp)
+		return (NULL);
+	init_slashes(&s);
+	run_count_slashes(tmp, &s);
+	if (s.count == 0)
+		return (tmp);
+	s.str = malloc(sizeof(char) * (ft_strlen(tmp) + s.count + 1));
+	while (tmp[s.x])
 	{
-		if(tmp[x] == '\'' || tmp[x] == '"')
+		if (tmp[s.x] == '\'' || tmp[s.x] == '"')
 		{
-			str[i] = '\\';
-			i++;
+			s.str[s.i] = '\\';
+			s.i++;
 		}
-		str[i] = tmp[x];
-		x++;
-		i++;
+		s.str[s.i] = tmp[s.x];
+		s.x++;
+		s.i++;
 	}
-	str[i] = '\0';
+	s.str[s.i] = '\0';
 	free(tmp);
-	return(str);
+	return (s.str);
 }
 
-char *ft_strndup(const char *s, size_t n)
+char	*ft_strndup(const char *s, size_t n)
 {
-    char *result;
-    size_t len = n;
+	char	*result;
+	size_t	len;
 
-    result = (char *)malloc(len + 1);
-    if (!result)
-        return NULL;
-
-    result[len] = '\0';
-    return (char *)ft_memcpy(result, s, len);
+	len = n;
+	result = (char *)malloc(len + 1);
+	if (!result)
+		return (NULL);
+	result[len] = '\0';
+	return ((char *)ft_memcpy(result, s, len));
 }
 
-
-
-char *replace_for_new_str(char* s,char* tmp, int i, int size)
+void	init_replace(t_replace *r)
 {
-	int env_len;
-	char *str;
-	char *result;
-	char *start;
-	int x;
-	x = 0;
-	env_len = checksymbol2(s+i+1);
-	while(s[i])
+	r->env_len = 0;
+	r->x = 0;
+	r->str = NULL;
+	r->result = NULL;
+	r->start = NULL;
+}
+
+void	evaluate_free(char **tmp, char **s, t_replace *r)
+{
+	if (*tmp)
 	{
-		if(s[i] == '$')
+		free(*tmp);
+		*tmp = NULL;
+	}
+	free(r->start);
+	free(*s);
+	*s = NULL;
+}
+
+char	*replace_for_new_str(char *s, char *tmp, int i, int size)
+{
+	t_replace	r;
+
+	r.env_len = checksymbol2(s + i + 1);
+	while (s[i])
+	{
+		if (s[i] == '$')
 		{
-			start = ft_strndup(s, i);
-			if(tmp == NULL)
-				result = ft_multistrjoin((char *[]) {start, s+i+env_len, NULL});
+			r.start = ft_strndup(s, i);
+			if (tmp == NULL)
+				r.result = ft_multistrjoin((char *[]){r.start, s + i
+						+ r.env_len, NULL});
 			else
-				result = ft_multistrjoin((char *[]) {start, "'", tmp, "'", s+i+env_len, NULL});
-			if(tmp)
-			{
-				free(tmp);
-				tmp = NULL;
-			}
-			free(start);
-			free(s);
-			s = NULL;
-			return(result);
+				r.result = ft_multistrjoin((char *[]){r.start, "'", tmp, "'", s
+						+ i + r.env_len, NULL});
+			evaluate_free(&tmp, &s, &r);
+			return (r.result);
 		}
 		i++;
 	}
-	return(s);
+	return (s);
 }
 
-
-char *transform_for_dollar(char *s, t_data* data)
+void	init_transform_d(t_short_dollar *d)
 {
-	char *tmp;
-	int i = 0;
-	t_var *list;
-	int env_len;
-	int save;
-	int save_pre;
-	int size;
-	int slash_count;
-	int start;
-	int flag = 0;
-	size = 0;
-	
-	slash_count = 0;
-	while(s[i] != '\0')
+	d->tmp = NULL;
+	d->i = -1;
+	d->env_len = 0;
+	d->save = 0;
+	d->save_pre = 0;
+	d->size = 0;
+	d->slash_count = 0;
+	d->start = 0;
+	d->flag = 0;
+}
+
+int	create_flags(char *s, t_short_dollar *d)
+{
+	d->tmp = NULL;
+	if (s[d->i] == '\\')
 	{
-		tmp = NULL;
-		if(s[i] == '\\')
+		while (s[d->i] == '\\')
 		{
-			while(s[i] == '\\')
-			{
-				slash_count++;
-				i++;
-			}
+			d->slash_count++;
+			d->i++;
 		}
-		else
-			slash_count = 0;
-		if(s[i] == '\'')
-			flag = 1;
-		while(s[i] && flag == 1)
-		{
-			i++;
-			if(s[i] == '\'')
-				flag = 0;
-		}
-		if(s[i] == '\0')
-			return(s);
-		start = i;
-		if(s[i] == '$' && slash_count % 2 == 0 && (env_len = checksymbol(s+i+1)))
-		{
-			save = s[i+env_len];
-			s[i+env_len] = '\0';
-			list = search_variable_tvar(s+i, data);
-			s[i+env_len] = save;
-			if(list != NULL)
-			{
-				tmp = ft_strdup(list->value);
-				tmp = add_slashes(tmp);
-				size = ft_strlen(tmp);
-				i+=size+1;
-			}
-			s = replace_for_new_str(s, tmp, start, size);
-		}
-		i++;
 	}
-	return(s);
+	else
+		d->slash_count = 0;
+	if (s[d->i] == '\'')
+		d->flag = 1;
+	while (s[d->i] && d->flag == 1)
+	{
+		d->i++;
+		if (s[d->i] == '\'')
+			d->flag = 0;
+	}
+	d->start = d->i;
+	return (1);
+}
+
+char	*transform_for_dollar(char *s, t_data *data)
+{
+	t_var			*list;
+	t_short_dollar	d;
+
+	init_transform_d(&d);
+	while (s[++d.i] != '\0')
+	{
+		if (create_flags(s, &d) && s[d.i] == '\0')
+			return (s);
+		d.env_len = checksymbol(s + d.i + 1);
+		if (s[d.i] == '$' && d.slash_count % 2 == 0 && d.env_len)
+		{
+			d.save = s[d.i + d.env_len];
+			s[d.i + d.env_len] = '\0';
+			list = search_variable_tvar(s + d.i, data);
+			s[d.i + d.env_len] = d.save;
+			if (list != NULL)
+			{
+				d.tmp = add_slashes(ft_strdup(list->value));
+				d.size = ft_strlen(d.tmp);
+				d.i += d.size + 1;
+			}
+			s = replace_for_new_str(s, d.tmp, d.start, d.size);
+		}
+	}
+	return (s);
 }
