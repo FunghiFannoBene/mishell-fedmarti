@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list_new.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+      
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2023/10/18 20:21:05 by shhuang           #+#    #+#             */
 /*   Updated: 2023/10/18 20:21:05 by shhuang          ###   ########.fr       */
@@ -15,7 +15,7 @@
 
 #include "../minishell.h"
 #include "../pipeline.h"
-
+#include "short_code.h"
 
 void	assign_redirection(int x, t_pnode *structure)
 {
@@ -29,28 +29,33 @@ void	assign_redirection(int x, t_pnode *structure)
 		structure->type = Redirect_output_append;
 }
 
+void	check_redirect_init(int *x, int *flag, int *count, t_pnode **structure)
+{
+	*count = 0;
+	*flag = 0;
+	*x = 0;
+	(*structure)->type = Null;
+}
+
 int	check_redirect(char *s, int *i, t_pnode *structure)
 {
-	int x;
-	x = 0;
-	int flag = 0;
-	int count = 0;
-	structure->type = Null;
+	int	x;
+	int	flag;
+	int	count;
+
+	check_redirect_init(&x, &flag, &count, &structure);
 	if (s[*i] == '>' || s[*i] == '<')
 	{
-		if (s[*i] == '<')
-			flag = '<';
+		flag = s[*i];
 		if (s[*i] == '>')
 		{
-			flag = '>';
 			x += 2;
 		}
 		while (s[*i] && s[*i] == flag)
 		{
 			(*i)++;
 			x++;
-			count++;
-			if (count == 2)
+			if (++count == 2)
 				break ;
 		}
 		assign_redirection(x, structure);
@@ -74,9 +79,13 @@ int	check_pipe(char *s, int *i, t_pnode *structure)
 
 int	check_virgolette_dispari(char *s, int *i)
 {
-	int count_double = 0;
-	int count_single = 0;
-	int x = *i;
+	int	count_double;
+	int	count_single;
+	int	x;
+
+	x = *i;
+	count_single = 0;
+	count_double = 0;
 	while (s[x])
 	{
 		if (s[x] == '\'' && !(s[x] == '\\' && s[x + 1] == '\''))
@@ -92,9 +101,13 @@ int	check_virgolette_dispari(char *s, int *i)
 
 int	check_virgolette_dispari_start(char *s, int i)
 {
-	int count_double = 0;
-	int count_single = 0;
-	int x = i;
+	int	count_double;
+	int	count_single;
+	int	x;
+
+	count_double = 0;
+	count_single = 0;
+	x = i;
 	while (s[x])
 	{
 		if (s[x] == '\'' && !(s[x] == '\\' && s[x + 1] == '\''))
@@ -108,28 +121,28 @@ int	check_virgolette_dispari_start(char *s, int i)
 	return (0);
 }
 
-int	search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
+void	init_search(t_search *k, t_redirect **command, char *s, int *i)
 {
-	int x;
-	int start;
-	t_redirect *head = NULL;
-	int save;
-	int single_double;
-	single_double = 0;
-	x = 0;
+	k->x = 0;
+	k->rx = 0;
+	k->start = 0;
+	k->head = NULL;
+	k->single_double = 0;
 	*command = malloc(sizeof(t_redirect));
 	memset((*command), 0, sizeof(t_redirect));
-	if (!*command)
-		return (-1);
 	while (s[*i] && s[*i] == ' ')
 		(*i)++;
+}
+
+int	check_zero_move(char *s, int *i, t_redirect **command, t_search *k)
+{
 	if (s[*i] == '\0')
 	{
 		free(*command);
-		return (-3);
+		return (1);
 	}
 	while ((s[*i] == '\'' && s[*i + 1] == '\'') || (s[*i] == '"' && s[*i
-			+ 1] == '"'))
+				+ 1] == '"'))
 		(*i) += 2;
 	while (s[*i] && s[*i] == ' ')
 		(*i)++;
@@ -137,13 +150,18 @@ int	search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 	if (s[*i] == '\'')
 	{
 		(*i)++;
-		single_double = 1;
+		k->single_double = 1;
 	}
 	if (s[*i] == '"')
 	{
-		single_double = 2;
+		k->single_double = 2;
 		(*i)++;
 	}
+	return (0);
+}
+
+int	check_pipe_redi(char *s, int *i, t_redirect **command, t_pnode *structure)
+{
 	if (check_pipe(s, i, structure))
 	{
 		free(*command);
@@ -156,34 +174,63 @@ int	search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 		printf("bash: syntax error near unexpected token `>'\n");
 		return (-1);
 	}
+	return (0);
+}
+
+int	create_command_size(char *s, int *i, t_redirect **command, t_search *k)
+{
 	while (s[*i] && s[*i] == ' ')
 		(*i)++;
-	head = *command;
-	start = *i;
-	while (s[start + x] && s[start + x] != ' ' && s[start + x] != '|' && s[start
-		+ x] != '<' && s[start + x] != '>' && s[start + x] != '\'' && s[start
-		+ x] != '"')
-		x++;
-	while (((s[start + x] != '\'' && single_double == 1) && (s[start + x] != '"'
-				&& single_double == 2)))
-		x++;
-	(*command)->str = malloc(sizeof(char) * (x + 1));
+	k->head = *command;
+	k->start = *i;
+	while (s[k->start + k->x] && s[k->start + k->x] != ' '
+		&& s[k->start + k->x] != '|'
+		&& s[k->start + k->x] != '<'
+		&& s[k->start + k->x] != '>'
+		&& s[k->start + k->x] != '\''
+		&& s[k->start + k->x] != '"')
+		k->x++;
+	while (((s[k->start + k->x] != '\'' && k->single_double == 1)
+			&& (s[k->start + k->x] != '"'
+				&& k->single_double == 2)))
+		k->x++;
+	(*command)->str = malloc(sizeof(char) * (k->x + 1));
 	if (!(*command)->str)
-		return (-1);
-	x = 0;
+		return (1);
+	return (0);
+}
+
+void	alloc_command_size(char *s, int *i, t_redirect **command, t_search *k)
+{
+	k->x = 0;
 	while (s[*i] && s[*i] != ' ' && s[*i] != '|' && s[*i] != '<' && s[*i] != '>'
 		&& (s[*i] != '\'' && s[*i] != '"'))
-		(*command)->str[x++] = s[(*i)++];
-	while (((s[*i] != '\'' && single_double == 1) && (s[*i] != '"'
-				&& single_double == 2)))
-		(*command)->str[x++] = s[(*i)++];
-	(*command)->str[x] = '\0';
-	(*command)->size = x;
+		(*command)->str[k->x++] = s[(*i)++];
+	while (((s[*i] != '\'' && k->single_double == 1) && (s[*i] != '"'
+				&& k->single_double == 2)))
+		(*command)->str[k->x++] = s[(*i)++];
+	(*command)->str[k->x] = '\0';
+	(*command)->size = k->x;
 	(*command)->flag = 0;
-	if (single_double)
+	if (k->single_double)
 		(*i)++;
 	while (s[*i] && s[*i] == ' ')
 		(*i)++;
+}
+
+int	search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
+{
+	t_search	k;
+
+	init_search(&k, command, s, i);
+	if (check_zero_move(s, i, command, &k))
+		return (-3);
+	k.rx = check_pipe_redi(s, i, command, structure);
+	if (k.rx != 0)
+		return (k.rx);
+	if (create_command_size(s, i, command, &k))
+		return (-1);
+	alloc_command_size(s, i, command, &k);
 	if (s[*i] == '\0')
 	{
 		(*command)->next = NULL;
@@ -192,7 +239,7 @@ int	search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 		return (-2);
 	}
 	else
-		next_size(s, i, &head);
+		next_size(i, &k.head);
 	return (0);
 }
 
@@ -226,6 +273,29 @@ int	assign_flag(char *s, int *i, t_redirect **command)
 	return (1);
 }
 
+int	slash_return(char *s, int *i, t_redirect **command)
+{
+	if ((*command)->flag == 0 && s[*i] == '\\' && (s[*i + 1] == '\'' || s[*i
+				+ 1] == '"'))
+	{
+		(*command)->size++;
+		(*i) += 2;
+		if (s[*i] == '\0')
+		{
+			(*command)->start += 1;
+			return (0);
+		}
+		return (-1);
+	}
+	if (s[*i] == '\\' && s[*i + 1] == '"')
+	{
+		(*command)->size++;
+		(*i) += 2;
+		return (-1);
+	}
+	return (0);
+}
+
 int	check_slashes(char *s, int *i, t_redirect **command)
 {
 	if (((*command)->flag == 0 || (*command)->flag == '"') && s[*i] == '\\'
@@ -244,37 +314,17 @@ int	check_slashes(char *s, int *i, t_redirect **command)
 		(*i) += 2;
 		return (0);
 	}
-	if ((*command)->flag == 0 && s[*i] == '\\' && (s[*i + 1] == '\'' || s[*i
-			+ 1] == '"'))
-	{
-		(*command)->size++;
-		(*i) += 2;
-		if (s[*i] == '\0')
-		{
-			(*command)->start += 1;
-			return (0);
-		}
-		return (-1);
-	}
-	if (s[*i] == '\\' && s[*i + 1] == '"')
-	{
-		(*command)->size++;
-		(*i) += 2;
-		return (-1);
-	}
-	// aggiungi qui se flag è 0 e successivo è ' o "
-	return (0);
+	return ((slash_return(s, i, command)));
 }
 
 char	*substring(const char *str, size_t begin, size_t len)
 {
 	if (str == NULL || strlen(str) < begin || strlen(str) < (begin + len))
 		return (NULL);
-
 	return (ft_strndup(str + begin, len));
 }
 
-void	next_size(char *s, int *i, t_redirect **command)
+void	next_size(int *i, t_redirect **command)
 {
 	(*command)->flag = 0;
 	(*command)->start = *i;
@@ -289,6 +339,33 @@ void	add_and_set_for_next(t_redirect **command, char *s)
 	(*command) = (*command)->next;
 	(*command)->flag = 0;
 	(*command)->size = 0;
+}
+
+int	end_check_flag_zero(char *s, int *i, t_redirect **command)
+{
+	if ((*command)->flag == 0 && (s[*i] == '<' || s[*i] == '>'
+			|| s[*i] == '|'))
+	{
+		add_and_set_for_next(command, s);
+		(*command)->start = *i;
+		return (-3);
+	}
+	else if (s[(*i) + 1] == '\0')
+	{
+		(*command)->size++;
+		add_and_set_for_next(command, s);
+		(*command)->next = NULL;
+		(*i)++;
+		return (-2);
+	}
+	else if ((*command)->flag == 0 && (s[*i] == '\'' || s[*i] == '"')
+		&& (*command)->size)
+	{
+		(*i)++;
+		add_and_set_for_next(command, s);
+		return (-1);
+	}
+	return (0);
 }
 
 int	end_check(char *s, int *i, t_redirect **command)
@@ -308,29 +385,7 @@ int	end_check(char *s, int *i, t_redirect **command)
 		}
 		return (-1);
 	}
-	else if ((*command)->flag == 0 && (s[*i] == '<' || s[*i] == '>'
-			|| s[*i] == '|'))
-	{
-		add_and_set_for_next(command, s);
-		(*command)->start = *i;
-		return (-3);
-	}
-	else if (s[(*i) + 1] == '\0')
-	{
-		(*command)->size++;
-		add_and_set_for_next(command, s);
-		(*command)->next = NULL;
-		(*i)++;
-		return (-2);
-	}
-	else if ((*command)->flag == 0 && (s[*i] == '\'' || s[*i] == '"')
-			&& (*command)->size)
-	{
-		(*i)++;
-		add_and_set_for_next(command, s);
-		return (-1);
-	}
-	return (0);
+	return (end_check_flag_zero(s, i, command));
 }
 
 int	flag_zero_space(char *s, int *i, t_redirect **command)
@@ -355,19 +410,60 @@ int	flag_zero_space(char *s, int *i, t_redirect **command)
 	return (1);
 }
 
-int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
+void	init_size_of_command(t_pnode *structure, t_redirect **command,
+		t_redirect **head, int *i)
 {
-	t_redirect *command = *head;
-	int variabile;
+	*command = *head;
 	if (structure->type == Null)
 		structure->type = Program_Call;
-	command->flag = 0;
-	command->start = *i;
-	command->size = 0;
+	(*command)->flag = 0;
+	(*command)->start = *i;
+	(*command)->size = 0;
+}
+
+int	break_or_add(char *s, int *i, t_redirect *command)
+{
+	if (command->flag == 0 && (s[*i] == '\'' || s[*i] == '"'))
+		return (1);
+	command->size++;
+	(*i)++;
+	return (0);
+}
+
+int	skip_and_endstring(char *s, int *i)
+{
+	check_and_skip_space(s, i);
+	if (s[*i] == '\0')
+		return (1);
+	return (0);
+}
+
+int	check_all_end(char *s, int *i, t_redirect **command, int *variabile)
+{
+	*variabile = end_check(s, i, command);
+	if (*variabile == -1)
+		return (-2);
+	else if (*variabile == -2)
+		return (-1);
+	else if (*variabile == -3)
+		return (0);
+	*variabile = flag_zero_space(s, i, command);
+	if (*variabile == -1)
+		return (-2);
+	if (*variabile == -2)
+		return (1);
+	return (2);
+}
+
+int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
+{
+	t_redirect	*command;
+	int			variabile;
+
+	init_size_of_command(structure, &command, head, i);
 	while (s[*i])
 	{
-		check_and_skip_space(s, i);
-		if (s[*i] == '\0')
+		if (skip_and_endstring(s, i))
 			return (-1);
 		if (s[*i] == '|' || s[*i] == '<' || s[*i] == '>')
 			return (0);
@@ -377,22 +473,11 @@ int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 		{
 			if (check_slashes(s, i, &command) == -1)
 				continue ;
-			variabile = end_check(s, i, &command);
-			if (variabile == -1)
+			variabile = check_all_end(s, i, &command, &variabile);
+			if (variabile == -1 || variabile == 0 || variabile == 1)
+				return (variabile);
+			else if (variabile == -2 || break_or_add(s, i, command))
 				break ;
-			else if (variabile == -2)
-				return (-1);
-			else if (variabile == -3)
-				return (0);
-			variabile = flag_zero_space(s, i, &command);
-			if (variabile == -1)
-				break ;
-			else if (variabile == -2)
-				return (1);
-			if (command->flag == 0 && (s[*i] == '\'' || s[*i] == '"'))
-				break ;
-			command->size++;
-			(*i)++;
 		}
 	}
 	return (1);
@@ -400,17 +485,18 @@ int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 
 void	free_t_pnode_list(t_pnode *structure_head)
 {
-	t_pnode *current = structure_head;
-	t_pnode *next_node = NULL;
-	char **current_args;
-	int i;
+	t_pnode	*current;
+	t_pnode	*next_node;
+	char	**current_args;
+	int		i;
 
 	i = -1;
+	next_node = NULL;
+	current = structure_head;
 	while (current != NULL)
 	{
 		next_node = current->output;
 		current_args = current->args;
-
 		if (current_args != NULL)
 		{
 			while (current_args[++i] != NULL)
@@ -419,180 +505,216 @@ void	free_t_pnode_list(t_pnode *structure_head)
 			}
 			free(current_args);
 		}
-
 		free(current);
 		current = next_node;
 	}
 }
 
-t_pnode	*create_command_list(char *s)
+int	init_command(t_command *c, char *s)
 {
-	t_redirect *command;
-	t_redirect *head;
-	t_pnode *structure;
-	t_pnode *structure_head;
-	t_pnode *structure_actual;
-	t_redirect *temp;
-	int i;
-	int x;
-	int command_record;
-	int type;
-	command = NULL;
-	structure_head = NULL;
-	structure_actual = NULL;
-	command_record = 0;
-	head = NULL;
-	i = 0;
+	c->command = NULL;
+	c->structure_head = NULL;
+	c->structure_actual = NULL;
+	c->command_record = 0;
+	c->head = NULL;
+	c->i = 0;
 	if (!s)
-		return (NULL);
-	if (check_virgolette_dispari_start(s, i))
+		return (-1);
+	if (check_virgolette_dispari_start(s, c->i))
 	{
 		printf("Virgolette dispari. Comando invalido.\n");
-		return (NULL);
+		return (-1);
 	}
-	while (1)
-	{
-		if (s[i] == '\0')
-			break ;
-		command = NULL;
-		head = NULL;
-		structure = malloc(sizeof(t_pnode));
-		memset(structure, 0, sizeof(t_pnode));
-		if (s[i])
-		{
-			type = search_command(s, &i, &command, structure);
-			if (type == 0)
-			{
-				command_record = size_of_command(s, &i, &command, structure);
-			}
-			else if (type == -1)
-			{
-				free(structure);
-				free_t_pnode_list(structure_head);
-				return (NULL);
-			}
-			else if (type == -3)
-			{
-				if (structure->type == Null && !structure_head)
-				{
-					free(structure);
-					return (NULL);
-				}
-				free(structure);
-				return (structure_head);
-			}
-			else if (type == -4)
-			{
-				structure->args = NULL;
-				structure->output = NULL;
-				if (structure_actual == NULL)
-				{
-					structure_head = structure;
-					structure_actual = structure_head;
-				}
-				else
-				{
-					structure_actual->output = structure;
-					structure_actual = structure_actual->output;
-				}
-				continue ;
-			}
-		}
-		head = command;
-		if (structure_head == NULL)
-			structure_head = structure;
-		x = 0;
-		command = head;
-		while (command)
-		{
-			x++;
-			command = command->next;
-		}
-		structure->args = malloc(sizeof(char *) * (x + 1));
-		structure->input_fd = 0;
-		structure->output_fd = 1;
-		x = 0;
-		while (head)
-		{
-			structure->args[x++] = ft_strdup(head->str);
-			free(head->str);
-			temp = head;
-			head = head->next;
-			free(temp);
-		}
-		structure->args[x] = NULL;
-		structure->output = NULL;
-		if (structure_actual == NULL)
-			structure_actual = structure_head;
-		else
-		{
-			structure_actual->output = structure;
-			structure_actual = structure_actual->output;
-		}
-		if (command_record == -1 || type == -2)
-			break ;
-	}
-	return (structure_head);
+	return (1);
 }
 
-int	main(int argc, char **argv)
+int	check_continuation(char *s, t_command *c)
 {
-	t_pnode *head;
-	t_pnode *frees;
-	char *input = argv[1];
-	t_data *data = malloc(sizeof(t_data));
-	memset(data, 0, sizeof(t_data));
-	data->export_var = NULL;
-	data->local_var = NULL;
-
-	t_var sample_vars[7];
-	t_list export_nodes[7];
-	t_list local_nodes[7];
-
-	char *names[] = {"ARG", "BCD", "NAME", "VAL", "USER", "TERM"};
-	char *values[] = {"123", "xyz", "Alice", "42", "test_value", "ahahah"};
-
-	for (int i = 0; i < 6; ++i)
-	{
-		sample_vars[i].name = names[i];
-		sample_vars[i].value = values[i];
-
-		export_nodes[i].content = &sample_vars[i];
-		export_nodes[i].next = i == 5 ? NULL : &export_nodes[i + 1];
-
-		local_nodes[i].content = &sample_vars[i];
-		local_nodes[i].next = i == 5 ? NULL : &local_nodes[i + 1];
-	}
-
-	data->export_var = &export_nodes[0];
-	data->local_var = &local_nodes[0];
-
-	input = transform_for_dollar(input, data);
-	int i = 0;
-	head = create_command_list(input);
-	while (head)
-	{
-		if (head->args)
-		{
-			while (head->args[i])
-			{
-				printf("%s\n", head->args[i]);
-				free(head->args[i]);
-				i++;
-			}
-			if (head->args[i] == NULL)
-				printf("(null)\n");
-			free(head->args);
-		}
-		i = 0;
-		printf("Type: %d \n0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect\n",
-			(int)head->type);
-
-		printf("\n\n-----------------------------------------------------------------\n\n");
-		frees = head;
-		head = head->output;
-		free(frees);
-	}
-	free(data);
+	if (s[c->i] == '\0')
+		return (1);
+	c->command = NULL;
+	c->head = NULL;
+	c->structure = malloc(sizeof(t_pnode));
+	memset(c->structure, 0, sizeof(t_pnode));
 	return (0);
 }
+
+void	assign_structure(t_command *c)
+{
+	c->structure->args = NULL;
+	c->structure->output = NULL;
+	if (c->structure_actual == NULL)
+	{
+		c->structure_head = c->structure;
+		c->structure_actual = c->structure_head;
+	}
+	else
+	{
+		c->structure_actual->output = c->structure;
+		c->structure_actual = c->structure_actual->output;
+	}
+}
+
+int	is_void(t_command *c)
+{
+	if (c->structure->type == Null && !c->structure_head)
+	{
+		free(c->structure);
+		return (1);
+	}
+	return (0);
+}
+
+int	evaluate_next_struct(t_command *c, char *s)
+{
+	c->type = search_command(s, &c->i, &c->command, c->structure);
+	if (c->type == 0)
+		c->command_record = size_of_command(s, &c->i, &c->command,
+				c->structure);
+	else if (c->type == -1)
+	{
+		free(c->structure);
+		free_t_pnode_list(c->structure_head);
+		return (0);
+	}
+	else if (c->type == -3)
+	{
+		if (is_void(c))
+			return (0);
+		free(c->structure);
+		return (1);
+	}
+	else if (c->type == -4)
+	{
+		assign_structure(c);
+		return (-2);
+	}
+	return (3);
+}
+
+void	command_to_structure(t_command *c)
+{
+	c->head = c->command;
+	if (c->structure_head == NULL)
+		c->structure_head = c->structure;
+	c->x = 0;
+	c->command = c->head;
+	while (c->command)
+	{
+		c->x++;
+		c->command = c->command->next;
+	}
+	c->structure->args = malloc(sizeof(char *) * (c->x + 1));
+	c->structure->input_fd = 0;
+	c->structure->output_fd = 1;
+	c->x = 0;
+	while (c->head)
+	{
+		c->structure->args[c->x++] = ft_strdup(c->head->str);
+		free(c->head->str);
+		c->temp = c->head;
+		c->head = c->head->next;
+		free(c->temp);
+	}
+	c->structure->args[c->x] = NULL;
+	c->structure->output = NULL;
+}
+
+void	structure_linking(t_command *c)
+{
+	if (c->structure_actual == NULL)
+		c->structure_actual = c->structure_head;
+	else
+	{
+		c->structure_actual->output = c->structure;
+		c->structure_actual = c->structure_actual->output;
+	}
+}
+
+t_pnode	*create_command_list(char *s)
+{
+	t_command	c;
+
+	if (init_command(&c, s) == -1)
+		return (NULL);
+	while (1)
+	{
+		if (check_continuation(s, &c))
+			break ;
+		c.x = evaluate_next_struct(&c, s);
+		if (c.x == -2)
+			continue ;
+		else if (c.x == 0)
+			return (NULL);
+		else if (c.x == 1)
+			return (c.structure_head);
+		command_to_structure(&c);
+		structure_linking(&c);
+		if (c.command_record == -1 || c.type == -2)
+			break ;
+	}
+	return (c.structure_head);
+}
+
+// int	main(int argc, char **argv)
+// {
+// 	(void)argc;
+// 	t_pnode *head;
+// 	t_pnode *frees;
+// 	char *input = argv[1];
+// 	t_data *data = malloc(sizeof(t_data));
+// 	memset(data, 0, sizeof(t_data));
+// 	data->export_var = NULL;
+// 	data->local_var = NULL;
+
+// 	t_var sample_vars[7];
+// 	t_list export_nodes[7];
+// 	t_list local_nodes[7];
+
+// 	char *names[] = {"ARG", "BCD", "NAME", "VAL", "USER", "TERM"};
+// 	char *values[] = {"123", "xyz", "Alice", "42", "test_value", "ahahah"};
+
+// 	for (int i = 0; i < 6; ++i)
+// 	{
+// 		sample_vars[i].name = names[i];
+// 		sample_vars[i].value = values[i];
+
+// 		export_nodes[i].content = &sample_vars[i];
+// 		export_nodes[i].next = i == 5 ? NULL : &export_nodes[i + 1];
+
+// 		local_nodes[i].content = &sample_vars[i];
+// 		local_nodes[i].next = i == 5 ? NULL : &local_nodes[i + 1];
+// 	}
+
+// 	data->export_var = &export_nodes[0];
+// 	data->local_var = &local_nodes[0];
+
+// 	input = transform_for_dollar(input, data);
+// 	int i = 0;
+// 	head = create_command_list(input);
+// 	while (head)
+// 	{
+// 		if (head->args)
+// 		{
+// 			while (head->args[i])
+// 			{
+// 				printf("%s\n", head->args[i]);
+// 				free(head->args[i]);
+// 				i++;
+// 			}
+// 			if (head->args[i] == NULL)
+// 				printf("(null)\n");
+// 			free(head->args);
+// 		}
+// 		i = 0;
+// 		printf("Type: %d \n0=Null, 1=Program_Call, 2=Pipe 3 4 5 6 redirect\n",
+// 			(int)head->type);
+
+// 		printf("\n\n-----------------------------------------------------------------\n\n");
+// 		frees = head;
+// 		head = head->output;
+// 		free(frees);
+// 	}
+// 	free(data);
+// 	return (0);
+// }

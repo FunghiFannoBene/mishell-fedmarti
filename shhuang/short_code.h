@@ -30,4 +30,27 @@ typedef struct s_slashes
 	char	*str;
 } t_slashes;
 
+typedef struct s_command
+{
+	t_redirect *command;
+	t_redirect *head;
+	t_pnode *structure;
+	t_pnode *structure_head;
+	t_pnode *structure_actual;
+	t_redirect *temp;
+	int i;
+	int x;
+	int command_record;
+	int type;
+} t_command;
+
+typedef struct s_search
+{
+	int x;
+	int start;
+	t_redirect *head;
+	int single_double;
+	int rx;
+} t_search;
+
 #endif

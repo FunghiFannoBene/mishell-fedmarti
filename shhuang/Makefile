@@ -10,5 +10,5 @@ clean:
 	rm -f final
 
 all: command_list_new.c transform_dollar.c
-	make clean && gcc -g transform_dollar.c command_list_new.c ../var3.c ../var.c -o final -L../libft -lft
+	make clean && gcc -g -Wall -Werror -Wextra transform_dollar.c command_list_new.c ../var3.c ../var.c -o final -L../libft -lft
 

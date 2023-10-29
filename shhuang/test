@@ -1,5 +1,7 @@
 #!/bin/bash
 
+valgrind ./final "" >> output.txt 2>&1
+valgrind ./final "   " >> output.txt 2>&1
 valgrind ./final " echo     \">>  \"  " >> output.txt 2>&1
 valgrind ./final "echo     \"   \"" >> output.txt 2>&1
 valgrind ./final " echo  ' \\\'  '   " >> output.txt 2>&1

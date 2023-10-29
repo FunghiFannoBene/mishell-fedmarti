@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/29 02:57:45 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/10/29 18:03:45 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	evaluate_free(char **tmp, char **s, t_replace *r)
 	*s = NULL;
 }
 
-char	*replace_for_new_str(char *s, char *tmp, int i, int size)
+char	*replace_for_new_str(char *s, char *tmp, int i)
 {
 	t_replace	r;
 
@@ -225,7 +225,7 @@ char	*transform_for_dollar(char *s, t_data *data)
 				d.size = ft_strlen(d.tmp);
 				d.i += d.size + 1;
 			}
-			s = replace_for_new_str(s, d.tmp, d.start, d.size);
+			s = replace_for_new_str(s, d.tmp, d.start);
 		}
 	}
 	return (s);
