@@ -230,7 +230,6 @@ int check_slashes(char *s, int *i, t_redirect **command)
 		(*i) += 2;
 		return (-1);
 	}
-	// aggiungi qui se flag è 0 e successivo è ' o "
 	return (0);
 }
 
@@ -380,6 +379,7 @@ t_pnode *create_command_list(char *s)
 	int x;
 	int command_record;
 	int type;
+	structure = NULL;
 	command = NULL;
 	structure_head = NULL;
 	structure_actual = NULL;

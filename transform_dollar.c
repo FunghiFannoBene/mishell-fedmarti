@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_dollar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/25 22:41:35 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:39:16 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ char *ft_strndup(const char *s, size_t n)
     char *result;
     size_t len = n;
 
+	if(!s)
+		return(NULL);
     result = (char *)malloc(len + 1);
     if (!result)
         return NULL;

@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/18 04:10:28 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/10/27 10:35:50 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 
 typedef enum e_pnode_type
 {
-	Null,
-	Program_Call,
+	Null, // 0
+	Program_Call, //1
 	//|
-	Pipe,
+	Pipe, //2
 	//<
-	Redirect_input,
+	Redirect_input, //3
 	//<<
-	Redirect_input_heredoc,
+	Redirect_input_heredoc, //4
 	//>
-	Redirect_output,
+	Redirect_output, //5
 	//>>
-	Redirect_output_append
+	Redirect_output_append //6
 }	t_ntype;
 
 typedef struct s_minishell_data	t_data;
@@ -78,5 +78,6 @@ char *replace_for_new_str(char* s,char* tmp, int i, int size);
 char *add_slashes(char *tmp);
 int checksymbol(char *s);
 int check_invalid(char c, char* invalid);
+char *ft_strndup(const char *s, size_t n);
 
 #endif

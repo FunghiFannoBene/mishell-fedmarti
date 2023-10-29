@@ -568,7 +568,6 @@ int	main(int argc, char **argv)
 	data->local_var = &local_nodes[0];
 
 	input = transform_for_dollar(input, data);
-	printf("\n\n%s\n\n", input);
 	int i = 0;
 	head = create_command_list(input);
 	while (head)

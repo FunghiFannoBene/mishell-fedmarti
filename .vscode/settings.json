@@ -55,9 +55,13 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "pipeline.h": "c",
-    "libft.h": "c"
-  },
-  "C_Cpp_Runner.msvcSecureNoWarnings": false
+    "array": "c",
+    "string_view": "c",
+    "initializer_list": "c",
+    "utility": "c",
+    "functional": "c",
+    "short_code.h": "c"
+  }
 }
