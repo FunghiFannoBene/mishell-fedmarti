@@ -1,0 +1,75 @@
+#!/bin/bash
+
+valgrind ./final "" >> output.txt 2>&1
+valgrind ./final "   " >> output.txt 2>&1
+valgrind ./final " echo     \">>  \"  " >> output.txt 2>&1
+valgrind ./final "echo     \"   \"" >> output.txt 2>&1
+valgrind ./final " echo  ' \\\'  '   " >> output.txt 2>&1
+valgrind ./final "  echo \"\\\"\\\"  " >> output.txt 2>&1
+valgrind ./final "echo   '     " >> output.txt 2>&1
+valgrind ./final "   echo \"\\\"   " >> output.txt 2>&1
+valgrind ./final "echo  \\   " >> output.txt 2>&1
+valgrind ./final "echo 'unclosed " >> output.txt 2>&1
+valgrind ./final "echo \"unclosed' " >> output.txt 2>&1
+valgrind ./final "ls -la |   | grep txt " >> output.txt 2>&1
+valgrind ./final "echo 'ab\"cd' | gre?p" >> output.txt 2>&1
+valgrind ./final "ls -la > \" output.txt" >> output.txt 2>&1
+valgrind ./final "cat << 'test' \\\\" >> output.txt 2>&1
+valgrind ./final "awk '{print \\\\$1}' < data.txt" >> output.txt 2>&1
+valgrind ./final "sed 's/\\\\foo\\\\/bar/'" >> output.txt 2>&1
+valgrind ./final "   |   <  > << " >> output.txt 2>&1
+valgrind ./final "echo \"   \"" >> output.txt 2>&1
+valgrind ./final "cat < ' input.txt'" >> output.txt 2>&1
+valgrind ./final "echo >\\\\ output.txt" >> output.txt 2>&1
+valgrind ./final "echo '1 2 3' | cut -d '\\\\ ' -f 2" >> output.txt 2>&1
+valgrind ./final "ls -la | awk '{if (\\\$1 ~ /r/) print \\\\$0;}'" >> output.txt 2>&1
+valgrind ./final "echo ''''''" >> output.txt 2>&1
+valgrind ./final "find . -name '\\*.txt' -exec rm {} \\;" >> output.txt 2>&1
+valgrind ./final "grep 'a\\|b' < input.txt > output.txt" >> output.txt 2>&1
+valgrind ./final "awk '{gsub(/\\\"/, \"\\\\\\\"\"); print}'" >> output.txt 2>&1
+valgrind ./final "sed -n '/foo/!p' < input.txt" >> output.txt 2>&1
+valgrind ./final "sort < input.txt | uniq > sorted.txt" >> output.txt 2>&1
+valgrind ./final "echo $((2 + 3)) > output.txt" >> output.txt 2>&1
+valgrind ./final "echo \\\"\\\"\\\"\\\"" >> output.txt 2>&1
+valgrind ./final "echo 'a\\nb\\nc' | tr '\\\\n' ' '" >> output.txt 2>&1
+valgrind ./final "\"ls -la" >> output.txt 2>&1
+valgrind ./final "ls -la\"" >> output.txt 2>&1
+valgrind ./final "'echo hello" >> output.txt 2>&1
+valgrind ./final "echo hello'" >> output.txt 2>&1
+valgrind ./final "|ls -la|" >> output.txt 2>&1
+valgrind ./final "<<echo hello" >> output.txt 2>&1
+valgrind ./final "echo hello>>" >> output.txt 2>&1
+valgrind ./final ">>ls -la" >> output.txt 2>&1
+valgrind ./final "ls -la<<" >> output.txt 2>&1
+valgrind ./final "< ls -la" >> output.txt 2>&1
+valgrind ./final "ls -la >" >> output.txt 2>&1
+valgrind ./final "   ls -la" >> output.txt 2>&1
+valgrind ./final "ls -la   " >> output.txt 2>&1
+valgrind ./final "\"\"ls -la" >> output.txt 2>&1
+valgrind ./final "ls -la\"\"" >> output.txt 2>&1
+valgrind ./final "'\"ls -la" >> output.txt 2>&1
+valgrind ./final "ls -la\"'" >> output.txt 2>&1
+valgrind ./final "|||ls -la|||" >> output.txt 2>&1
+valgrind ./final "><><ls -la><><" >> output.txt 2>&1
+valgrind ./final "\\\\\\echo hello\\\\\\" >> output.txt 2>&1
+valgrind ./final "'''''ls -la'''''" >> output.txt 2>&1
+valgrind ./final "\"\"\"\"\"ls -la\"\"\"\"\"" >> output.txt 2>&1
+valgrind ./final "'\"'\"'\"ls -la'\"'\"'\"" >> output.txt 2>&1
+valgrind ./final "    \"   |  ls -la  |   \"    " >> output.txt 2>&1
+valgrind ./final "echo hello > > > output.txt" >> output.txt 2>&1
+valgrind ./final "echo < < < input.txt" >> output.txt 2>&1
+valgrind ./final "'\"\"|<<>>\\\\'ls -la'\"\"|<<>>\\\\'" >> output.txt 2>&1
+valgrind ./final "echo !@#$%^&*()_+[]{};:',.<>?~" >> output.txt 2>&1
+valgrind ./final "   ' ' ' '  ls -la  ' ' ' '   " >> output.txt 2>&1
+valgrind ./final "echo ''''''''" >> output.txt 2>&1
+valgrind ./final "cat < < < < input.txt" >> output.txt 2>&1
+valgrind ./final "ls -la | | | grep txt" >> output.txt 2>&1
+valgrind ./final "echo > > > > output.txt" >> output.txt 2>&1
+valgrind ./final "echo \"\"\"\"\"\"\"\"\"\"\"\"" >> output.txt 2>&1
+valgrind ./final "ls >>>>> output.txt" >> output.txt 2>&1
+valgrind ./final "ls <<<<< input.txt" >> output.txt 2>&1
+valgrind ./final "awk '{print $1}' < data.txt | | | sort" >> output.txt 2>&1
+valgrind ./final "' ' ' ' ' ' ' ' ' ' ls ' ' ' ' ' ' ' ' ' ' ' " >> output.txt 2>&1
+valgrind ./final "\"|ls -la|\"" >> output.txt 2>&1
+valgrind ./final "sed 's/foo/bar/' ||| sort ||| grep txt" >> output.txt 2>&1
+valgrind ./final "echo $$$$$$$$$$$$$$$$" >> output.txt 2>&1
