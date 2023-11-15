@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list5.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:43:24 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/31 15:07:35 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 01:55:43 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_slashes(char *s, int *i, t_redirect **command)
 
 char	*substring(const char *str, size_t begin, size_t len)
 {
-	if (str == NULL || strlen(str) < begin || strlen(str) < (begin + len))
+	if (str == NULL || ft_strlen(str) < begin || ft_strlen(str) < (begin + len))
 		return (NULL);
 	return (ft_strndup(str + begin, len));
 }
