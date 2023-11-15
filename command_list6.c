@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command_list6.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:44:00 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/31 15:07:24 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:03 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 int	end_check(char *s, int *i, t_redirect **command)
@@ -39,8 +37,8 @@ int	flag_zero_space(char *s, int *i, t_redirect **command)
 	if ((*command)->flag == 0 && s[*i] == ' ')
 	{
 		(*command)->next = malloc(sizeof(t_redirect));
-		(*command)->next->str = substring(s, (*command)->start,
-				(*command)->size);
+		(*command)->next->str = substring(s, (size_t)(*command)->start,
+				(size_t)(*command)->size);
 		(*command) = (*command)->next;
 		(*command)->flag = 0;
 		(*command)->size = 0;

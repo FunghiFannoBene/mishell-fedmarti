@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command_list2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:41:17 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/31 15:07:57 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:18 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 void	assign_redirection(int x, t_pnode *structure)

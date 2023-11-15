@@ -6,12 +6,10 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:43:24 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 01:55:43 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:06 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 int	check_slashes(char *s, int *i, t_redirect **command)
@@ -53,7 +51,7 @@ void	add_and_set_for_next(t_redirect **command, char *s)
 {
 	(*command)->next = malloc(sizeof(t_redirect));
 	memset((*command)->next, 0, sizeof(t_redirect));
-	(*command)->next->str = substring(s, (*command)->start, (*command)->size);
+	(*command)->next->str = substring(s, (size_t)(*command)->start, (size_t)(*command)->size);
 	(*command) = (*command)->next;
 	(*command)->flag = 0;
 	(*command)->size = 0;

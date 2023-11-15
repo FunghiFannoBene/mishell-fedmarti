@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/25 23:44:31 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:02:31 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 // IMPLEMENTARE: strcmp, strncmp
 #include "minishell.h"
 #include "pipeline.h"
+#include "short_code.h"
 
 void	update_exit_status(t_var *exit_status, int new_val);
 

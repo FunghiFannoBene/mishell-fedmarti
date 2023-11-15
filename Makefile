@@ -30,7 +30,16 @@ SRCS = minishell.c \
 	error_messages.c \
 	file_utils.c \
 	transform_dollar.c \
-	command_list_new.c
+	transform_dollar2.c \
+	transform_dollar3.c \
+	command_list.c \
+	command_list2.c \
+	command_list3.c \
+	command_list4.c \
+	command_list5.c \
+	command_list6.c \
+	command_list7.c \
+	command_list8.c \
 
 CFLAGS = -Wall -Werror -Wextra -g
 

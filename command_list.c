@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 t_pnode	*create_command_list(char *s)

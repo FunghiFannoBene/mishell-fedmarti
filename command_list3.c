@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command_list3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:41:52 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/30 17:41:58 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:16 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 int	check_virgolette_dispari_start(char *s, int i)
@@ -109,7 +107,7 @@ int	create_command_size(char *s, int *i, t_redirect **command, t_search *k)
 			&& (s[k->start + k->x] != '"'
 				&& k->single_double == 2)))
 		k->x++;
-	(*command)->str = malloc(sizeof(char) * (k->x + 1));
+	(*command)->str = malloc((size_t)k->x + 1);
 	if (!(*command)->str)
 		return (1);
 	return (0);

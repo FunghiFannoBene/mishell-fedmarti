@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command_list7.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:44:53 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/30 17:44:59 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:00 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 int	check_all_end(char *s, int *i, t_redirect **command, int *variabile)

@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   short_code.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/31 15:13:23 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:54 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHORT_CODE_H
 # define SHORT_CODE_H
+
+
+#include "minishell.h"
+#include "pipeline.h"
+#include "libft/libft.h"
 
 typedef struct s_short_dollar
 {

@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command_list4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:42:31 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/30 17:42:53 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:13 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 void	alloc_command_size(char *s, int *i, t_redirect **command, t_search *k)

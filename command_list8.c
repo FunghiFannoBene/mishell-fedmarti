@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   command_list8.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:45:39 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/31 15:08:31 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:03:51 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 void	assign_structure(t_command *c)
@@ -79,7 +77,7 @@ void	command_to_structure(t_command *c)
 		c->x++;
 		c->command = c->command->next;
 	}
-	c->structure->args = malloc(sizeof(char *) * (c->x + 1));
+	c->structure->args = malloc(sizeof(char *) * (size_t)(c->x + 1));
 	c->structure->input_fd = 0;
 	c->structure->output_fd = 1;
 	c->x = 0;

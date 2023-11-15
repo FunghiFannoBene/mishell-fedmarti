@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   transform_dollar3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:39:48 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/31 15:10:16 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:43 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 char	*add_slashes(char *tmp)
@@ -24,7 +22,7 @@ char	*add_slashes(char *tmp)
 	run_count_slashes(tmp, &s);
 	if (s.count == 0)
 		return (tmp);
-	s.str = malloc(sizeof(char) * (ft_strlen(tmp) + s.count + 1));
+	s.str = malloc(sizeof(char) * (size_t)(ft_strlen(tmp) + (size_t)s.count + 1));
 	while (tmp[s.x])
 	{
 		if (tmp[s.x] == '\'' || tmp[s.x] == '"')
@@ -84,7 +82,7 @@ char	*replace_for_new_str(char *s, char *tmp, int i)
 	{
 		if (s[i] == '$')
 		{
-			r.start = ft_strndup(s, i);
+			r.start = ft_strndup(s, (size_t)i);
 			if (tmp == NULL)
 				r.result = ft_multistrjoin((char *[]){r.start, s + i
 						+ r.env_len, NULL});

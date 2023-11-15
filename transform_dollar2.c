@@ -3,15 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   transform_dollar2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <shhuang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:38:19 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/31 15:08:16 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:04:39 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-#include "../pipeline.h"
 #include "short_code.h"
 
 int	check_invalid(char c, char *invalid)
