@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/16 20:26:30 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:56:42 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	free_tree(t_pnode *head)
 {
 	t_pnode	*node;
 
+	if (!head)
+		return ;
 	head = next(head);
 	while (head)
 	{

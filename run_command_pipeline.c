@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 20:12:56 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:58:19 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		redirect_input(t_pnode *node, t_data *data);
 int		redirect_input_heredoc(t_pnode *node, t_data *data);
 int		program_call(t_pnode *node, t_data *data);
 void	child_sighandler(int signo);
+int		is_builtin(char *str);
+int		ft_builtin(t_pnode *node, t_data *data);
 
 int	empty_file(t_pnode *node)
 {
@@ -129,13 +131,19 @@ int	pipeline(t_pnode *node, t_data *data)
 	return (exit_status);
 }
 
-int	run_command_pipeline(t_pnode *pipeline_tree, t_data *data)
+int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 {
 	int		exit_status;
 
-	pipeline_tree = preliminary_tests(pipeline_tree, data, &exit_status);
-	if (!pipeline_tree)
+	if (pipeln_tree->output == NULL && is_builtin(pipeln_tree->args[0]))
+	{
+		exit_status = ft_builtin(pipeln_tree, data);
+		free_node(pipeln_tree);
 		return (exit_status);
-	pipeline_tree = sort_pipeline_tree(pipeline_tree);
-	return (pipeline(pipeline_tree, data));
+	}
+	pipeln_tree = preliminary_tests(pipeln_tree, data, &exit_status);
+	if (!pipeln_tree)
+		return (exit_status);
+	pipeln_tree = sort_pipeline_tree(pipeln_tree);
+	return (pipeline(pipeln_tree, data));
 }

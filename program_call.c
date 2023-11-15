@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 22:05:00 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:51:12 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	output_handler(t_pnode *node, t_data *data)
 	return (1);
 }
 
-static int	is_builtin(char *str)
+int	is_builtin(char *str)
 {
 	int	len;
 

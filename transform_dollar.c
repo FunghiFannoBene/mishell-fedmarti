@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_dollar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 20:04:35 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 23:24:17 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ char	*transform_for_dollar(char *s, t_data *data)
 		d.env_len = checksymbol(s + d.i + 1);
 		if (s[d.i] == '$' && d.slash_count % 2 == 0 && d.env_len)
 		{
-			d.save = s[d.i + d.env_len];
-			s[d.i + d.env_len] = '\0';
+			d.save = s[d.i + d.env_len + 1];
+			s[d.i + d.env_len + 1] = '\0';
 			list = search_variable_tvar(s + d.i, data);
-			s[d.i + d.env_len] = (char)d.save;
+			s[d.i + d.env_len + 1] = (char)d.save;
 			if (list != NULL)
 			{
 				d.tmp = add_slashes(ft_strdup(list->value));

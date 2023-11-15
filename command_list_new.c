@@ -410,7 +410,7 @@ t_pnode *create_command_list(char *s)
 				structure_actual->output = structure;
 				structure_actual = structure_actual->output;
 			}
-			continue;
+			continue ;
 		}
 		head = command;
 		if (structure_head == NULL)

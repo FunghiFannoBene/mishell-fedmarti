@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 20:06:28 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:02:40 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_fix_string
 }	t_indice;
 
 
-void	next_size(char *s, int *i, t_redirect **command);
+// void	next_size(char *s, int *i, t_redirect **command);
 t_pnode	*sort_pipeline_tree(t_pnode *input_tree);
 int		is_type(t_pnode *node, t_ntype *types);
 void	free_node(t_pnode *node);
@@ -70,10 +70,10 @@ void	ft_exit_pip(int exit_status, t_pnode *tree, t_data *data);
 pid_t	ft_fork(int *exit_status);
 int		on_return(int exit_status, t_pnode *node, int fd1, int fd2);
 char	*transform_for_dollar(char *s, t_data *data);
-char	*replace_for_new_str(char *s, char *tmp, int i, int size);
-char	*add_slashes(char *tmp);
-int		checksymbol(char *s);
+// char	*replace_for_new_str(char *s, char *tmp, int i, int size);
+// char	*add_slashes(char *tmp);
+// int		checksymbol(char *s);
 int		check_invalid(char c, char *invalid);
-char	*ft_strndup(const char *s, size_t n);
+// char	*ft_strndup(const char *s, size_t n);
 
 #endif

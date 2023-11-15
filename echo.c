@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:40:22 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 22:24:27 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:31:51 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ static int	ft_copy(char **args, bool flag, char *str)
 	i = 1 + flag;
 	while (args[i])
 	{
-		len += ft_strlcat(str, args[i], INT_MAX);
+		len += ft_strlcpy(str + len, args[i], INT_MAX);
 		if (args[i + 1])
-			len += ft_strlcat(str, " ", len + 1);
+			len += ft_strlcpy(str + len, " ", 2);
 		i++;
 	}
 	if (!flag)
-		len += ft_strlcat(str, "\n", len + 1);
+		len += ft_strlcpy(str + len, "\n", 2);
 	return (len);
 }
 

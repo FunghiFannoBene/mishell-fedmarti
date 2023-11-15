@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 21:15:16 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 22:08:30 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:42:13 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ void	ft_exec(t_pnode *node, t_data *data)
 	get_var("PATH", data->export_var));
 	if (!program_path)
 		ft_exit_pip(command_not_found_error(node->args[0]), node, data);
+	if (access(program_path, F_OK))
+	{
+		_error_message(program_path, "No such file or directory");
+		ft_exit_pip(126, node, data);
+	}
 	if (!is_executable(program_path))
 	{
 		if (node->args[0] != program_path)

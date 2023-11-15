@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 00:08:26 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 23:53:49 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	child_sighandler(int signo)
 
 void	free_data(t_data *data);
 
-//closes fd1 and fd2 if > 0
+//closes fd1 if != 1 and fd2 if > 0
 //if non-NULL frees the whole tree excluding node (starts from node->output)
 //returns exit_status
 int	on_return(int exit_status, t_pnode *node, int fd1, int fd2)
