@@ -16,11 +16,13 @@ SRCS = minishell.c \
 	print_export.c \
 	cd.c \
 	echo.c \
+	exit.c \
 	pwd.c \
 	unset.c \
 	heredoc.c  \
 	create_pipeline.c \
 	sort_pipeline_tree.c \
+	exec.c \
 	run_command_pipeline.c \
 	pipeline_util.c \
 	program_call.c \

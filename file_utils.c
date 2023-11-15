@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:41:15 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/09 00:36:06 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:08:39 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+enum	e_access_type{
+	Nonexistent,
+	Accessible,
+	Direcory,
+	Perm_denied
+};
 
 int	is_file_in_dir(char *name, DIR *dir)
 {

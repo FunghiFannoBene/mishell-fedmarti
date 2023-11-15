@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/25 22:39:30 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:12:56 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static t_pnode	*preliminary_tests(t_pnode *node, t_data *data, int *exit_status)
 		if (child_pid == -1)
 			return (fork_error(node, exit_status));
 		else if (!child_pid)
-			ft_exit(run_command(node, data), node, data);
+			ft_exit_pip(run_command(node, data), node, data);
 		free_tree(node);
 		return (NULL);
 	}
@@ -100,7 +100,7 @@ static t_pnode	*preliminary_tests(t_pnode *node, t_data *data, int *exit_status)
 			if (child_pid == -1)
 				return (fork_error(node, exit_status));
 			else if (child_pid)
-				ft_exit(ft_heredoc(node->args, open("/dev/null", O_WRONLY), \
+				ft_exit_pip(ft_heredoc(node->args, open("/dev/null", O_WRONLY), \
 				data), node, data);
 		}
 		node = next(node);

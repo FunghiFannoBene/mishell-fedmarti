@@ -6,11 +6,13 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:17:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 00:18:40 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:10:16 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_data(t_data *data);
 
 static int	is_number(char *str)
 {
@@ -18,7 +20,7 @@ static int	is_number(char *str)
 	{
 		if (!ft_isdigit(*str))
 			return (0);
-		*str++;
+		str++;
 	}
 	return (1);
 }

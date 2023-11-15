@@ -6,12 +6,14 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 01:24:12 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:05:00 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipeline.h"
 #include "minishell.h"
+
+void	ft_exec(t_pnode *node, t_data *data);
 
 //creates pipe or opens /dev/null and sets the nodes' input/output fd's
 //returns 1 on success, 0 on failure
@@ -62,19 +64,6 @@ int	output_handler(t_pnode *node, t_data *data)
 	return (1);
 }
 
-static inline int	command_not_found_error(char *name)
-{
-	char	*error_str;
-
-	error_str = ft_strjoin(name, ": command not found\n");
-	if (error_str)
-	{
-		write(2, error_str, ft_strlen(error_str));
-		free(error_str);
-	}
-	return (127);
-}
-
 static int	is_builtin(char *str)
 {
 	int	len;
@@ -104,15 +93,15 @@ int	ft_builtin(t_pnode *node, t_data *data)
 	exit_status = 0;
 	if (!ft_strncmp("echo", node->args[0], 5))
 		exit_status = (ft_echo(node->args, node->output_fd));
-	if (!ft_strncmp("env", node->args[0], 4))
+	else if (!ft_strncmp("env", node->args[0], 4))
 		exit_status = (ft_env(data->export_var, node->output_fd));
-	if (!ft_strncmp("export", node->args[0], 7))
+	else if (!ft_strncmp("export", node->args[0], 7))
 		exit_status = (ft_export(node->args, data, node->output_fd));
-	if (!ft_strncmp("pwd", node->args[0], 4))
+	else if (!ft_strncmp("pwd", node->args[0], 4))
 		return (ft_pwd(node->args, data));
-	if (!ft_strncmp("cd", node->args[0], 3))
+	else if (!ft_strncmp("cd", node->args[0], 3))
 		return (ft_cd(node->args, data));
-	if (!ft_strncmp("unset", node->args[0], 6))
+	else if (!ft_strncmp("unset", node->args[0], 6))
 		return (ft_unset(node->args, data));
 	if (node->output_fd != 1)
 		close(node->output_fd);
@@ -133,10 +122,9 @@ void	handle_input_output_fd(t_pnode *node)
 	}
 }
 
+
 int	program_call(t_pnode *node, t_data *data)
 {
-	char	*program_path;
-	char	**env;
 	pid_t	child_pid;
 	int		exit_status;
 
@@ -152,28 +140,11 @@ int	program_call(t_pnode *node, t_data *data)
 	child_pid = ft_fork(&exit_status);
 	if (child_pid == -1)
 		return (on_return(1, node, node->output_fd, 0));
-	if (is_builtin(node->args[0]))
-		return (ft_builtin(node, data), NULL, node->output_fd, 0));
 	else if (child_pid)
-	{
-		if (node->input_fd != 0)
-			close(node->input_fd);
-		if (node->output_fd != 1)
-			close(node->output_fd);
-		return (exit_status);
-	}
+		return (on_return(exit_status, NULL, node->output_fd, node->input_fd));
 	handle_input_output_fd(node);
-	env = env_list_to_array(data->export_var);
-	if (!env)
-		ft_exit(1, node, data);
-	program_path = find_file_in_path(node->args[0], \
-	get_var("PATH", data->export_var));
-	if (!program_path)
-	{
-		ft_free_matrix((void ***)&env, INT_MAX);
-		ft_exit(command_not_found_error(node->args[0]), node, data);
-	}
-	execve(program_path, node->args, env);
-	ft_exit(command_not_found_error(node->args[0]), node, data);
+	if (is_builtin(node->args[0]))
+		ft_exit_pip(ft_builtin(node, data), node, data);
+	ft_exec(node, data);
 	return (1);
 }

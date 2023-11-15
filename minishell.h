@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/18 19:54:44 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 19:53:58 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ t_list	*get_env_list(const char **env);
 char	**env_list_to_array(t_list *env_list);
 int		ft_export(char **args, t_data *data, int fd);
 int		ft_env(t_list *env_list, int fd);
+int		ft_echo(char **args, int fd);
 int		ft_cd(char **args, t_data *data);
 int		ft_pwd(char	**args, t_data *data);
 int		ft_unset(char **args, t_data *data);
+int		ft_exit(char **args, t_data *data);
 int		ft_heredoc(char **args, int fd, t_data *data);
 
 //quick function to print the error message and returns the exit value

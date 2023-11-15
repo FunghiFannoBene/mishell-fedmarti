@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/27 10:35:50 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/15 20:06:28 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,19 @@
 
 typedef enum e_pnode_type
 {
-	Null, // 0
-	Program_Call, //1
-	//|
-	Pipe, //2
-	//<
-	Redirect_input, //3
-	//<<
-	Redirect_input_heredoc, //4
-	//>
-	Redirect_output, //5
-	//>>
-	Redirect_output_append //6
+	Null,
+	Program_Call,
+	Pipe,
+	Redirect_input,
+	Redirect_input_heredoc,
+	Redirect_output,
+	Redirect_output_append
 }	t_ntype;
 
 typedef struct s_minishell_data	t_data;
 
-typedef struct s_pipeline_tree_node {
+typedef struct s_pipeline_tree_node
+{
 	enum e_pnode_type			type;
 	char						**args;
 	int							input_fd;
@@ -44,24 +40,24 @@ typedef struct s_pipeline_tree_node {
 
 typedef struct s_redirect
 {
-	char *str;
-	struct s_redirect *next;
-	int		start;
-	char	flag;
-	int		size;
-} t_redirect;
+	char				*str;
+	struct s_redirect	*next;
+	int					start;
+	char				flag;
+	int					size;
+}	t_redirect;
 
 
 typedef struct s_fix_string
 {
-	char *command_name;
-	char *stringa;
-	struct list_redirect* redirect;
-	struct s_fix_string *next;
-} t_indice;
+	char					*command_name;
+	char					*stringa;
+	struct list_redirect	*redirect;
+	struct s_fix_string		*next;
+}	t_indice;
 
 
-void next_size(char *s, int *i, t_redirect **command);
+void	next_size(char *s, int *i, t_redirect **command);
 t_pnode	*sort_pipeline_tree(t_pnode *input_tree);
 int		is_type(t_pnode *node, t_ntype *types);
 void	free_node(t_pnode *node);
@@ -70,14 +66,14 @@ t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous);
 pid_t	run_command(t_pnode *node, t_data *data);
 t_pnode	*next(t_pnode *node);
 t_pnode	*del_next(t_pnode *node);
-void	ft_exit(int exit_status, t_pnode *tree, t_data *data);
+void	ft_exit_pip(int exit_status, t_pnode *tree, t_data *data);
 pid_t	ft_fork(int *exit_status);
 int		on_return(int exit_status, t_pnode *node, int fd1, int fd2);
-char *transform_for_dollar(char *s, t_data* data);
-char *replace_for_new_str(char* s,char* tmp, int i, int size);
-char *add_slashes(char *tmp);
-int checksymbol(char *s);
-int check_invalid(char c, char* invalid);
-char *ft_strndup(const char *s, size_t n);
+char	*transform_for_dollar(char *s, t_data *data);
+char	*replace_for_new_str(char *s, char *tmp, int i, int size);
+char	*add_slashes(char *tmp);
+int		checksymbol(char *s);
+int		check_invalid(char c, char *invalid);
+char	*ft_strndup(const char *s, size_t n);
 
 #endif

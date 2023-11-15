@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:02:19 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/13 00:58:01 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:08:27 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	redirect_input_heredoc(t_pnode *node, t_data *data)
 	close(pipe_fd[0]);
 	exit_status = ft_heredoc(node->args, pipe_fd[1], data);
 	close(pipe_fd[1]);
-	ft_exit(exit_status, node, data);
+	ft_exit_pip(exit_status, node, data);
 	return (0);
 }
 

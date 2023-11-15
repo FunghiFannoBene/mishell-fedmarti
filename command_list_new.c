@@ -443,7 +443,7 @@ t_pnode *create_command_list(char *s)
 			structure_actual = structure_actual->output;
 		}
 		if (command_record == -1 || type == -2)
-			break;
+			break ;
 	}
 	return (structure_head);
 }
