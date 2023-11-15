@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/25 23:55:21 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 00:08:26 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ pid_t	ft_fork(int *exit_status)
 // }
 
 
-void	ft_exit(int exit_status, t_pnode *tree, t_data *data)
+void	ft_exit_pip(int exit_status, t_pnode *tree, t_data *data)
 {
 	free_data(data);
 	free_tree(tree);

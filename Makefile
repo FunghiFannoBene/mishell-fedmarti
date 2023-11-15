@@ -15,6 +15,7 @@ SRCS = minishell.c \
 	export.c \
 	print_export.c \
 	cd.c \
+	echo.c \
 	pwd.c \
 	unset.c \
 	heredoc.c  \
