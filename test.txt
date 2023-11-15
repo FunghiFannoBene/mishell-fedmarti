@@ -1,0 +1,135 @@
+
+if command (char **arg , char *priority list)
+"333333311111222"
+
+if('1')
+	esegui echo(arg)
+else if('2') 
+	cd
+else if('3')
+	<<
+
+
+
+
+
+
+SOLUZIONI:
+
+0 	capire a cosa potrebbero servirci le funzioni date dal subject.
+
+
+1 	creare i vari comandi es 
+
+	"cd"     # Cambia la directory corrente // fatto
+	"pwd"    # Mostra la directory corrente // fatto
+	"echo"   # Visualizza un messaggio o una variabile
+	"exit"   # Esce dalla shell o termina la sessione corrente //fatto
+	"clear"  # Pulisce la schermata della shell //fatto
+	"export" with no options //fatto
+	"unset" with no options //fatto
+
+ 	etc... in quanto verranno sicuramente eseguiti nello stesso modo in ogni caso se richiamati.
+
+
+
+2	  CREARE PSEUDO ENV;
+//fattp
+
+
+
+2.5 		CONTROL SEGNALI (CTRL+C ETC...)
+//fatto nel progesso principale
+
+
+
+
+3 	parsing e creare priorita` e accettazione ad esempio
+
+ 	\\        | << < >> > "" ''         //
+
+	quindi richiamando uno dei "vari comandi" per poi passare l'output al successivo.
+
+
+4	valgrind memoria, check e controllo codice/refactor
+	END
+
+
+
+
+Funzioni
+/
+printf 
+malloc
+free
+write 
+access
+open
+read 
+close
+fork
+waitpid
+signal
+sigaction
+kill
+exit
+
+
+wait manda in pausa il programma finche non arriva un segnale
+
+perror stampa automaticamente un messaggio d'errore correlato 
+all'ultima operazione che ha avuto un errore e un messaggio personalizzato.
+
+chdir riproduce cd è controllabile, se ritorna 0 significa che FUNZIONA
+
+readline STAMPA e cattura un INPUT;
+
+add_history AGGIUNGE STORICO (quello che volevamo risolvere con la structure che quindi non serve),
+
+getcwd esegue "PWD" circa e lo salva in una STRINGA!
+
+rl_clear_history PULISCE la HISTORY quella che volevamo mettere in struct (Non so se ci serve);
+
+rl_replace_line per rimpiazzare quello che hai scritto dentro readline
+
+rl_redisplay per ristampare il prompt
+
+rl_on_new_line prima di rl_redisplay si usa per specificare di ristampare su nuova linea (devi comunque farlo dopo di aver printato \n)
+
+
+DA guardare
+
+execve
+
+
+
+TO LEARN
+
+wait3
+wait4
+sigemptyset
+sigaddset
+stat
+lstat
+fstat
+unlink
+dup
+dup2
+pipe
+opendir
+readdir
+closedir
+strerror
+isatty
+ttyname
+ttyslot
+ioctl,
+getenv
+tcsetattr
+tcgetattr
+tgetent
+tgetflag
+tgetnum
+tgetstr
+tgoto
+tputs

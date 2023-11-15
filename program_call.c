@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/25 23:50:41 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/15 01:24:12 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,31 +97,13 @@ static int	is_builtin(char *str)
 	return (0);
 }
 
-int	pseudo_echo(char **args, int fd)
-{
-	int	i = 1;
-
-	if (args[1] && !ft_strncmp("-n", args[1], 3))
-		i++;
-	for ( ; args[i]; i++)
-	{
-		write(fd, args[i], ft_strlen(args[i]));
-		if (args[i + 1])
-			write(fd, " ", 1);
-	}
-	if (!args[1] || ft_strncmp("-n", args[1], 3))
-		write(fd, "\n", 1);
-	return (0);
-}
-
-
 int	ft_builtin(t_pnode *node, t_data *data)
 {
 	int	exit_status;
 
 	exit_status = 0;
 	if (!ft_strncmp("echo", node->args[0], 5))
-		exit_status = (pseudo_echo(node->args, node->output_fd));
+		exit_status = (ft_echo(node->args, node->output_fd));
 	if (!ft_strncmp("env", node->args[0], 4))
 		exit_status = (ft_env(data->export_var, node->output_fd));
 	if (!ft_strncmp("export", node->args[0], 7))
@@ -167,11 +149,11 @@ int	program_call(t_pnode *node, t_data *data)
 			return (1);
 		}
 	}
-	if (is_builtin(node->args[0]))
-		return (on_return(ft_builtin(node, data), NULL, node->output_fd, 0));
 	child_pid = ft_fork(&exit_status);
 	if (child_pid == -1)
 		return (on_return(1, node, node->output_fd, 0));
+	if (is_builtin(node->args[0]))
+		return (ft_builtin(node, data), NULL, node->output_fd, 0));
 	else if (child_pid)
 	{
 		if (node->input_fd != 0)
