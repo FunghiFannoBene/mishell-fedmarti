@@ -124,7 +124,7 @@ int	main(int argc, const char **argv, const char **env)
 	(void)argv;
 
 	signal(SIGINT, SIG_IGN);
-	signal(SIGTERM, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 
 	args = ft_calloc(3, sizeof(char *));
 	args[0] = ft_strdup("grep");

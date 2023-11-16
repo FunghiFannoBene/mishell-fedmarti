@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:41:15 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 21:08:39 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:23:10 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*find_file_in_path(char *name, t_var *env_v_path)
 	if (!name || name[0] == '/' || (name[0] == '.' && name[1] == '/'))
 		return (name);
 	if (!env_v_path || !env_v_path->value)
-		return (ft_strjoin("./", name));
+		return (name);
 	env_paths = ft_split(env_v_path->value, ':');
 	if (!env_paths)
 		return (name);

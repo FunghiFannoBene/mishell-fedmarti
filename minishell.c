@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 23:14:14 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:46:33 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	update_exit_status(t_var *exit_status, int new_val);
 
 int clear()
 {
-	write(STDOUT_FILENO, "\033[H\033[2J\033[3J", 11);
+	// write(STDOUT_FILENO, "\033[H\033[2J\033[3J", 11);
+	// write(STDOUT_FILENO, "\033[H\033[2J\033[3J", 12);
 	return (0);
 	//esegue clear "\033[H" si muove a HOME , "\033[2J" pulisce 
 	//l'area attuale "\033[3J" pulisce anche la history
@@ -67,7 +68,7 @@ t_data	*data_init(char **env)
 
 void	update_exit_status(t_var *exit_status, int new_val)
 {
-	int pow;
+	int	pow;
 	int	i;
 
 	ft_bzero(exit_status->value, sizeof(char) * 4);
@@ -163,8 +164,7 @@ int	main(int argc, char **argv, char **env)
 		t_pnode *command_list = create_command_list(input);
 		free (input);
 		int es = run_command_pipeline(command_list, data);
-		// update_exit_status(data->exit_status, es);
-		(void)es;
+		update_exit_status(data->exit_status, es);
 	}
 	free_data(data);
 	return (0);

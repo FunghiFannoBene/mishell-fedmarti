@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 21:15:16 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 23:42:13 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:27:21 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static inline int	command_not_found_error(char *name)
 {
 	char	*error_str;
 
-	error_str = ft_strjoin(name, ": command not found\n");
+	error_str = ft_multistrjoin((char *[]){"minishell: ", name, \
+	": command not found\n", NULL});
 	if (error_str)
 	{
 		write(2, error_str, ft_strlen(error_str));
@@ -74,7 +75,7 @@ void	ft_exec(t_pnode *node, t_data *data)
 	if (access(program_path, F_OK))
 	{
 		_error_message(program_path, "No such file or directory");
-		ft_exit_pip(126, node, data);
+		ft_exit_pip(127, node, data);
 	}
 	if (!is_executable(program_path))
 	{

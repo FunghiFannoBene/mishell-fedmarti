@@ -6,22 +6,12 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 23:53:49 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:35:33 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipeline.h"
 #include "minishell.h"
-
-void	child_sighandler(int signo)
-{
-	// printf("receiving signal no. %i\n", signo);
-	if (signo == SIGINT)
-	{
-		// printf("i'm being terminated :0\n");
-		exit (130);
-	}
-}
 
 void	free_data(t_data *data);
 
@@ -44,34 +34,7 @@ int	on_return(int exit_status, t_pnode *node, int fd1, int fd2)
 	return (exit_status);
 }
 
-pid_t	ft_fork(int *exit_status)
-{
-	pid_t	child_pid;
 
-	child_pid = fork();
-	if (child_pid == 0)
-	{
-		signal(SIGINT, child_sighandler);
-		return (0);
-	}
-	else if (child_pid == -1)
-	{
-		*exit_status = 1;
-		return (-1);
-	}
-	if (waitpid(child_pid, exit_status, 0) < 0)
-	{
-		*exit_status = 1;
-		return (-1);
-	}
-	if (WIFEXITED(*exit_status))
-		*exit_status = (WEXITSTATUS(*exit_status));
-	else if (WIFSIGNALED(*exit_status))
-		*exit_status = 137;
-	else if (WIFSTOPPED(*exit_status))
-		*exit_status = 130;
-	return (child_pid);
-}
 
 // pid_t	ft_fork(int *exit_status)
 // {

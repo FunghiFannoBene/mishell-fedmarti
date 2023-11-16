@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 23:51:12 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/16 20:35:20 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	is_builtin(char *str)
 
 	if (!str || !ft_isalpha(*str))
 		return (0);
-	len = ft_strlen(str);
-	if (len > 6 || len < 2)
+	len = ft_strlen(str) + 1;
+	if (len > 7 || len < 3)
 		return (0);
 	if (!ft_strncmp("echo", str, len))
 		return (1);
@@ -79,9 +79,13 @@ int	is_builtin(char *str)
 		return (1);
 	if (!ft_strncmp("export", str, len))
 		return (1);
+	if (!ft_strncmp("exit", str, 5))
+		return (1);
 	if (!ft_strncmp("pwd", str, len))
 		return (1);
 	if (!ft_strncmp("cd", str, len))
+		return (1);
+	if (!ft_strncmp("unset", str, len))
 		return (1);
 	return (0);
 }
@@ -97,6 +101,8 @@ int	ft_builtin(t_pnode *node, t_data *data)
 		exit_status = (ft_env(data->export_var, node->output_fd));
 	else if (!ft_strncmp("export", node->args[0], 7))
 		exit_status = (ft_export(node->args, data, node->output_fd));
+	else if (!ft_strncmp("exit", node->args[0], 5))
+		exit_status = ft_exit(node->args, data);
 	else if (!ft_strncmp("pwd", node->args[0], 4))
 		return (ft_pwd(node->args, data));
 	else if (!ft_strncmp("cd", node->args[0], 3))

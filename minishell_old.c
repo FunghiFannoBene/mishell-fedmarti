@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/10/25 22:38:53 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/16 18:51:13 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int clear()
 {
-	write(STDOUT_FILENO, "\033[H\033[2J\033[3J", 11);
+	write(STDOUT_FILENO, "\033[H\033[2J\033[3J", 11);z
 	return (0);
 	//esegue clear "\033[H" si muove a HOME , "\033[2J" pulisce 
 	//l'area attuale "\033[3J" pulisce anche la history

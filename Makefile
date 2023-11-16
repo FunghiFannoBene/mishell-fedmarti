@@ -25,6 +25,7 @@ SRCS = minishell.c \
 	exec.c \
 	run_command_pipeline.c \
 	pipeline_util.c \
+	ft_fork.c \
 	program_call.c \
 	redirect_input.c \
 	error_messages.c \
@@ -41,15 +42,22 @@ SRCS = minishell.c \
 	command_list7.c \
 	command_list8.c \
 
+OBJS = $(SRCS:%.c=%.o)
+
 CFLAGS = -Wall -Werror -Wextra -g
 
 LIBS= -L$(LIBFT_DIR) -lft -lreadline
 
-all: $(LIBFT)
-	$(CC) $(SRCS) $(CFLAGS) -o $(NAME) $(LIBS)
+$(NAME): $(LIBFT) $(OBJS)
+	$(CC) $(OBJS) $(CFLAGS) -o $@ $(LIBS)
+
+all: $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $< -c -o $@ 
 
 clean:
 	rm -f *.o */*.o
