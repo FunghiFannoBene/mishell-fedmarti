@@ -55,5 +55,7 @@ int	ft_exit(char **args, t_data *data)
 		write (2, "bash: exit: too many arguments\n", 31);
 		return (1);
 	}
+	free_data(data);
+	exit(ft_atoi(args[1]));
 	return (0);
 }

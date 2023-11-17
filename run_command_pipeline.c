@@ -135,6 +135,9 @@ int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 {
 	int		exit_status;
 
+	
+	if (!pipeln_tree)
+		return (1);
 	if (pipeln_tree->output == NULL && is_builtin(pipeln_tree->args[0]))
 	{
 		exit_status = ft_builtin(pipeln_tree, data);

@@ -39,18 +39,15 @@ void	parent_logic(pid_t child_pid, int *exit_status)
 		*exit_status = 1;
 		return ;
 	}
-	printf("parent has finished waiting\n");
 	if (WIFEXITED(*exit_status))
 	{
-		printf("child has exited normally\n");
 		*exit_status = (WEXITSTATUS(*exit_status));
 	}
 	else if (WIFSIGNALED(*exit_status))
 		*exit_status = WTERMSIG(*exit_status) + 128;
 	else if (WIFSTOPPED(*exit_status))
 	{
-		printf("child was stopped\n");
-		parent_logic(child_pid, exit_status);	
+		;
 	}
 	signal(SIGINT, signal_handler);
 }
