@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:38:19 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 20:04:39 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 05:58:20 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	checksymbol(char *s)
 	while (s[i] != '\0')
 	{
 		if (check_invalid(s[i], NOT_VALID) == 1)
-			return (i + 1);
+			return (i);
 		i++;
 	}
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 03:12:51 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 06:15:58 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char			*add_slashes(char *tmp);
 char			*ft_strndup(const char *s, size_t n);
 void			init_replace(t_replace *r);
 void			evaluate_free(char **tmp, char **s, t_replace *r);
-char			*replace_for_new_str(char *s, char *tmp, int i);
+char			*replace_for_new_str(char *s, char *tmp, int i, int *di);
 void			init_transform_d(t_short_dollar *d);
 int				create_flags(char *s, t_short_dollar *d);
 char			*transform_for_dollar(char *s, t_data *data);

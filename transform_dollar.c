@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 03:59:22 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 06:32:40 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,16 @@ int	create_flags(char *s, t_short_dollar *d)
 	}
 	else
 		d->slash_count = 0;
-	if (s[d->i] == '\'')
-		d->flag = 1;
-	while (s[d->i] && d->flag == 1)
+	if((check_virgolette_doppie(s, d->i) == 0))
 	{
-		d->i++;
 		if (s[d->i] == '\'')
-			d->flag = 0;
+			d->flag = 1;
+		while (s[d->i] && d->flag == 1)
+		{
+			d->i++;
+			if (s[d->i] == '\'')
+				d->flag = 0;
+		}
 	}
 	d->start = d->i;
 	return (1);
@@ -67,16 +70,13 @@ char	*transform_for_dollar(char *s, t_data *data)
 			s[d.i + d.env_len + 1] = '\0';
 			list = search_variable_tvar(s + d.i, data);
 			s[d.i + d.env_len + 1] = (char)d.save;
-			if (list != NULL && list->value != NULL)
+			if (list != NULL)
 			{
 				d.tmp = add_slashes(ft_strdup(list->value));
 				d.size = (int)ft_strlen(d.tmp);
-				d.i += d.size + 1;
 			}
-			s = replace_for_new_str(s, d.tmp, d.start);
+			s = replace_for_new_str(s, d.tmp, d.start, &d.i);
 		}
-		if(s[d.i] == '$')
-			d.i--;
 	}
 	return (s);
 }

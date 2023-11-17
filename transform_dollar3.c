@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:39:48 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 03:57:13 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 06:28:28 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	evaluate_free(char **tmp, char **s, t_replace *r)
 	*s = NULL;
 }
 
-char	*replace_for_new_str(char *s, char *tmp, int i)
+char	*replace_for_new_str(char *s, char *tmp, int i, int *di)
 {
 	t_replace	r;
 
@@ -88,6 +88,7 @@ char	*replace_for_new_str(char *s, char *tmp, int i)
 						+ r.env_len, NULL});
 			else
 				r.result = check_and_addx(r.start, tmp, s+i+r.env_len);
+			(*di)=i-1;
 			evaluate_free(&tmp, &s, &r);
 			return (r.result);
 		}
