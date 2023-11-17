@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/16 19:46:33 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/17 03:42:23 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,13 @@ int	main(int argc, char **argv, char **env)
 			return (1);
 		}
 		t_pnode *command_list = create_command_list(input);
+		// int i = 0;
+		// while(command_list)
+		// {
+		// 	while(command_list->args)
+		// 		printf("|%s|\n", command_list->args[i++]);
+		// 	command_list = command_list->output;
+		// }
 		free (input);
 		int es = run_command_pipeline(command_list, data);
 		update_exit_status(data->exit_status, es);

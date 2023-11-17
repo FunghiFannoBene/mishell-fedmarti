@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_dollar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 23:24:17 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/17 03:59:22 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*transform_for_dollar(char *s, t_data *data)
 			s[d.i + d.env_len + 1] = '\0';
 			list = search_variable_tvar(s + d.i, data);
 			s[d.i + d.env_len + 1] = (char)d.save;
-			if (list != NULL)
+			if (list != NULL && list->value != NULL)
 			{
 				d.tmp = add_slashes(ft_strdup(list->value));
 				d.size = (int)ft_strlen(d.tmp);
@@ -75,6 +75,8 @@ char	*transform_for_dollar(char *s, t_data *data)
 			}
 			s = replace_for_new_str(s, d.tmp, d.start);
 		}
+		if(s[d.i] == '$')
+			d.i--;
 	}
 	return (s);
 }

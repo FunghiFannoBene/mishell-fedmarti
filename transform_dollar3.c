@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:39:48 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 20:04:43 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 03:57:13 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ char	*replace_for_new_str(char *s, char *tmp, int i)
 				r.result = ft_multistrjoin((char *[]){r.start, s + i
 						+ r.env_len, NULL});
 			else
-				r.result = ft_multistrjoin((char *[]){r.start, "'", tmp, "'", s
-						+ i + r.env_len, NULL});
+				r.result = check_and_addx(r.start, tmp, s+i+r.env_len);
 			evaluate_free(&tmp, &s, &r);
 			return (r.result);
 		}

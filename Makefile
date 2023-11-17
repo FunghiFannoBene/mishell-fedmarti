@@ -33,6 +33,7 @@ SRCS = minishell.c \
 	transform_dollar.c \
 	transform_dollar2.c \
 	transform_dollar3.c \
+	transform_dollar4.c \
 	command_list.c \
 	command_list2.c \
 	command_list3.c \
