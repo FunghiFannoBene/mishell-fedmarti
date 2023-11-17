@@ -73,6 +73,7 @@ int		ft_pwd(char	**args, t_data *data);
 int		ft_unset(char **args, t_data *data);
 int		ft_exit(char **args, t_data *data);
 int		ft_heredoc(char **args, int fd, t_data *data);
+char 	*remove_useless(char *s);
 
 //quick function to print the error message and returns the exit value
 int		no_such_file_or_directory(char *filename);

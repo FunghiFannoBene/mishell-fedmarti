@@ -44,3 +44,30 @@ char *check_and_addx(char *start, char *tmp, char *position, int *di)
 	}
 	return(result);
 }
+
+char *remove_useless(char *s)
+{
+	char *newstr = ft_calloc(ft_strlen(s)+1 , 1);
+	int i = 0;
+	int x = 0;
+	while(s[i])
+	{
+		if(s[i] == '"')
+		{
+			i++;
+			while(s[i] && s[i] != '"')
+			{
+				newstr[x++] = s[i];
+				i++;
+			}
+			if(s[i] == '\0')
+				break;
+		}
+		else if(s[i] != '\'')
+			newstr[x++] = s[i];
+		i++;
+	}
+	newstr[x] = '\0';
+	printf("\n\n%s\n\n", newstr);
+	return(newstr);
+}
