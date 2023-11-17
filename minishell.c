@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 03:42:23 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 08:24:01 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,7 @@ int	main(int argc, char **argv, char **env)
 		add_history(input); // aggiunge alla storia da solo! non serve la struct
 		// char *temp = input;
 		input = transform_for_dollar(input, data);
+		printf("Sono il risultato di Transform: %s\n", input);
 		// free(temp);
 		if (!input)
 		{
