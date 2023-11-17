@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/17 04:34:51 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 07:33:46 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <fcntl.h>
 # include <dirent.h>
 # ifndef NOT_VALID
-#  define NOT_VALID "!@#$%^*=+~,.;:\"\\| \'"
+#  define NOT_VALID "!@#$%^&*()_+[]{};:',./<>?\\|\"`~ "
 # endif
 
 typedef struct s_list_env

@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:39:48 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 06:28:28 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 07:59:33 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,16 @@ char	*replace_for_new_str(char *s, char *tmp, int i, int *di)
 		{
 			r.start = ft_strndup(s, (size_t)i);
 			if (tmp == NULL)
+			{
+				(*di)=i-1;
 				r.result = ft_multistrjoin((char *[]){r.start, s + i
 						+ r.env_len, NULL});
+			}
 			else
-				r.result = check_and_addx(r.start, tmp, s+i+r.env_len);
-			(*di)=i-1;
+			{
+				(*di)=i;
+				r.result = check_and_addx(r.start, tmp, s+i+r.env_len, di);
+			}
 			evaluate_free(&tmp, &s, &r);
 			return (r.result);
 		}

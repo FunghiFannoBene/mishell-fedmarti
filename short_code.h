@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 06:15:58 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 07:59:10 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int				evaluate_next_struct(t_command *c, char *s);
 void			command_to_structure(t_command *c);
 void			structure_linking(t_command *c);
 t_pnode			*create_command_list(char *s);
-char			*check_and_addx(char *start, char *tmp, char *position);
+char			*check_and_addx(char *start, char *tmp, char *position, int *di);
 int				check_virgolette_doppie(char *s, int i);
 
 #endif

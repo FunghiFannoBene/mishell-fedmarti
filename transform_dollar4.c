@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 03:05:01 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 04:51:42 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 08:02:42 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,20 @@ int check_virgolette_doppie(char *s, int i)
 	return (0);
 }
 
-char *check_and_addx(char *start, char *tmp, char *position)
+char *check_and_addx(char *start, char *tmp, char *position, int *di)
 {
 	char *result;
 
 	result = NULL;
 	if((check_virgolette_doppie(start, 0) == -1))
+	{
 		result = ft_multistrjoin((char *[]){start, tmp, position, NULL});
+		(*di)--;
+	}
 	else
+	{
 		result = ft_multistrjoin((char *[]){start, "'", tmp, "'", position, NULL});
+		(*di)++;
+	}
 	return(result);
 }

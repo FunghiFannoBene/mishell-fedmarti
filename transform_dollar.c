@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 06:32:40 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 07:56:12 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*transform_for_dollar(char *s, t_data *data)
 	init_transform_d(&d);
 	while (s[++d.i] != '\0')
 	{
+		d.size = 0;
 		if (create_flags(s, &d) && s[d.i] == '\0')
 			return (s);
 		d.env_len = checksymbol(s + d.i + 1);
@@ -76,6 +77,7 @@ char	*transform_for_dollar(char *s, t_data *data)
 				d.size = (int)ft_strlen(d.tmp);
 			}
 			s = replace_for_new_str(s, d.tmp, d.start, &d.i);
+			d.i+=d.size;
 		}
 	}
 	return (s);
