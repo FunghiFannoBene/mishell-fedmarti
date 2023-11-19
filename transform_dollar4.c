@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 03:05:01 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 12:19:19 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/19 14:37:14 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,31 +44,6 @@ char *check_and_addx(char *start, char *tmp, char *position, int *di)
 	}
 	return(result);
 }
-
-// da valutare aggiunta per virgolette incluse in virgolette
-// char *virgolette_content(char *s)
-// {
-// 	int i = 0;
-// 	char *x = calloc (ft_strlen(s)+1, 1); 
-// 	int z = 0;
-// 	while(s[i])
-// 	{
-// 		if(s[i] == '"' || s[i] == '\'')
-// 		{
-// 			while(s[i] != '"' || s[i] != '\'')
-// 			{
-// 				x[z++] = s[i++];
-// 				i++;
-				
-// 			}
-// 		}
-// 		else
-// 			x[z++] = s[i++];
-// 	}
-// 	x[z]= '\0';
-// 	printf("%s\n", x);
-// 	return (x);
-// }
 
 char *remove_useless(char *s)
 {
