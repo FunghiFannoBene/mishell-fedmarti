@@ -154,7 +154,8 @@ int	main(int argc, char **argv, char **env)
 		add_history(input); // aggiunge alla storia da solo! non serve la struct
 		// char *temp = input;
 		input = transform_for_dollar(input, data);
-		printf("Sono il risultato di Transform: %s\n", input);
+		printf("after trans: %s\n", input);
+		remove_useless(input);
 		// free(temp);
 		if (!input)
 		{

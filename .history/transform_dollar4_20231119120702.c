@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   transform_dollar4.c                                :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 03:05:01 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 12:18:01 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/17 16:59:16 by shhuang          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "short_code.h"
 
@@ -44,6 +44,7 @@ char *check_and_addx(char *start, char *tmp, char *position, int *di)
 	}
 	return(result);
 }
+<<<<<<< HEAD
 // da valutare aggiunta per virgolette incluse in virgolette
 // char *virgolette_content(char *s)
 // {
@@ -68,6 +69,7 @@ char *check_and_addx(char *start, char *tmp, char *position, int *di)
 // 	printf("%s\n", x);
 // 	return (x);
 // }
+=======
 
 char *remove_useless(char *s)
 {
@@ -95,3 +97,4 @@ char *remove_useless(char *s)
 	printf("\n\n%s\n\n", newstr);
 	return(newstr);
 }
+>>>>>>> 2c9462ff48f59347288098295be2af19052c88a0

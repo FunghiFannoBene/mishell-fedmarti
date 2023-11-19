@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list5.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 17:43:24 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 03:32:18 by shhuang          ###   ########.fr       */
+/*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */
+/*   Updated: 2023/11/19 11:47:51 by shhuang          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "short_code.h"
 
@@ -50,7 +50,7 @@ void	next_size(int *i, t_redirect **command)
 void	add_and_set_for_next(t_redirect **command, char *s)
 {
 	(*command)->next = malloc(sizeof(t_redirect));
-	memset((*command)->next, 0, sizeof(t_redirect));
+	ft_memset((*command)->next, 0, sizeof(t_redirect));
 	(*command)->next->str = substring(s, (size_t)(*command)->start, (size_t)(*command)->size);
 	(*command) = (*command)->next;
 	(*command)->flag = 0;

@@ -64,5 +64,6 @@
 	"functional": "c",
 	"short_code.h": "c",
 	"libft.h": "c"
-}
+},
+"C_Cpp.default.compilerPath": "/usr/bin/clang"
 }

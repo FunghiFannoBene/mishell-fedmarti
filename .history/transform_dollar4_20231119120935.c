@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 03:05:01 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 12:18:01 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/19 12:09:35 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -68,30 +68,3 @@ char *check_and_addx(char *start, char *tmp, char *position, int *di)
 // 	printf("%s\n", x);
 // 	return (x);
 // }
-
-char *remove_useless(char *s)
-{
-	char *newstr = ft_calloc(ft_strlen(s)+1 , 1);
-	int i = 0;
-	int x = 0;
-	while(s[i])
-	{
-		if(s[i] == '"')
-		{
-			i++;
-			while(s[i] && s[i] != '"')
-			{
-				newstr[x++] = s[i];
-				i++;
-			}
-			if(s[i] == '\0')
-				break;
-		}
-		else if(s[i] != '\'')
-			newstr[x++] = s[i];
-		i++;
-	}
-	newstr[x] = '\0';
-	printf("\n\n%s\n\n", newstr);
-	return(newstr);
-}
