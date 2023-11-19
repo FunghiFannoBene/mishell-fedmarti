@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:50:06 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 13:22:19 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/19 14:37:11 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -36,3 +36,4 @@ t_pnode	*create_command_list(char *s)
 	}
 	return (c.structure_head);
 }
+a
