@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1700392175124,
@@ -16,6 +16,10 @@
                 {
                     "date": 1700392681343,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/17 03:05:01 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/19 12:10:32 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/19 12:18:01 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n@@ -43,9 +43,8 @@\n \t\t(*di)++;\n \t}\n \treturn(result);\n }\n-\n // da valutare aggiunta per virgolette incluse in virgolette\n // char *virgolette_content(char *s)\n // {\n // \tint i = 0;\n@@ -68,4 +67,31 @@\n // \tx[z]= '\\0';\n // \tprintf(\"%s\\n\", x);\n // \treturn (x);\n // }\n+\n+char *remove_useless(char *s)\n+{\n+\tchar *newstr = ft_calloc(ft_strlen(s)+1 , 1);\n+\tint i = 0;\n+\tint x = 0;\n+\twhile(s[i])\n+\t{\n+\t\tif(s[i] == '\"')\n+\t\t{\n+\t\t\ti++;\n+\t\t\twhile(s[i] && s[i] != '\"')\n+\t\t\t{\n+\t\t\t\tnewstr[x++] = s[i];\n+\t\t\t\ti++;\n+\t\t\t}\n+\t\t\tif(s[i] == '\\0')\n+\t\t\t\tbreak;\n+\t\t}\n+\t\telse if(s[i] != '\\'')\n+\t\t\tnewstr[x++] = s[i];\n+\t\ti++;\n+\t}\n+\tnewstr[x] = '\\0';\n+\tprintf(\"\\n\\n%s\\n\\n\", newstr);\n+\treturn(newstr);\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1700392759772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/17 03:05:01 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/19 12:18:01 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/19 12:19:19 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n@@ -43,8 +43,9 @@\n \t\t(*di)++;\n \t}\n \treturn(result);\n }\n+\n // da valutare aggiunta per virgolette incluse in virgolette\n // char *virgolette_content(char *s)\n // {\n // \tint i = 0;\n"
                 }
             ],
             "date": 1700392175124,

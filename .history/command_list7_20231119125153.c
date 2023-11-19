@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:44:53 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 12:52:02 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/19 12:51:52 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -28,6 +28,7 @@ int	check_all_end(char *s, int *i, t_redirect **command, int *variabile)
 		return (1);
 	return (2);
 }
+
 
 int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 {
