@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".vscode/settings.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1700410155694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1700410155694,
+            "name": "Commit-0",
+            "content": "{\n  \"C_Cpp_Runner.cCompilerPath\": \"gcc\",\n  \"C_Cpp_Runner.cppCompilerPath\": \"g++\",\n  \"C_Cpp_Runner.debuggerPath\": \"gdb\",\n  \"C_Cpp_Runner.cStandard\": \"\",\n  \"C_Cpp_Runner.cppStandard\": \"\",\n  \"C_Cpp_Runner.msvcBatchPath\": \"\",\n  \"C_Cpp_Runner.useMsvc\": false,\n  \"C_Cpp_Runner.warnings\": [\n    \"-Wall\",\n    \"-Wextra\",\n    \"-Wpedantic\",\n    \"-Wshadow\",\n    \"-Wformat=2\",\n    \"-Wcast-align\",\n    \"-Wconversion\",\n    \"-Wsign-conversion\",\n    \"-Wnull-dereference\"\n  ],\n  \"C_Cpp_Runner.msvcWarnings\": [\n    \"/W4\",\n    \"/permissive-\",\n    \"/w14242\",\n    \"/w14287\",\n    \"/w14296\",\n    \"/w14311\",\n    \"/w14826\",\n    \"/w44062\",\n    \"/w44242\",\n    \"/w14905\",\n    \"/w14906\",\n    \"/w14263\",\n    \"/w44265\",\n    \"/w14928\"\n  ],\n  \"C_Cpp_Runner.enableWarnings\": true,\n  \"C_Cpp_Runner.warningsAsError\": false,\n  \"C_Cpp_Runner.compilerArgs\": [],\n  \"C_Cpp_Runner.linkerArgs\": [],\n  \"C_Cpp_Runner.includePaths\": [],\n  \"C_Cpp_Runner.includeSearch\": [\n    \"*\",\n    \"**/*\"\n  ],\n  \"C_Cpp_Runner.excludeSearch\": [\n    \"**/build\",\n    \"**/build/**\",\n    \"**/.*\",\n    \"**/.*/**\",\n    \"**/.vscode\",\n    \"**/.vscode/**\"\n  ],\n  \"C_Cpp_Runner.useAddressSanitizer\": false,\n  \"C_Cpp_Runner.useUndefinedSanitizer\": false,\n  \"C_Cpp_Runner.useLeakSanitizer\": false,\n  \"C_Cpp_Runner.showCompilationTime\": false,\n  \"C_Cpp_Runner.useLinkTimeOptimization\": false,\n  \"C_Cpp_Runner.msvcSecureNoWarnings\": false,\n  \"files.associations\": {\n\t\"array\": \"c\",\n\t\"string_view\": \"c\",\n\t\"initializer_list\": \"c\",\n\t\"utility\": \"c\",\n\t\"functional\": \"c\",\n\t\"short_code.h\": \"c\",\n\t\"libft.h\": \"c\"\n},\n\"C_Cpp.default.compilerPath\": \"/usr/bin/clang\",\n\"C_Cpp.errorSquiggles\": \"disabled\"\n}"
+        }
+    ]
+}

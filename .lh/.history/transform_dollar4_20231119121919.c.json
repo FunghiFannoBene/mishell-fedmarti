@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".history/transform_dollar4_20231119121919.c",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1700408816205,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1700408816205,
+            "name": "Commit-0",
+            "content": "/******************************************************************************/\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   transform_dollar4_20231119121919.c                 :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/11/17 03:05:01 by shhuang           #+#    #+#             */\n/*   Updated: 2023/11/19 16:46:56 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/******************************************************************************/\n\n#include \"short_code.h\"\n\nint check_virgolette_doppie(char *s, int i)\n{\n\tint count_double = 0;\n\tint x = i;\n\twhile (s[x])\n\t{\n\t\tif (s[x] == '\"' && !(s[x] == '\\\\' && s[x + 1] == '\"'))\n\t\t\tcount_double++;\n\t\tx++;\n\t}\n\tif (count_double % 2)\n\t\treturn (-1);\n\treturn (0);\n}\n\nchar *check_and_addx(char *start, char *tmp, char *position, int *di)\n{\n\tchar *result;\n\n\tresult = NULL;\n\tif((check_virgolette_doppie(start, 0) == -1))\n\t{\n\t\tresult = ft_multistrjoin((char *[]){start, tmp, position, NULL});\n\t\t(*di)--;\n\t}\n\telse\n\t{\n\t\tresult = ft_multistrjoin((char *[]){start, \"'\", tmp, \"'\", position, NULL});\n\t\t(*di)++;\n\t}\n\treturn(result);\n}\n\n// da valutare aggiunta per virgolette incluse in virgolette\n// char *virgolette_content(char *s)\n// {\n// \tint i = 0;\n// \tchar *x = calloc (ft_strlen(s)+1, 1); \n// \tint z = 0;\n// \twhile(s[i])\n// \t{\n// \t\tif(s[i] == '\"' || s[i] == '\\'')\n// \t\t{\n// \t\t\twhile(s[i] != '\"' || s[i] != '\\'')\n// \t\t\t{\n// \t\t\t\tx[z++] = s[i++];\n// \t\t\t\ti++;\n\t\t\t\t\n// \t\t\t}\n// \t\t}\n// \t\telse\n// \t\t\tx[z++] = s[i++];\n// \t}\n// \tx[z]= '\\0';\n// \tprintf(\"%s\\n\", x);\n// \treturn (x);\n// }"
+        }
+    ]
+}

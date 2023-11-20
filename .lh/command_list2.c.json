@@ -1,0 +1,18 @@
+{
+    "sourceFile": "command_list2.c",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1700405809770,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1700405809770,
+            "name": "Commit-0",
+            "content": "/******************************************************************************/\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   command_list2.c                                    :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/10/30 17:41:17 by shhuang           #+#    #+#             */\n/*   Updated: 2023/11/19 15:56:49 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/******************************************************************************/\n\n#include \"short_code.h\"\n\nvoid\tassign_redirection(int x, t_pnode *structure)\n{\n\tif (x == 1)\n\t\tstructure->type = Redirect_input;\n\telse if (x == 2)\n\t\tstructure->type = Redirect_input_heredoc;\n\telse if (x == 3)\n\t\tstructure->type = Redirect_output;\n\telse if (x == 4)\n\t\tstructure->type = Redirect_output_append;\n}\n\nvoid\tcheck_redirect_init(int *x, int *flag, int *count, t_pnode **structure)\n{\n\t*count = 0;\n\t*flag = 0;\n\t*x = 0;\n\t(*structure)->type = Null;\n}\n\nint\tcheck_redirect(char *s, int *i, t_pnode *structure)\n{\n\tint\tx;\n\tint\tflag;\n\tint\tcount;\n\n\tcheck_redirect_init(&x, &flag, &count, &structure);\n\tif (s[*i] == '>' || s[*i] == '<')\n\t{\n\t\tflag = s[*i];\n\t\tif (s[*i] == '>')\n\t\t{\n\t\t\tx += 2;\n\t\t}\n\t\twhile (s[*i] && s[*i] == flag)\n\t\t{\n\t\t\t(*i)++;\n\t\t\tx++;\n\t\t\tif (++count == 2)\n\t\t\t\tbreak ;\n\t\t}\n\t\tassign_redirection(x, structure);\n\t\tif (s[*i] == flag)\n\t\t\treturn (1);\n\t}\n\treturn (0);\n}\n\nint\tcheck_pipe(char *s, int *i, t_pnode *structure)\n{\n\tif (s[*i] == '|')\n\t{\n\t\tstructure->type = Pipe;\n\t\tstructure->args = NULL;\n\t\t(*i)++;\n\t\treturn (1);\n\t}\n\treturn (0);\n}\n\nint\tcheck_virgolette_dispari(char *s, int *i)\n{\n\tint\tcount_double;\n\tint\tcount_single;\n\tint\tx;\n\n\tx = *i;\n\tcount_single = 0;\n\tcount_double = 0;\n\twhile (s[x])\n\t{\n\t\tif (s[x] == '\\'' && !(s[x] == '\\\\' && s[x + 1] == '\\''))\n\t\t\tcount_single++;\n\t\telse if (s[x] == '\"' && !(s[x] == '\\\\' && s[x + 1] == '\"'))\n\t\t\tcount_double++;\n\t\tx++;\n\t}\n\tif (count_double % 2 || count_single % 2)\n\t\treturn (-1);\n\treturn (0);\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "pipeline.h",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1700459229603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1700459229603,
+            "name": "Commit-0",
+            "content": "/******************************************************************************/\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   pipeline.h                                         :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */\n/*   Updated: 2023/11/20 06:47:09 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/******************************************************************************/\n\n#ifndef PIPELINE_H\n# define PIPELINE_H\n\n# include <sys/types.h>\n\ntypedef enum e_pnode_type\n{\n\tNull,\n\tProgram_Call,\n\tPipe,\n\tRedirect_input,\n\tRedirect_input_heredoc,\n\tRedirect_output,\n\tRedirect_output_append\n}\tt_ntype;\n\ntypedef struct s_minishell_data\tt_data;\n\ntypedef struct s_pipeline_tree_node\n{\n\tenum e_pnode_type\t\t\ttype;\n\tchar\t\t\t\t\t\t**args;\n\tint\t\t\t\t\t\t\tinput_fd;\n\tint\t\t\t\t\t\t\toutput_fd;\n\tstruct s_pipeline_tree_node\t*input[2];\n\tstruct s_pipeline_tree_node\t*output;\n}\tt_pnode;\n\ntypedef struct s_redirect\n{\n\tchar\t\t\t\t*str;\n\tstruct s_redirect\t*next;\n\tint\t\t\t\t\tstart;\n\tchar\t\t\t\tflag;\n\tint\t\t\t\t\tsize;\n\tint\t\t\t\t\tstatus;\n}\tt_redirect;\n\n\ntypedef struct s_fix_string\n{\n\tchar\t\t\t\t\t*command_name;\n\tchar\t\t\t\t\t*stringa;\n\tstruct list_redirect\t*redirect;\n\tstruct s_fix_string\t\t*next;\n}\tt_indice;\n\n\n// void\tnext_size(char *s, int *i, t_redirect **command);\nt_pnode\t*sort_pipeline_tree(t_pnode *input_tree);\nint\t\tis_type(t_pnode *node, t_ntype *types);\nvoid\tfree_node(t_pnode *node);\nvoid\tfree_tree(t_pnode *head);\nt_pnode\t*node_create(enum e_pnode_type type, char **args, t_pnode *previous);\npid_t\trun_command(t_pnode *node, t_data *data);\nt_pnode\t*next(t_pnode *node);\nt_pnode\t*del_next(t_pnode *node);\nvoid\tft_exit_pip(int exit_status, t_pnode *tree, t_data *data);\npid_t\tft_fork(int *exit_status);\nint\t\ton_return(int exit_status, t_pnode *node, int fd1, int fd2);\nchar\t*transform_for_dollar(char *s, t_data *data);\n// char\t*replace_for_new_str(char *s, char *tmp, int i, int size);\n// char\t*add_slashes(char *tmp);\n// int\t\tchecksymbol(char *s);\nint\t\tcheck_invalid(char c, char *invalid);\n// char\t*ft_strndup(const char *s, size_t n);\n\n#endif\n"
+        }
+    ]
+}
