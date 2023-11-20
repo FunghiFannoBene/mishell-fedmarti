@@ -1,0 +1,26 @@
+{
+    "sourceFile": "command_list9.c",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1700480112811,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1700480149568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,15 +5,15 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/20 12:35:12 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/20 12:35:49 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n \n-char\t*ft_strjoin2(char const *s1, char const *s2)\n+char\t*ft_strjoin2(char *s1, char const *s2)\n {\n \tchar\t*joint;\n \tsize_t\tlen;\n \tsize_t\ti;\n"
+                },
+                {
+                    "date": 1700480269940,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/20 12:35:49 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/20 12:37:49 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n@@ -36,7 +36,6 @@\n \t\ts2++;\n \t\ti++;\n \t}\n \tjoint[i] = 0;\n-\tfree(s1);\n \treturn (joint);\n }\n"
+                }
+            ],
+            "date": 1700480112811,
+            "name": "Commit-0",
+            "content": "/******************************************************************************/\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   command_list9.c                                    :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */\n/*   Updated: 2023/11/20 12:35:12 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/******************************************************************************/\n\n#include \"short_code.h\"\n\nchar\t*ft_strjoin2(char const *s1, char const *s2)\n{\n\tchar\t*joint;\n\tsize_t\tlen;\n\tsize_t\ti;\n\n\tlen = ft_strlen(s1) + ft_strlen(s2);\n\tjoint = (char *)malloc(((len + 1) * sizeof(char)));\n\tif (!joint)\n\t\treturn (NULL);\n\ti = 0;\n\twhile (len-- && *s1)\n\t{\n\t\tjoint[i] = *s1;\n\t\ts1++;\n\t\ti++;\n\t}\n\tlen++;\n\twhile (len-- && *s2)\n\t{\n\t\tjoint[i] = *s2;\n\t\ts2++;\n\t\ti++;\n\t}\n\tjoint[i] = 0;\n\tfree(s1);\n\treturn (joint);\n}\n"
+        }
+    ]
+}

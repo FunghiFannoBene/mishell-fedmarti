@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:44:53 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/20 11:51:20 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/20 11:44:09 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -95,11 +95,11 @@ int	init_command(t_command *c, char *s)
 	c->i = 0;
 	if (!s)
 		return (-1);
-	if (check_virgolette_dispari_start(s, c->i))
-	{
-		printf("Virgolette dispari. Comando invalido.\n");
-		return (-1);
-	}
+	// if (check_virgolette_dispari_start(s, c->i))
+	// {
+	// 	printf("Virgolette dispari. Comando invalido.\n");
+	// 	return (-1);
+	// }
 	return (1);
 }
 

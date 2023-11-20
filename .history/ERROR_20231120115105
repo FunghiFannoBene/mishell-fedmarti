@@ -1,0 +1,10 @@
+Minishell> echo '$A$A$ ''''''' ''
+
+
+$A$A$ 
+
+Segmentation fault
+
+
+
+

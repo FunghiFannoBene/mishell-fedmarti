@@ -1,0 +1,18 @@
+{
+    "sourceFile": "Makefile",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1700480109348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1700480109348,
+            "name": "Commit-0",
+            "content": "NAME = minishell\n\nLIBFT_DIR = ./libft\n\nLIBFT = $(LIBFT_DIR)/libft.a\n\nCC = gcc\n\nSRCS = minishell.c \\\n\tvar.c \\\n\tvar2.c \\\n\tvar3.c \\\n\tget_env_list.c \\\n\tenv.c \\\n\texport.c \\\n\tprint_export.c \\\n\tcd.c \\\n\techo.c \\\n\texit.c \\\n\tpwd.c \\\n\tunset.c \\\n\theredoc.c  \\\n\tcreate_pipeline.c \\\n\tsort_pipeline_tree.c \\\n\texec.c \\\n\trun_command_pipeline.c \\\n\tpipeline_util.c \\\n\tft_fork.c \\\n\tprogram_call.c \\\n\tredirect_input.c \\\n\terror_messages.c \\\n\tfile_utils.c \\\n\ttransform_dollar.c \\\n\ttransform_dollar2.c \\\n\ttransform_dollar3.c \\\n\ttransform_dollar4.c \\\n\tcommand_list.c \\\n\tcommand_list2.c \\\n\tcommand_list3.c \\\n\tcommand_list4.c \\\n\tcommand_list5.c \\\n\tcommand_list6.c \\\n\tcommand_list7.c \\\n\tcommand_list8.c \\\n\tcommand_list9.c \\\n\nOBJS = $(SRCS:%.c=%.o)\n\nCFLAGS = -Wall -Werror -Wextra -g\n\nLIBS= -L$(LIBFT_DIR) -lft -lreadline\n\n$(NAME): $(LIBFT) $(OBJS)\n\t$(CC) $(OBJS) $(CFLAGS) -o $@ $(LIBS)\n\nall: $(NAME)\n\n$(LIBFT):\n\tmake -C $(LIBFT_DIR)\n\n%.o: %.c\n\t$(CC) $(CFLAGS) $< -c -o $@ \n\nclean:\n\trm -f *.o */*.o\n\nfclean: clean\n\trm -f $(NAME)\n\nre: fclean clean all\n\nPHONY: clean fclean re all\n\nlibclean:\n\tmake -C $(LIBFT_DIR) fclean"
+        }
+    ]
+}

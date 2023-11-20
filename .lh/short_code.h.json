@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1700410094789,
@@ -12,6 +12,14 @@
                 {
                     "date": 1700458544550,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/19 17:08:14 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/20 06:35:44 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #ifndef SHORT_CODE_H\n"
+                },
+                {
+                    "date": 1700480111060,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/20 06:35:44 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/20 12:35:11 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #ifndef SHORT_CODE_H\n@@ -132,6 +132,6 @@\n void\t\t\tstructure_linking(t_command *c);\n t_pnode\t\t\t*create_command_list(char *s);\n char\t\t\t*check_and_addx(char *start, char *tmp, char *position, int *di);\n int\t\t\t\tcheck_virgolette_doppie(char *s, int i);\n-\n+char\t\t\t*ft_strjoin2(char const *s1, char const *s2);\n #endif\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1700480171319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/20 12:35:11 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/20 12:36:11 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #ifndef SHORT_CODE_H\n@@ -132,6 +132,6 @@\n void\t\t\tstructure_linking(t_command *c);\n t_pnode\t\t\t*create_command_list(char *s);\n char\t\t\t*check_and_addx(char *start, char *tmp, char *position, int *di);\n int\t\t\t\tcheck_virgolette_doppie(char *s, int i);\n-char\t\t\t*ft_strjoin2(char const *s1, char const *s2);\n+char\t\t\t*ft_strjoin2(char *s1, char const *s2);\n #endif\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1700410094789,

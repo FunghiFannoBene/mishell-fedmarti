@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/20 12:36:11 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/20 12:35:11 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -133,5 +133,5 @@ void			structure_linking(t_command *c);
 t_pnode			*create_command_list(char *s);
 char			*check_and_addx(char *start, char *tmp, char *position, int *di);
 int				check_virgolette_doppie(char *s, int i);
-char			*ft_strjoin2(char *s1, char const *s2);
+char			*ft_strjoin2(char const *s1, char const *s2);
 #endif

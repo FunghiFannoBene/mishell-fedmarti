@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:45:39 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/20 12:35:14 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/20 12:27:16 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -91,7 +91,7 @@ void	command_to_structure(t_command *c)
 					c->structure->args[c->x] = ft_strdup("");
 				if(c->head && c->head->str)
 				{
-					c->structure->args[c->x] = ft_strjoin2(c->structure->args[c->x], c->head->str);
+					c->structure->args[c->x] = ft_strjoin(c->structure->args[c->x], c->head->str);
 				}
 				free(c->head->str);
 				c->temp = c->head;
@@ -100,7 +100,7 @@ void	command_to_structure(t_command *c)
 			}
 			if(c->head && c->head->str)
 			{
-				c->structure->args[c->x] = ft_strjoin2(c->structure->args[c->x], c->head->str);
+				c->structure->args[c->x] = ft_strjoin(c->structure->args[c->x], c->head->str);
 				free(c->head->str);
 				c->temp = c->head;
 				c->head = c->head->next;

@@ -42,7 +42,6 @@ SRCS = minishell.c \
 	command_list6.c \
 	command_list7.c \
 	command_list8.c \
-	command_list9.c \
 
 OBJS = $(SRCS:%.c=%.o)
 

@@ -1,0 +1,60 @@
+OUTPUT DIVERSO VIRGOLETTE NON OK
+
+
+Minishell> echo '$'A$'"A$''"'
+$A$A$''
+
+
+
+-------------------------------------------
+
+STRANI
+
+Minishell> len = ft_strlen(s1) + ft_strlen(s2);
+
+Minishell> ls
+ERROR: ld.so: object ''"/usr/libexec/valgrind/vgpreload_core-amd64-linux.so' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+ERROR: ld.so: object '/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so"' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+ERROR            command_list3.c  command_list7.c    echo              exec.o        ft_fork.o       minishell.h            print_export.c    redirect_input.o        transform_dollar.o   unset.o
+Makefile         command_list3.o  command_list7.o    echo.c            exit.c        get_env_list.c  minishell.o            print_export.o    run_command_pipeline.c  transform_dollar2.c  var.c
+cd.c             command_list4.c  command_list8.c    echo.o            exit.o        get_env_list.o  minishell_old.c        program_call.c    run_command_pipeline.o  transform_dollar2.o  var.o
+cd.o             command_list4.o  command_list8.o    env.c             export.c      heredoc.c       minishell_subject.pdf  program_call.o    short_code.h            transform_dollar3.c  var2.c
+command_list.c   command_list5.c  command_list9.c    env.o             export.o      heredoc.o       next-                  pwd.c             sort_pipeline_tree.c    transform_dollar3.o  var2.o
+command_list.o   command_list5.o  command_list9.o    error_messages.c  file_utils.c  libft           pipeline.h             pwd.o             sort_pipeline_tree.o    transform_dollar4.c  var3.c
+command_list2.c  command_list6.c  create_pipeline.c  error_messages.o  file_utils.o  minishell       pipeline_util.c        readline.supp     test                    transform_dollar4.o  var3.o
+command_list2.o  command_list6.o  create_pipeline.o  exec.c            ft_fork.c     minishell.c     pipeline_util.o        redirect_input.c  transform_dollar.c      unset.c
+Minishell> make
+ERROR: ld.so: object ''"/usr/libexec/valgrind/vgpreload_core-amd64-linux.so' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+ERROR: ld.so: object '/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so"' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+make: 'minishell' is up to date.
+Minishell> ./minishell
+ERROR: ld.so: object ''"/usr/libexec/valgrind/vgpreload_core-amd64-linux.so' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+ERROR: ld.so: object '/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so"' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+Minishell> exit
+exitMinishell> clear
+ERROR: ld.so: object ''"/usr/libexec/valgrind/vgpreload_core-amd64-linux.so' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+ERROR: ld.so: object '/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so"' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+''"xterm-256color"': unknown terminal type.
+Minishell> clear
+ERROR: ld.so: object ''"/usr/libexec/valgrind/vgpreload_core-amd64-linux.so' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+ERROR: ld.so: object '/usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so"' from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.
+''"xterm-256color"': unknown terminal type.
+Minishell> c
+minishell: c: command not found
+==458621== 
+==458621== HEAP SUMMARY:
+==458621==     in use at exit: 211,482 bytes in 376 blocks
+==458621==   total heap usage: 2,042 allocs, 1,666 frees, 986,581 bytes allocated
+==458621== 
+==458621== LEAK SUMMARY:
+==458621==    definitely lost: 42 bytes in 22 blocks
+==458621==    indirectly lost: 0 bytes in 0 blocks
+==458621==      possibly lost: 0 bytes in 0 blocks
+==458621==    still reachable: 211,440 bytes in 354 blocks
+==458621==         suppressed: 0 bytes in 0 blocks
+==458621== Rerun with --leak-check=full to see details of leaked memory
+==458621== 
+==458621== Use --track-origins=yes to see where uninitialised values come from
+==458621== For lists of detected and suppressed errors, rerun with: -s
+==458621== ERROR SUMMARY: 3 errors from 1 contexts (suppressed: 0 from 0)
+Minishell> 
