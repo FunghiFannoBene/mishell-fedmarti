@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/20 12:37:50 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/23 15:15:53 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -39,3 +39,16 @@ char	*ft_strjoin2(char *s1, char const *s2)
 	joint[i] = 0;
 	return (joint);
 }
+
+// int close_at_flag(char *str, int *i, char flag)
+// {
+// 	int x = *i;
+// 	while(str[x])
+// 	{
+// 		if(str[x] == flag && i > 0 && !str[x-1] != '\\')
+// 			return(x);
+// 		*i++;
+// 	}
+// 	return(0);
+// }
+

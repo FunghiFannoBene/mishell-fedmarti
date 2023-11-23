@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 2,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1700480112811,
@@ -16,6 +16,10 @@
                 {
                     "date": 1700480269940,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/20 12:35:49 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/20 12:37:49 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n@@ -36,7 +36,6 @@\n \t\ts2++;\n \t\ti++;\n \t}\n \tjoint[i] = 0;\n-\tfree(s1);\n \treturn (joint);\n }\n"
+                },
+                {
+                    "date": 1700748953053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/20 12:37:49 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/23 15:15:53 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n@@ -38,4 +38,17 @@\n \t}\n \tjoint[i] = 0;\n \treturn (joint);\n }\n+\n+// int close_at_flag(char *str, int *i, char flag)\n+// {\n+// \tint x = *i;\n+// \twhile(str[x])\n+// \t{\n+// \t\tif(str[x] == flag && i > 0 && !str[x-1] != '\\\\')\n+// \t\t\treturn(x);\n+// \t\t*i++;\n+// \t}\n+// \treturn(0);\n+// }\n+\n"
                 }
             ],
             "date": 1700480112811,
