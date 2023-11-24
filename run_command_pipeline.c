@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/24 01:09:08 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:07:09 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 	int		exit_status;
 
 	if (!pipeln_tree)
-		return (1);
+		return (0);
 	if (pipeln_tree->output == NULL && is_builtin(pipeln_tree->args[0]))
 	{
 		exit_status = ft_builtin(pipeln_tree, data);

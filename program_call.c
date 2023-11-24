@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/24 01:05:48 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:16:57 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ int	program_call(t_pnode *node, t_data *data)
 		return (on_return(1, node, node->output_fd, 0));
 	else if (node->pid)
 		return (on_return(exit_status, NULL, node->output_fd, node->input_fd));
+	if (node->output && node->output->input != 0)
+		close(node->output->input_fd);
 	if (is_builtin(node->args[0]))
 		ft_exit_pip(ft_builtin(node, data), node, data);
 	handle_input_output_fd(node);
