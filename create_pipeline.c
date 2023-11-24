@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 23:56:42 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:18:38 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous)
 	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
+	new->pid = 0;
 	new->type = type;
 	new->args = args;
 	new->input[0] = previous;
