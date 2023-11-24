@@ -69,9 +69,9 @@ int	check_and_skip_space(char *s, int *i)
 
 int	assign_flag(char *s, int *i, t_redirect **command)
 {
-	if (s[*i] == '\'')
+	if (s[*i] == '\'' && s[*i-1] != '\\')
 		(*command)->flag = '\'';
-	else if (s[*i] == '"')
+	else if (s[*i] == '"' && s[*i-1] != '\\')
 		(*command)->flag = '"';
 	if ((*command)->flag != 0)
 		(*i)++;

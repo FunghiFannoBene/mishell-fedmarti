@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/17 07:33:46 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/23 19:04:14 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <fcntl.h>
 # include <dirent.h>
 # ifndef NOT_VALID
-#  define NOT_VALID "!@#$%^&*()_+[]{};:',./<>?\\|\"`~ "
+#  define NOT_VALID "!@#$%^&*()_+[]{};:',./<>\\|\"`~ "
 # endif
 
 typedef struct s_list_env

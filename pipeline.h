@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/20 06:47:10 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/24 00:18:25 by fedmarti         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef PIPELINE_H
 # define PIPELINE_H
@@ -36,6 +36,7 @@ typedef struct s_pipeline_tree_node
 	int							output_fd;
 	struct s_pipeline_tree_node	*input[2];
 	struct s_pipeline_tree_node	*output;
+	pid_t						pid;
 }	t_pnode;
 
 typedef struct s_redirect

@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 23:58:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/24 01:09:08 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,29 +81,30 @@ void	*fork_error(t_pnode *node, int *exit_status)
 
 static t_pnode	*preliminary_tests(t_pnode *node, t_data *data, int *exit_status)
 {
-	pid_t	child_pid;
 
 	if (node && (node->type == Pipe))
 	{
-		child_pid = ft_fork(exit_status);
-		if (child_pid == -1)
+		node->pid = ft_fork(exit_status);
+		if (node->pid == -1)
 			return (fork_error(node, exit_status));
-		else if (!child_pid)
+		else if (!node->pid)
 			ft_exit_pip(run_command(node, data), node, data);
+		waitpid(node->pid, exit_status, 0);
 		free_tree(node);
 		return (NULL);
 	}
 	while (node && (node->type == Redirect_input \
-	|| node->type == Redirect_input_heredoc))
+	|| node->type == Redirect_input_heredoc)) 
 	{
 		if (node->type == Redirect_input_heredoc)
 		{
-			child_pid = ft_fork(exit_status);
-			if (child_pid == -1)
+			node->pid = ft_fork(exit_status);
+			if (node->pid == -1)
 				return (fork_error(node, exit_status));
-			else if (child_pid)
+			else if (node->pid)
 				ft_exit_pip(ft_heredoc(node->args, open("/dev/null", O_WRONLY), \
 				data), node, data);
+			waitpid(node->pid, exit_status, 0);
 		}
 		node = next(node);
 	}
@@ -116,17 +117,51 @@ static t_pnode	*preliminary_tests(t_pnode *node, t_data *data, int *exit_status)
 	return (node);
 }
 
+void	signal_handler(int signo);
+
+void	sa_quit(int signo)
+{
+	if (signo == SIGQUIT)
+		write (2, "Quit (core dumped)\n", 20);
+}
+
+int wait_for_children(t_pnode *node, int *exit_status)
+{
+	while (node)
+	{
+		if (node->pid > 0)
+		{
+			if (waitpid(node->pid, exit_status, 0) < 0)
+			{
+				*exit_status = 1;
+				return 1;
+			}
+			if (WIFEXITED(*exit_status))
+				*exit_status = (WEXITSTATUS(*exit_status));
+			else if (WIFSIGNALED(*exit_status))
+				*exit_status = WTERMSIG(*exit_status) + 128;
+		}
+		node = node->output;
+	}
+	return (*exit_status);
+}
+
 int	pipeline(t_pnode *node, t_data *data)
 {
 	int		exit_status;
 	t_pnode	*tree_head;
 
 	tree_head = node;
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, sa_quit);
 	while (node)
 	{
 		exit_status = run_command(node, data);
 		node = node->output;
 	}
+	wait_for_children(tree_head, &exit_status);
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
 	free_tree(tree_head);
 	return (exit_status);
 }
@@ -135,7 +170,6 @@ int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 {
 	int		exit_status;
 
-	
 	if (!pipeln_tree)
 		return (1);
 	if (pipeln_tree->output == NULL && is_builtin(pipeln_tree->args[0]))

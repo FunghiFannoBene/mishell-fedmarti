@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 19:35:10 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/16 22:24:39 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:09:30 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,22 @@ void	child_logic(void)
 	signal(SIGQUIT, SIG_DFL);
 }
 
-void	parent_logic(pid_t child_pid, int *exit_status)
-{
-	signal(SIGINT, SIG_IGN);
-	if (waitpid(child_pid, exit_status, 0) < 0)
-	{
-		*exit_status = 1;
-		return ;
-	}
-	if (WIFEXITED(*exit_status))
-	{
-		*exit_status = (WEXITSTATUS(*exit_status));
-	}
-	else if (WIFSIGNALED(*exit_status))
-		*exit_status = WTERMSIG(*exit_status) + 128;
-	else if (WIFSTOPPED(*exit_status))
-	{
-		;
-	}
-	signal(SIGINT, signal_handler);
-}
+// void	parent_logic(pid_t child_pid, int *exit_status)
+// {
+// 	signal(SIGINT, SIG_IGN);
+// 	if (waitpid(child_pid, exit_status, 0) < 0)
+// 	{
+// 		*exit_status = 1;
+// 		return ;
+// 	}
+// 	if (WIFEXITED(*exit_status))
+// 	{
+// 		*exit_status = (WEXITSTATUS(*exit_status));
+// 	}
+// 	else if (WIFSIGNALED(*exit_status))
+// 		*exit_status = WTERMSIG(*exit_status) + 128;
+// 	signal(SIGINT, signal_handler);
+// }
 
 pid_t	ft_fork(int *exit_status)
 {
@@ -67,6 +63,6 @@ pid_t	ft_fork(int *exit_status)
 		*exit_status = 1;
 		return (-1);
 	}
-	parent_logic(child_pid, exit_status);
+	// parent_logic(child_pid, exit_status);
 	return (child_pid);
 }

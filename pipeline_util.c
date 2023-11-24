@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/16 19:35:33 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/23 23:55:43 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,17 @@ int	on_return(int exit_status, t_pnode *node, int fd1, int fd2)
 // 	return (child_pid);
 // }
 
+bool	is_last(t_pnode *node)
+{
+	node = node->output;
+	while (node)
+	{
+		if (node->type == Program_Call)
+			return (false);
+		node = node->output;
+	}
+	return (true);
+}
 
 void	ft_exit_pip(int exit_status, t_pnode *tree, t_data *data)
 {

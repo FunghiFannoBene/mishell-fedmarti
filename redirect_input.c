@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:02:19 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 20:08:27 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:23:58 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 int	redirect_input_heredoc(t_pnode *node, t_data *data)
 {
-	pid_t	child_pid;
 	int		pipe_fd[2];
 	int		exit_status;
 
@@ -29,10 +28,10 @@ int	redirect_input_heredoc(t_pnode *node, t_data *data)
 	if (pipe(pipe_fd))
 		return (on_return(1, node, 0, 0));
 	node->output->input_fd = pipe_fd[0];
-	child_pid = ft_fork(&exit_status);
-	if (child_pid == -1)
+	node->pid = ft_fork(&exit_status);
+	if (node->pid == -1)
 		return (on_return(exit_status, node, pipe_fd[0], pipe_fd[1]));
-	else if (child_pid)
+	else if (node->pid)
 		return (exit_status);
 	close(pipe_fd[0]);
 	exit_status = ft_heredoc(node->args, pipe_fd[1], data);

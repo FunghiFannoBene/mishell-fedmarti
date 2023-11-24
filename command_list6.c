@@ -16,7 +16,7 @@ int	end_check(char *s, int *i, t_redirect **command)
 {
 	if (!s)
 		return (0);
-	if (s[*i] == (*command)->flag)
+	if (s[*i] == (*command)->flag && s[*i-1] != '\\')
 	{
 		(*i)++;
 		add_and_set_for_next(command, s);
@@ -48,6 +48,7 @@ int	flag_zero_space(char *s, int *i, t_redirect **command)
 		(*command) = (*command)->next;
 		(*command)->flag = 0;
 		(*command)->size = 0;
+		(*command)->status = 0;
 		check_and_skip_space(s, i);
 		(*command)->start = *i;
 		if (s[*i] == '\0' || s[*i] == '|' || s[*i] == '>' || s[*i] == '<')
@@ -76,6 +77,11 @@ int	break_or_add(char *s, int *i, t_redirect *command)
 {
 	if (command->flag == 0 && (s[*i] == '\'' || s[*i] == '"'))
 		return (1);
+	if (command->flag == 0 && s[*i] == ' ')
+	{
+		(*i)++;
+		return(1);
+	}
 	command->size++;
 	(*i)++;
 	return (0);

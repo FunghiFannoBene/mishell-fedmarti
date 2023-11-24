@@ -1,14 +1,18 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list7.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:44:53 by shhuang           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/11/22 12:52:19 by shhuang          ###   ########.fr       */
+=======
+/*   Updated: 2023/11/24 00:26:43 by fedmarti         ###   ########.fr       */
+>>>>>>> 07827eec2f8ba2deed0d513634b8f04ea3b81e48
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "short_code.h"
 
@@ -95,11 +99,6 @@ int	init_command(t_command *c, char *s)
 	c->i = 0;
 	if (!s)
 		return (-1);
-	if (check_virgolette_dispari_start(s, c->i))
-	{
-		printf("Virgolette dispari. Comando invalido.\n");
-		return (-1);
-	}
 	return (1);
 }
 
@@ -109,7 +108,6 @@ int	check_continuation(char *s, t_command *c)
 		return (1);
 	c->command = NULL;
 	c->head = NULL;
-	c->structure = malloc(sizeof(t_pnode));
-	ft_memset(c->structure, 0, sizeof(t_pnode));
+	c->structure = ft_calloc(1, sizeof(t_pnode));
 	return (0);
 }

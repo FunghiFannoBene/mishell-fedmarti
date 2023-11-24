@@ -92,7 +92,6 @@ void			check_redirect_init(int *x, int *flag, int *count,
 int				check_redirect(char *s, int *i, t_pnode *structure);
 int				check_pipe(char *s, int *i, t_pnode *structure);
 int				check_virgolette_dispari(char *s, int *i);
-int				check_virgolette_dispari_start(char *s, int i);
 void			init_search(t_search *k, t_redirect **command, char *s, int *i);
 int				check_zero_move(char *s, int *i, t_redirect **command,
 					t_search *k);
@@ -133,5 +132,6 @@ void			structure_linking(t_command *c);
 t_pnode			*create_command_list(char *s);
 char			*check_and_addx(char *start, char *tmp, char *position, int *di);
 int				check_virgolette_doppie(char *s, int i);
-char			*ft_strjoin2(char *s1, char const *s2);
+char			*ft_strjoin2(char *s1, char *s2);
+
 #endif
