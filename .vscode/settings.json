@@ -63,7 +63,10 @@
 	"utility": "c",
 	"functional": "c",
 	"short_code.h": "c",
-	"libft.h": "c"
+	"libft.h": "c",
+	"pipeline.h": "c",
+	"types.h": "c",
+	"minishell.h": "c"
 },
 "C_Cpp.default.compilerPath": "/usr/bin/clang",
 "C_Cpp.errorSquiggles": "disabled"

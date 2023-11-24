@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list7.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:44:53 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/20 11:51:20 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/24 00:26:43 by fedmarti         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "short_code.h"
 
@@ -109,7 +109,6 @@ int	check_continuation(char *s, t_command *c)
 		return (1);
 	c->command = NULL;
 	c->head = NULL;
-	c->structure = malloc(sizeof(t_pnode));
-	ft_memset(c->structure, 0, sizeof(t_pnode));
+	c->structure = ft_calloc(1, sizeof(t_pnode));
 	return (0);
 }

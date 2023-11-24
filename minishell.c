@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 16:46:48 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/24 01:13:55 by fedmarti         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 
 // IMPLEMENTARE: strcmp, strncmp
@@ -143,13 +143,10 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
         input = readline("Minishell> "); //stampa e aspetta un input
-		if (!input || !ft_strncmp(input, "exit", 5))
+		if (!input)
 		{
-			write(1, "exit", 5);
-			free_data(data);
-			if (input)
-				free(input);
-			exit (0);
+			write (1, "exit\n", 6);
+			ft_exit((char *[]){"exit", NULL}, data);
 		}
 		add_history(input); // aggiunge alla storia da solo! non serve la struct
 		// char *temp = input;
