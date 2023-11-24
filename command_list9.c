@@ -12,7 +12,7 @@
 
 #include "short_code.h"
 
-char	*ft_strjoin2(char *s1, char const *s2)
+char	*ft_strjoin2(char *s1, char *s2)
 {
 	char	*joint;
 	size_t	len;
@@ -36,6 +36,7 @@ char	*ft_strjoin2(char *s1, char const *s2)
 		s2++;
 		i++;
 	}
+	free(s1);
 	joint[i] = 0;
 	return (joint);
 }

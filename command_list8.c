@@ -88,10 +88,13 @@ void	command_to_structure(t_command *c)
 			while(c->head && c->head->status == 1)
 			{
 				if(c->structure->args[c->x] == NULL)
-					c->structure->args[c->x] = ft_strdup("");
-				if(c->head && c->head->str)
 				{
+					c->structure->args[c->x] = ft_strdup("");
 					c->structure->args[c->x] = ft_strjoin2(c->structure->args[c->x], c->head->str);
+				}
+				else if(c->head && c->head->str)
+				{
+					c->structure->args[c->x] = ft_strjoin(c->structure->args[c->x], c->head->str);
 				}
 				free(c->head->str);
 				c->temp = c->head;
@@ -100,7 +103,7 @@ void	command_to_structure(t_command *c)
 			}
 			if(c->head && c->head->str)
 			{
-				c->structure->args[c->x] = ft_strjoin2(c->structure->args[c->x], c->head->str);
+				c->structure->args[c->x] = ft_strjoin(c->structure->args[c->x], c->head->str);
 				free(c->head->str);
 				c->temp = c->head;
 				c->head = c->head->next;

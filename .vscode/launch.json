@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/shhuang/Desktop/mishell-fedmarti",
-      "program": "/home/shhuang/Desktop/mishell-fedmarti/minishell",
+      "cwd": "/nfs/homes/shhuang/Desktop/mishell-fedmarti",
+      "program": "/nfs/homes/shhuang/Desktop/mishell-fedmarti/minishell",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -95,11 +95,6 @@ int	init_command(t_command *c, char *s)
 	c->i = 0;
 	if (!s)
 		return (-1);
-	if (check_virgolette_dispari_start(s, c->i))
-	{
-		printf("Virgolette dispari. Comando invalido.\n");
-		return (-1);
-	}
 	return (1);
 }
 
@@ -109,7 +104,6 @@ int	check_continuation(char *s, t_command *c)
 		return (1);
 	c->command = NULL;
 	c->head = NULL;
-	c->structure = malloc(sizeof(t_pnode));
-	ft_memset(c->structure, 0, sizeof(t_pnode));
+	c->structure = ft_calloc(1, sizeof(t_pnode));
 	return (0);
 }

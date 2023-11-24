@@ -12,31 +12,31 @@
 
 #include "short_code.h"
 
-int	check_virgolette_dispari_start(char *s, int i)
-{
-	int	count_double;
-	int	count_single;
-	int	x;
+// int	check_virgolette_dispari_start(char *s, int i)
+// {
+// 	int	count_double;
+// 	int	count_single;
+// 	int	x;
 
-	count_double = 0;
-	count_single = 0;
-	x = i;
-	while (s[x])
-	{
-		if (s[x] == '\'' &&  (x >= 1 && !(s[x-1] == '\\' && s[x] == '\'')))
-		{
-			count_single++;
-			while(s[x] && !(s[x-1] != '\\' && s[x] == '\''))
-    			x++;
-		}
-		else if (s[x] == '"' && (x >= 1 && !(s[x-1] == '\\' && s[x] == '"')))
-			count_double++;
-		x++;
-	}
-	if (count_double % 2 || count_single % 2)
-		return (-1);
-	return (0);
-}
+// 	count_double = 0;
+// 	count_single = 0;
+// 	x = i;
+// 	while (s[x])
+// 	{
+// 		if (s[x] == '\'' &&  (x >= 1 && !(s[x-1] == '\\' && s[x] == '\'')))
+// 		{
+// 			count_single++;
+// 			while(s[x] && !(s[x-1] != '\\' && s[x] == '\''))
+//     			x++;
+// 		}
+// 		else if (s[x] == '"' && (x >= 1 && !(s[x-1] == '\\' && s[x] == '"')))
+// 			count_double++;
+// 		x++;
+// 	}
+// 	if (count_double % 2 || count_single % 2)
+// 		return (-1);
+// 	return (0);
+// }
 
 void	init_search(t_search *k, t_redirect **command, char *s, int *i)
 {

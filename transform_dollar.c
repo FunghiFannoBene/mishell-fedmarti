@@ -53,6 +53,16 @@ int	create_flags(char *s, t_short_dollar *d)
 	return (1);
 }
 
+void remove_spaces(char *str) 
+{
+    int length = ft_strlen(str);
+    
+    while (length > 0 && str[length - 1] == ' ')
+        length--;
+
+    str[length] = '\0';
+}
+
 char	*transform_for_dollar(char *s, t_data *data)
 {
 	t_var			*list;
@@ -80,5 +90,6 @@ char	*transform_for_dollar(char *s, t_data *data)
 			d.i+=d.size;
 		}
 	}
+	remove_spaces(s);
 	return (s);
 }

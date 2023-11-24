@@ -23,13 +23,13 @@ int	check_slashes(char *s, int *i, t_redirect **command)
 			return (0);
 		return (-1);
 	}
-	if (s[*i] == '\\' && s[*i + 1] == '$')
-	{
-		(*command)->size += 1;
-		(*command)->start += 1;
-		(*i) += 2;
-		return (0);
-	}
+	// if (s[*i] == '\\' && s[*i + 1] == '$')
+	// {
+	// 	(*command)->size += 1;
+	// 	(*command)->start += 1;
+	// 	(*i) += 2;
+	// 	return (0);
+	// }
 	return ((slash_return(s, i, command)));
 }
 
@@ -66,7 +66,7 @@ int	end_check_flag_zero(char *s, int *i, t_redirect **command)
 		(*command)->start = *i;
 		return (-3);
 	}
-	else if ((*command)->flag == 0 && (s[*i] == '\'' || s[*i] == '"')
+	else if ((*command)->flag == 0 && ((s[*i] == '\'' || s[*i] == '"') && s[*i-1] != '\\')
 		&& (*command)->size)
 	{
 		(*i)++;
