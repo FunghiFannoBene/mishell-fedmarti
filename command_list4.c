@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list4.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:42:31 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 20:04:13 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/24 13:34:53 by shhuang          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "short_code.h"
 
@@ -69,9 +69,9 @@ int	check_and_skip_space(char *s, int *i)
 
 int	assign_flag(char *s, int *i, t_redirect **command)
 {
-	if (s[*i] == '\'' && s[*i-1] != '\\')
+	if (s[*i] == '\'')
 		(*command)->flag = '\'';
-	else if (s[*i] == '"' && s[*i-1] != '\\')
+	else if (s[*i] == '"')
 		(*command)->flag = '"';
 	if ((*command)->flag != 0)
 		(*i)++;
@@ -87,8 +87,7 @@ int	assign_flag(char *s, int *i, t_redirect **command)
 
 int	slash_return(char *s, int *i, t_redirect **command)
 {
-	if ((*command)->flag == 0 && s[*i] == '\\' && (s[*i + 1] == '\'' || s[*i
-				+ 1] == '"'))
+	if (((*command)->flag == 0 || (*command)->flag == '"') && (s[*i] == '\\' && (s[*i + 1] == '\'' || s[*i+ 1] == '"')))
 	{
 		(*command)->size++;
 		(*i) += 2;
@@ -97,12 +96,6 @@ int	slash_return(char *s, int *i, t_redirect **command)
 			(*command)->start += 1;
 			return (0);
 		}
-		return (-1);
-	}
-	if (s[*i] == '\\' && s[*i + 1] == '"')
-	{
-		(*command)->size++;
-		(*i) += 2;
 		return (-1);
 	}
 	return (0);

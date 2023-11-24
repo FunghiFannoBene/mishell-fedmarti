@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 13,
+            "activePatchIndex": 15,
             "patches": [
                 {
                     "date": 1700410686243,
@@ -60,6 +60,14 @@
                 {
                     "date": 1700479747387,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/20 11:32:52 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/20 12:29:07 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n@@ -51,9 +51,8 @@\n {\n \t(*command)->next = malloc(sizeof(t_redirect));\n \tft_memset((*command)->next, 0, sizeof(t_redirect));\n \t(*command)->next->str = substring(s, (size_t)(*command)->start, (size_t)(*command)->size);\n-\tprintf(\"\\n\\n%s\\n\\n\", (*command)->next->str);\n \t(*command) = (*command)->next;\n \t(*command)->flag = 0;\n \t(*command)->size = 0;\n }\n@@ -71,9 +70,8 @@\n \t\t&& (*command)->size)\n \t{\n \t\t(*i)++;\n \t\tadd_and_set_for_next(command, s);\n-\t\tprintf(\"i'm here\\n\");\n \t\tif(s[*i] == ' ' || s[*i] == '\\0')\n \t\t{\n \t\t\t(*command)->status = 0;\n \t\t}\n"
+                },
+                {
+                    "date": 1700827580789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/20 12:29:07 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/24 13:06:20 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n@@ -22,15 +22,15 @@\n \t\tif (s[*i] == '\\0')\n \t\t\treturn (0);\n \t\treturn (-1);\n \t}\n-\tif (s[*i] == '\\\\' && s[*i + 1] == '$')\n-\t{\n-\t\t(*command)->size += 1;\n-\t\t(*command)->start += 1;\n-\t\t(*i) += 2;\n-\t\treturn (0);\n-\t}\n+\t// if (s[*i] == '\\\\' && s[*i + 1] == '$')\n+\t// {\n+\t// \t(*command)->size += 1;\n+\t// \t(*command)->start += 1;\n+\t// \t(*i) += 2;\n+\t// \treturn (0);\n+\t// }\n \treturn ((slash_return(s, i, command)));\n }\n \n char\t*substring(const char *str, size_t begin, size_t len)\n@@ -65,12 +65,11 @@\n \t\tadd_and_set_for_next(command, s);\n \t\t(*command)->start = *i;\n \t\treturn (-3);\n \t}\n-\telse if ((*command)->flag == 0 && (s[*i] == '\\'' || s[*i] == '\"')\n+\telse if ((*command)->flag == 0 && ((s[*i] == '\\'' || s[*i] == '\"') && s[*i-1] != '\\\\')\n \t\t&& (*command)->size)\n \t{\n-\t\t(*i)++;\n \t\tadd_and_set_for_next(command, s);\n \t\tif(s[*i] == ' ' || s[*i] == '\\0')\n \t\t{\n \t\t\t(*command)->status = 0;\n"
+                },
+                {
+                    "date": 1700831917038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/24 13:06:20 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/24 14:18:37 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /******************************************************************************/\n \n #include \"short_code.h\"\n"
                 }
             ],
             "date": 1700410686243,

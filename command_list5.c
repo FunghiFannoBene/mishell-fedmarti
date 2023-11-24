@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/20 12:29:07 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/24 14:18:37 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,7 +69,6 @@ int	end_check_flag_zero(char *s, int *i, t_redirect **command)
 	else if ((*command)->flag == 0 && ((s[*i] == '\'' || s[*i] == '"') && s[*i-1] != '\\')
 		&& (*command)->size)
 	{
-		(*i)++;
 		add_and_set_for_next(command, s);
 		if(s[*i] == ' ' || s[*i] == '\0')
 		{
