@@ -32,7 +32,7 @@ int	redirect_input_heredoc(t_pnode *node, t_data *data)
 	if (node->pid == -1)
 		return (on_return(exit_status, node, pipe_fd[0], pipe_fd[1]));
 	else if (node->pid)
-		return (exit_status);
+		return (on_return(exit_status, NULL, 1, pipe_fd[1]));
 	close(pipe_fd[0]);
 	exit_status = ft_heredoc(node->args, pipe_fd[1], data);
 	close(pipe_fd[1]);

@@ -132,6 +132,7 @@ int	main(int argc, char **argv, char **env)
 	char	*input;
 	t_data	*data;
 
+	printf("minishell pid: %i\n", getpid());
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, signal_handler);
 	data = data_init(env);

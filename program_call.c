@@ -164,7 +164,7 @@ int	program_call(t_pnode *node, t_data *data)
 		return (on_return(1, node, node->output_fd, 0));
 	else if (node->pid)
 		return (on_return(exit_status, NULL, node->output_fd, node->input_fd));
-	if (node->output && node->output->input != 0)
+	if (node->output && node->output->input_fd != 0)
 		close(node->output->input_fd);
 	if (is_builtin(node->args[0]))
 		ft_exit_pip(ft_builtin(node, data), node, data);

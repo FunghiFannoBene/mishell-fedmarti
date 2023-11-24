@@ -1,5 +1,5 @@
 
-shell dentro shell si bugga il del
+shell dentro shell si bugga il del (solved?)
 
 "export PATH=""
 env | grep PATH"  ha un leak
@@ -14,9 +14,3 @@ i comandi senza PATH danno leak
 
 grep newfile a da leak
 
-
-EOF si rompe
-grep newfile a da leak
-
-
-EOF si rompe

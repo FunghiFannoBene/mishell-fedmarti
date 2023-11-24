@@ -53,6 +53,7 @@ pid_t	ft_fork(int *exit_status)
 	pid_t	child_pid;
 
 	child_pid = fork();
+	printf("child pid: %i\n", child_pid);
 	if (child_pid == 0)
 	{
 		child_logic();
