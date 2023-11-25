@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 01:23:59 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:21:38 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_builtin(t_pnode *node, t_data *data);
 void	signal_handler(int signo);
 int		run_command(t_pnode *node, t_data *data);
 
-static inline t_pnode	*empty_heredoc(t_pnode *node, int *exit_status)
+static t_pnode	*empty_heredoc(t_pnode *node, int *exit_status, t_data *data)
 {
 	if (node->type != Redirect_input_heredoc)
 		return (next(node));
@@ -55,7 +55,7 @@ static t_pnode	*format_checks(t_pnode *node, t_data *data, int *exit_status)
 	}
 	while (node && (node->type == Redirect_input \
 	|| node->type == Redirect_input_heredoc))
-		node = empty_heredoc(node, exit_status);
+		node = empty_heredoc(node, exit_status, data);
 	if (node && node->type == Pipe && node->output)
 	{
 		node = next(node);
@@ -110,7 +110,7 @@ int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 	while (pipeln_tree)
 	{
 		exit_status = run_command(pipeln_tree, data);
-		pipeln_tree = node->output;
+		pipeln_tree = pipeln_tree->output;
 	}
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);

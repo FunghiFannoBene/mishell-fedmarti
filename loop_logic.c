@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 01:00:45 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:26:04 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 char	*transform_for_dollar(char *s, t_data *data);
 t_pnode	*create_command_list(char *s);
 int		run_command_pipeline(t_pnode *pipeline_tree, t_data *data);
+void	free_data(t_data *data);
 
 void	update_exit_status(t_var *exit_status, int new_val)
 {
@@ -51,7 +52,7 @@ void	prompt_loop(t_data *data)
 	if (!input)
 	{
 		write (1, "exit\n", 6);
-		ft_exit((char *[]){"exit", NULL}, data);
+		ft_exit((char *[]){"exit", NULL}, data, NULL);
 	}
 	add_history(input);
 	input = transform_for_dollar(input, data);
@@ -59,7 +60,7 @@ void	prompt_loop(t_data *data)
 	{
 		write(2, "Malloc error\n", 14);
 		free_data(data);
-		return (1);
+		exit (1);
 	}
 	command_list = create_command_list(input);
 	free (input);

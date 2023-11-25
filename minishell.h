@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/23 19:04:14 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:25:35 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <dirent.h>
+# include "pipeline.h"
 # ifndef NOT_VALID
 #  define NOT_VALID "!@#$%^&*()_+[]{};:',./<>\\|\"`~ "
 # endif
@@ -71,9 +72,9 @@ int		ft_echo(char **args, int fd);
 int		ft_cd(char **args, t_data *data);
 int		ft_pwd(char	**args, t_data *data);
 int		ft_unset(char **args, t_data *data);
-int		ft_exit(char **args, t_data *data);
+int		ft_exit(char **args, t_data *data, t_pnode *node);
 int		ft_heredoc(char **args, int fd, t_data *data);
-char 	*remove_useless(char *s);
+char	*remove_useless(char *s);
 
 //quick function to print the error message and returns the exit value
 int		no_such_file_or_directory(char *filename);

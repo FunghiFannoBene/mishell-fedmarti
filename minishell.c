@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/25 01:25:59 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:19:14 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "pipeline.h"
 
 void	prompt_loop(t_data *data);
+void	update_exit_status(t_var *exit_status, int new_val);
 
 t_data	*data_init(char **env)
 {

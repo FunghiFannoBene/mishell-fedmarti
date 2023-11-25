@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 00:14:22 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:37:23 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	ft_builtin(t_pnode *node, t_data *data)
 	else if (!ft_strncmp("export", node->args[0], 7))
 		exit_status = (ft_export(node->args, data, node->output_fd));
 	else if (!ft_strncmp("exit", node->args[0], 5))
-		exit_status = ft_exit(node->args, data);
+		exit_status = ft_exit(node->args, data, node);
 	else if (!ft_strncmp("pwd", node->args[0], 4))
 		return (ft_pwd(node->args, data));
 	else if (!ft_strncmp("cd", node->args[0], 3))
