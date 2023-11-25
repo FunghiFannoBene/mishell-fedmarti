@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/24 21:16:57 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 00:14:22 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	is_builtin(char *str)
 	if (!str || !ft_isalpha(*str))
 		return (0);
 	len = ft_strlen(str) + 1;
-	if (len > 7 || len < 3)
+	if (len > 8 || len < 3)
 		return (0);
 	if (!ft_strncmp("echo", str, len))
 		return (1);

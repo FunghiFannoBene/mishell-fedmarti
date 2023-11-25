@@ -7,6 +7,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 CC = gcc
 
 SRCS = minishell.c \
+	loop_logic.c \
 	var.c \
 	var2.c \
 	var3.c \
@@ -24,6 +25,7 @@ SRCS = minishell.c \
 	sort_pipeline_tree.c \
 	exec.c \
 	run_command_pipeline.c \
+	run_command.c \
 	pipeline_util.c \
 	ft_fork.c \
 	program_call.c \
