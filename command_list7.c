@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list7.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:33:20 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/24 15:52:11 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:14:02 by shhuang          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "short_code.h"
 
@@ -40,13 +40,11 @@ int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 		if (skip_and_endstring(s, i))
 			return (-1);
 		if (s[*i] == '|' || s[*i] == '<' || s[*i] == '>')
-			return (0);		
+			return (0);
 		if (assign_flag(s, i, &command) == -1)
 			continue ;
 		while (s[*i])
 		{
-			// if (check_slashes(s, i, &command) == -1)
-			// 	continue ;
 			variabile = check_all_end(s, i, &command, &variabile);
 			if (variabile == -1 || variabile == 0 || variabile == 1)
 				return (variabile);

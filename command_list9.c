@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list9.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/23 15:15:53 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:29:46 by shhuang          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "short_code.h"
 
@@ -41,15 +41,39 @@ char	*ft_strjoin2(char *s1, char *s2)
 	return (joint);
 }
 
-// int close_at_flag(char *str, int *i, char flag)
-// {
-// 	int x = *i;
-// 	while(str[x])
-// 	{
-// 		if(str[x] == flag && i > 0 && !str[x-1] != '\\')
-// 			return(x);
-// 		*i++;
-// 	}
-// 	return(0);
-// }
+void	set_status(char *s, int i, int *status)
+{
+	if (s[i] == ' ' || s[i] == '\0')
+		*status = 0;
+	else
+		*status = 1;
+}
 
+void	structure_linking(t_command *c)
+{
+	if (c->structure_actual == NULL)
+		c->structure_actual = c->structure_head;
+	else
+	{
+		c->structure_actual->output = c->structure;
+		c->structure_actual = c->structure_actual->output;
+	}
+}
+
+int	is_void(t_command *c)
+{
+	if (c->structure->type == Null && !c->structure_head)
+	{
+		free(c->structure);
+		return (1);
+	}
+	return (0);
+}
+
+void	free_tmp_new_head(t_command **c)
+{
+	free((*c)->head->str);
+	(*c)->temp = (*c)->head;
+	(*c)->head = (*c)->head->next;
+	free((*c)->temp);
+}

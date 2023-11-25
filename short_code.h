@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   short_code.h                                       :+:      :+:    :+:   */
@@ -6,17 +6,16 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/20 12:36:11 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:44:18 by shhuang          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef SHORT_CODE_H
 # define SHORT_CODE_H
 
-
-#include "minishell.h"
-#include "pipeline.h"
-#include "libft/libft.h"
+# include "minishell.h"
+# include "pipeline.h"
+# include "libft/libft.h"
 
 typedef struct s_short_dollar
 {
@@ -130,8 +129,13 @@ int				evaluate_next_struct(t_command *c, char *s);
 void			command_to_structure(t_command *c);
 void			structure_linking(t_command *c);
 t_pnode			*create_command_list(char *s);
-char			*check_and_addx(char *start, char *tmp, char *position, int *di);
+char			*check_and_addx(char *start, char *tmp,
+					char *position, int *di);
 int				check_virgolette_doppie(char *s, int i);
 char			*ft_strjoin2(char *s1, char *s2);
+void			set_status(char *s, int i, int *status);
+void			structure_linking(t_command *c);
+int				is_void(t_command *c);
+void			free_tmp_new_head(t_command **c);
 
 #endif

@@ -5,38 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 17:41:52 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 11:02:00 by shhuang          ###   ########.fr       */
+/*   Created: 2023/11/25 17:02:26 by shhuang           #+#    #+#             */
+/*   Updated: 2023/11/25 17:16:46 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "short_code.h"
-
-// int	check_virgolette_dispari_start(char *s, int i)
-// {
-// 	int	count_double;
-// 	int	count_single;
-// 	int	x;
-
-// 	count_double = 0;
-// 	count_single = 0;
-// 	x = i;
-// 	while (s[x])
-// 	{
-// 		if (s[x] == '\'' &&  (x >= 1 && !(s[x-1] == '\\' && s[x] == '\'')))
-// 		{
-// 			count_single++;
-// 			while(s[x] && !(s[x-1] != '\\' && s[x] == '\''))
-//     			x++;
-// 		}
-// 		else if (s[x] == '"' && (x >= 1 && !(s[x-1] == '\\' && s[x] == '"')))
-// 			count_double++;
-// 		x++;
-// 	}
-// 	if (count_double % 2 || count_single % 2)
-// 		return (-1);
-// 	return (0);
-// }
 
 void	init_search(t_search *k, t_redirect **command, char *s, int *i)
 {
@@ -88,7 +62,7 @@ int	check_pipe_redi(char *s, int *i, t_redirect **command, t_pnode *structure)
 	if (check_redirect(s, i, structure))
 	{
 		free(*command);
-		printf("bash: syntax error near unexpected token `>'\n");
+		write(2, "minishell: syntax error near unexpected token `>'\n", 51);
 		return (-1);
 	}
 	return (0);
