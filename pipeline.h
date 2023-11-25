@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/24 00:18:25 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:13:48 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_redirect
 	int					status;
 }	t_redirect;
 
-
 typedef struct s_fix_string
 {
 	char					*command_name;
@@ -57,7 +56,6 @@ typedef struct s_fix_string
 	struct list_redirect	*redirect;
 	struct s_fix_string		*next;
 }	t_indice;
-
 
 // void	next_size(char *s, int *i, t_redirect **command);
 t_pnode	*sort_pipeline_tree(t_pnode *input_tree);
@@ -76,6 +74,8 @@ char	*transform_for_dollar(char *s, t_data *data);
 // char	*add_slashes(char *tmp);
 // int		checksymbol(char *s);
 int		check_invalid(char c, char *invalid);
-// char	*ft_strndup(const char *s, size_t n);
+// char	*ft_strndup(const char *s, size_t n);]
+int		is_builtin(char *str);
+int		ft_builtin(t_pnode *node, t_data *data);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 01:56:48 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/13 00:34:45 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:10:51 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*copy_name_field(const char *var); //included here not to bloat the header
+char	*copy_name_field(const char *var);
 char	*copy_value_field(const char *var);
 
 static void	arr_insert(t_var *var, t_var **array, int pos)
@@ -30,7 +30,7 @@ static void	arr_insert(t_var *var, t_var **array, int pos)
 	array[pos] = var;
 }
 
-static void	add_alphabetical_order(t_var *var, t_var **array, int high)//still untested
+static void	add_alphabetical_order(t_var *var, t_var **array, int high)
 {
 	int	name_len;
 	int	n;
@@ -116,7 +116,7 @@ int	print_export(t_list *export_vars, int fd)
 
 	var_arr = extract_arr(export_vars);
 	if (!var_arr)
-		return (export_vars != NULL); //if the list is empty this is normal, othewise malloc failed
+		return (export_vars != NULL);
 	i = 0;
 	while (var_arr[i])
 	{

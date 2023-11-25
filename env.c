@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:02:28 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/13 00:35:28 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:57:06 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,6 @@ char	*var_to_str(t_var *var)
 	return (str);
 }
 
-// commented because unused, also it's wrong for export
-//
-//
-// void	print_var(t_var *var)
-// {
-// 	if (!var || !var->name)
-// 		return ;
-// 	write (1, var->name, ft_strlen(var->name));
-// 	if (!var->value)
-// 		return ;
-// 	write (1, "=", 1);
-// 	write (1, var->value, ft_strlen(var->value));
-// }
-
-//allocates a copy of the content of env_list into a char *env[]
 char	**env_list_to_matrix(t_list *env_list)
 {
 	int		i;
@@ -66,10 +51,10 @@ char	**env_list_to_matrix(t_list *env_list)
 	i = 0;
 	while (env_list)
 	{
-		if (((t_var *)env_list->content)->value != NULL)//env doesn't accept null values
+		if (((t_var *)env_list->content)->value != NULL)
 		{
-			new_env[i] = var_to_str(env_list->content);	//but export does so if they share the same
-			i++;										//list then this avoids mixing them up
+			new_env[i] = var_to_str(env_list->content);
+			i++;
 		}
 		if (i && !new_env)
 		{

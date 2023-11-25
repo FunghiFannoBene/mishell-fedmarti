@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:51:03 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/05 20:46:26 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:00:41 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	set_var_list(char *name, char *value, t_list *list)
 	if (!name)
 		return (1);
 	name_len = ft_strlen(name) + 1;
-	while (1)//cycle breaks from the ifs
+	while (1)
 	{
 		var = list->content;
 		if (var && !ft_strncmp(name, var->name, name_len))

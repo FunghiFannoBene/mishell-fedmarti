@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 20:35:12 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/23 19:43:22 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 16:57:41 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static inline char	*coumpound_input(char *str, char *input, t_data *data)
 	return (str);
 }
 
-int	ft_heredoc(char **args, int fd, t_data *data)//add variable support
+int	ft_heredoc(char **args, int fd, t_data *data)
 {
 	int		eof_len;
 	char	*input;
