@@ -1,0 +1,4 @@
+#!/bin/bash
+bash < tester > output2.txt
+./minishell < tester | grep -v "Minishell>" > output.txt
+diff --color output.txt output2.txt

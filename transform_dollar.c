@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:22:49 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/25 15:27:42 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/26 11:15:07 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ char	*remove_spaces(char *str)
 	int	length;
 
 	length = ft_strlen(str);
-	while (length > 0 && (str[length - 1] == ' '
-			|| str[length - 1] == '\'' || str[length - 1] == '"'))
+	while (length > 0 && (str[length - 1] == ' '))
 		length--;
 	str[length] = '\0';
 	return (str);
