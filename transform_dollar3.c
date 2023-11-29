@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:39:48 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 07:59:33 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:20:34 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*add_slashes(char *tmp)
 	run_count_slashes(tmp, &s);
 	if (s.count == 0)
 		return (tmp);
-	s.str = malloc(sizeof(char) * (size_t)(ft_strlen(tmp) + (size_t)s.count + 1));
+	s.str = malloc(sizeof(char) * (size_t)(ft_strlen(tmp)
+				+ (size_t)s.count + 1));
 	while (tmp[s.x])
 	{
 		if (tmp[s.x] == '\'' || tmp[s.x] == '"')
@@ -85,14 +86,14 @@ char	*replace_for_new_str(char *s, char *tmp, int i, int *di)
 			r.start = ft_strndup(s, (size_t)i);
 			if (tmp == NULL)
 			{
-				(*di)=i-1;
+				(*di) = i - 1;
 				r.result = ft_multistrjoin((char *[]){r.start, s + i
 						+ r.env_len, NULL});
 			}
 			else
 			{
-				(*di)=i;
-				r.result = check_and_addx(r.start, tmp, s+i+r.env_len, di);
+				(*di) = i;
+				r.result = check_and_addx(r.start, tmp, s + i + r.env_len, di);
 			}
 			evaluate_free(&tmp, &s, &r);
 			return (r.result);

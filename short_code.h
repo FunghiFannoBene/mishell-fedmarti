@@ -6,17 +6,16 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 07:59:10 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:44:18 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHORT_CODE_H
 # define SHORT_CODE_H
 
-
-#include "minishell.h"
-#include "pipeline.h"
-#include "libft/libft.h"
+# include "minishell.h"
+# include "pipeline.h"
+# include "libft/libft.h"
 
 typedef struct s_short_dollar
 {
@@ -61,6 +60,7 @@ typedef struct s_command
 	int			x;
 	int			command_record;
 	int			type;
+	int			status;
 }				t_command;
 
 typedef struct s_search
@@ -91,7 +91,6 @@ void			check_redirect_init(int *x, int *flag, int *count,
 int				check_redirect(char *s, int *i, t_pnode *structure);
 int				check_pipe(char *s, int *i, t_pnode *structure);
 int				check_virgolette_dispari(char *s, int *i);
-int				check_virgolette_dispari_start(char *s, int i);
 void			init_search(t_search *k, t_redirect **command, char *s, int *i);
 int				check_zero_move(char *s, int *i, t_redirect **command,
 					t_search *k);
@@ -130,7 +129,13 @@ int				evaluate_next_struct(t_command *c, char *s);
 void			command_to_structure(t_command *c);
 void			structure_linking(t_command *c);
 t_pnode			*create_command_list(char *s);
-char			*check_and_addx(char *start, char *tmp, char *position, int *di);
+char			*check_and_addx(char *start, char *tmp,
+					char *position, int *di);
 int				check_virgolette_doppie(char *s, int i);
+char			*ft_strjoin2(char *s1, char *s2);
+void			set_status(char *s, int i, int *status);
+void			structure_linking(t_command *c);
+int				is_void(t_command *c);
+void			free_tmp_new_head(t_command **c);
 
 #endif

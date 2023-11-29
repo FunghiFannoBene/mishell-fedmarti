@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:42:31 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 20:04:13 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:08:14 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ int	assign_flag(char *s, int *i, t_redirect **command)
 
 int	slash_return(char *s, int *i, t_redirect **command)
 {
-	if ((*command)->flag == 0 && s[*i] == '\\' && (s[*i + 1] == '\'' || s[*i
-				+ 1] == '"'))
+	if (((*command)->flag == 0 || (*command)->flag == '"')
+		&& (s[*i] == '\\' && (s[*i + 1] == '\'' || s[*i + 1] == '"')))
 	{
 		(*command)->size++;
 		(*i) += 2;
@@ -97,12 +97,6 @@ int	slash_return(char *s, int *i, t_redirect **command)
 			(*command)->start += 1;
 			return (0);
 		}
-		return (-1);
-	}
-	if (s[*i] == '\\' && s[*i + 1] == '"')
-	{
-		(*command)->size++;
-		(*i) += 2;
 		return (-1);
 	}
 	return (0);

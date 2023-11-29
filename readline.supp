@@ -12,6 +12,7 @@
     Memcheck:Leak
     ...
     fun:add_history
+    fun:prompt_loop
     fun:main
 }
 

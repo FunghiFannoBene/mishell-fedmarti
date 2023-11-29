@@ -6,13 +6,13 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:56:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/13 00:34:54 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:11:30 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*copy_name_field(const char *var); //included here not to bloat the header
+char	*copy_name_field(const char *var);
 char	*copy_value_field(const char *var);
 int		print_export(t_list *export_vars, int fd);
 
@@ -20,7 +20,7 @@ static inline int	wrong_character_error(char *str)
 {
 	char	*error_message;
 
-	error_message = ft_multistrjoin((char *[]){"bash: export: `", \
+	error_message = ft_multistrjoin((char *[]){"minishell: export: `", \
 	str, "\': not a valid identifier\n", NULL});
 	if (!error_message)
 		return (1);
@@ -68,7 +68,7 @@ int	ft_export(char **args, t_data *data, int fd)
 	t_var	temp;
 	int		return_val;
 
-	if (!args[1]) //e' come dire argv == 1
+	if (!args[1])
 		return (print_export(data->export_var, fd));
 	i = 0;
 	return_val = 0;

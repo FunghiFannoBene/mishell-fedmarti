@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:40:22 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/17 08:14:03 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 17:00:07 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	ft_copy(char **args, bool flag, char *str)
 	return (len);
 }
 
-int	ft_echo(char **args, int fd)//da testare
+int	ft_echo(char **args, int fd)
 {
 	int		len;
 	char	*str;

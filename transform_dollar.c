@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 20:19:51 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 07:56:12 by shhuang          ###   ########.fr       */
+/*   Created: 2023/11/25 15:22:49 by shhuang           #+#    #+#             */
+/*   Updated: 2023/11/25 15:27:42 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,48 @@ int	create_flags(char *s, t_short_dollar *d)
 	d->tmp = NULL;
 	if (s[d->i] == '\\')
 	{
-		while (s[d->i] == '\\')
-		{
+		while (s[d->i++] == '\\')
 			d->slash_count++;
-			d->i++;
-		}
 	}
 	else
 		d->slash_count = 0;
-	if((check_virgolette_doppie(s, d->i) == 0))
+	if (d->flag == 2 && s[d->i] == '"')
+		d->flag = 0;
+	else if (s[d->i] == '"')
+		d->flag = 2;
+	if (s[d->i] == '\'' && d->flag == 0)
+		d->flag = 1;
+	while (s[d->i] && d->flag == 1)
 	{
-		if (s[d->i] == '\'')
-			d->flag = 1;
-		while (s[d->i] && d->flag == 1)
+		if (s[++d->i] == '\'')
 		{
-			d->i++;
-			if (s[d->i] == '\'')
-				d->flag = 0;
+			d->flag = 0;
+			break ;
 		}
 	}
 	d->start = d->i;
 	return (1);
+}
+
+char	*remove_spaces(char *str)
+{
+	int	length;
+
+	length = ft_strlen(str);
+	while (length > 0 && (str[length - 1] == ' '
+			|| str[length - 1] == '\'' || str[length - 1] == '"'))
+		length--;
+	str[length] = '\0';
+	return (str);
+}
+
+void	list_exist(t_var *list, t_short_dollar *d)
+{
+	if (list != NULL)
+	{
+		d->tmp = add_slashes(ft_strdup(list->value));
+		d->size = (int)ft_strlen(d->tmp);
+	}
 }
 
 char	*transform_for_dollar(char *s, t_data *data)
@@ -71,14 +92,10 @@ char	*transform_for_dollar(char *s, t_data *data)
 			s[d.i + d.env_len + 1] = '\0';
 			list = search_variable_tvar(s + d.i, data);
 			s[d.i + d.env_len + 1] = (char)d.save;
-			if (list != NULL)
-			{
-				d.tmp = add_slashes(ft_strdup(list->value));
-				d.size = (int)ft_strlen(d.tmp);
-			}
+			list_exist(list, &d);
 			s = replace_for_new_str(s, d.tmp, d.start, &d.i);
-			d.i+=d.size;
+			d.i += d.size;
 		}
 	}
-	return (s);
+	return (remove_spaces(s));
 }

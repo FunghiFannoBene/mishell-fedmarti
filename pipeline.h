@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 23:02:40 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:13:48 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_pipeline_tree_node
 	int							output_fd;
 	struct s_pipeline_tree_node	*input[2];
 	struct s_pipeline_tree_node	*output;
+	pid_t						pid;
 }	t_pnode;
 
 typedef struct s_redirect
@@ -45,8 +46,8 @@ typedef struct s_redirect
 	int					start;
 	char				flag;
 	int					size;
+	int					status;
 }	t_redirect;
-
 
 typedef struct s_fix_string
 {
@@ -55,7 +56,6 @@ typedef struct s_fix_string
 	struct list_redirect	*redirect;
 	struct s_fix_string		*next;
 }	t_indice;
-
 
 // void	next_size(char *s, int *i, t_redirect **command);
 t_pnode	*sort_pipeline_tree(t_pnode *input_tree);
@@ -74,6 +74,8 @@ char	*transform_for_dollar(char *s, t_data *data);
 // char	*add_slashes(char *tmp);
 // int		checksymbol(char *s);
 int		check_invalid(char c, char *invalid);
-// char	*ft_strndup(const char *s, size_t n);
+// char	*ft_strndup(const char *s, size_t n);]
+int		is_builtin(char *str);
+int		ft_builtin(t_pnode *node, t_data *data);
 
 #endif

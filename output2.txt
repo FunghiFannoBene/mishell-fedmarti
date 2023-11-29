@@ -1,0 +1,37 @@
+A
+Hello shhuang
+Welcome $HOME
+Today is 
+My path is $PATH
+User: shhuang Directory: /nfs/homes/shhuang/Desktop/minishell_consegnato
+This is $SHELL shell
+Hostname: c2r4p13.42firenze.it
+Term type $TERM
+Working in /nfs/homes/shhuang/Desktop/minishell_consegnato
+Language settings $LANG
+Logged in as shhuang
+Your home directory is $HOME
+Current Shell /bin/zsh
+Terminal session $TERM
+Editor preference 
+Display is set to $DISPLAY
+Your path is /usr/bin/python3:/nfs/homes/shhuang/.local:/nfs/homes/shhuang/bin:/nfs/homes/shhuang/bin:/opt/apache-maven-3.9.4/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+Machine type: $MACHTYPE
+System type linux-gnu
+Shell level $SHLVL
+Bash version 5.0.17(1)-release
+Current directory $PWD
+Process ID 912192
+The $HOME directory
+Number of seconds 0
+Your user ID $UID
+Group ID 
+Previous working directory $OLDPWD
+Bash options braceexpand:hashall:interactive-comments
+Your terminal $TERM
+Mail stored in 
+Random number $RANDOM
+Current line number 35
+Bash option flags $- 
+Number of arguments 0
+'shhuang'

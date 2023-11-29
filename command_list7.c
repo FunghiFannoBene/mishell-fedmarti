@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list7.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 17:44:53 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 12:52:02 by shhuang          ###   ########.fr       */
+/*   Created: 2023/11/24 11:33:20 by shhuang           #+#    #+#             */
+/*   Updated: 2023/11/25 15:14:02 by shhuang          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "short_code.h"
 
@@ -45,8 +45,6 @@ int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 			continue ;
 		while (s[*i])
 		{
-			if (check_slashes(s, i, &command) == -1)
-				continue ;
 			variabile = check_all_end(s, i, &command, &variabile);
 			if (variabile == -1 || variabile == 0 || variabile == 1)
 				return (variabile);
@@ -90,15 +88,11 @@ int	init_command(t_command *c, char *s)
 	c->structure_head = NULL;
 	c->structure_actual = NULL;
 	c->command_record = 0;
+	c->status = 0;
 	c->head = NULL;
 	c->i = 0;
 	if (!s)
 		return (-1);
-	if (check_virgolette_dispari_start(s, c->i))
-	{
-		printf("Virgolette dispari. Comando invalido.\n");
-		return (-1);
-	}
 	return (1);
 }
 
@@ -108,7 +102,6 @@ int	check_continuation(char *s, t_command *c)
 		return (1);
 	c->command = NULL;
 	c->head = NULL;
-	c->structure = malloc(sizeof(t_pnode));
-	ft_memset(c->structure, 0, sizeof(t_pnode));
+	c->structure = ft_calloc(1, sizeof(t_pnode));
 	return (0);
 }

@@ -1,0 +1,38 @@
+export A=A
+echo $A
+echo "Hello $USER"
+echo 'Welcome $HOME'
+echo "Today is $DATE"
+echo 'My path is $PATH'
+echo "User: $USER Directory: $PWD"
+echo 'This is $SHELL shell'
+echo "Hostname: $HOSTNAME"
+echo 'Term type $TERM'
+echo "Working in $PWD"
+echo 'Language settings $LANG'
+echo "Logged in as $LOGNAME"
+echo 'Your home directory is $HOME'
+echo "Current Shell $SHELL"
+echo 'Terminal session $TERM'
+echo "Editor preference $EDITOR"
+echo 'Display is set to $DISPLAY'
+echo "Your path is $PATH"
+echo 'Machine type: $MACHTYPE'
+echo "System type $OSTYPE"
+echo 'Shell level $SHLVL'
+echo "Bash version $BASH_VERSION"
+echo 'Current directory $PWD'
+echo "Process ID $$"
+echo 'The $HOME directory'
+echo "Number of seconds $SECONDS"
+echo 'Your user ID $UID'
+echo "Group ID $GID"
+echo 'Previous working directory $OLDPWD'
+echo "Bash options $SHELLOPTS"
+echo 'Your terminal $TERM'
+echo "Mail stored in $MAIL"
+echo 'Random number $RANDOM'
+echo "Current line number $LINENO"
+echo 'Bash option flags $- '
+echo "Number of arguments $#"
+echo "'$USER'"

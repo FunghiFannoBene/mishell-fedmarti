@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 21:15:16 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/16 19:27:21 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:39:36 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <dirent.h>
+
+t_pnode	*get_head(t_pnode *node);
 
 static inline int	command_not_found_error(char *name)
 {
@@ -63,15 +65,13 @@ static int	is_executable(char *path)
 	return (0);
 }
 
-void	ft_exec(t_pnode *node, t_data *data)
+void	check_invalid_command(t_data *data, t_pnode *node, char *program_path)
 {
-	char	**env;
-	char	*program_path;
-
-	program_path = find_file_in_path(node->args[0], \
-	get_var("PATH", data->export_var));
 	if (!program_path)
-		ft_exit_pip(command_not_found_error(node->args[0]), node, data);
+	{
+		_error_message(node->args[0], "command not found");
+		ft_exit_pip(127, node, data);
+	}
 	if (access(program_path, F_OK))
 	{
 		_error_message(program_path, "No such file or directory");
@@ -83,6 +83,16 @@ void	ft_exec(t_pnode *node, t_data *data)
 			free(program_path);
 		ft_exit_pip(126, node, data);
 	}
+}
+
+void	ft_exec(t_pnode *node, t_data *data)
+{
+	char	**env;
+	char	*program_path;
+
+	program_path = find_file_in_path(node->args[0], \
+	get_var("PATH", data->export_var));
+	check_invalid_command(data, node, program_path);
 	env = env_list_to_array(data->export_var);
 	if (!env)
 		ft_exit_pip(1, node, data);

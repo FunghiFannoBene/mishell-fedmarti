@@ -6,107 +6,57 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 23:58:19 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:53:01 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "pipeline.h"
 
-int		redirect_input(t_pnode *node, t_data *data);
-int		redirect_input_heredoc(t_pnode *node, t_data *data);
-int		program_call(t_pnode *node, t_data *data);
-void	child_sighandler(int signo);
 int		is_builtin(char *str);
 int		ft_builtin(t_pnode *node, t_data *data);
+void	signal_handler(int signo);
+int		run_command(t_pnode *node, t_data *data);
+int		single_builtin(t_pnode *node, t_data *data);
 
-int	empty_file(t_pnode *node)
+static t_pnode	*empty_heredoc(t_pnode *node, int *exit_status, t_data *data)
 {
-	int	fd;
-
-	fd = 0;
-	if (node->type == Redirect_output)
-		fd = open(node->output->args[0], O_WRONLY | O_CREAT | O_TRUNC, \
-		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	else if (node->type == Redirect_output_append)
-		fd = open(node->output->args[0], O_WRONLY | O_CREAT | O_APPEND, \
-		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-	if (node->output && !node->output->input[1])
-		node->output->input_fd = open("/dev/null", O_RDONLY);
-	if (!fd)
-		return (1);
-	close(fd);
-	return (0);
+	if (node->type != Redirect_input_heredoc)
+		return (next(node));
+	node->pid = ft_fork(exit_status);
+	if (node->pid == -1)
+	{
+		*exit_status = 1;
+		free_tree(node);
+		return (NULL);
+	}
+	else if (!node->pid)
+		ft_exit_pip(ft_heredoc(node->args, open("/dev/null", O_WRONLY), \
+		data), node, data);
+	waitpid(node->pid, exit_status, 0);
+	return (next(node));
 }
 
-int	error_pipe(t_pnode *node)
+static t_pnode	*format_checks(t_pnode *node, t_data *data, int *exit_status)
 {
-	write (2, "bash: syntax error near unexpected token `|'\n", 46);
-	if (node->output && node->output->input[1])
-		free_node(node->output->input[1]);
-	free_tree(node->output);
-	node->output = NULL;
-	return (1);
-}
-
-int	run_command(t_pnode *node, t_data *data)
-{
-	int	exit_status;
-
-	if (!node)
-		exit_status = 0;
-	if (node->type == Redirect_input)
-		exit_status = redirect_input(node, data);
-	else if (node->type == Program_Call)
-		exit_status = program_call(node, data);
-	else if (node->type == Pipe)
-		return (error_pipe(node));
-	else if (node->type == Redirect_input_heredoc)
-		return (redirect_input_heredoc(node, data));
-	else if (node->type == Redirect_output \
-	|| node->type == Redirect_output_append)
-		return (empty_file(node));
-	if (node->output && node->output->input[1] \
-	&& node != node->output->input[1])
-		exit_status = run_command(node->output->input[1], data);
-	return (exit_status);
-}
-
-void	*fork_error(t_pnode *node, int *exit_status)
-{
-	*exit_status = 1;
-	free_tree(node);
-	return (NULL);
-}
-
-static t_pnode	*preliminary_tests(t_pnode *node, t_data *data, int *exit_status)
-{
-	pid_t	child_pid;
-
 	if (node && (node->type == Pipe))
 	{
-		child_pid = ft_fork(exit_status);
-		if (child_pid == -1)
-			return (fork_error(node, exit_status));
-		else if (!child_pid)
+		node->pid = ft_fork(exit_status);
+		if (node->pid == -1)
+		{
+			*exit_status = 1;
+			free_tree(node);
+			return (NULL);
+		}
+		else if (!node->pid)
 			ft_exit_pip(run_command(node, data), node, data);
+		waitpid(node->pid, exit_status, 0);
 		free_tree(node);
 		return (NULL);
 	}
 	while (node && (node->type == Redirect_input \
 	|| node->type == Redirect_input_heredoc))
-	{
-		if (node->type == Redirect_input_heredoc)
-		{
-			child_pid = ft_fork(exit_status);
-			if (child_pid == -1)
-				return (fork_error(node, exit_status));
-			else if (child_pid)
-				ft_exit_pip(ft_heredoc(node->args, open("/dev/null", O_WRONLY), \
-				data), node, data);
-		}
-		node = next(node);
-	}
+		node = empty_heredoc(node, exit_status, data);
 	if (node && node->type == Pipe && node->output)
 	{
 		node = next(node);
@@ -116,37 +66,56 @@ static t_pnode	*preliminary_tests(t_pnode *node, t_data *data, int *exit_status)
 	return (node);
 }
 
-int	pipeline(t_pnode *node, t_data *data)
+static void	sa_quit(int signo)
 {
-	int		exit_status;
-	t_pnode	*tree_head;
+	if (signo == SIGQUIT)
+		write (2, "Quit (core dumped)\n", 20);
+}
 
-	tree_head = node;
+static int	wait_for_children(t_pnode *node, int *exit_status)
+{
 	while (node)
 	{
-		exit_status = run_command(node, data);
+		if (node->pid > 0)
+		{
+			if (waitpid(node->pid, exit_status, 0) < 0)
+			{
+				*exit_status = 1;
+				return (1);
+			}
+			if (WIFEXITED(*exit_status))
+				*exit_status = (WEXITSTATUS(*exit_status));
+			else if (WIFSIGNALED(*exit_status))
+				*exit_status = WTERMSIG(*exit_status) + 128;
+		}
 		node = node->output;
 	}
-	free_tree(tree_head);
-	return (exit_status);
+	return (*exit_status);
 }
 
 int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 {
 	int		exit_status;
+	t_pnode	*head;
 
-	
-	if (!pipeln_tree)
-		return (1);
+	exit_status = 0;
 	if (pipeln_tree->output == NULL && is_builtin(pipeln_tree->args[0]))
-	{
-		exit_status = ft_builtin(pipeln_tree, data);
-		free_node(pipeln_tree);
-		return (exit_status);
-	}
-	pipeln_tree = preliminary_tests(pipeln_tree, data, &exit_status);
+		return (single_builtin(pipeln_tree, data));
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, sa_quit);
+	pipeln_tree = format_checks(pipeln_tree, data, &exit_status);
 	if (!pipeln_tree)
 		return (exit_status);
 	pipeln_tree = sort_pipeline_tree(pipeln_tree);
-	return (pipeline(pipeln_tree, data));
+	head = pipeln_tree;
+	while (pipeln_tree)
+	{
+		exit_status = run_command(pipeln_tree, data);
+		pipeln_tree = pipeln_tree->output;
+	}
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
+	wait_for_children(head, &exit_status);
+	free_tree(head);
+	return (exit_status);
 }

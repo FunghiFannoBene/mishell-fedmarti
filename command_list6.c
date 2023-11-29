@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:44:00 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 20:04:03 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:12:50 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@ int	end_check(char *s, int *i, t_redirect **command)
 {
 	if (!s)
 		return (0);
-	if (s[*i] == (*command)->flag)
+	if (s[*i] == (*command)->flag && s[*i - 1] != '\\')
 	{
 		(*i)++;
 		add_and_set_for_next(command, s);
+		if (s[*i] == ' ' || s[*i] == '\0')
+		{
+			(*command)->status = 0;
+		}
+		else
+			(*command)->status = 1;
 		check_and_skip_space(s, i);
 		(*command)->start = *i;
 		if (s[*i] == '\0')
@@ -42,6 +48,7 @@ int	flag_zero_space(char *s, int *i, t_redirect **command)
 		(*command) = (*command)->next;
 		(*command)->flag = 0;
 		(*command)->size = 0;
+		(*command)->status = 0;
 		check_and_skip_space(s, i);
 		(*command)->start = *i;
 		if (s[*i] == '\0' || s[*i] == '|' || s[*i] == '>' || s[*i] == '<')
@@ -63,12 +70,18 @@ void	init_size_of_command(t_pnode *structure, t_redirect **command,
 	(*command)->flag = 0;
 	(*command)->start = *i;
 	(*command)->size = 0;
+	(*command)->status = 0;
 }
 
 int	break_or_add(char *s, int *i, t_redirect *command)
 {
 	if (command->flag == 0 && (s[*i] == '\'' || s[*i] == '"'))
 		return (1);
+	if (command->flag == 0 && s[*i] == ' ')
+	{
+		(*i)++;
+		return (1);
+	}
 	command->size++;
 	(*i)++;
 	return (0);

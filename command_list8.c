@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:45:39 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/15 20:03:51 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:29:34 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,6 @@ void	assign_structure(t_command *c)
 		c->structure_actual->output = c->structure;
 		c->structure_actual = c->structure_actual->output;
 	}
-}
-
-int	is_void(t_command *c)
-{
-	if (c->structure->type == Null && !c->structure_head)
-	{
-		free(c->structure);
-		return (1);
-	}
-	return (0);
 }
 
 int	evaluate_next_struct(t_command *c, char *s)
@@ -65,7 +55,7 @@ int	evaluate_next_struct(t_command *c, char *s)
 	return (3);
 }
 
-void	command_to_structure(t_command *c)
+void	setup_command(t_command *c)
 {
 	c->head = c->command;
 	if (c->structure_head == NULL)
@@ -77,29 +67,49 @@ void	command_to_structure(t_command *c)
 		c->x++;
 		c->command = c->command->next;
 	}
-	c->structure->args = malloc(sizeof(char *) * (size_t)(c->x + 1));
+	c->structure->args = ft_calloc(sizeof(char *), (size_t)(c->x + 1));
 	c->structure->input_fd = 0;
 	c->structure->output_fd = 1;
 	c->x = 0;
-	while (c->head)
-	{
-		c->structure->args[c->x++] = ft_strdup(c->head->str);
-		free(c->head->str);
-		c->temp = c->head;
-		c->head = c->head->next;
-		free(c->temp);
-	}
-	c->structure->args[c->x] = NULL;
-	c->structure->output = NULL;
 }
 
-void	structure_linking(t_command *c)
+void	concatenate_args_status(t_command *c)
 {
-	if (c->structure_actual == NULL)
-		c->structure_actual = c->structure_head;
-	else
+	while (c->head && c->head->status == 1)
 	{
-		c->structure_actual->output = c->structure;
-		c->structure_actual = c->structure_actual->output;
+		if (c->structure->args[c->x] == NULL)
+		{
+			c->structure->args[c->x] = ft_strdup("");
+			c->structure->args[c->x] = ft_strjoin2(c->structure->args[c->x],
+					c->head->str);
+		}
+		else if (c->head && c->head->str)
+			c->structure->args[c->x] = ft_strjoin(c->structure->args[c->x],
+					c->head->str);
+		free_tmp_new_head(&c);
+	}
+}
+
+void	command_to_structure(t_command *c)
+{
+	setup_command(c);
+	while (c->head)
+	{
+		if (c->head && c->head->status == 1)
+		{
+			concatenate_args_status(c);
+			if (c->head && c->head->str)
+			{
+				c->structure->args[c->x] = ft_strjoin(c->structure->args[c->x],
+						c->head->str);
+				free_tmp_new_head(&c);
+			}
+		}
+		else
+		{
+			c->structure->args[c->x] = ft_strdup(c->head->str);
+			free_tmp_new_head(&c);
+		}
+		c->x++;
 	}
 }

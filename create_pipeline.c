@@ -6,7 +6,7 @@
 /*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/15 23:56:42 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:49:43 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_pnode	*next(t_pnode *node)
 	{
 		node->input[0] = temp->input[0];
 		if (node->input[1] != temp)
-			free(node->input[1]);
+			free_node(node->input[1]);
 	}
 	free_node(temp);
 	return (node);
@@ -53,6 +53,7 @@ t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous)
 	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
+	new->pid = 0;
 	new->type = type;
 	new->args = args;
 	new->input[0] = previous;

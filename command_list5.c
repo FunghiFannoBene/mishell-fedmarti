@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   command_list5.c                                    :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/19 11:47:51 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/25 15:28:24 by shhuang          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "short_code.h"
 
@@ -22,13 +22,6 @@ int	check_slashes(char *s, int *i, t_redirect **command)
 		if (s[*i] == '\0')
 			return (0);
 		return (-1);
-	}
-	if (s[*i] == '\\' && s[*i + 1] == '$')
-	{
-		(*command)->size += 1;
-		(*command)->start += 1;
-		(*i) += 2;
-		return (0);
 	}
 	return ((slash_return(s, i, command)));
 }
@@ -51,7 +44,8 @@ void	add_and_set_for_next(t_redirect **command, char *s)
 {
 	(*command)->next = malloc(sizeof(t_redirect));
 	ft_memset((*command)->next, 0, sizeof(t_redirect));
-	(*command)->next->str = substring(s, (size_t)(*command)->start, (size_t)(*command)->size);
+	(*command)->next->str = substring(s, (size_t)(*command)->start,
+			(size_t)(*command)->size);
 	(*command) = (*command)->next;
 	(*command)->flag = 0;
 	(*command)->size = 0;
@@ -66,6 +60,14 @@ int	end_check_flag_zero(char *s, int *i, t_redirect **command)
 		(*command)->start = *i;
 		return (-3);
 	}
+	else if ((*command)->flag == 0 && ((s[*i] == '\''
+				|| s[*i] == '"') && s[*i - 1] != '\\')
+		&& (*command)->size)
+	{
+		add_and_set_for_next(command, s);
+		set_status(s, *i, &((*command)->status));
+		return (-1);
+	}
 	else if (s[(*i) + 1] == '\0')
 	{
 		(*command)->size++;
@@ -73,13 +75,6 @@ int	end_check_flag_zero(char *s, int *i, t_redirect **command)
 		(*command)->next = NULL;
 		(*i)++;
 		return (-2);
-	}
-	else if ((*command)->flag == 0 && (s[*i] == '\'' || s[*i] == '"')
-		&& (*command)->size)
-	{
-		(*i)++;
-		add_and_set_for_next(command, s);
-		return (-1);
 	}
 	return (0);
 }
