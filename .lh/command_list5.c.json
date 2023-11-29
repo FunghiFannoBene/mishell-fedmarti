@@ -1,0 +1,22 @@
+{
+    "sourceFile": "command_list5.c",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1701283628664,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1701283634639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/11/29 19:47:08 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/11/29 19:47:14 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /* ************************************************************************** */\n \n #include \"short_code.h\"\n@@ -41,10 +41,9 @@\n }\n \n void\tadd_and_set_for_next(t_redirect **command, char *s)\n {\n-\t(*command)->next = ft_calloc(sizeof(t_redirect));\n-\tft_memset((*command)->next, 0, sizeof(t_redirect));\n+\t(*command)->next = ft_calloc(sizeof(t_redirect), 1);\n \t(*command)->next->str = substring(s, (size_t)(*command)->start,\n \t\t\t(size_t)(*command)->size);\n \t(*command) = (*command)->next;\n \t(*command)->flag = 0;\n"
+                }
+            ],
+            "date": 1701283628664,
+            "name": "Commit-0",
+            "content": "/* ************************************************************************** */\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   command_list5.c                                    :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */\n/*   Updated: 2023/11/29 19:47:08 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/* ************************************************************************** */\n\n#include \"short_code.h\"\n\nint\tcheck_slashes(char *s, int *i, t_redirect **command)\n{\n\tif (((*command)->flag == 0 || (*command)->flag == '\"') && s[*i] == '\\\\'\n\t\t&& s[*i + 1] == '\\\\')\n\t{\n\t\t(*i) += 2;\n\t\t(*command)->size++;\n\t\tif (s[*i] == '\\0')\n\t\t\treturn (0);\n\t\treturn (-1);\n\t}\n\treturn ((slash_return(s, i, command)));\n}\n\nchar\t*substring(const char *str, size_t begin, size_t len)\n{\n\tif (str == NULL || ft_strlen(str) < begin || ft_strlen(str) < (begin + len))\n\t\treturn (NULL);\n\treturn (ft_strndup(str + begin, len));\n}\n\nvoid\tnext_size(int *i, t_redirect **command)\n{\n\t(*command)->flag = 0;\n\t(*command)->start = *i;\n\t(*command)->size = 0;\n}\n\nvoid\tadd_and_set_for_next(t_redirect **command, char *s)\n{\n\t(*command)->next = ft_calloc(sizeof(t_redirect));\n\tft_memset((*command)->next, 0, sizeof(t_redirect));\n\t(*command)->next->str = substring(s, (size_t)(*command)->start,\n\t\t\t(size_t)(*command)->size);\n\t(*command) = (*command)->next;\n\t(*command)->flag = 0;\n\t(*command)->size = 0;\n}\n\nint\tend_check_flag_zero(char *s, int *i, t_redirect **command)\n{\n\tif ((*command)->flag == 0 && (s[*i] == '<' || s[*i] == '>'\n\t\t\t|| s[*i] == '|'))\n\t{\n\t\tadd_and_set_for_next(command, s);\n\t\t(*command)->start = *i;\n\t\treturn (-3);\n\t}\n\telse if ((*command)->flag == 0 && ((s[*i] == '\\''\n\t\t\t\t|| s[*i] == '\"') && s[*i - 1] != '\\\\')\n\t\t&& (*command)->size)\n\t{\n\t\tadd_and_set_for_next(command, s);\n\t\tset_status(s, *i, &((*command)->status));\n\t\treturn (-1);\n\t}\n\telse if (s[(*i) + 1] == '\\0')\n\t{\n\t\t(*command)->size++;\n\t\tadd_and_set_for_next(command, s);\n\t\t(*command)->next = NULL;\n\t\t(*i)++;\n\t\treturn (-2);\n\t}\n\treturn (0);\n}\n"
+        }
+    ]
+}

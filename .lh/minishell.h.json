@@ -1,0 +1,18 @@
+{
+    "sourceFile": "minishell.h",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1701282778756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1701282778756,
+            "name": "Commit-0",
+            "content": "/* ************************************************************************** */\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   minishell.h                                        :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */\n/*   Updated: 2023/11/29 19:32:58 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/* ************************************************************************** */\n\n#ifndef MINISHELL_H\n# define MINISHELL_H\n\n# include <stddef.h>\n# include <stdio.h>\n# include <signal.h>\n# include <readline/readline.h>\n# include <readline/history.h>\n# include <stdlib.h>\n# include <unistd.h>\n# include <limits.h> //path max\n# include <sys/types.h>\n# include <sys/wait.h>\n# include \"libft/libft.h\"\n# include <signal.h>\n# include <sys/stat.h>\n# include <fcntl.h>\n# include <dirent.h>\n# include \"pipeline.h\"\n# ifndef NOT_VALID\n#  define NOT_VALID \"!@#$%^&*()+[]{};:',./<>\\\\|\\\"`~ \"\n# endif\n\ntypedef struct s_list_env\n{\n\tchar\t\t\t\t*env;\n\tstruct s_list_env\t*next;\n}\tt_env;\n\ntypedef struct s_shell_var {\n\tchar\t*name;\n\tchar\t*value;\n}\tt_var;\n\ntypedef struct s_env_pointer\n{\n\tstruct s_list_env\t*head;\n\tstruct s_list_env\t*last;\n}\tt_env_pointer;\n\ntypedef struct s_minishell_data {\n\tt_list\t*export_var;\n\tt_list\t*local_var;\n\tt_var\t*exit_status;\n}\tt_data;\n\nt_var\t*new_var(char *name, char *value);\nvoid\tfree_var(void *variable);\nt_var\t*get_var(char *name, t_list *list);\nchar\t*search_variable(char *str, t_data *data);\nt_var\t*search_variable_tvar(char *str, t_data *data);\nchar\t*expand_variables(char *str, t_data *data);\nint\t\tset_var(t_var *var, char *new_value);\nint\t\tset_var_list(char *name, char *value, t_list *list);\nt_list\t*get_env_list(const char **env);\nchar\t**env_list_to_array(t_list *env_list);\nint\t\tft_export(char **args, t_data *data, int fd);\nint\t\tft_env(t_list *env_list, int fd);\nint\t\tft_echo(char **args, int fd);\nint\t\tft_cd(char **args, t_data *data);\nint\t\tft_pwd(char\t**args, t_data *data);\nint\t\tft_unset(char **args, t_data *data);\nint\t\tft_exit(char **args, t_data *data, t_pnode *node);\nint\t\tft_heredoc(char **args, int fd, t_data *data);\nchar\t*remove_useless(char *s);\n\n//quick function to print the error message and returns the exit value\nint\t\tno_such_file_or_directory(char *filename);\n\n//takes filename string and the PATH env variable\n//returns value:\n//name if NULL or if it's already either written as absolute/relative path\n//allocated string with absolute path to name if it's found within PATH\n//NULL if there's no name file in the directories pointed to by PATH\nchar\t*find_file_in_path(char *name, t_var *env_v_path);\n\n#endif"
+        }
+    ]
+}

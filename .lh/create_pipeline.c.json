@@ -1,0 +1,18 @@
+{
+    "sourceFile": "create_pipeline.c",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1701283640663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1701283640663,
+            "name": "Commit-0",
+            "content": "/* ************************************************************************** */\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   create_pipeline.c                                  :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */\n/*   Updated: 2023/11/29 19:47:20 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/* ************************************************************************** */\n\n#include \"pipeline.h\"\n#include \"libft/libft.h\"\n\nt_pnode\t*del_next(t_pnode *node)\n{\n\tt_pnode\t*next;\n\n\tnext = node->output;\n\tif (!next)\n\t\treturn (node);\n\tnode->output = next->output;\n\tif (node->output)\n\t\tnode->output->input[0] = node;\n\tnext->output = NULL;\n\tfree_node(next);\n\treturn (node);\n}\n\nt_pnode\t*next(t_pnode *node)\n{\n\tt_pnode\t*temp;\n\n\ttemp = node;\n\tnode = node->output;\n\tif (node)\n\t{\n\t\tnode->input[0] = temp->input[0];\n\t\tif (node->input[1] != temp)\n\t\t\tfree_node(node->input[1]);\n\t}\n\tfree_node(temp);\n\treturn (node);\n}\n\nt_pnode\t*node_create(enum e_pnode_type type, char **args, t_pnode *previous)\n{\n\tt_pnode\t*new;\n\n\tif (type == Null)\n\t\treturn (NULL);\n\tnew = ft_calloc(sizeof(*new));\n\tif (!new)\n\t\treturn (NULL);\n\tnew->pid = 0;\n\tnew->type = type;\n\tnew->args = args;\n\tnew->input[0] = previous;\n\tnew->input[1] = NULL;\n\tnew->output = NULL;\n\tnew->input_fd = 0;\n\tnew->output_fd = 1;\n\treturn (new);\n}\n\nvoid\tfree_node(t_pnode *node)\n{\n\tif (!node)\n\t\treturn ;\n\tif (node->args)\n\t\tft_free_matrix((void ***)&node->args, INT_MAX);\n\tif (node->output)\n\t{\n\t\tif (node == node->output->input[0])\n\t\t\tnode->output->input[0] = NULL;\n\t\telse\n\t\t\tnode->output->input[1] = NULL;\n\t}\n\tfree(node);\n}\n\nvoid\tfree_tree(t_pnode *head)\n{\n\tt_pnode\t*node;\n\n\tif (!head)\n\t\treturn ;\n\thead = next(head);\n\twhile (head)\n\t{\n\t\tnode = head->output;\n\t\tif (node && node->input[1])\n\t\t\tfree_node(node->input[1]);\n\t\tfree_node(head);\n\t\thead = node;\n\t}\n}\n"
+        }
+    ]
+}
