@@ -1,38 +1,275 @@
-A
-Hello shhuang
-Welcome $HOME
-Today is
-My path is $PATH
-User: shhuang Directory: /nfs/homes/shhuang/Desktop/minishell_consegnato
-This is $SHELL shell
-Hostname:
-Term type $TERM
-Working in /nfs/homes/shhuang/Desktop/minishell_consegnato
-Language settings $LANG
-Logged in as shhuang
-Your home directory is $HOME
-Current Shell /bin/zsh
-Terminal session $TERM
-Editor preference
-Display is set to $DISPLAY
-Your path is /usr/bin/python3:/nfs/homes/shhuang/.local:/nfs/homes/shhuang/bin:/nfs/homes/shhuang/bin:/opt/apache-maven-3.9.4/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-Machine type: $MACHTYPE
-System type
-Shell level $SHLVL
-Bash version _VERSION
-Current directory $PWD
-Process ID $$
-The $HOME directory
-Number of seconds
-Your user ID $UID
-Group ID
-Previous working directory $OLDPWD
-Bash options
-Your terminal $TERM
-Mail stored in
-Random number $RANDOM
-Current line number
-Bash option flags $-
-Number of arguments $#
-'shhuang
-Binary file (standard input) matches
+declare -x COLORTERM="truecolor"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+declare -x DESKTOP_SESSION="ubuntu"
+declare -x DISPLAY=":1"
+declare -x GDMSESSION="ubuntu"
+declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+declare -x GNOME_SHELL_SESSION_MODE="ubuntu"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/62ff959d_f2ec_42fe_8f48_a71e7ea3f0f6"
+declare -x GNOME_TERMINAL_SERVICE=":1.107"
+declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1"
+declare -x GTK_IM_MODULE="ibus"
+declare -x GTK_MODULES="gail:atk-bridge"
+declare -x HOME="/home/federico"
+declare -x LANG="en_US.UTF-8"
+declare -x LC_ADDRESS="it_IT.UTF-8"
+declare -x LC_IDENTIFICATION="it_IT.UTF-8"
+declare -x LC_MEASUREMENT="it_IT.UTF-8"
+declare -x LC_MONETARY="it_IT.UTF-8"
+declare -x LC_NAME="it_IT.UTF-8"
+declare -x LC_NUMERIC="it_IT.UTF-8"
+declare -x LC_PAPER="it_IT.UTF-8"
+declare -x LC_TELEPHONE="it_IT.UTF-8"
+declare -x LC_TIME="it_IT.UTF-8"
+declare -x LESSCLOSE="/usr/bin/lesspipe %s %s"
+declare -x LESSOPEN="| /usr/bin/lesspipe %s"
+declare -x LOGNAME="federico"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:"
+declare -x OLDPWD="/home/federico/Desktop/Work_in_progress"
+declare -x PATH="/home/federico/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"
+declare -x PWD="/home/federico/Desktop/Work_in_progress/mishell-fedmarti"
+declare -x QT_ACCESSIBILITY="1"
+declare -x QT_IM_MODULE="ibus"
+declare -x SESSION_MANAGER="local/F3dM4rt0:@/tmp/.ICE-unix/1826,unix/F3dM4rt0:/tmp/.ICE-unix/1826"
+declare -x SHELL="/bin/bash"
+declare -x SHLVL="1"
+declare -x SSH_AGENT_LAUNCHER="gnome-keyring"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+declare -x SYSTEMD_EXEC_PID="5235"
+declare -x TERM="xterm-256color"
+declare -x USER="federico"
+declare -x USERNAME="federico"
+declare -x VTE_VERSION="6800"
+declare -x WINDOWPATH="2"
+declare -x XAUTHORITY="/run/user/1000/gdm/Xauthority"
+declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/etc/xdg"
+declare -x XDG_CURRENT_DESKTOP="ubuntu:GNOME"
+declare -x XDG_DATA_DIRS="/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop"
+declare -x XDG_MENU_PREFIX="gnome-"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SESSION_CLASS="user"
+declare -x XDG_SESSION_DESKTOP="ubuntu"
+declare -x XDG_SESSION_TYPE="x11"
+declare -x XMODIFIERS="@im=ibus"
+declare -x ="val"
+declare -x _="./minishell"
+declare -x placeholder="val"
+declare -x COLORTERM="truecolor"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+declare -x DESKTOP_SESSION="ubuntu"
+declare -x DISPLAY=":1"
+declare -x GDMSESSION="ubuntu"
+declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+declare -x GNOME_SHELL_SESSION_MODE="ubuntu"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/62ff959d_f2ec_42fe_8f48_a71e7ea3f0f6"
+declare -x GNOME_TERMINAL_SERVICE=":1.107"
+declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1"
+declare -x GTK_IM_MODULE="ibus"
+declare -x GTK_MODULES="gail:atk-bridge"
+declare -x HOME="/home/federico"
+declare -x LANG="en_US.UTF-8"
+declare -x LC_ADDRESS="it_IT.UTF-8"
+declare -x LC_IDENTIFICATION="it_IT.UTF-8"
+declare -x LC_MEASUREMENT="it_IT.UTF-8"
+declare -x LC_MONETARY="it_IT.UTF-8"
+declare -x LC_NAME="it_IT.UTF-8"
+declare -x LC_NUMERIC="it_IT.UTF-8"
+declare -x LC_PAPER="it_IT.UTF-8"
+declare -x LC_TELEPHONE="it_IT.UTF-8"
+declare -x LC_TIME="it_IT.UTF-8"
+declare -x LESSCLOSE="/usr/bin/lesspipe %s %s"
+declare -x LESSOPEN="| /usr/bin/lesspipe %s"
+declare -x LOGNAME="federico"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:"
+declare -x OLDPWD="/home/federico/Desktop/Work_in_progress"
+declare -x PATH="/home/federico/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"
+declare -x PWD="/home/federico/Desktop/Work_in_progress/mishell-fedmarti"
+declare -x QT_ACCESSIBILITY="1"
+declare -x QT_IM_MODULE="ibus"
+declare -x SESSION_MANAGER="local/F3dM4rt0:@/tmp/.ICE-unix/1826,unix/F3dM4rt0:/tmp/.ICE-unix/1826"
+declare -x SHELL="/bin/bash"
+declare -x SHLVL="1"
+declare -x SSH_AGENT_LAUNCHER="gnome-keyring"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+declare -x SYSTEMD_EXEC_PID="5235"
+declare -x TERM="xterm-256color"
+declare -x USER="federico"
+declare -x USERNAME="federico"
+declare -x VTE_VERSION="6800"
+declare -x WINDOWPATH="2"
+declare -x XAUTHORITY="/run/user/1000/gdm/Xauthority"
+declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/etc/xdg"
+declare -x XDG_CURRENT_DESKTOP="ubuntu:GNOME"
+declare -x XDG_DATA_DIRS="/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop"
+declare -x XDG_MENU_PREFIX="gnome-"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SESSION_CLASS="user"
+declare -x XDG_SESSION_DESKTOP="ubuntu"
+declare -x XDG_SESSION_TYPE="x11"
+declare -x XMODIFIERS="@im=ibus"
+declare -x ="val"
+declare -x _="./minishell"
+declare -x placeholder="val"
+Display all 104 possibilities? (y or n)
+.git/                   error_messages.c        program_call.c
+.gitignore              error_messages.o        program_call.o
+.history/               exec.c                  pwd.c
+.lh/                    exec.o                  pwd.o
+.vscode/                exit.c                  readline.supp
+Makefile                exit.o                  redirect_input.c
+a.out                   export.c                redirect_input.o
+basherror.txt           export.o                run_command.c
+cd.c                    file_utils.c            run_command.o
+cd.o                    file_utils.o            run_command_pipeline.c
+chars.c                 ft_builtin.c            run_command_pipeline.o
+command_list.c          ft_builtin.o            short_code.h
+command_list.o          ft_fork.c               sort_pipeline_tree.c
+command_list2.c         ft_fork.o               sort_pipeline_tree.o
+command_list2.o         get_env_list.c          test/
+command_list3.c         get_env_list.o          tester
+command_list3.o         heredoc.c               testfile
+command_list4.c         heredoc.o               testit
+command_list4.o         libft/                  transform_dollar.c
+command_list5.c         loop_logic.c            transform_dollar.o
+command_list5.o         loop_logic.o            transform_dollar2.c
+command_list6.c         minishell               transform_dollar2.o
+command_list6.o         minishell.c             transform_dollar3.c
+--More--[Kcommand_list7.c         minishell.h             transform_dollar3.o
+--More--[Kcommand_list7.o         minishell.o             transform_dollar4.c
+command_list8.c         minishell_old.c         transform_dollar4.o
+command_list8.o         minishell_subject.pdf   unset.c
+command_list9.c         minishellerror.txt      unset.o
+command_list9.o         output.txt              var.c
+create_pipeline.c       output2.txt             var.o
+create_pipeline.o       pipeline.h              var2.c
+echo.c                  pipeline_util.c         var2.o
+echo.o                  pipeline_util.o         var3.c
+env.c                   print_export.c          var3.o
+env.o                   print_export.o          
+declare -x COLORTERM="truecolor"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+declare -x DESKTOP_SESSION="ubuntu"
+declare -x DISPLAY=":1"
+declare -x GDMSESSION="ubuntu"
+declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+declare -x GNOME_SHELL_SESSION_MODE="ubuntu"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/62ff959d_f2ec_42fe_8f48_a71e7ea3f0f6"
+declare -x GNOME_TERMINAL_SERVICE=":1.107"
+declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1"
+declare -x GTK_IM_MODULE="ibus"
+declare -x GTK_MODULES="gail:atk-bridge"
+declare -x HOME="/home/federico"
+declare -x LANG="en_US.UTF-8"
+declare -x LC_ADDRESS="it_IT.UTF-8"
+declare -x LC_IDENTIFICATION="it_IT.UTF-8"
+declare -x LC_MEASUREMENT="it_IT.UTF-8"
+declare -x LC_MONETARY="it_IT.UTF-8"
+declare -x LC_NAME="it_IT.UTF-8"
+declare -x LC_NUMERIC="it_IT.UTF-8"
+declare -x LC_PAPER="it_IT.UTF-8"
+declare -x LC_TELEPHONE="it_IT.UTF-8"
+declare -x LC_TIME="it_IT.UTF-8"
+declare -x LESSCLOSE="/usr/bin/lesspipe %s %s"
+declare -x LESSOPEN="| /usr/bin/lesspipe %s"
+declare -x LOGNAME="federico"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:"
+declare -x OLDPWD="/home/federico/Desktop/Work_in_progress"
+declare -x PATH="/home/federico/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"
+declare -x PWD="/home/federico/Desktop/Work_in_progress/mishell-fedmarti"
+declare -x QT_ACCESSIBILITY="1"
+declare -x QT_IM_MODULE="ibus"
+declare -x SESSION_MANAGER="local/F3dM4rt0:@/tmp/.ICE-unix/1826,unix/F3dM4rt0:/tmp/.ICE-unix/1826"
+declare -x SHELL="/bin/bash"
+declare -x SHLVL="1"
+declare -x SSH_AGENT_LAUNCHER="gnome-keyring"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+declare -x SYSTEMD_EXEC_PID="5235"
+declare -x TERM="xterm-256color"
+declare -x USER="federico"
+declare -x USERNAME="federico"
+declare -x VTE_VERSION="6800"
+declare -x WINDOWPATH="2"
+declare -x XAUTHORITY="/run/user/1000/gdm/Xauthority"
+declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/etc/xdg"
+declare -x XDG_CURRENT_DESKTOP="ubuntu:GNOME"
+declare -x XDG_DATA_DIRS="/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop"
+declare -x XDG_MENU_PREFIX="gnome-"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SESSION_CLASS="user"
+declare -x XDG_SESSION_DESKTOP="ubuntu"
+declare -x XDG_SESSION_TYPE="x11"
+declare -x XMODIFIERS="@im=ibus"
+declare -x ="val"
+declare -x _="./minishell"
+declare -x export=""
+declare -x placeholder="val"
+declare -x val
+declare -x -="val"
+declare -x 0="val"
+declare -x 1="val"
+declare -x 2="val"
+declare -x 3="val"
+declare -x 4="val"
+declare -x 5="val"
+declare -x 6="val"
+declare -x 7="val"
+declare -x 8="val"
+declare -x 9="val"
+declare -x COLORTERM="truecolor"
+declare -x DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+declare -x DESKTOP_SESSION="ubuntu"
+declare -x DISPLAY=":1"
+declare -x GDMSESSION="ubuntu"
+declare -x GNOME_DESKTOP_SESSION_ID="this-is-deprecated"
+declare -x GNOME_SHELL_SESSION_MODE="ubuntu"
+declare -x GNOME_TERMINAL_SCREEN="/org/gnome/Terminal/screen/62ff959d_f2ec_42fe_8f48_a71e7ea3f0f6"
+declare -x GNOME_TERMINAL_SERVICE=":1.107"
+declare -x GPG_AGENT_INFO="/run/user/1000/gnupg/S.gpg-agent:0:1"
+declare -x GTK_IM_MODULE="ibus"
+declare -x GTK_MODULES="gail:atk-bridge"
+declare -x HOME="/home/federico"
+declare -x LANG="en_US.UTF-8"
+declare -x LC_ADDRESS="it_IT.UTF-8"
+declare -x LC_IDENTIFICATION="it_IT.UTF-8"
+declare -x LC_MEASUREMENT="it_IT.UTF-8"
+declare -x LC_MONETARY="it_IT.UTF-8"
+declare -x LC_NAME="it_IT.UTF-8"
+declare -x LC_NUMERIC="it_IT.UTF-8"
+declare -x LC_PAPER="it_IT.UTF-8"
+declare -x LC_TELEPHONE="it_IT.UTF-8"
+declare -x LC_TIME="it_IT.UTF-8"
+declare -x LESSCLOSE="/usr/bin/lesspipe %s %s"
+declare -x LESSOPEN="| /usr/bin/lesspipe %s"
+declare -x LOGNAME="federico"
+declare -x LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:"
+declare -x OLDPWD="/home/federico/Desktop/Work_in_progress"
+declare -x PATH="/home/federico/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"
+declare -x PWD="/home/federico/Desktop/Work_in_progress/mishell-fedmarti"
+declare -x QT_ACCESSIBILITY="1"
+declare -x QT_IM_MODULE="ibus"
+declare -x SESSION_MANAGER="local/F3dM4rt0:@/tmp/.ICE-unix/1826,unix/F3dM4rt0:/tmp/.ICE-unix/1826"
+declare -x SHELL="/bin/bash"
+declare -x SHLVL="1"
+declare -x SSH_AGENT_LAUNCHER="gnome-keyring"
+declare -x SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"
+declare -x SYSTEMD_EXEC_PID="5235"
+declare -x TERM="xterm-256color"
+declare -x USER="federico"
+declare -x USERNAME="federico"
+declare -x VTE_VERSION="6800"
+declare -x WINDOWPATH="2"
+declare -x XAUTHORITY="/run/user/1000/gdm/Xauthority"
+declare -x XDG_CONFIG_DIRS="/etc/xdg/xdg-ubuntu:/etc/xdg"
+declare -x XDG_CURRENT_DESKTOP="ubuntu:GNOME"
+declare -x XDG_DATA_DIRS="/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop"
+declare -x XDG_MENU_PREFIX="gnome-"
+declare -x XDG_RUNTIME_DIR="/run/user/1000"
+declare -x XDG_SESSION_CLASS="user"
+declare -x XDG_SESSION_DESKTOP="ubuntu"
+declare -x XDG_SESSION_TYPE="x11"
+declare -x XMODIFIERS="@im=ibus"
+declare -x ="val"
+declare -x _="./minishell"
+declare -x export=""
+declare -x placeholder="val"
+declare -x val

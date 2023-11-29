@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 16:25:35 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:29:25 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <dirent.h>
 # include "pipeline.h"
 # ifndef NOT_VALID
-#  define NOT_VALID "!@#$%^&*()_+[]{};:',./<>\\|\"`~ "
+#  define NOT_VALID "!@#$%^&*()+[]{};:',./<>\\|\"`~ "
 # endif
 
 typedef struct s_list_env
@@ -75,6 +75,7 @@ int		ft_unset(char **args, t_data *data);
 int		ft_exit(char **args, t_data *data, t_pnode *node);
 int		ft_heredoc(char **args, int fd, t_data *data);
 char	*remove_useless(char *s);
+int		is_name_valid(char *name);
 
 //quick function to print the error message and returns the exit value
 int		no_such_file_or_directory(char *filename);

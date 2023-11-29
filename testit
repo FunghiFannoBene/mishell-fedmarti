@@ -1,4 +1,4 @@
 #!/bin/bash
-bash < tester > output2.txt
-./minishell < tester | grep -v "Minishell>" > output.txt
+bash < tester > output2.txt 2> basherror.txt
+./minishell < tester | grep -v "Minishell>" > output.txt 2>minishellerror.txt
 diff --color output.txt output2.txt

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 21:36:51 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 01:19:13 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:41:15 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void	remove_var(char *name, t_list **list)
 	}
 }
 
-static void	wrong_character_error(char *str)
-{
-	char	*error_message;
+// static void	wrong_character_error(char *str)
+// {
+// 	char	*error_message;
 
-	error_message = ft_multistrjoin((char *[]){"bash: unset: `", \
-	str, "\': not a valid identifier\n", NULL});
-	if (!error_message)
-		return ;
-	write (2, error_message, ft_strlen(error_message));
-	free (error_message);
-}
+// 	error_message = ft_multistrjoin((char *[]){"bash: unset: `", 
+// 	str, "\': not a valid identifier\n", NULL});
+// 	if (!error_message)
+// 		return ;
+// 	write (2, error_message, ft_strlen(error_message));
+// 	free (error_message);
+// }
 
 int	ft_unset(char **args, t_data *data)
 {
@@ -65,11 +65,6 @@ int	ft_unset(char **args, t_data *data)
 	i = 1;
 	while (args[i])
 	{
-		if (ft_strhas(args[i], NOT_VALID))
-		{
-			return_val = 1;
-			wrong_character_error(args[i]);
-		}
 		if (get_var(args[i], data->export_var))
 			remove_var(args[i], &data->export_var);
 		i++;

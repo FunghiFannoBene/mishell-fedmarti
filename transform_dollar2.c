@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   transform_dollar2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:38:19 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/17 05:58:20 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/29 21:31:15 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_invalid(char c, char *invalid)
 	return (0);
 }
 
-int	checksymbol(char *s)
+int	checksymbol(char *s)//crea un check che contolla se il primo carattere e' un numero (non valido) o un ? (valido)
 {
 	int	i;
 
@@ -35,14 +35,14 @@ int	checksymbol(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (check_invalid(s[i], NOT_VALID) == 1)
+		if (s[i] != '_' && !ft_isalnum(s[i]))
 			return (i);
 		i++;
 	}
 	return (i);
 }
 
-int	checksymbol2(char *s)
+int	checksymbol2(char *s)//idem
 {
 	int	i;
 
@@ -51,7 +51,7 @@ int	checksymbol2(char *s)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (check_invalid(s[i], NOT_VALID) == 1)
+		if (s[i] != '_' && !ft_isalnum(s[i]))
 			return (i + 1);
 		i++;
 	}

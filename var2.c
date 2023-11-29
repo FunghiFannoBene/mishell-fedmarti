@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:24:03 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 01:14:25 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:33:25 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static inline char	*get_post_var(char *substr, t_var *var)
 {
 	if (!var)
 	{
-		while (!is_(*substr, NOT_VALID))
+		while (*substr == '_' || ft_isalnum(*substr))
 			substr++;
 	}
 	else
@@ -57,6 +57,22 @@ static char	*expand_first_var(char *pre_var, char *substr, t_data *data)
 	if (!pre_var)
 		return (NULL);
 	return (pre_var);
+}
+
+int	is_name_valid(char *name)
+{
+	int	i;
+
+	if (*name >= '0' && *name <= '9')
+		return (0);
+	i = 0;
+	while (name[i])
+	{
+		if (name[i] != '_' && !ft_isalnum(name[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 char	*expand_variables(char *str, t_data *data)

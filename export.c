@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:56:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 17:11:30 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:40:52 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,13 @@ int	ft_export(char **args, t_data *data, int fd)
 		temp = (t_var){copy_name_field(args[i]), copy_value_field(args[i])};
 		if (!temp.name)
 			return (malloc_failure(temp.value));
-		if (ft_strhas(temp.name, NOT_VALID))
+		if (!is_name_valid(temp.name))
+		{
 			return_val = wrong_character_error(temp.name);
+			free(temp.name);
+			if (temp.value)
+				free(temp.value);
+		}
 		else if (!export_variable(temp, data))
 			return (1);
 	}

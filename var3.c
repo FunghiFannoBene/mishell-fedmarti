@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   var3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 20:38:40 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/11 01:14:03 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:27:30 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_var	*search_variable_tvar(char *str, t_data *data)
 	if (*str != '$')
 		str = ft_strchr(str, '$');
 	str++;
-	while (str[i] && !is_(str[i], NOT_VALID))
+	while (str[i] && (str[i] == '_' || ft_isalnum(str[i])))
 		i++;
 	name = ft_calloc(i + 1, sizeof(char));
 	if (!name)

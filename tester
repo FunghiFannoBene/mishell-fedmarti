@@ -1,38 +1,129 @@
-export A=A
-echo $A
-echo "Hello $USER"
-echo 'Welcome $HOME'
-echo "Today is $DATE"
-echo 'My path is $PATH'
-echo "User: $USER Directory: $PWD"
-echo 'This is $SHELL shell'
-echo "Hostname: $HOSTNAME"
-echo 'Term type $TERM'
-echo "Working in $PWD"
-echo 'Language settings $LANG'
-echo "Logged in as $LOGNAME"
-echo 'Your home directory is $HOME'
-echo "Current Shell $SHELL"
-echo 'Terminal session $TERM'
-echo "Editor preference $EDITOR"
-echo 'Display is set to $DISPLAY'
-echo "Your path is $PATH"
-echo 'Machine type: $MACHTYPE'
-echo "System type $OSTYPE"
-echo 'Shell level $SHLVL'
-echo "Bash version $BASH_VERSION"
-echo 'Current directory $PWD'
-echo "Process ID $$"
-echo 'The $HOME directory'
-echo "Number of seconds $SECONDS"
-echo 'Your user ID $UID'
-echo "Group ID $GID"
-echo 'Previous working directory $OLDPWD'
-echo "Bash options $SHELLOPTS"
-echo 'Your terminal $TERM'
-echo "Mail stored in $MAIL"
-echo 'Random number $RANDOM'
-echo "Current line number $LINENO"
-echo 'Bash option flags $- '
-echo "Number of arguments $#"
-echo "'$USER'"
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export 	=val
+export placeholder=val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export =val
+export  =val
+export !=val
+export "=val
+export #=val
+export $=val
+export %=val
+export &=val
+export '=val
+export (=val
+export )=val
+export *=val
+export +=val
+export ,=val
+export -=val
+export .=val
+export /=val
+export 0=val
+export 1=val
+export 2=val
+export 3=val
+export 4=val
+export 5=val
+export 6=val
+export 7=val
+export 8=val
+export 9=val
+export :=val
+export ;=val
+export <=val
+export ==val
+export >=val
+export ?=val
+export @=val
+export A=val
+export B=val
+export C=val
+export D=val
+export E=val
+export F=val
+export G=val
+export H=val
+export I=val
+export J=val
+export K=val
+export L=val
+export M=val
+export N=val
+export O=val
+export P=val
+export Q=val
+export R=val
+export S=val
+export T=val
+export U=val
+export V=val
+export W=val
+export X=val
+export Y=val
+export Z=val
+export [=val
+export \=val
+export ]=val
+export ^=val
+export _=val
+export `=val
+export a=val
+export b=val
+export c=val
+export d=val
+export e=val
+export f=val
+export g=val
+export h=val
+export i=val
+export j=val
+export k=val
+export l=val
+export m=val
+export n=val
+export o=val
+export p=val
+export q=val
+export r=val
+export s=val
+export t=val
+export u=val
+export v=val
+export w=val
+export x=val
+export y=val
+export z=val
+export {=val
+export |=val
+export }=val
+export ~=val
+export =val
+export €=val
