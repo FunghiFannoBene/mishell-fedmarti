@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 18:52:27 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/29 23:12:26 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ int	empty_file(t_pnode *node)
 
 	fd = 0;
 	if (node->type == Redirect_output)
-		fd = open(node->output->args[0], O_WRONLY | O_CREAT | O_TRUNC, \
+	{
+		fd = open(node->args[0], O_WRONLY | O_CREAT | O_TRUNC, \
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+		write(1, "", 1);
+	}
 	else if (node->type == Redirect_output_append)
-		fd = open(node->output->args[0], O_WRONLY | O_CREAT | O_APPEND, \
+		fd = open(node->args[0], O_WRONLY | O_CREAT | O_APPEND, \
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (node->output && !node->output->input[1])
 		node->output->input_fd = open("/dev/null", O_RDONLY);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_logic.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 16:26:04 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/29 23:42:26 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	prompt_loop(t_data *data)
 	t_pnode	*command_list;
 	int		exit_status;
 
-	input = readline("Minishell> ");
+	input = readline("Minishell>");
 	if (!input)
 	{
 		write (1, "exit\n", 6);
