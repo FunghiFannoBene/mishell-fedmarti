@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:02:26 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/25 17:16:46 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/29 19:46:59 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	init_search(t_search *k, t_redirect **command, char *s, int *i)
 	k->start = 0;
 	k->head = NULL;
 	k->single_double = 0;
-	*command = malloc(sizeof(t_redirect));
-	memset((*command), 0, sizeof(t_redirect));
+	*command = ft_calloc(sizeof(t_redirect),1);
 	while (s[*i] && s[*i] == ' ')
 		(*i)++;
 }
@@ -85,7 +84,7 @@ int	create_command_size(char *s, int *i, t_redirect **command, t_search *k)
 			&& (s[k->start + k->x] != '"'
 				&& k->single_double == 2)))
 		k->x++;
-	(*command)->str = malloc((size_t)k->x + 1);
+	(*command)->str = ft_calloc((size_t)(k->x) + 1, 1);
 	if (!(*command)->str)
 		return (1);
 	return (0);

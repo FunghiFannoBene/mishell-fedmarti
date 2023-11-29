@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:44:00 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/25 15:12:50 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/29 19:45:22 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	flag_zero_space(char *s, int *i, t_redirect **command)
 {
 	if ((*command)->flag == 0 && s[*i] == ' ')
 	{
-		(*command)->next = malloc(sizeof(t_redirect));
+		(*command)->next = ft_calloc(sizeof(t_redirect), 1);
 		(*command)->next->str = substring(s, (size_t)(*command)->start,
 				(size_t)(*command)->size);
 		(*command) = (*command)->next;

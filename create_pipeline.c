@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_pipeline.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 17:49:43 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:47:23 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous)
 
 	if (type == Null)
 		return (NULL);
-	new = malloc(sizeof(*new));
+	new = ft_calloc(sizeof(*new), 1);
 	if (!new)
 		return (NULL);
 	new->pid = 0;

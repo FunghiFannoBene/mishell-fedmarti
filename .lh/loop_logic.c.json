@@ -1,0 +1,18 @@
+{
+    "sourceFile": "loop_logic.c",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1701294081795,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1701294081795,
+            "name": "Commit-0",
+            "content": "/* ************************************************************************** */\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   loop_logic.c                                       :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */\n/*   Updated: 2023/11/29 22:41:21 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/* ************************************************************************** */\n\n#include \"minishell.h\"\n#include \"pipeline.h\"\n#include \"short_code.h\"\n\nchar\t*transform_for_dollar(char *s, t_data *data);\nt_pnode\t*create_command_list(char *s);\nint\t\trun_command_pipeline(t_pnode *pipeline_tree, t_data *data);\nvoid\tfree_data(t_data *data);\n\nvoid\tupdate_exit_status(t_var *exit_status, int new_val)\n{\n\tint\tpow;\n\tint\ti;\n\n\tft_bzero(exit_status->value, sizeof(char) * 4);\n\tif (!new_val)\n\t{\n\t\texit_status->value[0] = '0';\n\t\treturn ;\n\t}\n\tpow = 1;\n\ti = 0;\n\twhile (pow * 10 < new_val)\n\t\tpow *= 10;\n\twhile (pow)\n\t{\n\t\texit_status->value[i] = new_val / pow % 10 + '0';\n\t\ti++;\n\t\tpow /= 10;\n\t}\n}\n\nvoid\tprompt_loop(t_data *data)\n{\n\tchar\t*input;\n\tt_pnode\t*command_list;\n\tint\t\texit_status;\n\ne\tinput = readline(\"Minishell> \");\n\tif (!input)\n\t{\n\t\twrite (1, \"exit\\n\", 6);\n\t\tft_exit((char *[]){\"exit\", NULL}, data, NULL);\n\t}\n\tadd_history(input);\n\tinput = transform_for_dollar(input, data);\n\tif (!input)\n\t{\n\t\twrite(2, \"Malloc error\\n\", 14);\n\t\tfree_data(data);\n\t\texit (1);\n\t}\n\tcommand_list = create_command_list(input);\n\tfree (input);\n\tif (!command_list)\n\t\texit_status = 0;\n\telse\n\t\texit_status = run_command_pipeline(command_list, data);\n\tupdate_exit_status(data->exit_status, exit_status);\n}\n"
+        }
+    ]
+}

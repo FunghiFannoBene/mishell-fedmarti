@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/25 15:28:24 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/11/29 19:47:14 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	next_size(int *i, t_redirect **command)
 
 void	add_and_set_for_next(t_redirect **command, char *s)
 {
-	(*command)->next = malloc(sizeof(t_redirect));
-	ft_memset((*command)->next, 0, sizeof(t_redirect));
+	(*command)->next = ft_calloc(sizeof(t_redirect), 1);
 	(*command)->next->str = substring(s, (size_t)(*command)->start,
 			(size_t)(*command)->size);
 	(*command) = (*command)->next;
