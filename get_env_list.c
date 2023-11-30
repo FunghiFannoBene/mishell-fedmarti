@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 20:26:50 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/09 01:32:45 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:17:06 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ char	**env_list_to_array(t_list *env_list)
 		temp = env_list->content;
 		if (temp->value)
 			array[i] = ft_multistrjoin((char *[]){temp->name, \
-			"='\"", temp->value, "\"", NULL});
+			"=", temp->value, NULL});
 		else
 			array[i] = ft_strdup(temp->name);
 		if (!array[i])

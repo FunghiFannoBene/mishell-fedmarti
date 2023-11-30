@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/30 00:00:52 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:25:32 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,6 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, signal_handler);
 	data = data_init(env);
-
-	char *shellpath = getcwd(NULL, 0);
-	getcwd(shellpath, sizeof(*shellpath));
-	char *temp = shellpath;
-	shellpath = ft_strjoin(shellpath, &argv[0][1]);
-	free(temp);
-	set_var_list("SHELL", shellpath, data->export_var);
 	if (!data)
 		return (1);
 	(void)argc;

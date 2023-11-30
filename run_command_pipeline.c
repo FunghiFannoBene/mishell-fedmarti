@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_command_pipeline.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 18:53:01 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:56:13 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 		exit_status = run_command(pipeln_tree, data);
 		pipeln_tree = pipeln_tree->output;
 	}
+	wait_for_children(head, &exit_status);
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);
-	wait_for_children(head, &exit_status);
 	free_tree(head);
 	return (exit_status);
 }
