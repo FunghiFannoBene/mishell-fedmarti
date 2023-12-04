@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/04 16:53:36 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 18:33:33 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int		is_name_valid(char *name);
 //if path is null it excludes that part, if message is null does nothing
 //return value: 0 on success, 1 on failure 
 int		error_message(char *path, char *message);
-
 
 //quick function to print the error message and returns the exit value
 int		no_such_file_or_directory(char *filename);
