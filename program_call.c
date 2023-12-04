@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/04 18:44:52 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:29:29 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,6 @@ int	redirect_output(t_pnode *node, int *exit_status)
 //returns 1 on success and 0 on failure
 int	output_handler(t_pnode *node, t_data *data, int *exit_status)
 {
-	if (!node->output->args || !*node->output->args || !**node->output->args)
-	{
-		*exit_status = syntax_error(node->output);
-		return (0);
-	}
 	if (node->output && node->output->type == Pipe)
 	{
 		if (!pipe_next(node, data))
@@ -83,6 +78,12 @@ int	output_handler(t_pnode *node, t_data *data, int *exit_status)
 			return (0);
 		}
 		del_next(node);
+	}
+	else if \
+	(!node->output->args || !*node->output->args || !**node->output->args)
+	{
+		*exit_status = syntax_error(node->output);
+		return (0);
 	}
 	else if (node->output->type == Redirect_output \
 	|| node->output->type == Redirect_output_append)
