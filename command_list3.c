@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:02:26 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/04 21:06:18 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/04 22:39:12 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_pipe_redi(char *s, int *i, t_redirect **command, t_pnode *structure)
 	if (check_redirect(s, i, structure))
 	{
 		free(*command);
-		write(2, "minishell: syntax error near unexpected token `>'\n", 51);
+		write(2, "minishell: syntax error near unexpected token `>'\n", 50);
 		return (-1);
 	}
 	return (0);
