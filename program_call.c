@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   program_call.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 17:44:31 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:01:55 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,28 @@ static int	pipe_next(t_pnode *node, t_data *data)
 	return (1);
 }
 
-int	redirect_output(t_pnode *node)
+int	redirect_output(t_pnode *node, int *exit_status)
 {
+	while (node->output && is_type(node->output->output, \
+	(t_ntype[]){Redirect_output, Redirect_output_append, Null}))
+	{
+		*exit_status = empty_file(node->output);
+		if (exit_status)
+			return (1);
+		del_next(node);
+	}
+	if (!node->output->args || !*node->output->args || !**node->output->args)
+		return (syntax_error(node->output));
 	if (node->output->type == Redirect_output)
 		node->output_fd = \
-		open(node->output->args[0], O_WRONLY | O_CREAT | O_TRUNC, \
-		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+		open(node->output->args[0], OVERWRITE_FLAGS, AUTH_FLAGS);
 	else
-		node->output_fd = \
-		open(node->output->args[0], O_WRONLY | O_CREAT | O_APPEND, \
-		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+		node->output_fd = open(node->output->args[0], APPEND_FLAGS, AUTH_FLAGS);
 	del_next(node);
 	if (node->output && node->output->type == Pipe)
 	{
 		if (!node->output->output)
-		{
-			write \
-			(2, "minishell: syntax error near unexpected token `|'\n", 51);
-			return (1);
-		}
+			return (syntax_error(node->output));
 		del_next(node);
 		if (node->output && node->output->type == Program_Call)
 			node->output->input_fd = open("/dev/null", O_RDONLY);
@@ -65,23 +68,31 @@ int	redirect_output(t_pnode *node)
 
 //creates pipes or opens files if needed and sets the node's output fd
 //returns 1 on success and 0 on failure
-int	output_handler(t_pnode *node, t_data *data)
+int	output_handler(t_pnode *node, t_data *data, int *exit_status)
 {
+	if (!node->output->args || !*node->output->args || !**node->output->args)
+	{
+		*exit_status = syntax_error(node->output);
+		return (0);
+	}
 	if (node->output && node->output->type == Pipe)
 	{
 		if (!pipe_next(node, data))
+		{
+			*exit_status = 1;
 			return (0);
+		}
 		del_next(node);
 	}
 	else if (node->output->type == Redirect_output \
 	|| node->output->type == Redirect_output_append)
 	{
-		if (redirect_output(node))
+		if (redirect_output(node, exit_status))
 			return (1);
 	}
 	if (node->output_fd < 0)
-		return (0);
-	return (1);
+		*exit_status = 1;
+	return (node->output_fd >= 0);
 }
 
 void	handle_input_output_fd(t_pnode *node)
@@ -104,11 +115,11 @@ int	program_call(t_pnode *node, t_data *data)
 
 	if (node->output)
 	{
-		if (!output_handler(node, data))
+		if (!output_handler(node, data, &exit_status))
 		{
 			free_tree(node->output);
 			node->output = NULL;
-			return (1);
+			return (exit_status);
 		}
 	}
 	node->pid = ft_fork(&exit_status);

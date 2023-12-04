@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 17:13:48 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:05:46 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ int		check_invalid(char c, char *invalid);
 // char	*ft_strndup(const char *s, size_t n);]
 int		is_builtin(char *str);
 int		ft_builtin(t_pnode *node, t_data *data);
+int		syntax_error(t_pnode *node);
+int		empty_file(t_pnode *node);
 
 #endif

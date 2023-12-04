@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 20:12:01 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 16:59:27 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:14:13 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_pwd(char	**args, t_data *data)
 	char	*str;
 
 	if (args[0] && args[1])
-		return (!!write (2, "pwd: too many arguments\n", 25));
+		return (!!write (2, "pwd: too many arguments\n", 24));
 	pwd_path = NULL;
 	pwd = get_var("PWD", data->export_var);
 	if (pwd)

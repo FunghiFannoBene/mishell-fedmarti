@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:02:26 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/29 19:46:59 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/04 16:12:57 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_pipe_redi(char *s, int *i, t_redirect **command, t_pnode *structure)
 	if (check_redirect(s, i, structure))
 	{
 		free(*command);
-		write(2, "minishell: syntax error near unexpected token `>'\n", 51);
+		write(2, "minishell: syntax error near unexpected token `>'\n", 50);
 		return (-1);
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 21:15:16 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 18:39:36 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:52:39 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,19 @@ static inline int	command_not_found_error(char *name)
 	return (127);
 }
 
-static int	_error_message(char *path, char *message)
+int	error_message(char *path, char *message)
 {
 	char	*msg;
 
-	msg = ft_multistrjoin((char *[]){"minishell: ", \
-	path, ": ", message, "\n", NULL});
+	if (!message)
+		return (1);
+	if (path)
+		msg = ft_multistrjoin((char *[]){"minishell: ", \
+		path, ": ", message, "\n", NULL});
+	else
+		msg = ft_multistrjoin((char *[]){"minishell: ", message, "\n", NULL});
 	if (!msg)
-		return (0);
+		return (1);
 	write (2, msg, ft_strlen(msg));
 	free(msg);
 	return (0);
@@ -57,11 +62,11 @@ static int	is_executable(char *path)
 	if (file_type == __S_IFREG)
 	{
 		if (access(path, X_OK))
-			return (_error_message(path, "Permission denied"));
+			return (error_message(path, "Permission denied"));
 		return (1);
 	}
 	else if (file_type == __S_IFDIR)
-		return (_error_message(path, "Is a directory"));
+		return (error_message(path, "Is a directory"));
 	return (0);
 }
 
@@ -69,12 +74,12 @@ void	check_invalid_command(t_data *data, t_pnode *node, char *program_path)
 {
 	if (!program_path)
 	{
-		_error_message(node->args[0], "command not found");
+		error_message(node->args[0], "command not found");
 		ft_exit_pip(127, node, data);
 	}
 	if (access(program_path, F_OK))
 	{
-		_error_message(program_path, "No such file or directory");
+		error_message(program_path, "No such file or directory");
 		ft_exit_pip(127, node, data);
 	}
 	if (!is_executable(program_path))

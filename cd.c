@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 00:08:54 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/04 19:50:26 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:37:28 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,35 @@ static char	*using_home(char **args, t_data *data)
 	return (path);
 }
 
-static void	failed_cd_message(char *path)
+static char	*err_msg(char *path, char *msg)
 {
-	char	*message;
-	char	*temp;
+	return (ft_multistrjoin((char *[]){"minishell: cd: ", \
+		path, ": ", msg, "\n", NULL}));
+}
 
-	message = ft_strjoin("cd: ", path);
-	if (!message)
-		return ;
-	temp = message;
-	message = ft_strjoin(message, ": No such file or directory\n");
-	free(temp);
+static void	failed_cd_message(char *path, int *exit_status)
+{
+	char		*message;
+	struct stat	statbuff;
+
+	message = NULL;
+	*exit_status = 1;
+	if (access(path, F_OK))
+	{
+		message = err_msg(path, "No such file or directory");
+		*exit_status = 1;
+	}
+	else if (!stat(path, &statbuff) \
+	&& (statbuff.st_mode & __S_IFMT) != __S_IFDIR)
+	{
+		message = err_msg(path, "Not a directory");
+		*exit_status = 1;
+	}
+	else if (access(path, X_OK))
+	{
+		message = err_msg(path, "Permission denied");
+		*exit_status = 1;
+	}
 	if (!message)
 		return ;
 	write (2, message, ft_strlen(message));
@@ -91,7 +109,7 @@ int	ft_cd(char **args, t_data *data)
 	}
 	return_val = chdir(path);
 	if (return_val)
-		failed_cd_message(path);
+		failed_cd_message(path, &return_val);
 	if (!args[1] || ft_strncmp(args[1], path, ft_strlen(args[1])))
 		free(path);
 	update_pwd(data);

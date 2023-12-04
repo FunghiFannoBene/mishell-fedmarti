@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 20:35:12 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 16:57:41 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:13:27 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static inline int	null_args(void)
 {
-	write(2, "bash: syntax error near unexpected token `newline\'", 51);
+	write(2, "bash: syntax error near unexpected token `newline\'", 50);
 	return (2);
 }
 

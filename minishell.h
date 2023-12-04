@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/29 19:29:25 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:53:36 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # include "pipeline.h"
 # ifndef NOT_VALID
 #  define NOT_VALID "!@#$%^&*()+[]{};:',./<>\\|\"`~ "
+# endif
+# ifndef OPEN_FLAGS
+#  define OPEN_FLAGS
+#  define OVERWRITE_FLAGS 577
+#  define APPEND_FLAGS 1089
+#  define AUTH_FLAGS 436
 # endif
 
 typedef struct s_list_env
@@ -76,6 +82,12 @@ int		ft_exit(char **args, t_data *data, t_pnode *node);
 int		ft_heredoc(char **args, int fd, t_data *data);
 char	*remove_useless(char *s);
 int		is_name_valid(char *name);
+
+//prints ({"minishell: "+ path + message + "\n"} to stderr)
+//if path is null it excludes that part, if message is null does nothing
+//return value: 0 on success, 1 on failure 
+int		error_message(char *path, char *message);
+
 
 //quick function to print the error message and returns the exit value
 int		no_such_file_or_directory(char *filename);

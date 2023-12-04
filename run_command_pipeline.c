@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/30 16:56:13 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:14:25 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ int		single_builtin(t_pnode *node, t_data *data);
 
 static t_pnode	*empty_heredoc(t_pnode *node, int *exit_status, t_data *data)
 {
+	if (!node->args || !*node->args || !**node->args)
+	{
+		*exit_status = syntax_error(node);
+		free_node(node);
+		return (NULL);
+	}
 	if (node->type != Redirect_input_heredoc)
 		return (next(node));
 	node->pid = ft_fork(exit_status);
@@ -66,12 +72,6 @@ static t_pnode	*format_checks(t_pnode *node, t_data *data, int *exit_status)
 	return (node);
 }
 
-static void	sa_quit(int signo)
-{
-	if (signo == SIGQUIT)
-		write (2, "Quit (core dumped)\n", 20);
-}
-
 static int	wait_for_children(t_pnode *node, int *exit_status)
 {
 	while (node)
@@ -86,7 +86,11 @@ static int	wait_for_children(t_pnode *node, int *exit_status)
 			if (WIFEXITED(*exit_status))
 				*exit_status = (WEXITSTATUS(*exit_status));
 			else if (WIFSIGNALED(*exit_status))
+			{
+				if (WTERMSIG(*exit_status) == SIGQUIT)
+					write (2, "Quit (core dumped)\n", 19);
 				*exit_status = WTERMSIG(*exit_status) + 128;
+			}
 		}
 		node = node->output;
 	}
@@ -99,10 +103,10 @@ int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 	t_pnode	*head;
 
 	exit_status = 0;
-	if (pipeln_tree->output == NULL && is_builtin(pipeln_tree->args[0]))
+	if (pipeln_tree->output == NULL \
+	&& pipeln_tree->args && is_builtin(pipeln_tree->args[0]))
 		return (single_builtin(pipeln_tree, data));
 	signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, sa_quit);
 	pipeln_tree = format_checks(pipeln_tree, data, &exit_status);
 	if (!pipeln_tree)
 		return (exit_status);
@@ -115,7 +119,6 @@ int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 	}
 	wait_for_children(head, &exit_status);
 	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, SIG_IGN);
 	free_tree(head);
 	return (exit_status);
 }
