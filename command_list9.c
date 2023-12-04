@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/29 21:32:59 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/04 21:06:39 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strjoin2(char *s1, char *s2)
 	size_t	i;
 
 	len = ft_strlen(s1) + ft_strlen(s2);
-	joint = (char *)ft_calloc((len + 1) , sizeof(char));
+	joint = (char *)ft_calloc((len + 1), sizeof(char));
 	if (!joint)
 		return (NULL);
 	i = 0;

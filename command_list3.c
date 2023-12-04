@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:02:26 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/29 19:46:59 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/04 21:06:18 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_search(t_search *k, t_redirect **command, char *s, int *i)
 	k->start = 0;
 	k->head = NULL;
 	k->single_double = 0;
-	*command = ft_calloc(sizeof(t_redirect),1);
+	*command = ft_calloc(sizeof(t_redirect), 1);
 	while (s[*i] && s[*i] == ' ')
 		(*i)++;
 }

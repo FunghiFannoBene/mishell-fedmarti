@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:38:19 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/29 22:45:07 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/04 22:22:46 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int	check_invalid(char c, char *invalid)
 	return (0);
 }
 
-int	checksymbol(char *s)//crea un check che contolla se il primo carattere e' un numero (non valido) o un ? (valido)
+int	checksymbol(char *s)
 {
 	int	i;
 
 	if (s == NULL)
 		return (0);
 	i = 1;
-	if(ft_isdigit(s[i]) || s[i] == '?')
-		return(i);
+	if (ft_isdigit(s[i]) || s[i] == '?')
+		return (i + 1);
 	while (s[i] != '\0')
 	{
 		if (s[i] != '_' && !ft_isalnum(s[i]))
@@ -44,15 +44,15 @@ int	checksymbol(char *s)//crea un check che contolla se il primo carattere e' un
 	return (i);
 }
 
-int	checksymbol2(char *s)//idem
+int	checksymbol2(char *s)
 {
 	int	i;
 
 	if (s == NULL)
 		return (0);
 	i = 0;
-	if(ft_isdigit(s[i]) || s[i] == '?')
-		return(i+2);
+	if (ft_isdigit(s[i]) || s[i] == '?')
+		return (i + 2);
 	while (s[i] != '\0')
 	{
 		if (s[i] != '_' && !ft_isalnum(s[i]))

@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/25 15:44:18 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/04 21:11:51 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,6 @@ void			set_status(char *s, int i, int *status);
 void			structure_linking(t_command *c);
 int				is_void(t_command *c);
 void			free_tmp_new_head(t_command **c);
+void			init_transform_d(t_short_dollar *d);
 
 #endif

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "transform_dollar3.c",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1701720333646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1701720333646,
+            "name": "Commit-0",
+            "content": "/* ************************************************************************** */\n/*                                                                            */\n/*                                                        :::      ::::::::   */\n/*   transform_dollar3.c                                :+:      :+:    :+:   */\n/*                                                    +:+ +:+         +:+     */\n/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n/*                                                +#+#+#+#+#+   +#+           */\n/*   Created: 2023/10/30 17:39:48 by shhuang           #+#    #+#             */\n/*   Updated: 2023/12/04 21:05:33 by shhuang          ###   ########.fr       */\n/*                                                                            */\n/* ************************************************************************** */\n\n#include \"short_code.h\"\n\nchar\t*add_slashes(char *tmp)\n{\n\tt_slashes\ts;\n\n\tif (!tmp)\n\t\treturn (NULL);\n\tinit_slashes(&s);\n\trun_count_slashes(tmp, &s);\n\tif (s.count == 0)\n\t\treturn (tmp);\n\ts.str = malloc(sizeof(char) * (size_t)(ft_strlen(tmp)\n\t\t\t\t+ (size_t)s.count + 1));\n\twhile (tmp[s.x])\n\t{\n\t\tif (tmp[s.x] == '\\'' || tmp[s.x] == '\"')\n\t\t{\n\t\t\ts.str[s.i] = '\\\\';\n\t\t\ts.i++;\n\t\t}\n\t\ts.str[s.i] = tmp[s.x];\n\t\ts.x++;\n\t\ts.i++;\n\t}\n\ts.str[s.i] = '\\0';\n\tfree(tmp);\n\treturn (s.str);\n}\n\nchar\t*ft_strndup(const char *s, size_t n)\n{\n\tchar\t*result;\n\tsize_t\tlen;\n\n\tlen = n;\n\tresult = (char *)malloc(len + 1);\n\tif (!result)\n\t\treturn (NULL);\n\tresult[len] = '\\0';\n\treturn ((char *)ft_memcpy(result, s, len));\n}\n\nvoid\tinit_replace(t_replace *r)\n{\n\tr->env_len = 0;\n\tr->x = 0;\n\tr->str = NULL;\n\tr->result = NULL;\n\tr->start = NULL;\n}\n\nvoid\tevaluate_free(char **tmp, char **s, t_replace *r)\n{\n\tif (*tmp)\n\t{\n\t\tfree(*tmp);\n\t\t*tmp = NULL;\n\t}\n\tfree(r->start);\n\tfree(*s);\n\t*s = NULL;\n}\n\nchar\t*replace_for_new_str(char *s, char *tmp, int i, int *di)\n{\n\tt_replace\tr;\n\n\tr.env_len = checksymbol2(s + i + 1);\n\twhile (s[i])\n\t{\n\t\tif (s[i] == '$')\n\t\t{\n\t\t\tr.start = ft_strndup(s, (size_t)i);\n\t\t\tif (tmp == NULL)\n\t\t\t{\n\t\t\t\t(*di) = i - 1;\n\t\t\t\tr.result = ft_multistrjoin((char *[]){r.start, s + i\n\t\t\t\t\t\t+ r.env_len, NULL});\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\t(*di) = i;\n\t\t\t\tr.result = check_and_addx(r.start, tmp, s + i + r.env_len, di);\n\t\t\t}\n\t\t\tevaluate_free(&tmp, &s, &r);\n\t\t\treturn (r.result);\n\t\t}\n\t\ti++;\n\t}\n\treturn (s);\n}\n"
+        }
+    ]
+}

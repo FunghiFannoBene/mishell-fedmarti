@@ -57,13 +57,13 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-	"array": "c",
-	"string_view": "c",
-	"initializer_list": "c",
-	"utility": "c",
-	"functional": "c",
-	"short_code.h": "c",
-	"libft.h": "c"
-},
-"C_Cpp.default.compilerPath": "/usr/bin/clang"
+    "array": "c",
+    "string_view": "c",
+    "initializer_list": "c",
+    "utility": "c",
+    "functional": "c",
+    "short_code.h": "c",
+    "libft.h": "c"
+  },
+  "C_Cpp.default.compilerPath": "/usr/bin/clang"
 }
