@@ -16,7 +16,7 @@ t_pnode	*create_command_list(char *s)
 {
 	t_command	c;
 
-	if (init_command(&c, s) == -1)
+	if (contains_only_one_virgoletta(s) || init_command(&c, s) == -1)
 		return (NULL);
 	while (1)
 	{

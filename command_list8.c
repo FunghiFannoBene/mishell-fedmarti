@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:45:39 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/29 21:33:13 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/05 23:29:42 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,35 @@ void	setup_command(t_command *c)
 
 void	concatenate_args_status(t_command *c)
 {
+	char	*tmp;
+
+	tmp = NULL;
 	while (c->head && c->head->status == 1)
 	{
 		if (c->structure->args[c->x] == NULL)
 		{
-			c->structure->args[c->x] = ft_strdup("");
+			c->structure->args[c->x] = "";
 			c->structure->args[c->x] = ft_strjoin2(c->structure->args[c->x],
 					c->head->str);
 		}
 		else if (c->head && c->head->str)
+		{
+			tmp = c->structure->args[c->x];
 			c->structure->args[c->x] = ft_strjoin(c->structure->args[c->x],
 					c->head->str);
+			free(tmp);
+		}
 		free_tmp_new_head(&c);
 	}
+	printf("%s\n\n", c->structure->args[c->x]);
 }
 
 void	command_to_structure(t_command *c)
 {
+	char	*tmp;
+
 	setup_command(c);
+	tmp = NULL;
 	while (c->head)
 	{
 		if (c->head && c->head->status == 1)
@@ -100,8 +111,10 @@ void	command_to_structure(t_command *c)
 			concatenate_args_status(c);
 			if (c->head && c->head->str)
 			{
+				tmp = c->structure->args[c->x];
 				c->structure->args[c->x] = ft_strjoin(c->structure->args[c->x],
 						c->head->str);
+				free(tmp);
 				free_tmp_new_head(&c);
 			}
 		}

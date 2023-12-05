@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/04 21:06:39 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/05 20:42:56 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*ft_strjoin2(char *s1, char *s2)
 		s2++;
 		i++;
 	}
-	free(s1);
 	joint[i] = 0;
 	return (joint);
 }

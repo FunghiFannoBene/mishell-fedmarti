@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:20:47 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/04 21:11:26 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/05 23:31:01 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,22 @@ void	init_transform_d(t_short_dollar *d)
 	d->slash_count = 0;
 	d->start = 0;
 	d->flag = 0;
+}
+
+int	contains_only_one_virgoletta(char *s)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		if (s[i] == '\'' || s[i] == '"')
+			count++;
+		if (count >= 2 || (s[i] != ' ' && s[i] != '\'' && s[i] != '"'))
+			return (0);
+		i++;
+	}
+	return (1);
 }
