@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:17:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/04 17:50:51 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:41:52 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,13 @@ int	ft_exit(char **args, t_data *data, t_pnode *node)
 		bad_argument(args[1]);
 		exitno = 2;
 	}
-	if (node)
-		free_node(node);
-	free_data(data);
-	exit(exitno);
-	return (0);
+	if (!node || (!node->output && !node->input[0]))
+	{
+		free_data(data);
+		if (node)
+			free_node(node);
+		write (1, "exit\n", 5);
+		exit(exitno);
+	}
+	return (exitno);
 }
