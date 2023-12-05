@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/04 16:13:47 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:37:31 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ void	prompt_loop(t_data *data)
 
 	input = readline("Minishell>");
 	if (!input)
-	{
-		write (1, "exit\n", 5);
 		ft_exit((char *[]){"exit", NULL}, data, NULL);
-	}
 	add_history(input);
 	input = transform_for_dollar(input, data);
 	if (!input)
