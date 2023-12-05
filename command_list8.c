@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:45:39 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/05 23:29:42 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/05 23:34:37 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	concatenate_args_status(t_command *c)
 		}
 		free_tmp_new_head(&c);
 	}
-	printf("%s\n\n", c->structure->args[c->x]);
 }
 
 void	command_to_structure(t_command *c)
