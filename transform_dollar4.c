@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:20:47 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/05 23:31:01 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/07 17:29:34 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	init_transform_d(t_short_dollar *d)
 	d->save = 0;
 	d->save_pre = 0;
 	d->size = 0;
-	d->slash_count = 0;
 	d->start = 0;
 	d->flag = 0;
 }

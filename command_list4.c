@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:42:31 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/25 15:08:14 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/07 17:50:00 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	check_and_skip_space(char *s, int *i)
 	return (0);
 }
 
-int	assign_flag(char *s, int *i, t_redirect **command)
+int	assign_flag(char *s, int *i, t_redirect **command, char *h_c)
 {
 	if (s[*i] == '\'')
 		(*command)->flag = '\'';
@@ -77,6 +77,14 @@ int	assign_flag(char *s, int *i, t_redirect **command)
 		(*i)++;
 	if ((*command)->flag == s[*i])
 	{
+		if (ft_strncmp(head_c, "echo", 4) == 0
+			&& s[*i + 1] == ' ' && s[*i - 2] == ' ')
+		{
+			(*command)->next = ft_calloc(sizeof(t_redirect), 1);
+			*command = (*command)->next;
+			(*command)->str = ft_calloc(1, 1);
+			(*command)->next = NULL;
+		}
 		(*i)++;
 		(*command)->flag = 0;
 		return (-1);

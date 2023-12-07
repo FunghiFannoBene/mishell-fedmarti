@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:04:49 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/05 23:23:15 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/07 17:48:52 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 int	create_flags(char *s, t_short_dollar *d)
 {
 	d->tmp = NULL;
-	if (s[d->i] == '\\')
-	{
-		while (s[d->i++] == '\\')
-			d->slash_count++;
-	}
-	else
-		d->slash_count = 0;
 	if (d->flag == 2 && s[d->i] == '"')
 		d->flag = 0;
 	else if (s[d->i] == '"')
@@ -93,7 +86,8 @@ char	*transform_for_dollar(char *s, t_data *data)
 			return (s);
 		if (s[d.i] == '$')
 			d.env_len = checksymbol(s + d.i);
-		if (s[d.i] == '$' && d.slash_count % 2 == 0 && d.env_len)
+		if (s[d.i] == '$' && (d.env_len > 1
+				|| ((s[d.i + 1] == '"' || s[d.i + 1] == '\'') && d.flag == 0)))
 		{
 			d.save = s[d.i + d.env_len];
 			s[d.i + d.env_len] = '\0';
