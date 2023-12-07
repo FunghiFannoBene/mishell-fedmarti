@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 3,
             "patches": [
                 {
                     "date": 1701720705826,
@@ -12,6 +12,14 @@
                 {
                     "date": 1701720711793,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/12/04 21:11:45 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/12/04 21:11:51 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /* ************************************************************************** */\n \n #ifndef SHORT_CODE_H\n@@ -136,7 +136,7 @@\n void\t\t\tset_status(char *s, int i, int *status);\n void\t\t\tstructure_linking(t_command *c);\n int\t\t\t\tis_void(t_command *c);\n void\t\t\tfree_tmp_new_head(t_command **c);\n-void\tinit_transform_d(t_short_dollar *d)\n+void\t\t\tinit_transform_d(t_short_dollar *d);\n \n #endif\n"
+                },
+                {
+                    "date": 1701813359366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/12/04 21:11:51 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/12/05 22:55:59 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /* ************************************************************************** */\n \n #ifndef SHORT_CODE_H\n@@ -137,6 +137,7 @@\n void\t\t\tstructure_linking(t_command *c);\n int\t\t\t\tis_void(t_command *c);\n void\t\t\tfree_tmp_new_head(t_command **c);\n void\t\t\tinit_transform_d(t_short_dollar *d);\n+int\tcontains_only_one_virgoletta(char *s)\n \n #endif\n"
+                },
+                {
+                    "date": 1701813365793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\n /*                                                +#+#+#+#+#+   +#+           */\n /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */\n-/*   Updated: 2023/12/05 22:55:59 by shhuang          ###   ########.fr       */\n+/*   Updated: 2023/12/05 22:56:05 by shhuang          ###   ########.fr       */\n /*                                                                            */\n /* ************************************************************************** */\n \n #ifndef SHORT_CODE_H\n@@ -137,7 +137,7 @@\n void\t\t\tstructure_linking(t_command *c);\n int\t\t\t\tis_void(t_command *c);\n void\t\t\tfree_tmp_new_head(t_command **c);\n void\t\t\tinit_transform_d(t_short_dollar *d);\n-int\tcontains_only_one_virgoletta(char *s)\n+int\t\t\t\tcontains_only_one_virgoletta(char *s);\n \n #endif\n"
                 }
             ],
             "date": 1701720705826,

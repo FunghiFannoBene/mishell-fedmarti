@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:42:31 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/07 17:50:00 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/07 17:51:23 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	assign_flag(char *s, int *i, t_redirect **command, char *h_c)
 		(*i)++;
 	if ((*command)->flag == s[*i])
 	{
-		if (ft_strncmp(head_c, "echo", 4) == 0
+		if (ft_strncmp(h_c, "echo", 4) == 0
 			&& s[*i + 1] == ' ' && s[*i - 2] == ' ')
 		{
 			(*command)->next = ft_calloc(sizeof(t_redirect), 1);

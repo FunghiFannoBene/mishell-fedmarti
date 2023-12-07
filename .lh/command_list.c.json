@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 8,
+            "activePatchIndex": 13,
             "patches": [
                 {
                     "date": 1700393426142,
@@ -40,6 +40,26 @@
                 {
                     "date": 1700396539354,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n /*                                                    +:+ +:+         +:+     */\r\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\r\n /*                                                +#+#+#+#+#+   +#+           */\r\n /*   Created: 2023/10/30 17:50:06 by shhuang           #+#    #+#             */\r\n-/*   Updated: 2023/11/19 12:38:32 by shhuang          ###   ########.fr       */\r\n+/*   Updated: 2023/11/19 13:22:19 by shhuang          ###   ########.fr       */\r\n /*                                                                            */\r\n /******************************************************************************/\r\n \r\n #include \"short_code.h\"\r\n@@ -35,43 +35,4 @@\n \t\t\tbreak ;\r\n \t}\r\n \treturn (c.structure_head);\r\n }\r\n-\r\n-/******************************************************************************/\r\n-/*                                                                            */\r\n-/*                                                        :::      ::::::::   */\r\n-/*   command_list.c                                     :+:      :+:    :+:   */\r\n-/*                                                    +:+ +:+         +:+     */\r\n-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\r\n-/*                                                +#+#+#+#+#+   +#+           */\r\n-/*   Created: 2023/10/30 17:50:06 by shhuang           #+#    #+#             */\r\n-/*   Updated: 2023/11/19 12:36:41 by shhuang          ###   ########.fr       */\r\n-/*                                                                            */\r\n-/******************************************************************************/\r\n-\r\n-#include \"short_code.h\"\r\n-\r\n-t_pnode\t*create_command_list(char *s)\r\n-{\r\n-\tt_command\tc;\r\n-\r\n-\tif (init_command(&c, s) == -1)\r\n-\t\treturn (NULL);\r\n-\twhile (1)\r\n-\t{\r\n-\t\tif (check_continuation(s, &c))\r\n-\t\t\tbreak ;\r\n-\t\tc.x = evaluate_next_struct(&c, s);\r\n-\t\tif (c.x == -2)\r\n-\t\t\tcontinue ;\r\n-\t\telse if (c.x == 0)\r\n-\t\t\treturn (NULL);\r\n-\t\telse if (c.x == 1)\r\n-\t\t\treturn (c.structure_head);\r\n-\t\tcommand_to_structure(&c);\r\n-\t\tstructure_linking(&c);\r\n-\t\tif (c.command_record == -1 || c.type == -2)\r\n-\t\t\tbreak ;\r\n-\t}\r\n-\treturn (c.structure_head);\r\n-}\r\n"
+                },
+                {
+                    "date": 1701813454292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,22 +1,23 @@\n-/******************************************************************************/\r\n+/* ************************************************************************** */\r\n /*                                                                            */\r\n /*                                                        :::      ::::::::   */\r\n /*   command_list.c                                     :+:      :+:    :+:   */\r\n /*                                                    +:+ +:+         +:+     */\r\n /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */\r\n /*                                                +#+#+#+#+#+   +#+           */\r\n-/*   Created: 2023/10/30 17:50:06 by shhuang           #+#    #+#             */\r\n-/*   Updated: 2023/11/19 13:22:19 by shhuang          ###   ########.fr       */\r\n+/*   Created: 2023/11/25 15:18:44 by shhuang           #+#    #+#             */\r\n+/*   Updated: 2023/11/25 15:18:44 by shhuang          ###   ########.fr       */\r\n /*                                                                            */\r\n-/******************************************************************************/\r\n+/* ************************************************************************** */\r\n \r\n #include \"short_code.h\"\r\n \r\n t_pnode\t*create_command_list(char *s)\r\n {\r\n \tt_command\tc;\r\n \r\n+\t\r\n \tif (init_command(&c, s) == -1)\r\n \t\treturn (NULL);\r\n \twhile (1)\r\n \t{\r\n"
+                },
+                {
+                    "date": 1701813461496,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n t_pnode\t*create_command_list(char *s)\r\n {\r\n \tt_command\tc;\r\n \r\n-\t\r\n \tif (init_command(&c, s) == -1)\r\n \t\treturn (NULL);\r\n \twhile (1)\r\n \t{\r\n"
+                },
+                {
+                    "date": 1701815019877,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,10 @@\n t_pnode\t*create_command_list(char *s)\r\n {\r\n \tt_command\tc;\r\n \r\n+\t\tif(contains_only_one_virgoletta(s))\r\n+\t\treturn(NULL);\r\n \tif (init_command(&c, s) == -1)\r\n \t\treturn (NULL);\r\n \twhile (1)\r\n \t{\r\n"
+                },
+                {
+                    "date": 1701815219633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n t_pnode\t*create_command_list(char *s)\r\n {\r\n \tt_command\tc;\r\n \r\n-\t\tif(contains_only_one_virgoletta(s))\r\n+\tif()\r\n \t\treturn(NULL);\r\n \tif (init_command(&c, s) == -1)\r\n \t\treturn (NULL);\r\n \twhile (1)\r\n"
+                },
+                {
+                    "date": 1701815227837,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,11 +15,9 @@\n t_pnode\t*create_command_list(char *s)\r\n {\r\n \tt_command\tc;\r\n \r\n-\tif()\r\n-\t\treturn(NULL);\r\n-\tif (init_command(&c, s) == -1)\r\n+\tif (contains_only_one_virgoletta(s) || init_command(&c, s) == -1)\r\n \t\treturn (NULL);\r\n \twhile (1)\r\n \t{\r\n \t\tif (check_continuation(s, &c))\r\n"
                 }
             ],
             "date": 1700393426142,
