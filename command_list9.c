@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list9.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/05 20:42:56 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/06 21:13:53 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,15 @@ void	set_status(char *s, int i, int *status)
 
 void	structure_linking(t_command *c)
 {
+	t_pnode	*prev;
+
 	if (c->structure_actual == NULL)
 		c->structure_actual = c->structure_head;
 	else
 	{
-		c->structure_actual->output = c->structure;
+		prev = c->structure_actual;
+		prev->output = c->structure;
+		c->structure->input[0] = prev;
 		c->structure_actual = c->structure_actual->output;
 	}
 }
