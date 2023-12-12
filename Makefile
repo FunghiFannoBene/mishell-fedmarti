@@ -24,6 +24,7 @@ SRCS = minishell.c \
 	ft_builtin.c \
 	create_pipeline.c \
 	sort_pipeline_tree.c \
+	sort_pipeline_tree2.c \
 	exec.c \
 	run_command_pipeline.c \
 	run_command.c \

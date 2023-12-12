@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/30 18:47:13 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/04 18:33:33 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/05 23:12:09 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int		ft_exit(char **args, t_data *data, t_pnode *node);
 int		ft_heredoc(char **args, int fd, t_data *data);
 char	*remove_useless(char *s);
 int		is_name_valid(char *name);
+int		ft_open(char *file, int flags, int mode);
 
 //prints ({"minishell: "+ path + message + "\n"} to stderr)
 //if path is null it excludes that part, if message is null does nothing

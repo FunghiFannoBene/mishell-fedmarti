@@ -6,17 +6,19 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:03:32 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/10/09 17:18:10 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/06 23:55:53 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "pipeline.h"
 
+t_pnode	*shift_redirect_output(t_pnode *node);
+
 enum e_swap_mode {
 	No_swap,
 	Input0,
-	Input1
+	Input1,
 };
 
 static inline t_pnode	*last_redirect_input(t_pnode *node)
@@ -92,6 +94,7 @@ t_pnode	*sort_pipeline_tree(t_pnode *input_tree)
 
 	if (!input_tree || !input_tree->output)
 		return (input_tree);
+	input_tree = shift_redirect_output(input_tree);
 	swap_type = get_swap_type(input_tree);
 	head = node_swap(input_tree, last_redirect_input(input_tree), swap_type);
 	current = head->output;

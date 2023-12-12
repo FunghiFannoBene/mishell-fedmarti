@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   create_pipeline.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/29 19:47:23 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/06 19:52:31 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipeline.h"
 #include "libft/libft.h"
+
+t_pnode	*get_head(t_pnode *node);
 
 t_pnode	*del_next(t_pnode *node)
 {
@@ -37,8 +39,11 @@ t_pnode	*next(t_pnode *node)
 	if (node)
 	{
 		node->input[0] = temp->input[0];
-		if (node->input[1] != temp)
-			free_node(node->input[1]);
+		if (temp->input[1])
+		{
+			temp->input[1]->output = NULL;
+			free_tree(get_head(temp->input[1]));
+		}
 	}
 	free_node(temp);
 	return (node);
@@ -78,21 +83,4 @@ void	free_node(t_pnode *node)
 			node->output->input[1] = NULL;
 	}
 	free(node);
-}
-
-void	free_tree(t_pnode *head)
-{
-	t_pnode	*node;
-
-	if (!head)
-		return ;
-	head = next(head);
-	while (head)
-	{
-		node = head->output;
-		if (node && node->input[1])
-			free_node(node->input[1]);
-		free_node(head);
-		head = node;
-	}
 }

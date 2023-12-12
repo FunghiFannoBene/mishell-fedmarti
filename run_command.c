@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/04 16:14:57 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:22:31 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	empty_file(t_pnode *node)
 		return (syntax_error(node));
 	if (node->type == Redirect_output)
 	{
-		fd = open(node->args[0], O_WRONLY | O_CREAT | O_TRUNC, \
+		fd = ft_open(node->args[0], O_WRONLY | O_CREAT | O_TRUNC, \
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 		write(1, "", 1);
 	}
 	else if (node->type == Redirect_output_append)
-		fd = open(node->args[0], O_WRONLY | O_CREAT | O_APPEND, \
+		fd = ft_open(node->args[0], O_WRONLY | O_CREAT | O_APPEND, \
 		S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (node->output && !node->output->input[1])
 		node->output->input_fd = open("/dev/null", O_RDONLY);
@@ -48,10 +48,6 @@ int	syntax_error(t_pnode *node)
 	else
 		write(2, \
 		"minishell: syntax error near unexpected token `newline'\n", 56);
-	if (node->output && node->output->input[1])
-		free_node(node->output->input[1]);
-	free_tree(node->output);
-	node->output = NULL;
 	return (2);
 }
 

@@ -16,3 +16,15 @@
     fun:main
 }
 
+{
+    readline
+    Memcheck:Leak
+    ...
+    fun:readline
+    fun:ft_heredoc
+    fun:empty_heredoc
+    fun:format_checks
+    fun:run_command_pipeline
+    fun:prompt_loop
+    fun:main 
+}

@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/30 18:15:46 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/06 20:10:38 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,18 @@ int	on_return(int exit_status, t_pnode *node, int fd1, int fd2)
 
 t_pnode	*get_head(t_pnode *node)
 {
+	t_pnode	*temp;
+
+	temp = node;
+	while (temp->output)
+	{
+		if (temp == temp->output->input[1])
+		{
+			node = temp->output;
+			break ;
+		}
+		temp = temp->output;
+	}
 	while (node->input[0])
 		node = node->input[0];
 	return (node);
@@ -46,4 +58,30 @@ void	ft_exit_pip(int exit_status, t_pnode *tree, t_data *data)
 	free_data(data);
 	free_tree(get_head(tree));
 	exit(exit_status);
+}
+
+void	free_tree(t_pnode *node)
+{
+	t_pnode	*temp;
+	t_pnode	*prev;
+
+	if (!node)
+		return ;
+	temp = node;
+	while (temp->output)
+	{
+		if (temp->output->input[1] == temp)
+		{
+			node = temp->output;
+			temp->output = NULL;
+			free_tree(get_head(temp));
+			node->input[1] = NULL;
+		}
+		temp = temp->output;
+	}
+	prev = node->input[0];
+	while (node)
+		node = next(node);
+	if (prev)
+		prev->output = NULL;
 }

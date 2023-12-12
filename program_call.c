@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/04 19:29:29 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/05 23:24:07 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	redirect_output(t_pnode *node, int *exit_status)
 		return (syntax_error(node->output));
 	if (node->output->type == Redirect_output)
 		node->output_fd = \
-		open(node->output->args[0], OVERWRITE_FLAGS, AUTH_FLAGS);
+		ft_open(node->output->args[0], OVERWRITE_FLAGS, AUTH_FLAGS);
 	else
-		node->output_fd = open(node->output->args[0], APPEND_FLAGS, AUTH_FLAGS);
+		node->output_fd = ft_open(node->output->args[0], APPEND_FLAGS, AUTH_FLAGS);
 	del_next(node);
 	if (node->output && node->output->type == Pipe)
 	{
@@ -63,7 +63,7 @@ int	redirect_output(t_pnode *node, int *exit_status)
 		if (node->output && node->output->type == Program_Call)
 			node->output->input_fd = open("/dev/null", O_RDONLY);
 	}
-	return (0);
+	return (node->output_fd >= 0);
 }
 
 //creates pipes or opens files if needed and sets the node's output fd

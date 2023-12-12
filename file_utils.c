@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 23:41:15 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/16 19:23:10 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/05 23:20:24 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,29 @@ enum	e_access_type{
 	Direcory,
 	Perm_denied
 };
+
+int	ft_open(char *file, int flags, int mode)
+{
+	int		fd;
+	char	*errstr;
+
+	if (mode >= 0)
+		fd = open(file, flags, mode);
+	else
+		fd = open(file, flags);
+	if (fd < 0)
+	{
+		errstr = ft_strjoin("minishell: ", file);
+		if (errstr)
+		{
+			perror(errstr);
+			free(errstr);
+		}
+		else
+			perror(file);
+	}
+	return (fd);
+}
 
 int	is_file_in_dir(char *name, DIR *dir)
 {
