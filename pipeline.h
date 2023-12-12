@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/30 19:05:46 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/13 00:46:38 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_fix_string
 t_pnode	*sort_pipeline_tree(t_pnode *input_tree);
 int		is_type(t_pnode *node, t_ntype *types);
 void	free_node(t_pnode *node);
-void	free_tree(t_pnode *head);
+void	*free_tree(t_pnode *head);
 t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous);
 pid_t	run_command(t_pnode *node, t_data *data);
 t_pnode	*next(t_pnode *node);

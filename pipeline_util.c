@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/06 20:10:38 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/13 00:46:09 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	ft_exit_pip(int exit_status, t_pnode *tree, t_data *data)
 	exit(exit_status);
 }
 
-void	free_tree(t_pnode *node)
+void	*free_tree(t_pnode *node)
 {
 	t_pnode	*temp;
 	t_pnode	*prev;
 
 	if (!node)
-		return ;
+		return (NULL);
 	temp = node;
 	while (temp->output)
 	{
@@ -84,4 +84,5 @@ void	free_tree(t_pnode *node)
 		node = next(node);
 	if (prev)
 		prev->output = NULL;
+	return (NULL);
 }
