@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 00:56:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/29 19:40:52 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/12 20:02:05 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ static inline int	wrong_character_error(char *str)
 {
 	char	*error_message;
 
+	if (*str == '\0')
+	{
+		write (2, "minishell: export: `=\': not a valid identifier\n", 47);
+		return (1);
+	}
 	error_message = ft_multistrjoin((char *[]){"minishell: export: `", \
-	str, "\': not a valid identifier\n", NULL});
+		str, "\': not a valid identifier\n", NULL});
 	if (!error_message)
 		return (1);
 	write (2, error_message, ft_strlen(error_message));
@@ -77,7 +82,7 @@ int	ft_export(char **args, t_data *data, int fd)
 		temp = (t_var){copy_name_field(args[i]), copy_value_field(args[i])};
 		if (!temp.name)
 			return (malloc_failure(temp.value));
-		if (!is_name_valid(temp.name))
+		if (!is_name_valid(temp.name) || *temp.name == '\0')
 		{
 			return_val = wrong_character_error(temp.name);
 			free(temp.name);
