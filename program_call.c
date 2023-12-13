@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/05 23:24:07 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/13 01:13:23 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	redirect_output(t_pnode *node, int *exit_status)
 	(t_ntype[]){Redirect_output, Redirect_output_append, Null}))
 	{
 		*exit_status = empty_file(node->output);
+		del_next(node);
 		if (*exit_status)
 			return (1);
-		del_next(node);
 	}
 	if (!node->output->args || !*node->output->args || !**node->output->args)
 		return (syntax_error(node->output));
