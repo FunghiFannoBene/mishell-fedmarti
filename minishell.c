@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/30 16:25:32 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/14 00:40:47 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int	main(int argc, char **argv, char **env)
 
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, signal_handler);
+	rl_outstream = stderr;
 	data = data_init(env);
 	if (!data)
 		return (1);
