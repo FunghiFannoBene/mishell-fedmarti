@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/07 17:49:54 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/13 01:56:35 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_short_dollar
 	int			flag;
 	int			i;
 	char		*tmp;
+	char		*free;
 
 }				t_short_dollar;
 
@@ -81,7 +82,6 @@ char			*ft_strndup(const char *s, size_t n);
 void			init_replace(t_replace *r);
 void			evaluate_free(char **tmp, char **s, t_replace *r);
 char			*replace_for_new_str(char *s, char *tmp, int i, int *di);
-void			init_transform_d(t_short_dollar *d);
 int				create_flags(char *s, t_short_dollar *d);
 char			*transform_for_dollar(char *s, t_data *data);
 void			assign_redirection(int x, t_pnode *structure);
@@ -136,7 +136,8 @@ void			set_status(char *s, int i, int *status);
 void			structure_linking(t_command *c);
 int				is_void(t_command *c);
 void			free_tmp_new_head(t_command **c);
-void			init_transform_d(t_short_dollar *d);
+void			init_transform_d(t_short_dollar *d, char **s);
 int				contains_only_one_virgoletta(char *s);
+char			*remove_slashes(char *s);
 
 #endif

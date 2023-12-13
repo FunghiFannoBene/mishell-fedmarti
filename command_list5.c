@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:09:27 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/29 19:47:14 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/13 02:12:19 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ char	*substring(const char *str, size_t begin, size_t len)
 	return (ft_strndup(str + begin, len));
 }
 
-void	next_size(int *i, t_redirect **command)
-{
-	(*command)->flag = 0;
-	(*command)->start = *i;
-	(*command)->size = 0;
-}
-
 void	add_and_set_for_next(t_redirect **command, char *s)
 {
 	(*command)->next = ft_calloc(sizeof(t_redirect), 1);
@@ -48,6 +41,30 @@ void	add_and_set_for_next(t_redirect **command, char *s)
 	(*command) = (*command)->next;
 	(*command)->flag = 0;
 	(*command)->size = 0;
+}
+
+int	check_end_spaces(char *s, int *i, t_redirect **command)
+{
+	int	x;
+
+	x = 0;
+	if ((*command)->flag == 0 && s[*i + 1] == ' ')
+	{
+		x = *i + 1;
+		while (s[x] && s[x] == ' ')
+			x++;
+	}
+	if (s[x] == '\0')
+		*i = x - 1;
+	if (s[*i + 1] == '\0')
+	{
+		(*command)->size++;
+		add_and_set_for_next(command, s);
+		(*command)->next = NULL;
+		(*i)++;
+		return (-2);
+	}
+	return (0);
 }
 
 int	end_check_flag_zero(char *s, int *i, t_redirect **command)
@@ -67,13 +84,11 @@ int	end_check_flag_zero(char *s, int *i, t_redirect **command)
 		set_status(s, *i, &((*command)->status));
 		return (-1);
 	}
-	else if (s[(*i) + 1] == '\0')
+	else if (s[(*i) + 1] == '\0'
+		|| ((*command)->flag == 0 && s[*i + 1] == ' '))
 	{
-		(*command)->size++;
-		add_and_set_for_next(command, s);
-		(*command)->next = NULL;
-		(*i)++;
-		return (-2);
+		if (check_end_spaces(s, i, command) == -2)
+			return (-2);
 	}
 	return (0);
 }

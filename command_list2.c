@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:02:10 by shhuang           #+#    #+#             */
-/*   Updated: 2023/11/25 17:02:12 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/13 02:00:17 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ int	check_redirect(char *s, int *i, t_pnode *structure)
 	{
 		flag = s[*i];
 		if (s[*i] == '>')
-		{
 			x += 2;
-		}
 		while (s[*i] && s[*i] == flag)
 		{
 			(*i)++;
@@ -56,6 +54,8 @@ int	check_redirect(char *s, int *i, t_pnode *structure)
 		assign_redirection(x, structure);
 		if (s[*i] == flag)
 			return (1);
+		while (s[*i] == ' ' || s[*i] == '\'' || s[*i] == '"')
+			(*i)++;
 	}
 	return (0);
 }

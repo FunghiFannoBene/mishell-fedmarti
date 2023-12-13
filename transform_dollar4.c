@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:20:47 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/07 17:29:34 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/13 02:10:02 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*check_and_addx(char *start, char *tmp, char *position, int *di)
 	return (result);
 }
 
-void	init_transform_d(t_short_dollar *d)
+void	init_transform_d(t_short_dollar *d, char **s)
 {
 	d->tmp = NULL;
 	d->i = -1;
@@ -59,6 +59,9 @@ void	init_transform_d(t_short_dollar *d)
 	d->size = 0;
 	d->start = 0;
 	d->flag = 0;
+	d->free = *s;
+	*s = remove_slashes(*s);
+	free(d->free);
 }
 
 int	contains_only_one_virgoletta(char *s)
@@ -77,4 +80,10 @@ int	contains_only_one_virgoletta(char *s)
 		i++;
 	}
 	return (1);
+}
+void	next_size(int *i, t_redirect **command)
+{
+	(*command)->flag = 0;
+	(*command)->start = *i;
+	(*command)->size = 0;
 }
