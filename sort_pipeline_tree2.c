@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:19:30 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/07 00:05:38 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/13 01:29:53 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,11 @@ static void	shift_back(t_pnode *node, t_pnode *last_pcall)
 	next = prev->output;
 	if (node == next)
 		return ;
+	node->input[0]->output = node->output;
 	prev->output = node;
 	node->input[0] = prev;
 	if (next)
-	{
 		next->input[0] = node;
-		next->output = node->output;
-	}
 	node->output = next;
 }
 
