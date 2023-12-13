@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/13 01:13:23 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/13 02:38:43 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	redirect_output(t_pnode *node, int *exit_status)
 		*exit_status = empty_file(node->output);
 		del_next(node);
 		if (*exit_status)
-			return (1);
+			return (0);
 	}
 	if (!node->output->args || !*node->output->args || !**node->output->args)
 		return (syntax_error(node->output));
@@ -90,6 +90,7 @@ int	output_handler(t_pnode *node, t_data *data, int *exit_status)
 	{
 		if (redirect_output(node, exit_status))
 			return (1);
+		return (0);
 	}
 	if (node->output_fd < 0)
 		*exit_status = 1;
@@ -114,6 +115,7 @@ int	program_call(t_pnode *node, t_data *data)
 {
 	int		exit_status;
 
+	exit_status = 0;
 	if (node->output)
 	{
 		if (!output_handler(node, data, &exit_status))
