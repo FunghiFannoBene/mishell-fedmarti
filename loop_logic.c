@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/14 00:39:05 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/14 00:40:22 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ void	prompt_loop(t_data *data)
 	char	*input;
 	t_pnode	*command_list;
 	int		exit_status;
-
-	rl_outstream = stderr;
+	
 	input = readline("Minishell>");
 	if (!input)
 		ft_exit((char *[]){"exit", NULL}, data, NULL);
