@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:02:26 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/13 02:00:51 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:05:15 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,23 @@ int	check_zero_move(char *s, int *i, t_redirect **command, t_search *k)
 
 int	check_pipe_redi(char *s, int *i, t_redirect **command, t_pnode *structure)
 {
+	int	redir;
+
 	if (check_pipe(s, i, structure))
 	{
 		free(*command);
 		*command = NULL;
 		return (-4);
 	}
-	if (check_redirect(s, i, structure))
+	redir = check_redirect(s, i, structure);
+	if (redir == 1)
 	{
 		free(*command);
 		write(2, "minishell: syntax error near unexpected token `>'\n", 50);
 		return (-1);
 	}
+	else if (redir == 2)
+		return (-2);
 	return (0);
 }
 
@@ -76,13 +81,7 @@ int	create_command_size(char *s, int *i, t_redirect **command, t_search *k)
 	while (s[k->start + k->x] && s[k->start + k->x] != ' '
 		&& s[k->start + k->x] != '|'
 		&& s[k->start + k->x] != '<'
-		&& s[k->start + k->x] != '>'
-		&& s[k->start + k->x] != '\''
-		&& s[k->start + k->x] != '"')
-		k->x++;
-	while (((s[k->start + k->x] != '\'' && k->single_double == 1)
-			&& (s[k->start + k->x] != '"'
-				&& k->single_double == 2)))
+		&& s[k->start + k->x] != '>')
 		k->x++;
 	(*command)->str = ft_calloc((size_t)(k->x) + 1, 1);
 	if (!(*command)->str)

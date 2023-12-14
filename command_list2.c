@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:02:10 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/13 02:00:17 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/14 12:04:51 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	check_redirect(char *s, int *i, t_pnode *structure)
 			return (1);
 		while (s[*i] == ' ' || s[*i] == '\'' || s[*i] == '"')
 			(*i)++;
+		return (2);
 	}
 	return (0);
 }
