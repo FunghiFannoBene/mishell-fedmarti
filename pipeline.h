@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/13 00:46:38 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/14 02:43:21 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_pipeline_tree_node
 	char						**args;
 	int							input_fd;
 	int							output_fd;
-	struct s_pipeline_tree_node	*input[2];
+	struct s_pipeline_tree_node	*input;
 	struct s_pipeline_tree_node	*output;
 	pid_t						pid;
 }	t_pnode;
@@ -63,7 +63,7 @@ int		is_type(t_pnode *node, t_ntype *types);
 void	free_node(t_pnode *node);
 void	*free_tree(t_pnode *head);
 t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous);
-pid_t	run_command(t_pnode *node, t_data *data);
+t_pnode	*run_command(t_pnode *node, t_data *data, int *exit_status);
 t_pnode	*next(t_pnode *node);
 t_pnode	*del_next(t_pnode *node);
 void	ft_exit_pip(int exit_status, t_pnode *tree, t_data *data);

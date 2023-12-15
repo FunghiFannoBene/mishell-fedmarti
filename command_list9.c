@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 12:33:41 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/06 21:13:53 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:06:25 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	structure_linking(t_command *c)
 	{
 		prev = c->structure_actual;
 		prev->output = c->structure;
-		c->structure->input[0] = prev;
+		c->structure->input = prev;
 		c->structure_actual = c->structure_actual->output;
 	}
 }

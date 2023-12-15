@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:02:19 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/13 00:18:54 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:03:27 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,12 @@ int	redirect_input_heredoc(t_pnode *node, t_data *data)
 	return (child_logic(node, data, pipe_fd[0]));
 }
 
-int	redirect_input(t_pnode *node)
+int	redirect_input(t_pnode *node, int *exit_status)
 {
-	if (node->input_fd)
-		close(node->input_fd);
-	node->output->input_fd = ft_open(node->args[0], O_RDONLY, -1);
-	if (node->output->input_fd <= 0)
-	{
-		free_tree(node->output);
-		return (1);
-	}
-	return (0);
+	int	fd;
+
+	fd = ft_open(node->args[0], O_RDONLY, -1);
+	if (fd < 0)
+		*exit_status = 1;
+	return (fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list8.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:45:39 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/12 21:55:22 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/14 19:06:21 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	assign_structure(t_command *c)
 	{
 		prev = c->structure_actual;
 		prev->output = c->structure;
-		c->structure->input[0] = prev;
+		c->structure->input = prev;
 		c->structure_actual = c->structure_actual->output;
 	}
 }

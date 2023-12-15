@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/06 19:52:31 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:30:40 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_pnode	*del_next(t_pnode *node)
 		return (node);
 	node->output = next->output;
 	if (node->output)
-		node->output->input[0] = node;
+		node->output->input = node;
 	next->output = NULL;
 	free_node(next);
 	return (node);
@@ -38,13 +38,12 @@ t_pnode	*next(t_pnode *node)
 	node = node->output;
 	if (node)
 	{
-		node->input[0] = temp->input[0];
-		if (temp->input[1])
-		{
-			temp->input[1]->output = NULL;
-			free_tree(get_head(temp->input[1]));
-		}
+		node->input = temp->input;
 	}
+	if (temp->input)
+		temp->output = node;
+	temp->output = NULL;
+	temp->input = NULL;
 	free_node(temp);
 	return (node);
 }
@@ -61,8 +60,7 @@ t_pnode	*node_create(enum e_pnode_type type, char **args, t_pnode *previous)
 	new->pid = 0;
 	new->type = type;
 	new->args = args;
-	new->input[0] = previous;
-	new->input[1] = NULL;
+	new->input = previous;
 	new->output = NULL;
 	new->input_fd = 0;
 	new->output_fd = 1;
@@ -77,10 +75,7 @@ void	free_node(t_pnode *node)
 		ft_free_matrix((void ***)&node->args, INT_MAX);
 	if (node->output)
 	{
-		if (node == node->output->input[0])
-			node->output->input[0] = NULL;
-		else
-			node->output->input[1] = NULL;
+		node->output->input = NULL;
 	}
 	free(node);
 }
