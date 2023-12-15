@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_logic.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 19:56:34 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:48:20 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	prompt_loop(t_data *data)
 	command_list = create_command_list(input);
 	// free_command_list(&command_list);
 	free (input);
+	// exit(0); //aggiunto per test
 	if (!command_list)
 		exit_status = 0;
 	else
