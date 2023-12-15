@@ -1,0 +1,22 @@
+/bin/rm: cannot remove 'tmp1': No such file or directory
+/bin/rm: cannot remove 'tmp2': No such file or directory
+/bin/rm: cannot remove 'tmp3': No such file or directory
+/bin/rm: cannot remove 'tmp4': No such file or directory
+/bin/rm: cannot remove 'tmp5': No such file or directory
+bash: line 3: : command not found
+bash: line 11: $SAMEYEE: ambiguous redirect
+/bin/rm: cannot remove 'tmp1': No such file or directory
+bash: line 19: tmp2: No such file or directory
+bash: line 23: /bin/lsa: No such file or directory
+bash: line 27: bla: No such file or directory
+bash: line 35: bla: command not found
+bash: line 40: tmp2: Permission denied
+cat: tmp1: No such file or directory
+bash: line 87: ls: No such file or directory
+bash: line 87: ls: No such file or directory
+bash: line 87: ls: No such file or directory
+bash: line 88: rm: No such file or directory
+bash: line 92: exit: khbsdk: numeric argument required
+bash: line 94: notexist: No such file or directory
+bash: line 96: notexist: No such file or directory
+bash: line 98: exit: tamere: numeric argument required

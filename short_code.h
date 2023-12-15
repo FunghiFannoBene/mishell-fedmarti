@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/14 19:30:38 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/15 03:02:18 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,5 @@ void			alloc_command_size2(char *s, int *i, t_redirect **command,
 					t_search *k);
 int				check_endstr(t_redirect **command, t_pnode **structure, int *i,
 					char *s);
-
+void			adapt_virgolette(char *n);
 #endif

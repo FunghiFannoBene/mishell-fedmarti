@@ -55,7 +55,6 @@ void	try_add_after(t_pnode **actual, t_pnode **tmp)
 			save = (*actual)->args;
 			(*actual)->args = join_matrix_after_first((*actual)->args,
 					(*tmp)->args);
-			(*tmp)->args[1] = NULL;
 			free_matrix(&save);
 		}
 		*tmp = (*tmp)->output;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_logic.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/14 00:40:22 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 04:52:52 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@ void	update_exit_status(t_var *exit_status, int new_val)
 	}
 }
 
+void free_command_list(t_pnode **command_list) {
+    t_pnode *current;
+    t_pnode *next;
+
+    current = *command_list;
+    while (current != NULL) {
+        next = current->output;
+        if (current->args != NULL) {
+            free_matrix(&(current->args));
+        }
+        free(current);
+        current = next;
+    }
+    *command_list = NULL;
+}
+
 void	prompt_loop(t_data *data)
 {
 	char	*input;
@@ -60,6 +76,7 @@ void	prompt_loop(t_data *data)
 		exit (1);
 	}
 	command_list = create_command_list(input);
+	// free_command_list(&command_list);
 	free (input);
 	if (!command_list)
 		exit_status = 0;
