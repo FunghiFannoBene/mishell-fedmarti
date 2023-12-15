@@ -6,18 +6,17 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 19:30:58 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 21:36:06 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "pipeline.h"
 
-int		is_builtin(char *str);
-int		ft_builtin(t_pnode *node, t_data *data);
+
 void	signal_handler(int signo);
 t_pnode	*run_command(t_pnode *node, t_data *data, int *exit_status);
-int		single_builtin(t_pnode *node, t_data *data);
+
 
 /*static int	empty_heredoc(t_pnode *node, int *exit_status, t_data *data)
 {
@@ -238,8 +237,6 @@ int	run_command_pipeline(t_pnode *pipeln_tree, t_data *data)
 	head = pipeln_tree;
 	if (read_heredocs(pipeln_tree, &head, data))
 		return ((long)free_tree(head) + 1);
-	if (!get_boundary(pipeln_tree) && is_builtin(pipeln_tree->args[0]))
-		return (single_builtin(pipeln_tree, data));
 	signal(SIGINT, SIG_IGN);
 	while (pipeln_tree)
 	{

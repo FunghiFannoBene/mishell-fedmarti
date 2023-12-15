@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:39:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 02:14:34 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 21:53:26 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "minishell.h"
 
 void	ft_exec(t_pnode *node, t_data *data);
+int		single_builtin(t_pnode *node, t_data *data);
 
 //creates pipe or opens /dev/null and sets the nodes' input/output fd's
 //returns 1 on success, 0 on failure
@@ -102,6 +103,8 @@ int	program_call(t_pnode *node, t_data *data, int pipe_read)
 	int		exit_status;
 
 	exit_status = 0;
+	if (!get_boundary(get_head(node)) && is_builtin(node->args[0]))
+		return (ft_builtin(node, data));
 	node->pid = ft_fork(&exit_status);
 	if (node->pid > 0)
 		return (on_return(exit_status, NULL, node->output_fd, node->input_fd));

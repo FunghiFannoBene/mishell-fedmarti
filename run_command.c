@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 19:35:21 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 21:38:26 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		program_call(t_pnode *node, t_data *data, int pipe_read);
 int	redirect_output(t_pnode *node, int *exit_status);
 void	ft_exec(t_pnode *node, t_data *data);
 t_pnode	*get_head(t_pnode *node);
+int		is_builtin(char *str);
+int		ft_builtin(t_pnode *node, t_data *data);
 
 int	empty_file(t_pnode *node)
 {
@@ -167,7 +169,7 @@ int	swap_fds(int fd[2], t_pnode *node, int *exit_status)
 	if (node->type == Redirect_input)
 		fd[0] = change_fd(fd[0], redirect_input(node, exit_status), 'r');
 	else if (node->type == Redirect_input_heredoc)
-		fd[0] = change_fd(fd[1], node->output_fd, 'r');
+		fd[0] = change_fd(fd[0], node->output_fd, 'r');
 	else if (node->type == Redirect_output \
 	|| node->type == Redirect_output_append)
 		fd[1] = change_fd(fd[1], redirect_output(node, exit_status), 'w');

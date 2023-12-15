@@ -6,14 +6,12 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:41 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/14 20:30:40 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 21:37:21 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipeline.h"
 #include "libft/libft.h"
-
-t_pnode	*get_head(t_pnode *node);
 
 t_pnode	*del_next(t_pnode *node)
 {

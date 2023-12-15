@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/14 02:43:21 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 21:38:12 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ int		is_builtin(char *str);
 int		ft_builtin(t_pnode *node, t_data *data);
 int		syntax_error(t_pnode *node);
 int		empty_file(t_pnode *node);
+t_pnode	*get_boundary(t_pnode *node);
+t_pnode	*get_head(t_pnode *node);
+int		is_builtin(char *str);
 
 #endif
