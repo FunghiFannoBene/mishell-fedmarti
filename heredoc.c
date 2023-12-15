@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 20:35:12 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/04 16:13:27 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 23:10:18 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ static inline int	null_args(void)
 	return (2);
 }
 
-static inline char	*coumpound_input(char *str, char *input, t_data *data)
+static inline char	*coumpound_input(char *str, char *input)
 {
 	char	*temp;
 
-	input = expand_variables(input, data);
 	if (!input)
 		return (NULL);
 	temp = str;
@@ -44,13 +43,13 @@ int	ft_heredoc(char **args, int fd, t_data *data)
 	output_str = ft_calloc(1, sizeof(char));
 	if (!output_str)
 		return (1);
-	input = readline(">");
+	input = expand_variables(readline(">"), data);
 	while (input && ft_strncmp(input, *args, eof_len))
 	{
-		output_str = coumpound_input(output_str, input, data);
+		output_str = coumpound_input(output_str, input);
 		if (!output_str)
 			return (1);
-		input = readline(">");
+		input = expand_variables(readline(">"), data);
 	}
 	free(input);
 	write (fd, output_str, ft_strlen(output_str));
