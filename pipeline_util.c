@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/14 01:54:20 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 22:57:20 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,15 @@ t_pnode	*get_head(t_pnode *node)
 {
 	while (node->input)
 		node = node->input;
+	return (node);
+}
+
+t_pnode	*get_pcall(t_pnode *node, t_pnode *boundary)
+{
+	while (node != boundary && node->type != Program_Call)
+		node = node->output;
+	if (node == boundary)
+		return (NULL);
 	return (node);
 }
 

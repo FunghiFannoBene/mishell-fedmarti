@@ -21,6 +21,7 @@ SRCS = minishell.c \
 	pwd.c \
 	unset.c \
 	heredoc.c  \
+	heredoc2.c \
 	ft_builtin.c \
 	create_pipeline.c \
 	sort_pipeline_tree.c \
@@ -29,6 +30,7 @@ SRCS = minishell.c \
 	run_command_pipeline.c \
 	run_command.c \
 	pipeline_util.c \
+	pipeline_util2.c \
 	ft_fork.c \
 	program_call.c \
 	redirect_input.c \
