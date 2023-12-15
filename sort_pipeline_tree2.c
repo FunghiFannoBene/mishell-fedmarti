@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_pipeline_tree2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:19:30 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/14 00:36:05 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/15 19:58:34 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@
 // 	return (node);
 // }
 
-static void	shift_back(t_pnode *node, t_pnode *last_pcall)
+/*static void	shift_back(t_pnode *node, t_pnode *last_pcall)
 {
 	t_pnode	*prev;
 	t_pnode	*next;
 
 	prev = last_pcall;
-	while (is_type(prev->output, \
-	(t_ntype[]){Redirect_input, Redirect_input_heredoc, Null}) \
+	while (is_type(prev->output, 
+	(t_ntype[]){Redirect_input, Redirect_input_heredoc, Null}) 
 	&& prev->output != node)
 	{
 		prev = prev->output;
@@ -42,7 +42,7 @@ static void	shift_back(t_pnode *node, t_pnode *last_pcall)
 	if (next)
 		next->input[0] = node;
 	node->output = next;
-}
+} 
 
 t_pnode	*shift_redirect_output(t_pnode *node)
 {
@@ -66,4 +66,4 @@ t_pnode	*shift_redirect_output(t_pnode *node)
 		node = node->output;
 	}
 	return (head);
-}
+} */
