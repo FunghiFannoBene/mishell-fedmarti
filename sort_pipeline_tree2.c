@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_pipeline_tree2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:19:30 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/13 01:29:53 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/14 00:36:05 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_pnode	*shift_redirect_output(t_pnode *node)
 	t_pnode	*head;
 
 	head = node;
+	last_pcall = NULL;
 	while (node)
 	{
 		if (node->type == Program_Call)

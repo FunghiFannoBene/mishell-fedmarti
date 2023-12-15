@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 15:20:47 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/13 02:10:02 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/14 02:28:52 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	contains_only_one_virgoletta(char *s)
 	}
 	return (1);
 }
+
 void	next_size(int *i, t_redirect **command)
 {
 	(*command)->flag = 0;
