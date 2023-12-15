@@ -6,17 +6,15 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 21:36:06 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 22:34:55 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "pipeline.h"
 
-
 void	signal_handler(int signo);
 t_pnode	*run_command(t_pnode *node, t_data *data, int *exit_status);
-
 
 /*static int	empty_heredoc(t_pnode *node, int *exit_status, t_data *data)
 {
@@ -130,7 +128,8 @@ t_pnode	*associated_pcall(t_pnode *node, t_pnode *boundary)
 	return (node);
 }
 
-static void	_child_logic(t_pnode *node, int pipe_fd[2], t_pnode *head, t_data *data)
+static void	_child_logic(t_pnode *node, int pipe_fd[2], \
+t_pnode *head, t_data *data)
 {
 	if (pipe_fd[0])
 		close (pipe_fd[0]);

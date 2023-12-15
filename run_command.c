@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 21:38:26 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 22:33:46 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int		redirect_input(t_pnode *node, int *exit_status);
 int		redirect_input_heredoc(t_pnode *node, t_data *data);
 int		program_call(t_pnode *node, t_data *data, int pipe_read);
-int	redirect_output(t_pnode *node, int *exit_status);
+int		redirect_output(t_pnode *node, int *exit_status);
 void	ft_exec(t_pnode *node, t_data *data);
 t_pnode	*get_head(t_pnode *node);
 int		is_builtin(char *str);
@@ -94,10 +94,12 @@ int	single_builtin(t_pnode *node, t_data *data)
 // 	return (node);
 // }
 
-t_pnode *get_pcall(t_pnode *node, t_pnode *boundary)
+t_pnode	*get_pcall(t_pnode *node, t_pnode *boundary)
 {
 	while (node != boundary && node->type != Program_Call)
 		node = node->output;
+	if (node == boundary)
+		return (NULL);
 	return (node);
 }
 
@@ -115,8 +117,6 @@ int	change_fd(int prev_fd, int new_fd, char mode)
 	if ((prev_fd > 0 && mode == 'r') \
 	|| (prev_fd > 1 && mode == 'w'))
 		close (prev_fd);
-	// if (new_fd < 0)
-	// 	write(2, "aarawfawss", 10);
 	return (new_fd);
 }
 
@@ -196,6 +196,9 @@ static int _vars_init(t_pnode **command, t_pnode **boundary, int fd[2], t_pnode 
 	{
 		fd[0] = (*command)->input_fd;
 		fd[1] = (*command)->output_fd;
+		if ((*command)->args == NULL || (*command)->args[0] == NULL \
+		|| (*command)->args[0][0] == '\0')
+			*command = NULL;
 	}
 	else
 	{
