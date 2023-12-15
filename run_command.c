@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 22:59:44 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 23:25:09 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,7 @@ t_pnode **boundary, int fd[2], t_pnode **node)
 	{
 		fd[0] = (*command)->input_fd;
 		fd[1] = (*command)->output_fd;
-		if ((*command)->args == NULL || (*command)->args[0] == NULL \
-		|| (*command)->args[0][0] == '\0')
+		if ((*command)->args == NULL || (*command)->args[0] == NULL)
 			*command = NULL;
 	}
 	else

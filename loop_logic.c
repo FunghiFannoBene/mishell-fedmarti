@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 23:04:33 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/15 23:36:52 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,15 @@ void	prompt_loop(t_data *data)
 	t_pnode	*command_list;
 	int		exit_status;
 
+	exit_status = atoi(data->exit_status->value);
 	input = readline("Minishell>");
 	if (!input)
 		ft_exit((char *[]){"exit", NULL}, data, NULL);
-	add_history(input);
+	if (*input)
+	{
+		exit_status = 0;
+		add_history(input);
+	}
 	input = transform_for_dollar(input, data);
 	if (!input)
 	{
@@ -80,9 +85,7 @@ void	prompt_loop(t_data *data)
 	}
 	command_list = create_command_list(input);
 	free(input);
-	if (!command_list)
-		exit_status = 0;
-	else
+	if (command_list)
 		exit_status = run_command_pipeline(command_list, data);
 	update_exit_status(data->exit_status, exit_status);
 }
