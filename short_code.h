@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/15 03:02:18 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/16 01:08:35 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,14 +110,10 @@ int				check_redirect(char *s, int *i, t_pnode *structure);
 int				check_pipe(char *s, int *i, t_pnode *structure);
 int				check_virgolette_dispari(char *s, int *i);
 void			init_search(t_search *k, t_redirect **command, char *s, int *i);
-int				check_zero_move(char *s, int *i, t_redirect **command,
-					t_search *k);
+int				check_zero_move(char *s, int *i, t_redirect **command);
 int				check_pipe_redi(char *s, int *i, t_redirect **command,
 					t_pnode *structure);
-int				create_command_size(char *s, int *i, t_redirect **command,
-					t_search *k);
-void			alloc_command_size(char *s, int *i, t_redirect **command,
-					t_search *k);
+int				create_command_size(char *s, int *i, t_redirect **command);
 int				search_command(char *s, int *i, t_redirect **command,
 					t_pnode *structure);
 int				check_and_skip_space(char *s, int *i);
@@ -159,7 +155,7 @@ void			init_transform_d(t_short_dollar *d, char **s);
 int				contains_only_one_virgoletta(char *s);
 char			*remove_slashes(char *s);
 int				slash_return(char *s, int *i, t_redirect **command);
-int				found_virgoletta(char *n, t_us *u);
+int				found_virgoletta(char *s, int *i, int *count);
 int				matrix_length(char **matrix);
 int				copy_matrix(char **dest, char **src, int start, int skip_first);
 void			free_matrix(char ***matrix);
@@ -171,5 +167,7 @@ void			alloc_command_size2(char *s, int *i, t_redirect **command,
 					t_search *k);
 int				check_endstr(t_redirect **command, t_pnode **structure, int *i,
 					char *s);
-void			adapt_virgolette(char *n);
+void			adapt_virgolette(char *n, t_redirect **command, int *i);
+int				found_virgoletta2(char *s, int *i, char *new, int *x);
+
 #endif

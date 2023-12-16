@@ -30,7 +30,6 @@ cat tmp2
 echo $?
 ls
 echo $?
-
 echo $?
 bla
 echo -------------------3-------------------
