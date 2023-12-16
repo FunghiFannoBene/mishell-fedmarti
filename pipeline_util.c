@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/16 16:37:22 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 18:02:32 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_data(t_data *data);
 //returns exit_status
 int	on_return(int exit_status, t_pnode *node, int fd1, int fd2)
 {
-	if (fd1 != 1)
+	if (fd1 != 1 && fd1 >= 0)
 		close(fd1);
 	if (fd2 > 0)
 		close(fd2);
