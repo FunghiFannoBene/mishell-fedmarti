@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 22:46:16 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 23:00:34 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:48:49 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,7 @@ int	read_heredocs(t_pnode *node, t_pnode **head, t_data *data)
 				continue ;
 			}
 			if (take_input(node, data, *head, prgrm_call))
-			{
-				close_fds(*head);
 				return (1);
-			}
 			node = node_advance(node, prgrm_call, head);
 		}
 		if (node)

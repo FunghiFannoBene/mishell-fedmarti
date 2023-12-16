@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 22:55:32 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:36:42 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int	valid_syntax(t_pnode *tree, int *exit_status)
 				return (0);
 			}
 		}
-		else if (tree->type == Pipe && (!tree->input || !tree->output))
+		else if (tree->type == Pipe \
+		&& ((!tree->input || tree->input->type == Pipe) \
+		|| (!tree->output || tree->output->type == Pipe)))
 		{
 			*exit_status = syntax_error(tree);
 			return (0);

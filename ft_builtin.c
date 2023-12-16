@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <fedmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:01:33 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/11/25 17:02:07 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:27:22 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	ft_builtin(t_pnode *node, t_data *data)
 	int	exit_status;
 
 	exit_status = 0;
+	if (node->input_fd > 0)
+		close(node->input_fd);
 	if (!ft_strncmp("echo", node->args[0], 5))
 		exit_status = (ft_echo(node->args, node->output_fd));
 	else if (!ft_strncmp("env", node->args[0], 4))

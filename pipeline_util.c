@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:23:09 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 22:57:20 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:37:22 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,13 @@ void	*free_tree(t_pnode *node)
 		return (NULL);
 	prev = node->input;
 	while (node)
+	{
+		if (node->input_fd > 0)
+			close(node->input_fd);
+		if (node->output_fd > 1)
+			close(node->output_fd);
 		node = next(node);
+	}
 	if (prev)
 		prev->output = NULL;
 	return (NULL);

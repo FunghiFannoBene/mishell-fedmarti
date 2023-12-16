@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 23:25:09 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 16:51:56 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ static int	swap_fds(int fd[2], t_pnode *node, int *exit_status)
 	if (node->type == Redirect_input)
 		fd[0] = change_fd(fd[0], redirect_input(node, exit_status), 'r');
 	else if (node->type == Redirect_input_heredoc)
+	{
 		fd[0] = change_fd(fd[0], node->output_fd, 'r');
+		node->output_fd = 1;
+	}
 	else if (node->type == Redirect_output \
 	|| node->type == Redirect_output_append)
 		fd[1] = change_fd(fd[1], redirect_output(node, exit_status), 'w');
@@ -86,6 +89,8 @@ t_pnode **boundary, int fd[2], t_pnode **node)
 	{
 		fd[0] = (*command)->input_fd;
 		fd[1] = (*command)->output_fd;
+		(*command)->input_fd = 0;
+		(*command)->output_fd = 1;
 		if ((*command)->args == NULL || (*command)->args[0] == NULL)
 			*command = NULL;
 	}
