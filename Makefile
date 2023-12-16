@@ -29,6 +29,7 @@ SRCS = minishell.c \
 	exec.c \
 	run_command_pipeline.c \
 	run_command.c \
+	run_command2.c \
 	pipeline_util.c \
 	pipeline_util2.c \
 	ft_fork.c \

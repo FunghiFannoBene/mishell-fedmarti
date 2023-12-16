@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 18:47:08 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/16 16:36:42 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 20:34:21 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static int	wait_for_children(t_pnode *node, int *exit_status)
 				*exit_status = WTERMSIG(*exit_status) + 128;
 			}
 		}
+		else if (node->type == Program_Call && node->exit_status != 0)
+			*exit_status = node->exit_status;
 		node = node->output;
 	}
 	return (*exit_status);

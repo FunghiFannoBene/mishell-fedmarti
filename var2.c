@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:24:03 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/12 19:59:13 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:21:01 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ char	*expand_variables(char *str, t_data *data)
 			return (NULL);
 		substr = ft_strchr(new_str, '$');
 	}
-	free(str);
 	return (new_str);
 }

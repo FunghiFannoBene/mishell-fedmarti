@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 01:21:11 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/16 16:51:56 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 20:41:19 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		redirect_input_heredoc(t_pnode *node, t_data *data);
 int		program_call(t_pnode *node, t_data *data, int pipe_read);
 int		redirect_output(t_pnode *node, int *exit_status);
 void	ft_exec(t_pnode *node, t_data *data);
+int		*command_exit_status_if_command(int *exit_status, t_pnode *command);
 
 static int	output_handler(t_pnode *node, t_pnode *command, \
 int write_fd, int *pipe_read_fd)
@@ -110,6 +111,7 @@ t_pnode	*run_command(t_pnode *node, t_data *data, int *exit_status)
 	int		fd[2];
 
 	pipe_read = _vars_init(&command, &boundary, fd, &node);
+	exit_status = command_exit_status_if_command(exit_status, command);
 	while (node != boundary)
 	{
 		if (node->type != Program_Call && swap_fds(fd, node, exit_status))
@@ -120,13 +122,12 @@ t_pnode	*run_command(t_pnode *node, t_data *data, int *exit_status)
 	if (boundary)
 	{
 		fd[1] = output_handler(boundary->output, command, fd[1], &pipe_read);
-		if (fd[1] < 0 && on_return(1, boundary, 1, fd[0]))
-			return ((void *)((long)(*exit_status = 1) *0));
+		if (fd[1] < 0 && on_return(1, NULL, 1, fd[0]))
+			return (((*exit_status = 1) * 0) + boundary);
 	}
 	if (!command)
 		return (on_return(0, NULL, fd[1], fd[0]) + node);
 	command->input_fd = fd[0];
 	command->output_fd = fd[1];
-	*exit_status = program_call(command, data, pipe_read);
-	return (node);
+	return ((*exit_status = program_call(command, data, pipe_read)) * 0 + node);
 }

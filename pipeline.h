@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 23:10:17 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 22:56:29 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 20:12:35 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_pipeline_tree_node
 	struct s_pipeline_tree_node	*input;
 	struct s_pipeline_tree_node	*output;
 	pid_t						pid;
+	int							exit_status;
 }	t_pnode;
 
 typedef struct s_redirect
