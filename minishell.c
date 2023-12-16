@@ -6,7 +6,7 @@
 /*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/27 18:14:43 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/14 00:40:47 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 01:21:01 by fedmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 
 void	prompt_loop(t_data *data);
 void	update_exit_status(t_var *exit_status, int new_val);
+
+void	update_env_vars(t_data *data)
+{
+	t_var	*shell_level;
+	char	*level;
+
+	shell_level = get_var("SHLVL", data->export_var);
+	if (!shell_level)
+		set_var_list("SHLVL", "1", data->export_var);
+	else
+	{
+		level = ft_itoa(ft_atoi(shell_level->value) + 1);
+		if (!level)
+			return ;
+		set_var_list("SHLVL", level, data->export_var);
+		free(level);
+	}
+}
 
 t_data	*data_init(char **env)
 {
@@ -37,6 +55,7 @@ t_data	*data_init(char **env)
 		free(data);
 		return (NULL);
 	}
+	update_env_vars(data);
 	return (data);
 }
 
