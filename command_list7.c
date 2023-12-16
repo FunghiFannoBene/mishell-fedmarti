@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:33:20 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/06 22:45:30 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/16 12:46:13 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	size_of_command(char *s, int *i, t_redirect **head, t_pnode *structure)
 			return (-1);
 		if (s[*i] == '|' || s[*i] == '<' || s[*i] == '>')
 			return (0);
-		if (assign_flag(s, i, &command, (*head)->str) == -1)
+		if (assign_flag(s, i, &command) == -1)
 			continue ;
 		while (s[*i])
 		{

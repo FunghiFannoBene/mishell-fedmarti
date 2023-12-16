@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:13:22 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/16 01:08:35 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/16 12:45:28 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int				create_command_size(char *s, int *i, t_redirect **command);
 int				search_command(char *s, int *i, t_redirect **command,
 					t_pnode *structure);
 int				check_and_skip_space(char *s, int *i);
-int				assign_flag(char *s, int *i, t_redirect **command, char *h_c);
+int				assign_flag(char *s, int *i, t_redirect **command);
 int				slash_return(char *s, int *i, t_redirect **command);
 int				check_slashes(char *s, int *i, t_redirect **command);
 char			*substring(const char *str, size_t begin, size_t len);
