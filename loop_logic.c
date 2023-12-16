@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop_logic.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fedmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 00:35:56 by fedmarti          #+#    #+#             */
-/*   Updated: 2023/12/15 23:36:52 by fedmarti         ###   ########.fr       */
+/*   Updated: 2023/12/16 12:41:54 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,13 @@ void	update_exit_status(t_var *exit_status, int new_val)
 	}
 }
 
-//void free_command_list(t_pnode **command_list)
-//{
-//	t_pnode *current;
-//	t_pnode *next;
-
-//	current = *command_list;
-//	while (current != NULL)
-//	{
-//		next = current->output;
-//		if (current->args != NULL)
-//		{
-//			free_matrix(&(current->args));
-//		}
-//		free(current);
-//		current = next;
-//	}
-//	*command_list = NULL;
-//}
-
 void	prompt_loop(t_data *data)
 {
 	char	*input;
 	t_pnode	*command_list;
 	int		exit_status;
 
-	exit_status = atoi(data->exit_status->value);
+	exit_status = ft_atoi(data->exit_status->value);
 	input = readline("Minishell>");
 	if (!input)
 		ft_exit((char *[]){"exit", NULL}, data, NULL);
