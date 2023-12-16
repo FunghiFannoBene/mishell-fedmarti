@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:43:41 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/15 22:43:31 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/16 01:13:37 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,30 @@ int	check_endstr(t_redirect **command, t_pnode **structure, int *i, char *s)
 		if ((*structure)->type == Null)
 			(*structure)->type = Program_Call;
 		return (1);
+	}
+	return (0);
+}
+
+int	found_virgoletta2(char *s, int *i, char *new, int *x)
+{
+	char	virgoletta;
+
+	virgoletta = 0;
+	if (s[*i] == '\'' || s[*i] == '"')
+	{
+		virgoletta = s[*i];
+		(*i)++;
+		while (s[*i] && s[*i] != virgoletta)
+		{
+			new[(*x)++] = s[(*i)++];
+		}
+		if (s[*i] == '\0' || s[*i] == ' ' || s[*i] == '<' || s[*i] == '>'
+			|| s[*i] == '|')
+			return (1);
+		(*i)++;
+		if (s[*i] == '\0' || s[*i] == ' ' || s[*i] == '<' || s[*i] == '>'
+			|| s[*i] == '|')
+			return (1);
 	}
 	return (0);
 }

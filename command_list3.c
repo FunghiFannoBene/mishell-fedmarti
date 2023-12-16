@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:02:26 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/14 12:05:15 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/16 01:08:01 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,15 @@ void	init_search(t_search *k, t_redirect **command, char *s, int *i)
 		(*i)++;
 }
 
-int	check_zero_move(char *s, int *i, t_redirect **command, t_search *k)
+int	check_zero_move(char *s, int *i, t_redirect **command)
 {
 	if (s[*i] == '\0')
 	{
 		free(*command);
 		return (1);
 	}
-	while ((s[*i] == '\'' && s[*i + 1] == '\'') || (s[*i] == '"' && s[*i
-				+ 1] == '"'))
-		(*i) += 2;
 	while (s[*i] && s[*i] == ' ')
 		(*i)++;
-	check_virgolette_dispari(s, i);
-	if (s[*i] == '\'')
-	{
-		(*i)++;
-		k->single_double = 1;
-	}
-	if (s[*i] == '"')
-	{
-		k->single_double = 2;
-		(*i)++;
-	}
 	return (0);
 }
 
@@ -72,18 +58,9 @@ int	check_pipe_redi(char *s, int *i, t_redirect **command, t_pnode *structure)
 	return (0);
 }
 
-int	create_command_size(char *s, int *i, t_redirect **command, t_search *k)
+int	create_command_size(char *s, int *i, t_redirect **command)
 {
-	while (s[*i] && s[*i] == ' ')
-		(*i)++;
-	k->head = *command;
-	k->start = *i;
-	while (s[k->start + k->x] && s[k->start + k->x] != ' '
-		&& s[k->start + k->x] != '|'
-		&& s[k->start + k->x] != '<'
-		&& s[k->start + k->x] != '>')
-		k->x++;
-	(*command)->str = ft_calloc((size_t)(k->x) + 1, 1);
+	adapt_virgolette(s, command, i);
 	if (!(*command)->str)
 		return (1);
 	return (0);

@@ -6,58 +6,56 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:42:31 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/14 13:27:59 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/16 01:13:05 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "short_code.h"
 
-void	alloc_command_size(char *s, int *i, t_redirect **command, t_search *k)
+char	*createstr(char *s, int i, int count)
 {
-	k->x = 0;
-	while (s[*i] && s[*i] != ' ' && s[*i] != '|' && s[*i] != '<'
-		&& s[*i] != '>')
-		(*command)->str[k->x++] = s[(*i)++];
-	(*command)->str[k->x] = '\0';
-	(*command)->size = k->x;
-	(*command)->flag = 0;
-	if (k->single_double)
-		(*i)++;
-	while (s[*i] && s[*i] == ' ')
-		(*i)++;
+	char	*new;
+	int		x;
+
+	new = calloc(1, count + 1);
+	x = 0;
+	while (s[i] && s[i] != ' ' && s[i] != '<' && s[i] != '>' && s[i] != '|')
+	{
+		if (found_virgoletta2(s, &i, new, &x))
+			break ;
+		if (s[i] == '\'' || s[i] == '"')
+			continue ;
+		new[x++] = s[i++];
+	}
+	return (new);
 }
 
-void	adapt_virgolette(char *n)
+void	adapt_virgolette(char *s, t_redirect **command, int *i)
 {
-	t_us	u;
+	int	count;
+	int	start;
 
-	u.s = ft_strdup(n);
-	u.i = 0;
-	u.x = 0;
-	while (u.s[u.i] == ' ')
-		u.i++;
-	while (u.s[u.i] && u.s[u.i] != ' ' && u.s[u.i] != '<'
-		&& u.s[u.i] != '>' && u.s[u.i] != '|')
+	count = 0;
+	start = *i;
+	while (s[*i] && s[*i] != ' ' && s[*i] != '<' && s[*i] != '>'
+		&& s[*i] != '|')
 	{
-		if (found_virgoletta(n, &u))
+		if (found_virgoletta(s, i, &count))
 			break ;
-		if (u.s[u.i] == '\'' || u.s[u.i] == '"')
+		if (s[*i] == '\'' || s[*i] == '"')
 			continue ;
-		n[u.x++] = u.s[u.i++];
+		(*i)++;
+		count++;
 	}
-	while (u.s[u.i])
-		n[u.x++] = u.s[u.i++];
-	n[u.x] = '\0';
-	free(u.s);
+	(*command)->str = createstr(s, start, count);
 }
 
 int	search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 {
 	t_search	k;
 
-	adapt_virgolette(s);
 	init_search(&k, command, s, i);
-	if (check_zero_move(s, i, command, &k))
+	if (check_zero_move(s, i, command))
 		return (-3);
 	k.rx = check_pipe_redi(s, i, command, structure);
 	if (k.rx == -1 || k.rx == -4)
@@ -70,9 +68,8 @@ int	search_command(char *s, int *i, t_redirect **command, t_pnode *structure)
 	}
 	else
 	{
-		if (create_command_size(s, i, command, &k))
+		if (create_command_size(s, i, command))
 			return (-1);
-		alloc_command_size(s, i, command, &k);
 	}
 	if (check_endstr(command, &structure, i, s))
 		return (-2);

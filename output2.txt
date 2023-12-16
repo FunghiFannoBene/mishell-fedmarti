@@ -1,7 +1,6 @@
 -------------------000-------------------
 127
 -------------------00-------------------
-adapt.txta
 basherror.txt
 cd.c
 cd.o
@@ -51,6 +50,8 @@ ft_fork.c
 ft_fork.o
 get_env_list.c
 get_env_list.o
+heredoc2.c
+heredoc2.o
 heredoc.c
 heredoc.o
 libft
@@ -59,12 +60,15 @@ loop_logic.o
 Makefile
 minishell
 minishell.c
+minishellerror.txt
 minishell.h
 minishell.o
 minishell_subject.pdf
 output2.txt
 output.txt
 pipeline.h
+pipeline_util2.c
+pipeline_util2.o
 pipeline_util.c
 pipeline_util.o
 print_export.c
@@ -80,7 +84,6 @@ run_command.c
 run_command.o
 run_command_pipeline.c
 run_command_pipeline.o
-s
 short_code.h
 sort_pipeline_tree2.c
 sort_pipeline_tree2.o
@@ -107,7 +110,6 @@ var3.o
 var.c
 var.o
 -------------------0-------------------
-adapt.txta
 basherror.txt
 cd.c
 cd.o
@@ -157,6 +159,8 @@ ft_fork.c
 ft_fork.o
 get_env_list.c
 get_env_list.o
+heredoc2.c
+heredoc2.o
 heredoc.c
 heredoc.o
 libft
@@ -165,12 +169,15 @@ loop_logic.o
 Makefile
 minishell
 minishell.c
+minishellerror.txt
 minishell.h
 minishell.o
 minishell_subject.pdf
 output2.txt
 output.txt
 pipeline.h
+pipeline_util2.c
+pipeline_util2.o
 pipeline_util.c
 pipeline_util.o
 print_export.c
@@ -186,7 +193,6 @@ run_command.c
 run_command.o
 run_command_pipeline.c
 run_command_pipeline.o
-s
 short_code.h
 sort_pipeline_tree2.c
 sort_pipeline_tree2.o
@@ -215,7 +221,6 @@ var.o
 0
 0
 1
-adapt.txta
 basherror.txt
 cd.c
 cd.o
@@ -265,6 +270,8 @@ ft_fork.c
 ft_fork.o
 get_env_list.c
 get_env_list.o
+heredoc2.c
+heredoc2.o
 heredoc.c
 heredoc.o
 libft
@@ -273,12 +280,15 @@ loop_logic.o
 Makefile
 minishell
 minishell.c
+minishellerror.txt
 minishell.h
 minishell.o
 minishell_subject.pdf
 output2.txt
 output.txt
 pipeline.h
+pipeline_util2.c
+pipeline_util2.o
 pipeline_util.c
 pipeline_util.o
 print_export.c
@@ -294,7 +304,6 @@ run_command.c
 run_command.o
 run_command_pipeline.c
 run_command_pipeline.o
-s
 short_code.h
 sort_pipeline_tree2.c
 sort_pipeline_tree2.o
@@ -327,7 +336,6 @@ var.o
 0
 hello
 0
-adapt.txta
 basherror.txt
 cd.c
 cd.o
@@ -377,6 +385,8 @@ ft_fork.c
 ft_fork.o
 get_env_list.c
 get_env_list.o
+heredoc2.c
+heredoc2.o
 heredoc.c
 heredoc.o
 libft
@@ -385,12 +395,15 @@ loop_logic.o
 Makefile
 minishell
 minishell.c
+minishellerror.txt
 minishell.h
 minishell.o
 minishell_subject.pdf
 output2.txt
 output.txt
 pipeline.h
+pipeline_util2.c
+pipeline_util2.o
 pipeline_util.c
 pipeline_util.o
 print_export.c
@@ -406,7 +419,6 @@ run_command.c
 run_command.o
 run_command_pipeline.c
 run_command_pipeline.o
-s
 short_code.h
 sort_pipeline_tree2.c
 sort_pipeline_tree2.o
@@ -439,7 +451,6 @@ var.o
 0
 0
 0
-adapt.txta
 basherror.txt
 cd.c
 cd.o
@@ -489,6 +500,8 @@ ft_fork.c
 ft_fork.o
 get_env_list.c
 get_env_list.o
+heredoc2.c
+heredoc2.o
 heredoc.c
 heredoc.o
 libft
@@ -497,12 +510,15 @@ loop_logic.o
 Makefile
 minishell
 minishell.c
+minishellerror.txt
 minishell.h
 minishell.o
 minishell_subject.pdf
 output2.txt
 output.txt
 pipeline.h
+pipeline_util2.c
+pipeline_util2.o
 pipeline_util.c
 pipeline_util.o
 print_export.c
@@ -518,7 +534,6 @@ run_command.c
 run_command.o
 run_command_pipeline.c
 run_command_pipeline.o
-s
 short_code.h
 sort_pipeline_tree2.c
 sort_pipeline_tree2.o
@@ -559,8 +574,7 @@ something
 /home/shhuang/Desktop/mishell-fedmarti
 lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         inet6 ::1  prefixlen 128  scopeid 0x10<host>
-wlo1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet6 fe80::99a1:cc1:2862:a3b7  prefixlen 64  scopeid 0x20<link>
+wlo1: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         ether 14:85:7f:1f:60:d0  txqueuelen 1000  (Ethernet)
 shhuang
 shhuang
@@ -568,7 +582,6 @@ shhuang$$
 test$$$
 ls: /usr/bin/ls /usr/share/man/man1/ls.1.gz$$
 test$$$$$$$$$$$$$$$$$$$$
-adapt.txta
 basherror.txt
 cd.c
 cd.o
@@ -618,6 +631,8 @@ ft_fork.c
 ft_fork.o
 get_env_list.c
 get_env_list.o
+heredoc2.c
+heredoc2.o
 heredoc.c
 heredoc.o
 libft
@@ -626,12 +641,15 @@ loop_logic.o
 Makefile
 minishell
 minishell.c
+minishellerror.txt
 minishell.h
 minishell.o
 minishell_subject.pdf
 output2.txt
 output.txt
 pipeline.h
+pipeline_util2.c
+pipeline_util2.o
 pipeline_util.c
 pipeline_util.o
 print_export.c
@@ -647,7 +665,6 @@ run_command.c
 run_command.o
 run_command_pipeline.c
 run_command_pipeline.o
-s
 short_code.h
 sort_pipeline_tree2.c
 sort_pipeline_tree2.o
@@ -676,7 +693,6 @@ var.c
 var.o
 grep: /usr/bin/grep /usr/share/man/man1/grep.1.gz /usr/share/info/grep.info.gz
 grep: /usr/bin/grep /usr/share/man/man1/grep.1.gz /usr/share/info/grep.info.gz
-adapt.txta
 basherror.txt
 cd.c
 cd.o
@@ -726,6 +742,8 @@ ft_fork.c
 ft_fork.o
 get_env_list.c
 get_env_list.o
+heredoc2.c
+heredoc2.o
 heredoc.c
 heredoc.o
 libft
@@ -734,12 +752,15 @@ loop_logic.o
 Makefile
 minishell
 minishell.c
+minishellerror.txt
 minishell.h
 minishell.o
 minishell_subject.pdf
 output2.txt
 output.txt
 pipeline.h
+pipeline_util2.c
+pipeline_util2.o
 pipeline_util.c
 pipeline_util.o
 print_export.c
@@ -755,7 +776,6 @@ run_command.c
 run_command.o
 run_command_pipeline.c
 run_command_pipeline.o
-s
 short_code.h
 sort_pipeline_tree2.c
 sort_pipeline_tree2.o
@@ -782,7 +802,6 @@ var3.c
 var3.o
 var.c
 var.o
-adapt.txta
 basherror.txt
 cd.c
 cd.o
@@ -832,6 +851,8 @@ ft_fork.c
 ft_fork.o
 get_env_list.c
 get_env_list.o
+heredoc2.c
+heredoc2.o
 heredoc.c
 heredoc.o
 libft
@@ -840,12 +861,15 @@ loop_logic.o
 Makefile
 minishell
 minishell.c
+minishellerror.txt
 minishell.h
 minishell.o
 minishell_subject.pdf
 output2.txt
 output.txt
 pipeline.h
+pipeline_util2.c
+pipeline_util2.o
 pipeline_util.c
 pipeline_util.o
 print_export.c
@@ -861,7 +885,6 @@ run_command.c
 run_command.o
 run_command_pipeline.c
 run_command_pipeline.o
-s
 short_code.h
 sort_pipeline_tree2.c
 sort_pipeline_tree2.o

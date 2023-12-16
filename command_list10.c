@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 01:54:06 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/14 11:10:37 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/16 01:13:21 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,26 @@ int	slash_return(char *s, int *i, t_redirect **command)
 	return (0);
 }
 
-int	found_virgoletta(char *n, t_us *u)
+int	found_virgoletta(char *s, int *i, int *count)
 {
-	if (u->s[u->i] == '\'' || u->s[u->i] == '"')
+	char	virgoletta;
+
+	virgoletta = 0;
+	if (s[*i] == '\'' || s[*i] == '"')
 	{
-		u->virgoletta = u->s[u->i];
-		u->i++;
-		while (u->s[u->i] && u->s[u->i] != u->virgoletta)
+		virgoletta = s[*i];
+		(*i)++;
+		while (s[*i] && s[*i] != virgoletta)
 		{
-			n[u->x] = u->s[u->i];
-			u->i++;
-			u->x++;
+			(*i)++;
+			(*count)++;
 		}
-		if (u->s[u->i] == '\0' || u->s[u->i] == ' '
-			|| u->s[u->i] == '<' || u->s[u->i] == '>'
-			|| u->s[u->i] == '|')
+		if (s[*i] == '\0' || s[*i] == ' ' || s[*i] == '<' || s[*i] == '>'
+			|| s[*i] == '|')
 			return (1);
-		u->i++;
-		if (u->s[u->i] == '\0' || u->s[u->i] == ' '
-			|| u->s[u->i] == '<' || u->s[u->i] == '>'
-			|| u->s[u->i] == '|')
+		(*i)++;
+		if (s[*i] == '\0' || s[*i] == ' ' || s[*i] == '<' || s[*i] == '>'
+			|| s[*i] == '|')
 			return (1);
 	}
 	return (0);
