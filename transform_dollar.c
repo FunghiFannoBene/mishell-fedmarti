@@ -6,7 +6,7 @@
 /*   By: shhuang <dsheng1993@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 21:04:49 by shhuang           #+#    #+#             */
-/*   Updated: 2023/12/13 01:54:00 by shhuang          ###   ########.fr       */
+/*   Updated: 2023/12/17 13:48:02 by shhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	list_exist(t_var *list, t_short_dollar *d)
 {
 	if (list != NULL)
 	{
-		d->tmp = add_slashes(ft_strdup(list->value));
+		if(!list->value || list->value[0] == '\0')
+			d->tmp = NULL;
+		else
+			d->tmp = add_slashes(ft_strdup(list->value));
 		d->size = (int)ft_strlen(d->tmp);
 	}
 }
